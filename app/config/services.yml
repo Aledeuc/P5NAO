@@ -4,7 +4,7 @@ parameters:
     #parameter_name: value
 
 services:
-    # default configuration for services in *this* file
+    # main configuration for services in *this* file
     _defaults:
         # automatically injects dependencies in your services
         autowire: true
