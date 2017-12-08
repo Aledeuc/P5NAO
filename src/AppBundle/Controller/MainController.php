@@ -20,6 +20,24 @@ class MainController extends Controller
     }
 
     /**
+     * @Route("/actualite", name="actualite")
+     */
+    public function actualiteAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('main/actualite.html.twig', []);
+    }
+
+    /**
+     * @Route("/aPropos", name="aPropos")
+     */
+    public function aProposAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('main/aPropos.html.twig', []);
+    }
+
+    /**
      * @Route("/mentions", name="mentions")
      */
     public function mentionAction(Request $request)
