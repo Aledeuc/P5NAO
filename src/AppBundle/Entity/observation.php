@@ -12,10 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class observation
 {
-    const STATUS_DRAFT      = 01; //brouillon
-    const STATUS_WAITING    = 02; //en attente de validation
-    const STATUS_VALIDATE   = 03; //validé
-    const STATUS_REFUSE     = 04; //refusé
+    const STATUS_DRAFT      = 1; //brouillon
+    const STATUS_WAITING    = 2; //en attente de validation
+    const STATUS_VALIDATE   = 3; //validé
+    const STATUS_REFUSE     = 4; //refusé
 
     /**
      * @var int
