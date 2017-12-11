@@ -73,7 +73,7 @@ class taxrefLien
     /**
      * @var string
      *
-     * @ORM\Column(name="ctSpId", type="string", length=255)
+     * @ORM\Column(name="urlSp", type="string", length=255)
      */
     private $urlSp;
 
@@ -253,6 +253,29 @@ class taxrefLien
     public function getCtSpId()
     {
         return $this->ctSpId;
+    }
+    /**
+     * Set urlSp
+     *
+     * @param string $urlSp
+     *
+     * @return taxrefLien
+     */
+    public function seturlSp($urlSp)
+    {
+        $this->urlSp = $urlSp;
+
+        return $this;
+    }
+
+    /**
+     * Get urlSp
+     *
+     * @return string
+     */
+    public function geturlSp()
+    {
+        return $this->urlSp;
     }
 }
 
