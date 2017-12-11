@@ -73,7 +73,7 @@ class taxrefLien
     /**
      * @var string
      *
-     * @ORM\Column(name="ctSpId", type="string", length=255)
+     * @ORM\Column(name="urlSp", type="string", length=255)
      */
     private $urlSp;
 

@@ -1,0 +1,19 @@
+/* Profil */
+
+.active-pink-2 input[type=text]:focus:not([readonly]) {
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+
+#titreMenu
+{
+    padding-bottom: 30px;
+    background-color: black;
+    color: white;
+}
+
+.menuProfil li
+{
+    padding-top: 10px;
+    list-style-type: none;
+}

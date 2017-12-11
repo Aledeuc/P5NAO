@@ -1,0 +1,64 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!--Panel-->
+
+    <div class="row">
+        <div class="col-3 profilMenu">
+            <div class="titreMenuProfil">
+                <h2>OBSERVATIONS</h2>
+            </div>
+
+            <div class="menuProfil">
+                <ul>
+                    <li><a class="avaliderLink" href="{{ path('avalider') }}">A valider</a></li>
+                    <li><a class="HistoriqueLink" href="{{ path('historique') }}">Historique</a></li>
+                    <li><a class="refuseesLink" href="{{ path('refusees') }}">Refusées</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-lg-9">
+            <h4 class="card-title">Toutes mes observations</h4>
+            <form class="form-inline">
+                <input class="form-control w-100" type="text" placeholder="Search" aria-label="Search">
+            </form>
+
+            <div class="tab-content">
+                {% if observation != null %}
+                <table class="table">
+                    <thead class="blue-grey lighteen-4">
+                    <tr>
+                        <th>Photo</th>
+                        <th>Date</th>
+                        <th>Nom</th>
+                        <th>Famille</th>
+                        <th>État</th>
+                    </tr>
+                    </thead>
+                    {% for observations in observation %}
+                        <tbody>
+                        <tr>
+                            <td><a class="observationPhoto" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.images  }}</a></td>
+                            <td><a class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.dateObservation |date("d/m/Y") }}</a></td>
+                            <td><a class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user }}</a></td>
+                            <td><a class="observationFamille" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.taxref }}</a></td>
+                            <td><a class="observationÉtat" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.validation  }}</a></td>
+
+
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            {% else %}
+                <div class="alert alert-warning">Pas d'observation trouvée </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+    <!--/.Panel-->
+{% endblock %}
