@@ -3,23 +3,24 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * taxref
+ * Taxref
  *
- * @ORM\Table(name="taxref")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\taxrefRepository")
+ * @ORM\Table(name="Taxref")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefRepository")
  */
-class taxref
+class Taxref
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="taxrefId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $taxrefId;
+    private $id;
 
     /**
      * @var string
@@ -268,13 +269,13 @@ class taxref
 
 
     /**
-     * Get taxrefId
+     * Get id
      *
      * @return int
      */
-    public function getTaxrefId()
+    public function getId()
     {
-        return $this->taxrefId;
+        return $this->id;
     }
 
     /**

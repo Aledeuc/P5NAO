@@ -3,23 +3,24 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * taxrefLien
+ * TaxrefLien
  *
- * @ORM\Table(name="taxref_lien")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\taxrefLienRepository")
+ * @ORM\Table(name="TaxrefLien")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefLienRepository")
  */
-class taxrefLien
+class TaxrefLien
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="taxrefLienId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $taxrefLienId;
+    private $id;
 
     /**
      * @var string
@@ -78,13 +79,13 @@ class taxrefLien
     private $urlSp;
 
     /**
-     * Get taxrefLienId
+     * Get id
      *
      * @return int
      */
-    public function getTaxrefLienId()
+    public function getId()
     {
-        return $this->taxrefLienId;
+        return $this->id;
     }
 
     /**
@@ -216,7 +217,7 @@ class taxrefLien
      */
     public function setCdNom($cdNom)
     {
-        $this->cdName = $cdNom;
+        $this->cdNom = $cdNom;
 
         return $this;
     }

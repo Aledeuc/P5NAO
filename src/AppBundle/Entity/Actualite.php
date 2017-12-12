@@ -3,28 +3,29 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * actualite
+ * Actualite
  *
- * @ORM\Table(name="actualite")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\actualiteRepository")
+ * @ORM\Table(name="Actualite")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ActualiteRepository")
  */
-class actualite
+class Actualite
 {
     /**
      * @var int
      *
-     * @ORM\Column(name="actualiteId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $actualiteId;
+    private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="actualite_author", type="string", length=255)
+     * @ORM\Column(name="actualiteAuthor", type="string", length=255)
      */
     private $actualiteAuthor;
 
@@ -70,23 +71,17 @@ class actualite
      * @Assert\NotBlank(message="Ajouter une image jpg")
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
-    private $actualiteImageFile;
+    private $actualiteImage;
+
 
     /**
-     * @var string
-     * @ORM\Column(type="string")
-     *
-     */
-    private $actualiteImageName;
-
-    /**
-     * Get actualiteId
+     * Get id
      *
      * @return int
      */
-    public function getActualiteId()
+    public function getId()
     {
-        return $this->actualiteId;
+        return $this->id;
     }
 
     /**
@@ -98,7 +93,7 @@ class actualite
      */
     public function setActualiteAuthor($actualiteAuthor)
     {
-        $this->author = $actualiteAuthor;
+        $this->actualiteAuthor = $actualiteAuthor;
 
         return $this;
     }
@@ -234,51 +229,28 @@ class actualite
     }
 
     /**
-     * Set actualiteImageFile
+     * Set actualiteImage
      *
-     * @param string $actualiteImageFile
+     * @param string $actualiteImage
      *
      * @return actualite
      */
-    public function setActualiteImageFile($actualiteImageFile)
+    public function setActualiteImageFile($actualiteImage)
     {
-        $this->actualiteImageFile = $actualiteImageFile;
+        $this->actualiteImage = $actualiteImage;
 
         return $this;
     }
 
     /**
-     * Get actualiteImageFile
+     * Get actualiteImage
      *
      * @return string
      */
-    public function getActualiteImageFile()
+    public function getActualiteImage()
     {
-        return $this->actualiteImageFile;
+        return $this->actualiteImage;
     }
 
-    /**
-     * Set actualiteImageName
-     *
-     * @param string $actualiteImageName
-     *
-     * @return actualite
-     */
-    public function setActualiteImageName($actualiteImageName)
-    {
-        $this->actualiteImageName = $actualiteImageName;
-
-        return $this;
-    }
-
-    /**
-     * Get actualiteImageName
-     *
-     * @return string
-     */
-    public function getActualiteImageName()
-    {
-        return $this->actualiteImageName;
-    }
 }
 

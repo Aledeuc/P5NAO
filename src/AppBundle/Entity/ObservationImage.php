@@ -6,12 +6,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * image
+ * ObservationImage
  *
- * @ORM\Table(name="image")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\imageRepository")
+ * @ORM\Table(name="ObservationImage")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ObservationImageRepository")
  */
-class observationImage
+class ObservationImage
 {
     /**
      * @var int
@@ -23,14 +23,13 @@ class observationImage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Observation.php", inversedBy="images", cascade={"persist"})
      * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
      */
-
     private $observation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Observation.php", inversedBy="images", cascade={"persist"})
      * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
      * @Assert\File(
     *     maxSize="5120k",
@@ -53,16 +52,6 @@ class observationImage
      * @ORM\Column(name="uploadDate", type="datetime")
      */
     private $uploadDate;
-
-    /**
-     * @var boolean
-     */ // Attribut non persisté en base de donnée
-    private $NewsletterInscrit;
-    /**
-     * @var boolean
-     */ // Attribut non persisté en base de donnée
-    private $CharteAccepter;
-
 
     /**
      * Get id

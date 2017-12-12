@@ -3,14 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * user
+ * User
  *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\userRepository")
+ * @ORM\Table(name="User")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class user
+class User
 {
     /**
      * @var int
@@ -90,6 +91,16 @@ class user
      * @ORM\Column(name="lastUpdate", type="date")
      */
     private $lastUpdate;
+
+
+    /**
+     * @var boolean
+     */ // Attribut non persisté en base de donnée
+    private $NewsletterInscrit;
+    /**
+     * @var boolean
+     */ // Attribut non persisté en base de donnée
+    private $CharteAccepter;
 
 
     /**
