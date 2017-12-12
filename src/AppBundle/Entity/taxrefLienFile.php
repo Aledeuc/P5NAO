@@ -15,11 +15,11 @@ class taxrefLienFile
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="taxrefLienFileId", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $taxrefLienFileId;
 
     /**
      * @var string
@@ -58,13 +58,13 @@ class taxrefLienFile
 
 
     /**
-     * Get id
+     * Get taxrefLienFileId
      *
      * @return int
      */
-    public function getId()
+    public function getTaxrefLienFileId()
     {
-        return $this->id;
+        return $this->taxrefLienFileId;
     }
 
     /**

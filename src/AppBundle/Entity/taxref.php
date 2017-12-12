@@ -15,11 +15,11 @@ class taxref
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="taxrefId", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $taxrefId;
 
     /**
      * @var string
@@ -268,13 +268,13 @@ class taxref
 
 
     /**
-     * Get id
+     * Get taxrefId
      *
      * @return int
      */
-    public function getId()
+    public function getTaxrefId()
     {
-        return $this->id;
+        return $this->taxrefId;
     }
 
     /**
