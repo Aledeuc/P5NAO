@@ -15,16 +15,16 @@ class actualite
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="actualiteId", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    private $actualiteId;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="actualiteAuthor", type="string", length=255)
+     * @ORM\Column(name="actualite_author", type="string", length=255)
      */
     private $actualiteAuthor;
 
@@ -56,15 +56,37 @@ class actualite
      */
     private $actualiteStatus;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actualiteCategory", type="string", length=255)
+     */
+    private $actualiteCategory;
 
     /**
-     * Get id
+     * @var string
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $actualiteImageFile;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     *
+     */
+    private $actualiteImageName;
+
+    /**
+     * Get actualiteId
      *
      * @return int
      */
-    public function getId()
+    public function getActualiteId()
     {
-        return $this->id;
+        return $this->actualiteId;
     }
 
     /**
@@ -185,6 +207,78 @@ class actualite
     public function getActualiteStatus()
     {
         return $this->actualiteStatus;
+    }
+
+    /**
+     * Set actualiteCategory
+     *
+     * @param string $actualiteCategory
+     *
+     * @return actualite
+     */
+    public function setActualiteCategory($actualiteCategory)
+    {
+        $this->actualiteCategory = $actualiteCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get actualiteCategory
+     *
+     * @return string
+     */
+    public function getActualiteCategory()
+    {
+        return $this->actualiteCategory;
+    }
+
+    /**
+     * Set actualiteImageFile
+     *
+     * @param string $actualiteImageFile
+     *
+     * @return actualite
+     */
+    public function setActualiteImageFile($actualiteImageFile)
+    {
+        $this->actualiteImageFile = $actualiteImageFile;
+
+        return $this;
+    }
+
+    /**
+     * Get actualiteImageFile
+     *
+     * @return string
+     */
+    public function getActualiteImageFile()
+    {
+        return $this->actualiteImageFile;
+    }
+
+    /**
+     * Set actualiteImageName
+     *
+     * @param string $actualiteImageName
+     *
+     * @return actualite
+     */
+    public function setActualiteImageName($actualiteImageName)
+    {
+        $this->actualiteImageName = $actualiteImageName;
+
+        return $this;
+    }
+
+    /**
+     * Get actualiteImageName
+     *
+     * @return string
+     */
+    public function getActualiteImageName()
+    {
+        return $this->actualiteImageName;
     }
 }
 
