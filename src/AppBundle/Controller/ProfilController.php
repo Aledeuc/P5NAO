@@ -6,179 +6,176 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class ProfilController extends Controller
 {
-    /**
-     * @Route("/nompremom", name="profil")
-     */
-    public function profilAction(Request $request)
-    {
-        // if (userProfil = 1)
-            $repository = $this
-                        ->getDoctrine()
-                        ->getManager()
-                        ->getRepository('AppBundle:observation');
-
-            $observation = $repository->findBy(
-                array('user' => 'alexorac')
-            );
-
-
-        return $this->render('profil/user.html.twig', ['observation' => $observation]);
-        //{ } elseif ( userProfil = 2) {}
-        // elseif (userProfil = 3) {}
-        // elseif (userProfil = 4) {}
-        // else {}
-
-    }
-
-
     // Profil user
 
     /**
-     * @Route("/nompremom/brouillon", name="brouillon")
+     * @Route("/user/all", name="all")
      */
-    public function brouillonAction()
+    public function allAction()
     {
-        $repository = $this
-            ->getDoctrine()
+        $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository( 'AppBundle:observation');
+            ->getRepository('AppBundle:observation');
 
-        $observation = $repository->findBy(
-            array('status' => '1', 'user' => 'alexorac')
+        $observation = $repository->findBy(array(
+            'user' => 'alexorac'
+        ));
 
-        );
+        $titleTable = 'Toutes mes observations';
 
-        return $this->render('profil/user.html.twig', ['observation' => $observation]);
+        return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
 
     }
-
-
     /**
-     * @Route("/nompremom/validees", name="validees")
+     * @Route("/user/draftcopy", name="draftcopy")
      */
-    public function valideesAction()
+    public function draftcopyAction()
     {
-        $repository = $this
-            ->getDoctrine()
+        $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository( 'AppBundle:observation');
+            ->getRepository('AppBundle:observation');
 
-        $observation = $repository->findBy(
-            array('status' => '3', 'user' => 'alexorac')
-
+        $observation = $repository->findBy(array(
+                'status' => '1',
+                'user' => 'alexorac'
+            )
         );
 
-        return $this->render('profil/user.html.twig', ['observation' => $observation]);
+        $titleTable = 'Brouillon';
 
-    }
-
-    /**
-     * @Route("/nompremom/encours", name="encours")
-     */
-    public function encoursAction()
-    {
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository( 'AppBundle:observation');
-
-        $observation = $repository->findBy(
-            array('status' => '5', 'user' => 'alexorac')
-
-        );
-
-        return $this->render('profil/user.html.twig', ['observation' => $observation]);
+        return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
 
     }
 
     /**
-     * @Route("/nompremom/refusees", name="refusees")
+     * @Route("/user/validated", name="validated")
      */
-    public function refuseesAction()
+    public function validatedAction()
     {
-        $repository = $this
-            ->getDoctrine()
+        $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository( 'AppBundle:observation');
+            ->getRepository('AppBundle:observation');
 
-        $observation = $repository->findBy(
-            array('status' => '4', 'user' => 'alexorac')
-
+        $observation = $repository->findBy(array(
+                'status' => '3',
+                'user' => 'alexorac'
+            )
         );
 
-        return $this->render('profil/user.html.twig', ['observation' => $observation]);
+        $titleTable = 'Observations Validées';
 
-    }
-
-
-
-    // Naturaliste profil
-
-    /**
-     * @Route("/nompremom/avalider", name="avalider")
-     */
-    public function avaliderAction()
-    {
-        $repository = $this
-            ->getDoctrine()
-            ->getManager()
-            ->getRepository( 'AppBundle:observation');
-
-        $observation = $repository->findBy(
-            array('status' => '2')
-
-        );
-
-        return $this->render('profil/naturaliste.html.twig', ['observation' => $observation]);
+        return $this->render('profil/user.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
 
     }
 
     /**
-     * @Route("/nompremom/historique", name="historique")
+     * @Route("/user/inprogress", name="inprogress")
      */
-    public function historiqueAction()
+    public function inprogressAction()
     {
-        $repository = $this
-            ->getDoctrine()
+        $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository( 'AppBundle:observation');
+            ->getRepository('AppBundle:observation');
 
-        $observation = $repository->findBy(
-            array('status' => '3', 'validation'=> 'alexorac')
-
+        $observation = $repository->findBy(array(
+                'status' => '5',
+                'user' => 'alexorac'
+            )
         );
 
-        return $this->render('profil/naturaliste.html.twig', ['observation' => $observation]);
+        $titleTable = 'En cours de validation';
+
+        return $this->render('profil/user.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
 
     }
-
 
     /**
-     * @Route("/nompremom/mesrefus", name="refusees")
+     * @Route("/user/rejected", name="rejected")
      */
-    public function mesrefusAction()
+    public function rejectedAction()
     {
-        $repository = $this
-            ->getDoctrine()
+        $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository( 'AppBundle:observation');
+            ->getRepository('AppBundle:observation');
 
-        $observation = $repository->findBy(
-            array('status' => '4', 'validation' => 'alexorac')
-
+        $observation = $repository->findBy(array(
+                'status' => '4',
+                'user' => 'alexorac'
+            )
         );
 
-        return $this->render('profil/naturaliste.html.twig', ['observation' => $observation]);
+        $titleTable = 'Observations refusées';
+
+        return $this->render('profil/user.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
 
     }
 
+    // Naturalist profil
 
+    /**
+     * @Route("/naturalist/tovalidate", name="tovalidate")
+     */
+    public function tovalidateAction()
+    {
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:observation');
 
+        $observation = $repository->findBy(array(
+                'status' => '2'
+            )
+        );
 
+        $titleTable = 'Observation à valider';
+
+        return $this->render('profil/naturalist.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
+
+    }
+
+    /**
+     * @Route("/naturalist/historical", name="historical")
+     */
+    public function historicalAction()
+    {
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:observation');
+
+        $observation = $repository->findBy(array(
+                'status' => '3',
+                'validation' => 'alexorac'
+            )
+        );
+
+        $titleTable = 'Historique';
+
+        return $this->render('profil/naturalist.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
+
+    }
+
+    /**
+     * @Route("/naturalist/myrefusal", name="myrefusal")
+     */
+    public function myrefusalAction()
+    {
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:observation');
+
+        $observation = $repository->findBy(array(
+                'status' => '4',
+                'validation' => 'alexorac'
+            )
+        );
+
+        $titleTable = 'Observations refusées';
+
+        return $this->render('profil/naturalist.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
+
+    }
 
     //
 
@@ -191,3 +188,4 @@ class ProfilController extends Controller
         return $this->render('main/index.html.twig', []);
     }
 }
+

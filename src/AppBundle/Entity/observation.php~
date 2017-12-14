@@ -465,28 +465,5 @@ class observation
     {
         return $this->validation;
     }
-
-    /**
-     * Set observationStatus
-     *
-     * @param integer $observationStatus
-     *
-     * @return observation
-     */
-    public function setObservationStatus($observationStatus)
-    {
-        $this->observationStatus = $observationStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get observationStatus
-     *
-     * @return integer
-     */
-    public function getObservationStatus()
-    {
-        return $this->observationStatus;
-    }
 }
+

@@ -1,6 +1,5 @@
 {% extends 'layout.html.twig' %}
 
-
 {% block content %}
     <!--Panel-->
 {% block titreMenu %}
@@ -8,24 +7,24 @@
             <div class="col-3 profilMenu">
                 <div class="titreMenuProfil">
                     <h2>OBSERVATIONS</h2>
+
                 </div>
 {% endblock %}
 
-{% block menuProfil %}
+
                 <div class="menuProfil">
                     <ul>
-                        <li><a class="profilLink" href="{{ path('profil') }}">Toutes</a></li>
-                        <li><a class="brouillonLink" href="{{ path('brouillon') }}">Brouillons</a></li>
-                        <li><a class="valideesLink" href="{{ path('validees') }}">Validées</a></li>
-                        <li><a class="encoursLink" href="{{ path('encours') }}">En cours</a></li>
-                        <li><a class="refuseesLink" href="{{ path('refusees') }}">Refusées</a></li>
+                        <li><a class="allLink" href="{{ path('all') }}">Toutes</a></li>
+                        <li><a class="draftcopyLink" href="{{ path('draftcopy') }}">Brouillons</a></li>
+                        <li><a class="validatedLink" href="{{ path('validated') }}">Validées</a></li>
+                        <li><a class="inprogressLink" href="{{ path('inprogress') }}">En cours</a></li>
+                        <li><a class="rejectedLink" href="{{ path('rejected') }}">Refusées</a></li>
                     </ul>
                 </div>
             </div>
-{% endblock %}
-{% block contentProfil %}
+
             <div class="col-lg-9">
-                <h4 class="card-title">Toutes mes observations</h4>
+                <h4 class="card-title">{{ titleTable }}</h4>
                 <form class="form-inline">
                     <input class="form-control w-100" type="text" placeholder="Search" aria-label="Search">
                 </form>
@@ -62,8 +61,5 @@
                         {% endif %}
             </div>
         </div>
-
-{% endblock %}
-
     <!--/.Panel-->
 {% endblock %}
