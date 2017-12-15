@@ -45,16 +45,6 @@ class MainController extends Controller
         // replace this example code with whatever you need
         return $this->render('main/mentions.html.twig', []);
     }
-    /**
-     * @Route("/carte", name="carte")
-     */
-    public function carteAction(Request $request)
-    {
 
-        // replace this example code with whatever you need
-        return $this->render('main/carte.html.twig', [
-            'map_api_key' => $this->getParameter('map_api_key')
-        ]);
-    }
 
 }
