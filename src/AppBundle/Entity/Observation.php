@@ -16,7 +16,7 @@ class Observation
     const STATUS_DRAFT      = 1; //brouillon
     const STATUS_WAITING    = 2; //en attente de validation
     const STATUS_VALIDATE   = 3; //validé
-    const STATUS_REFUSE     = 4; //refusé
+    const STATUS_REJECTED     = 4; //rejeté
 
     /**
      * @var int
