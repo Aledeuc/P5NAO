@@ -102,11 +102,11 @@ class Observation
      * @ORM\Column(name="user", type="string", length=255)
      * @ORM\ManyToOne()
      */
-    private $users;
+    private $user;
 
     /**
      * @var observationImage
-     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ObservationImage", mappedBy="observation", cascade="persist")
      * @ORM\Column(name="images", type="string", length=255)
      */
     private $observationImages;
@@ -394,27 +394,27 @@ class Observation
     }
 
     /**
-     * Set images
+     * Set observationImages
      *
-     * @param string $images
+     * @param string $observationImages
      *
      * @return observation
      */
-    public function setImages($images)
+    public function setObservationImages($observationImages)
     {
-        $this->images = $images;
+        $this->observationImages = $observationImages;
 
         return $this;
     }
 
     /**
-     * Get images
+     * Get observationImages
      *
      * @return string
      */
-    public function getImages()
+    public function getObservationImages()
     {
-        return $this->images;
+        return $this->observationImages;
     }
 
     /**

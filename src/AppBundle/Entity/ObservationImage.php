@@ -23,14 +23,12 @@ class ObservationImage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Observation.php", inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Observation.php", cascade="persist")
+     * @ORM\JoinColumn(name="observationId", referencedColumnName="id")
      */
     private $observation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Observation.php", inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
      * @Assert\File(
     *     maxSize="5120k",
     *     maxSizeMessage="5 Mo maximum par fichier",
@@ -68,7 +66,7 @@ class ObservationImage
      *
      * @param string $observation
      *
-     * @return image
+     * @return ObservationImage
      */
     public function setObservation($observation)
     {
@@ -92,7 +90,7 @@ class ObservationImage
      *
      * @param string $imageFile
      *
-     * @return image
+     * @return ObservationImage
      */
     public function setImageFile($imageFile)
     {
@@ -116,7 +114,7 @@ class ObservationImage
      *
      * @param string $imageName
      *
-     * @return image
+     * @return ObservationImage
      */
     public function setImageName($imageName)
     {
@@ -140,7 +138,7 @@ class ObservationImage
      *
      * @param \DateTime $uploadDate
      *
-     * @return image
+     * @return ObservationImage
      */
     public function setUploadDate($uploadDate)
     {
