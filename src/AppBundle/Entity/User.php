@@ -3,15 +3,22 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * user
+ * User
  *
- * @ORM\Table(name="user")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\userRepository")
+ * @ORM\Table(name="User")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class user
+class User
 {
+    const SPECIALITY_VISITOR    = 0; //visiteur
+    const SPECIALITY_USER       = 1; //utilisateur
+    const SPECIALITY_NATUALIST  = 2; //naturaliste
+    const SPECIALITY_EDITOR     = 3; //rédacteur
+    const SPECIALITY_ADMIN      = 4; //admin
+    const SPECIALITY_SUPER_ADMIN= 5; //super admin
     /**
      * @var int
      *
@@ -90,6 +97,28 @@ class user
      * @ORM\Column(name="lastUpdate", type="date")
      */
     private $lastUpdate;
+
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="newsletterInscrit", type="boolean")
+     */
+    private $newsletterInscrit;
+    /**
+     * @var boolean
+     * @ORM\Column(name="ethicCharterAccepted", type="boolean")
+     */
+    private $ethicCharterAccepted;
+    /**
+     * @var integer
+     * @ORM\Column(name="validatedObservation", type="integer")
+     */
+    private $validatedObservation;
+    /**
+     * @var integer
+     * @ORM\Column(name="rejectedObservation", type="integer")
+     */
+    private $rejectedObservation;
 
 
     /**
@@ -340,6 +369,98 @@ class user
     public function getLastUpdate()
     {
         return $this->lastUpdate;
+    }
+    /**
+     * Set newsletterInscrit
+     *
+     * @param bool $newsletterInscrit
+     *
+     * @return user
+     */
+    public function setNewsletterInscrit($newsletterInscrit)
+    {
+        $this->newsletterInscrit = $newsletterInscrit;
+
+        return $this;
+    }
+
+    /**
+     * Get newsletterInscrit
+     *
+     * @return bool
+     */
+    public function getNewsletterInscrit()
+    {
+        return $this->newsletterInscrit;
+    }
+    /**
+     * Set ethicCharterAccepted
+     *
+     * @param bool $ethicCharterAccepted
+     *
+     * @return user
+     */
+    public function setEthicCharterAccepted($ethicCharterAccepted)
+    {
+        $this->ethicCharterAccepted = $ethicCharterAccepted;
+
+        return $this;
+    }
+
+    /**
+     * Get ethicCharterAccepted
+     *
+     * @return bool
+     */
+    public function getethicCharterAccepted()
+    {
+        return $this->ethicCharterAccepted;
+    }
+    /**
+     * Set validatedObservation
+     *
+     * @param integer $validatedObservation
+     *
+     * @return user
+     */
+    public function setValidatedObservation($validatedObservation)
+    {
+        $this->validatedObservation = $validatedObservation;
+
+        return $this;
+    }
+
+    /**
+     * Get validatedObservation
+     *
+     * @return integer
+     */
+    public function getValidatedObservation()
+    {
+        return $this->validatedObservation;
+    }
+    /**
+     * Set rejectedObservation
+     *
+     * @param integer $rejectedObservation
+     *
+     * @return user
+     */
+    public function setRejectedObservation($rejectedObservation)
+    {
+        $this->rejectedObservation = $rejectedObservation;
+
+        return $this;
+    }
+
+    /**
+     * Get rejectedObservation
+     *
+     * @return integer
+     */
+    public function getRejectedObservation()
+    {
+        return $this->rejectedObservation;
     }
 }
 

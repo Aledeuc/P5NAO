@@ -3,14 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * image
+ * ObservationImage
  *
- * @ORM\Table(name="image")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\imageRepository")
+ * @ORM\Table(name="ObservationImage")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ObservationImageRepository")
  */
-class image
+class ObservationImage
 {
     /**
      * @var int
@@ -22,15 +23,12 @@ class image
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Observation.php", cascade="persist")
+     * @ORM\JoinColumn(name="observationId", referencedColumnName="id")
      */
-
     private $observation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
      * @Assert\File(
     *     maxSize="5120k",
     *     maxSizeMessage="5 Mo maximum par fichier",
@@ -54,16 +52,6 @@ class image
     private $uploadDate;
 
     /**
-     * @var boolean
-     */ // Attribut non persisté en base de donnée
-    private $NewsletterInscrit;
-    /**
-     * @var boolean
-     */ // Attribut non persisté en base de donnée
-    private $CharteAccepter;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -78,7 +66,7 @@ class image
      *
      * @param string $observation
      *
-     * @return image
+     * @return ObservationImage
      */
     public function setObservation($observation)
     {
@@ -102,7 +90,7 @@ class image
      *
      * @param string $imageFile
      *
-     * @return image
+     * @return ObservationImage
      */
     public function setImageFile($imageFile)
     {
@@ -126,7 +114,7 @@ class image
      *
      * @param string $imageName
      *
-     * @return image
+     * @return ObservationImage
      */
     public function setImageName($imageName)
     {
@@ -150,7 +138,7 @@ class image
      *
      * @param \DateTime $uploadDate
      *
-     * @return image
+     * @return ObservationImage
      */
     public function setUploadDate($uploadDate)
     {

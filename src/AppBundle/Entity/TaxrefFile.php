@@ -3,14 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * taxrefFile
+ * TaxrefFile
  *
- * @ORM\Table(name="taxref_file")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\taxrefFileRepository")
+ * @ORM\Table(name="TaxrefFile")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefFileRepository")
  */
-class taxrefFile
+class TaxrefFile
 {
     /**
      * @var int
