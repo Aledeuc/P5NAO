@@ -67,11 +67,12 @@ class Actualite
     /**
      * @var string
      * @ORM\Column(type="string")
+     *  @ORM\OneToMany(targetEntity="ActualiteImage.php", inversedBy="actualite", cascade="persist")
      *
      * @Assert\NotBlank(message="Ajouter une image jpg")
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
-    private $actualiteImage;
+    private $actualiteImages;
 
 
     /**
@@ -231,13 +232,13 @@ class Actualite
     /**
      * Set actualiteImage
      *
-     * @param string $actualiteImage
+     * @param string $actualiteImages
      *
      * @return actualite
      */
-    public function setActualiteImageFile($actualiteImage)
+    public function setActualiteImagesFile($actualiteImages)
     {
-        $this->actualiteImage = $actualiteImage;
+        $this->actualiteImages = $actualiteImages;
 
         return $this;
     }
@@ -247,9 +248,9 @@ class Actualite
      *
      * @return string
      */
-    public function getActualiteImage()
+    public function getActualiteImages()
     {
-        return $this->actualiteImage;
+        return $this->actualiteImages;
     }
 
 }
