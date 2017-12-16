@@ -5,6 +5,8 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use AppBundle\Entity\Observation;
 
 class MapController extends Controller
 {
@@ -13,10 +15,21 @@ class MapController extends Controller
      */
     public function mapAction(Request $request)
     {
+        $observation = new Observation();
+        $observation->setObservationDate(new \DateTime());
+        $observation->setObservationLatitude(50.498392);
+        $observation->setObservationLongitude(2.610353);
 
+        $data = $this->get('serializer')->serialize($observation, 'xml');
+
+        $response = new Response($data);
+        $response->headers->set('Content-Type', 'application/xml');
+
+        dump($response);
         // replace this example code with whatever you need
         return $this->render('map/map.html.twig', [
-            'map_api_key' => $this->getParameter('map_api_key')
+            'map_api_key' => $this->getParameter('map_api_key'),
+            'response' => $response
         ]);
     }
 }
