@@ -100,7 +100,7 @@ class Observation
      * @var user
      *
      * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\ManyToOne()
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
      */
     private $user;
 
@@ -118,6 +118,12 @@ class Observation
      */
     private $observationPublication;
 
+    /**
+     * @var User
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="naturalistId")
+     * @ORM\Column(name="images", type="string", length=255)
+     */
+    private $userNaturalistId;
 
     /**
      * Get id
