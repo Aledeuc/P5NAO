@@ -378,7 +378,7 @@ class User
     /**
      * Set newsletterInscrit
      *
-     * @param bool $newsletterInscrit
+     * @param boolean $newsletterInscrit
      *
      * @return user
      */
@@ -392,7 +392,7 @@ class User
     /**
      * Get newsletterInscrit
      *
-     * @return bool
+     * @return boolean
      */
     public function getNewsletterInscrit()
     {
@@ -401,7 +401,7 @@ class User
     /**
      * Set ethicCharterAccepted
      *
-     * @param bool $ethicCharterAccepted
+     * @param boolean $ethicCharterAccepted
      *
      * @return user
      */
@@ -415,7 +415,7 @@ class User
     /**
      * Get ethicCharterAccepted
      *
-     * @return bool
+     * @return boolean
      */
     public function getethicCharterAccepted()
     {

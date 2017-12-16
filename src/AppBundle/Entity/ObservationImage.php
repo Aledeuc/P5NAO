@@ -23,7 +23,7 @@ class ObservationImage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Observation.php", cascade="persist")
+     * @ORM\ManyToOne(targetEntity="Observation", cascade="persist")
      * @ORM\JoinColumn(name="observationId", referencedColumnName="id")
      */
     private $observation;

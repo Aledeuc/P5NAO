@@ -23,8 +23,8 @@ class ActualiteImage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Actualite.php", inversedBy="ActualiteImages")
-     * @ORM\JoinColumn(name="actualiteId", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Actualite", inversedBy="ActualiteImages")
+     * @ORM\JoinColumn(name="actualite", referencedColumnName="id")
      */
     private $actualite;
 

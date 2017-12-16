@@ -112,9 +112,9 @@ class Observation
     private $observationImages;
 
     /**
-     * @var bool
+     * @var boolean
      *
-     * @ORM\Column(name="observationPublication", type="bool")
+     * @ORM\Column(name="observationPublication", type="boolean")
      */
     private $observationPublication;
 
