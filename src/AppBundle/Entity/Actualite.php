@@ -67,7 +67,7 @@ class Actualite
     /**
      * @var string
      * @ORM\Column(type="string")
-     *  @ORM\OneToMany(targetEntity="ActualiteImage.php", inversedBy="actualite", cascade="persist")
+     *  @ORM\OneToMany(targetEntity="ActualiteImage.php", mappedBy="actualite", cascade="persist")
      *
      * @Assert\NotBlank(message="Ajouter une image jpg")
      * @Assert\File(mimeTypes={ "image/jpeg" })
