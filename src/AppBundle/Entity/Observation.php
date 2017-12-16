@@ -121,9 +121,9 @@ class Observation
     /**
      * @var User
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="naturalistId")
-     * @ORM\Column(name="images", type="string", length=255)
+     * @ORM\Column(name="naturalistId", type="string", length=255)
      */
-    private $userNaturalistId;
+    private $naturalistId;
 
     /**
      * Get id
@@ -445,6 +445,29 @@ class Observation
     public function getObservationPublication()
     {
         return $this->observationPublication;
+    }
+    /**
+     * Set naturalistId
+     *
+     * @param string $naturalistId
+     *
+     * @return observation
+     */
+    public function setNaturalistId($naturalistId)
+    {
+        $this->naturalistId = $naturalistId;
+
+        return $this;
+    }
+
+    /**
+     * Get naturalistId
+     *
+     * @return string
+     */
+    public function getNaturalistId()
+    {
+        return $this->naturalistId;
     }
 }
 
