@@ -120,6 +120,11 @@ class User
      */
     private $rejectedObservation;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="userNaturalistId")
+     * @ORM\JoinColumn(name="actualiteId", referencedColumnName="id")
+     */
+    private $naturalistId;
 
     /**
      * Get id
