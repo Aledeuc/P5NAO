@@ -13,6 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Actualite
 {
+    const NEWS_STATUS_DRAFT      = 1; //brouillon
+    const NEWS_STATUS_PUBLISHED  = 2; //publié
+    const NEWS_STATUS_ARCHIVED   = 3; //archivé
     /**
      * @var int
      *
