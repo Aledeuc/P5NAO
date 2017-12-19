@@ -3,15 +3,21 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * observation
+ * Observation
  *
- * @ORM\Table(name="observation")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\observationRepository")
+ * @ORM\Table(name="Observation")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ObservationRepository")
  */
-class observation
+class Observation
 {
+    const STATUS_DRAFT      = 1; //brouillon
+    const STATUS_WAITING    = 2; //en attente de validation
+    const STATUS_VALIDATE   = 3; //validé
+    const STATUS_REJECTED     = 4; //rejeté
+
     /**
      * @var int
      *
@@ -24,44 +30,37 @@ class observation
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateObservation", type="date")
+     * @ORM\Column(name="observationDate", type="date")
      */
-    private $dateObservation;
+    private $observationDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sexe", type="string", length=255, nullable=true)
+     * @ORM\Column(name="observationComment", type="string", length=255, nullable=true)
      */
-    private $sexe;
+    private $observationComment;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="commentaire", type="string", length=255, nullable=true)
+     * @ORM\Column(name="observationSignalementComment", type="string", length=255, nullable=true)
      */
-    private $commentaire;
+    private $observationSignalementComment;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="latitude", type="float")
+     * @ORM\Column(name="observationLatitude", type="float")
      */
-    private $latitude;
+    private $observationLatitude;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="longitude", type="float")
+     * @ORM\Column(name="observationLongitude", type="float")
      */
-    private $longitude;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="department", type="string", length=255)
-     */
-    private $department;
+    private $observationLongitude;
 
     /**
      * @var int
@@ -73,52 +72,58 @@ class observation
     /**
      * @var string
      *
-     * @ORM\Column(name="cadre", type="string", length=255)
+     * @ORM\Column(name="observationEnvironment", type="string", length=255)
      */
-    private $cadre;
+    private $observationEnvironment;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="climat", type="string", length=255)
+     * @ORM\Column(name="observationClimat", type="string", length=255)
      */
-    private $climat;
+    private $observationClimat;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="number", type="integer")
+     * @ORM\Column(name="observationNumber", type="integer")
      */
-    private $number;
+    private $observationNumber;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="taxref", type="string", length=255)
+     * @var Taxref
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
      */
     private $taxref;
 
     /**
-     * @var string
+     * @var user
      *
      * @ORM\Column(name="user", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
      */
     private $user;
 
     /**
-     * @var string
-     *
+     * @var observationImage
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ObservationImage", mappedBy="observation", cascade="persist")
      * @ORM\Column(name="images", type="string", length=255)
      */
-    private $images;
+    private $observationImages;
 
     /**
-     * @var string
+     * @var boolean
      *
-     * @ORM\Column(name="validation", type="string", length=255)
+     * @ORM\Column(name="observationPublication", type="boolean")
      */
-    private $validation;
+    private $observationPublication;
 
+    /**
+     * @var User
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="naturalistId")
+     * @ORM\Column(name="naturalistId", type="string", length=255)
+     */
+    private $naturalistId;
 
     /**
      * Get id
@@ -131,243 +136,219 @@ class observation
     }
 
     /**
-     * Set dateObservation
+     * Set observationDate
      *
-     * @param \DateTime $dateObservation
+     * @param \DateTime $observationDate
      *
      * @return observation
      */
-    public function setDateObservation($dateObservation)
+    public function setObservationDate($observationDate)
     {
-        $this->dateObservation = $dateObservation;
+        $this->observationDate = $observationDate;
 
         return $this;
     }
 
     /**
-     * Get dateObservation
+     * Get observationDate
      *
      * @return \DateTime
      */
-    public function getDateObservation()
+    public function getObservationDate()
     {
-        return $this->dateObservation;
+        return $this->observationDate;
     }
 
     /**
-     * Set sexe
-     *
-     * @param string $sexe
-     *
-     * @return observation
-     */
-    public function setSexe($sexe)
+ * Set observationComment
+ *
+ * @param string $observationComment
+ *
+ * @return observation
+ */
+    public function setObservationComment($observationComment)
     {
-        $this->sexe = $sexe;
+        $this->observationComment = $observationComment;
 
         return $this;
     }
 
     /**
-     * Get sexe
+     * Get observationComment
      *
      * @return string
      */
-    public function getSexe()
+    public function getObservationComment()
     {
-        return $this->sexe;
+        return $this->observationComment;
     }
 
     /**
-     * Set commentaire
+     * Set observationSignalementComment
      *
-     * @param string $commentaire
+     * @param string $observationSignalementComment
      *
      * @return observation
      */
-    public function setCommentaire($commentaire)
+    public function setObservationSignalementComment($observationSignalementComment)
     {
-        $this->commentaire = $commentaire;
+        $this->observationSignalementComment = $observationSignalementComment;
 
         return $this;
     }
 
     /**
-     * Get commentaire
+     * Get observationSignalementComment
      *
      * @return string
      */
-    public function getCommentaire()
+    public function getObservationSignalementComment()
     {
-        return $this->commentaire;
+        return $this->observationSignalementComment;
     }
 
     /**
      * Set latitude
      *
-     * @param float $latitude
+     * @param float $observationLatitude
      *
      * @return observation
      */
-    public function setLatitude($latitude)
+    public function setObservationLatitude($observationLatitude)
     {
-        $this->latitude = $latitude;
+        $this->observationLatitude = $observationLatitude;
 
         return $this;
     }
 
     /**
-     * Get latitude
+     * Get observationLatitude
      *
      * @return float
      */
-    public function getLatitude()
+    public function getObservationLatitude()
     {
-        return $this->latitude;
+        return $this->observationLatitude;
     }
 
     /**
-     * Set longitude
+     * Set observationLongitude
      *
-     * @param float $longitude
+     * @param float $observationLongitude
      *
      * @return observation
      */
-    public function setLongitude($longitude)
+    public function setObservationLongitude($observationLongitude)
     {
-        $this->longitude = $longitude;
+        $this->observationLongitude = $observationLongitude;
 
         return $this;
     }
 
     /**
-     * Get longitude
+     * Get observationLongitude
      *
      * @return float
      */
-    public function getLongitude()
+    public function getObservationLongitude()
     {
-        return $this->longitude;
+        return $this->observationLongitude;
     }
 
     /**
-     * Set department
+     * Set observationStatus
      *
-     * @param string $department
+     * @param integer $observationStatus
      *
      * @return observation
      */
-    public function setDepartment($department)
+    public function setObservationStatus($observationStatus)
     {
-        $this->department = $department;
+        $this->observationStatus = $observationStatus;
 
         return $this;
     }
 
     /**
-     * Get department
-     *
-     * @return string
-     */
-    public function getDepartment()
-    {
-        return $this->department;
-    }
-
-    /**
-     * Set status
-     *
-     * @param integer $status
-     *
-     * @return observation
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
+     * Get observationStatus
      *
      * @return int
      */
-    public function getStatus()
+    public function getObservationStatus()
     {
-        return $this->status;
+        return $this->observationStatus;
     }
 
     /**
-     * Set cadre
+     * Set observationEnvironment
      *
-     * @param string $cadre
+     * @param string $observationEnvironment
      *
      * @return observation
      */
-    public function setCadre($cadre)
+    public function setObservationEnvironment($observationEnvironment)
     {
-        $this->cadre = $cadre;
+        $this->observationEnvironment = $observationEnvironment;
 
         return $this;
     }
 
     /**
-     * Get cadre
+     * Get observationEnvironment
      *
      * @return string
      */
-    public function getCadre()
+    public function getObservationEnvironment()
     {
-        return $this->cadre;
+        return $this->observationEnvironment;
     }
 
     /**
-     * Set climat
+     * Set observationClimat
      *
-     * @param string $climat
+     * @param string $observationClimat
      *
      * @return observation
      */
-    public function setClimat($climat)
+    public function setObservationClimat($observationClimat)
     {
-        $this->climat = $climat;
+        $this->observationClimat = $observationClimat;
 
         return $this;
     }
 
     /**
-     * Get climat
+     * Get observationClimat
      *
      * @return string
      */
-    public function getClimat()
+    public function getObservationClimat()
     {
-        return $this->climat;
+        return $this->observationClimat;
     }
 
     /**
-     * Set number
+     * Set observationNumber
      *
-     * @param integer $number
+     * @param integer $observationNumber
      *
      * @return observation
      */
-    public function setNumber($number)
+    public function setObservationNumber($observationNumber)
     {
-        $this->number = $number;
+        $this->observationNumber = $observationNumber;
 
         return $this;
     }
 
     /**
-     * Get number
+     * Get observationNumber
      *
      * @return int
      */
-    public function getNumber()
+    public function getObservationNumber()
     {
-        return $this->number;
+        return $this->observationNumber;
     }
 
     /**
@@ -419,74 +400,73 @@ class observation
     }
 
     /**
-     * Set images
+     * Set observationImages
      *
-     * @param string $images
+     * @param string $observationImages
      *
      * @return observation
      */
-    public function setImages($images)
+    public function setObservationImages($observationImages)
     {
-        $this->images = $images;
+        $this->observationImages = $observationImages;
 
         return $this;
     }
 
     /**
-     * Get images
+     * Get observationImages
      *
      * @return string
      */
-    public function getImages()
+    public function getObservationImages()
     {
-        return $this->images;
+        return $this->observationImages;
     }
 
     /**
-     * Set validation
+     * Set observationPublication
      *
-     * @param string $validation
+     * @param string $observationPublication
      *
      * @return observation
      */
-    public function setValidation($validation)
+    public function setObservationPublication($observationPublication)
     {
-        $this->validation = $validation;
+        $this->observationPublication = $observationPublication;
 
         return $this;
     }
 
     /**
-     * Get validation
+     * Get observationPublication
      *
      * @return string
      */
-    public function getValidation()
+    public function getObservationPublication()
     {
-        return $this->validation;
+        return $this->observationPublication;
     }
-
     /**
-     * Set observationStatus
+     * Set naturalistId
      *
-     * @param integer $observationStatus
+     * @param string $naturalistId
      *
      * @return observation
      */
-    public function setObservationStatus($observationStatus)
+    public function setNaturalistId($naturalistId)
     {
-        $this->observationStatus = $observationStatus;
+        $this->naturalistId = $naturalistId;
 
         return $this;
     }
 
     /**
-     * Get observationStatus
+     * Get naturalistId
      *
-     * @return integer
+     * @return string
      */
-    public function getObservationStatus()
+    public function getNaturalistId()
     {
-        return $this->observationStatus;
+        return $this->naturalistId;
     }
 }

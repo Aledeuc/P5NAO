@@ -18,7 +18,7 @@ class AdminController extends Controller
 
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:user');
+            ->getRepository('AppBundle:User');
 
         $user = $repository->findAll();
 
@@ -34,7 +34,7 @@ class AdminController extends Controller
         // inscrit
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:user');
+            ->getRepository('AppBundle:User');
         $allUser = $repository->findAll();
         $countUser = count($allUser);
 
@@ -47,7 +47,7 @@ class AdminController extends Controller
         // observations
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
         $allObservation = $repository->findAll();
         $countObservation = count($allObservation);
 
@@ -67,10 +67,10 @@ class AdminController extends Controller
      */
     public function reportingAction()
     {
-        // if (userProfil = 1)
+
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:user');
+            ->getRepository('AppBundle:User');
 
         $user = $repository->findAll();
 

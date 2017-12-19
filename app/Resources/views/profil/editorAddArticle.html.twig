@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<!--Panel-->
+
+<div class="row">
+    <div class="col-3 profilMenu">
+        <div class="titreMenuProfil">
+            <h2>RÉDACTION</h2>
+
+        </div>
+
+
+
+        <div class="menuProfil">
+            <ul>
+                <li><a class="allarticleLink" href="{{ path('allarticle') }}">Tous les articles</a></li>
+                <li><a class="addarticleLink" href="{{ path('addarticle') }}">Ajouter un article</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+  <div class="col-lg-9">
+     <h4 class="card-title">Ajouter un article</h4>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <input type="input" value="Brouillon"
+               class="btn btn-default pull-left" />
+
+        <input type="submit" value="Publier"
+               class="btn btn-default pull-right" />
+        {{ form_end(form) }}
+    </div>
+
+    <!--/.Panel-->
+{% endblock %}
+
+
+ {% block javascripts %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
+{% endblock %}

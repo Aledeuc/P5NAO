@@ -4,8 +4,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Actualite;
+use AppBundle\Form\AddArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class ProfilController extends Controller
 {
@@ -18,10 +21,12 @@ class ProfilController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
+
+        $userId= 'alexorac';
 
         $observation = $repository->findBy(array(
-            'user' => 'alexorac'
+            'user' => $userId
         ));
 
         $titleTable = 'Toutes mes observations';
@@ -36,11 +41,13 @@ class ProfilController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
+
+        $userId = 'alexorac';
 
         $observation = $repository->findBy(array(
-                'status' => '1',
-                'user' => 'alexorac'
+                'observationStatus' => '1',
+                'user' => $userId
             )
         );
 
@@ -57,11 +64,13 @@ class ProfilController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
+
+        $userId = 'alexorac';
 
         $observation = $repository->findBy(array(
-                'status' => '3',
-                'user' => 'alexorac'
+                'observationStatus' => '3',
+                'user' => $userId
             )
         );
 
@@ -78,11 +87,13 @@ class ProfilController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
+
+        $userId ='alexorac';
 
         $observation = $repository->findBy(array(
-                'status' => '5',
-                'user' => 'alexorac'
+                'observationStatus' => '5',
+                'user' => $userId
             )
         );
 
@@ -99,11 +110,13 @@ class ProfilController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
+
+        $userId ='alexorac';
 
         $observation = $repository->findBy(array(
-                'status' => '4',
-                'user' => 'alexorac'
+                'observationStatus' => '4',
+                'user' => $userId
             )
         );
 
@@ -122,10 +135,10 @@ class ProfilController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
 
         $observation = $repository->findBy(array(
-                'status' => '2'
+                'observationStatus' => '2'
             )
         );
 
@@ -142,17 +155,19 @@ class ProfilController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
+
+        $naturalistId ='alexorac';
 
         $observation = $repository->findBy(array(
-                'status' => '3',
-                'validation' => 'alexorac'
+                'observationStatus' => '3',
+                'naturalistId' => $naturalistId
             )
         );
 
         $titleTable = 'Historique';
 
-        return $this->render('profil/naturalist.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
+        return $this->render('profil/naturalistHistory.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
 
     }
 
@@ -163,27 +178,88 @@ class ProfilController extends Controller
     {
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:observation');
+            ->getRepository('AppBundle:Observation');
+
+        $naturalistId ='alexorac';
 
         $observation = $repository->findBy(array(
-                'status' => '4',
-                'validation' => 'alexorac'
+                'observationStatus' => '4',
+                'naturalistId' => $naturalistId
             )
         );
 
         $titleTable = 'Observations refusées';
 
-        return $this->render('profil/naturalist.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
+        return $this->render('profil/naturalistHistory.html.twig', ['observation' => $observation,'titleTable' => $titleTable]);
 
     }
 
-    //
+    // editor profil
+
+    /**
+     * @Route("/editor/allarticle", name="allarticle")
+     */
+    public function allarticleAction()
+    {
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Actualite');
+
+        $actualite = $repository->findAll();
+
+        return $this->render('profil/editor.html.twig', ['actualite' => $actualite]);
+
+    }
+
+    /**
+     * @Route("/editor/addarticle", name="addarticle")
+     */
+    public function addarticleAction(Request $request)
+    {
+        $actuality = new Actualite();
+        $form = $this->createForm(AddArticleType::class, $actuality);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $naturalistId ='alexorac';
+            $actuality->setActualiteAuthor($naturalistId);
+            $actuality->setActualiteStatus(2);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($actuality);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl(
+                'allarticle ')
+            );
+        }
+
+
+
+        return $this->render('profil/editorAddArticle.html.twig',array(
+            'form' => $form->createView()
+        ));
+
+    }
+
 
     /**
      * @Route ("/observation", name="observation")
      */
 
     public function observationAction()
+    {
+        return $this->render('main/index.html.twig', []);
+    }
+
+    /**
+     * @Route ("/pageTest", name="pageTest")
+     */
+
+    public function pageTestAction()
     {
         return $this->render('main/index.html.twig', []);
     }

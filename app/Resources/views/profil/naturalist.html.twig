@@ -31,17 +31,25 @@
                         <th>Nom</th>
                         <th>Famille</th>
                         <th>État</th>
+                        <th></th>
                     </tr>
                     </thead>
                     {% for observations in observation %}
                         <tbody>
                         <tr>
-                            <td><a class="observationPhoto" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.images  }}</a></td>
-                            <td><a class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.dateObservation |date("d/m/Y") }}</a></td>
+                            <td><a class="observationPhoto" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationImages  }}</a></td>
+                            <td><a class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationDate |date("d/m/Y") }}</a></td>
                             <td><a class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user }}</a></td>
                             <td><a class="observationFamille" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.taxref }}</a></td>
-                            <td><a class="observationÉtat" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.validation  }}</a></td>
+                            <td><a class="observationÉtat" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationStatus  }}</a></td>
 
+                            <td>
+
+                                <a href="{{ path('pageTest', { 'id': observations.id }) }}" class="btn btn-success btn-xs" title="PreviewObservationLien"><span class="glyphicon glyphicon-edit"></span></a>
+
+
+
+                            </td>
 
                         </tr>
                         </tbody>

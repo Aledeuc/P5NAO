@@ -1,8 +1,58 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block content %}
+    <!--Panel-->
 
-{% endblock %}
+    <div class="row">
+        <div class="col-3 profilMenu">
+            <div class="titreMenuProfil">
+                <h2>RÉDACTION</h2>
 
-{% block stylesheets %}
+            </div>
+
+
+
+            <div class="menuProfil">
+                <ul>
+                    <li><a class="allarticleLink" href="{{ path('allarticle') }}">Tous les articles</a></li>
+                    <li><a class="addarticleLink" href="{{ path('addarticle') }}">Ajouter un article</a></li>
+
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-9">
+            <h4 class="card-title">Tous les articles</h4>
+
+            <div class="tab-content">
+                {% if actualite != null %}
+                <table class="table">
+                    <thead class="blue-grey lighteen-4">
+                    <tr>
+                        <th>Titre</th>
+                        <th>Auteur</th>
+                        <th>État</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    {% for actualite in actualite %}
+                        <tbody>
+                        <tr>
+                            <td><a class="articleTitre" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteTitle  }}</a></td>
+                            <td><a class="articleAuteur" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteAuthor }}</a></td>
+                            <td><a class="articleEtat" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteStatus }}</a></td>
+                            <td><a class="articleDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteDate |date("d/m/Y")  }}</a></td>
+                           </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            {% else %}
+                <div class="alert alert-warning">Pas d'article trouvée </div>
+            {% endif %}
+        </div>
+    </div>
+    <!--/.Panel-->
 {% endblock %}
