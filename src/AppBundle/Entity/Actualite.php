@@ -3,15 +3,19 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * actualite
+ * Actualite
  *
- * @ORM\Table(name="actualite")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\actualiteRepository")
+ * @ORM\Table(name="Actualite")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ActualiteRepository")
  */
-class actualite
+class Actualite
 {
+    const NEWS_STATUS_DRAFT      = 1; //brouillon
+    const NEWS_STATUS_PUBLISHED  = 2; //publié
+    const NEWS_STATUS_ARCHIVED   = 3; //archivé
     /**
      * @var int
      *
@@ -56,6 +60,23 @@ class actualite
      */
     private $actualiteStatus;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actualiteCategory", type="string", length=255)
+     */
+    private $actualiteCategory;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string")
+     * @ORM\OneToMany(targetEntity="ActualiteImage", mappedBy="actualite", cascade="persist")
+     *
+     * @Assert\NotBlank(message="Ajouter une image jpg")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
+     */
+    private $actualiteImages;
+
 
     /**
      * Get id
@@ -76,7 +97,7 @@ class actualite
      */
     public function setActualiteAuthor($actualiteAuthor)
     {
-        $this->author = $actualiteAuthor;
+        $this->actualiteAuthor = $actualiteAuthor;
 
         return $this;
     }
@@ -186,5 +207,54 @@ class actualite
     {
         return $this->actualiteStatus;
     }
+
+    /**
+     * Set actualiteCategory
+     *
+     * @param string $actualiteCategory
+     *
+     * @return actualite
+     */
+    public function setActualiteCategory($actualiteCategory)
+    {
+        $this->actualiteCategory = $actualiteCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get actualiteCategory
+     *
+     * @return string
+     */
+    public function getActualiteCategory()
+    {
+        return $this->actualiteCategory;
+    }
+
+    /**
+     * Set actualiteImage
+     *
+     * @param string $actualiteImages
+     *
+     * @return actualite
+     */
+    public function setActualiteImagesFile($actualiteImages)
+    {
+        $this->actualiteImages = $actualiteImages;
+
+        return $this;
+    }
+
+    /**
+     * Get actualiteImage
+     *
+     * @return string
+     */
+    public function getActualiteImages()
+    {
+        return $this->actualiteImages;
+    }
+
 }
 

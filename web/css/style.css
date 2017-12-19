@@ -1,0 +1,11 @@
+/* MAP */
+#map {
+    min-height: 500px;
+    height: 20%;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}

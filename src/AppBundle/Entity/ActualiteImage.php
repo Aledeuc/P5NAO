@@ -3,14 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * image
+ * ActualiteImage
  *
- * @ORM\Table(name="image")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\imageRepository")
+ * @ORM\Table(name="ActualiteImage")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ActualiteImageRepository")
  */
-class image
+class ActualiteImage
 {
     /**
      * @var int
@@ -22,15 +23,12 @@ class image
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Actualite", inversedBy="ActualiteImages")
+     * @ORM\JoinColumn(name="actualite", referencedColumnName="id")
      */
-
-    private $observation;
+    private $actualite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
      * @Assert\File(
     *     maxSize="5120k",
     *     maxSizeMessage="5 Mo maximum par fichier",
@@ -54,16 +52,6 @@ class image
     private $uploadDate;
 
     /**
-     * @var boolean
-     */ // Attribut non persisté en base de donnée
-    private $NewsletterInscrit;
-    /**
-     * @var boolean
-     */ // Attribut non persisté en base de donnée
-    private $CharteAccepter;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -74,27 +62,27 @@ class image
     }
 
     /**
-     * Set observation
+     * Set actualite
      *
-     * @param string $observation
+     * @param string $actualite
      *
-     * @return image
+     * @return ActualiteImage
      */
-    public function setObservation($observation)
+    public function setActualite($actualite)
     {
-        $this->observation = $observation;
+        $this->actualite = $actualite;
 
         return $this;
     }
 
     /**
-     * Get observation
+     * Get actualite
      *
      * @return string
      */
-    public function getObservation()
+    public function getActualite()
     {
-        return $this->observation;
+        return $this->actualite;
     }
 
     /**
@@ -102,7 +90,7 @@ class image
      *
      * @param string $imageFile
      *
-     * @return image
+     * @return ActualiteImage
      */
     public function setImageFile($imageFile)
     {
@@ -126,7 +114,7 @@ class image
      *
      * @param string $imageName
      *
-     * @return image
+     * @return ActualiteImage
      */
     public function setImageName($imageName)
     {
@@ -150,7 +138,7 @@ class image
      *
      * @param \DateTime $uploadDate
      *
-     * @return image
+     * @return ActualiteImage
      */
     public function setUploadDate($uploadDate)
     {
