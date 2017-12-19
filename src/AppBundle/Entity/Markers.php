@@ -45,7 +45,7 @@ class Markers
     /**
      * @var float
      *
-     * @ORM\Column(name="lng", type="float", length="10.6")
+     * @ORM\Column(name="lng", type="float")
      *
      */
     private $lng;

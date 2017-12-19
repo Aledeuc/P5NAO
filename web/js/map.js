@@ -1,13 +1,16 @@
 $(function () {
     var map;
-});
 
+});
 function initMap() {
     var centreFrance = {lat: 46.498392, lng: 2.610353};
     map = new google.maps.Map(document.getElementById('map'), {
         center: centreFrance,
         zoom: 5
     });
+    var JsVars= jQuery('#js-vars').data('vars');
+    var response = JsVars.responseTest;
+    console.log(response);
     var markers =[];
     var locations = [
         {title: 'oiseau1', lat: 46.498392, lng: 2.610353},

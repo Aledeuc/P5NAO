@@ -20,12 +20,12 @@ class MapController extends Controller
         $observation->setObservationLatitude(50.498392);
         $observation->setObservationLongitude(2.610353);
 
-        $data = $this->get('serializer')->serialize($observation, 'xml');
+        $data = $this->get('serializer')->serialize($observation, 'json');
 
         $response = new Response($data);
-        $response->headers->set('Content-Type', 'application/xml');
+        $response->headers->set('Content-Type', 'application/json');
+        $this->get('AppBundle\Services\acmeJsVars')->responseTest = $response;
 
-        dump($response);
         // replace this example code with whatever you need
         return $this->render('map/map.html.twig', [
             'map_api_key' => $this->getParameter('map_api_key'),

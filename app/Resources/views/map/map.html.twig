@@ -7,12 +7,13 @@
 
     </div>
     <div id="map"></div>
-
+    {{ response }}
+    <div id="js-vars" data-vars="{{ js_vars|e('html_attr') }}"></div>
     <!--/.Panel-->
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('js/map.js') }}"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ map_api_key }}&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ map_api_key }}&v=3&&callback=initMap">
 </script>
 {% endblock %}
