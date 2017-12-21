@@ -8,15 +8,14 @@ function initMap() {
         center: centreFrance,
         zoom: 5
     });
-    var JsVars= jQuery('#js-vars').data('vars');
-    var response = JsVars.responseTest;
-    console.log(response);
+
     var markers =[];
+    var element = document.getElementById('data');
+    var data = [element.getAttribute('data-map')];
     var locations = [
         {title: 'oiseau1', lat: 46.498392, lng: 2.610353},
         {title: 'oiseau2', lat: 48.8615, lng: 2.34706}
     ];
-
     var largeInfowindow = new google.maps.InfoWindow({});
     var bounds = new google.maps.LatLngBounds();
 

@@ -7,8 +7,9 @@
 
     </div>
     <div id="map"></div>
+    <div id="data" data-map="{{ data }}">
+    </div>
     {{ response }}
-    <div id="js-vars" data-vars="{{ js_vars|e('html_attr') }}"></div>
     <!--/.Panel-->
 {% endblock %}
 {% block javascripts %}
