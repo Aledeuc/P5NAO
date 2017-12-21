@@ -37,8 +37,6 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    globals:
-        js_vars: 'acmeJsVars\'
 
 # Doctrine Configuration
 doctrine:
