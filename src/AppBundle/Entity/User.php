@@ -122,7 +122,7 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="userNaturalistId")
-     * @ORM\JoinColumn(name="actualiteId", referencedColumnName="id")
+     * @ORM\JoinColumn(name="naturalistId", referencedColumnName="id")
      */
     private $naturalistId;
 
@@ -466,6 +466,29 @@ class User
     public function getRejectedObservation()
     {
         return $this->rejectedObservation;
+    }
+    /**
+     * SetnaturalistId
+     *
+     * @param integer $naturalistId
+     *
+     * @return user
+     */
+    public function setNaturalistId($naturalistId)
+    {
+        $this->naturalistId = $naturalistId;
+
+        return $this;
+    }
+
+    /**
+     * Get naturalistId
+     *
+     * @return integer
+     */
+    public function getNaturalistId()
+    {
+        return $this->naturalistId;
     }
 }
 
