@@ -84,8 +84,12 @@ class Observation
     /**
      * @var int
      *
-     * @ORM\Column(name="observationNumber", type="integer")
+     * @ORM\Column(name="observationNumber", type="smallint")
      * @Assert\NotBlank()
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 50
+     * )
      */
     private $observationNumber;
 
