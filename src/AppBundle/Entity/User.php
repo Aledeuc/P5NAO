@@ -32,6 +32,8 @@ class User
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
+     * @Assert\NotBlank()
+     *
      */
     private $firstName;
 
@@ -39,6 +41,7 @@ class User
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $lastName;
 
@@ -46,6 +49,8 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="inscriptionDate", type="date")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      */
     private $inscriptionDate;
 
@@ -88,6 +93,11 @@ class User
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email(
+     *     message = "Aucun serveur mail n'a été trouvé pour ce domaine",
+     *     checkMX=true
+     * )
      */
     private $email;
 
@@ -95,6 +105,7 @@ class User
      * @var \DateTime
      *
      * @ORM\Column(name="lastUpdate", type="date")
+     * @Assert\DateTime()
      */
     private $lastUpdate;
 
@@ -121,10 +132,10 @@ class User
     private $rejectedObservation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="userNaturalistId")
-     * @ORM\JoinColumn(name="naturalistId", referencedColumnName="id")
+     * @var boolean
+     * @ORM\Column(name="reportingUser", type="boolean")
      */
-    private $naturalistId;
+    private $reportingUser;
 
     /**
      * Get id
@@ -468,27 +479,27 @@ class User
         return $this->rejectedObservation;
     }
     /**
-     * SetnaturalistId
+     * Set reportingUser
      *
-     * @param integer $naturalistId
+     * @param boolean $reportingUser
      *
      * @return user
      */
-    public function setNaturalistId($naturalistId)
+    public function setReportingUser($reportingUser)
     {
-        $this->naturalistId = $naturalistId;
+        $this->reportingUser = $reportingUser;
 
         return $this;
     }
 
     /**
-     * Get naturalistId
+     * Get reportingUser
      *
-     * @return integer
+     * @return boolean
      */
-    public function getNaturalistId()
+    public function getReportingUser()
     {
-        return $this->naturalistId;
+        return $this->reportingUser;
     }
 }
 

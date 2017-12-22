@@ -16,7 +16,7 @@ class Observation
     const STATUS_DRAFT      = 1; //brouillon
     const STATUS_WAITING    = 2; //en attente de validation
     const STATUS_VALIDATE   = 3; //validé
-    const STATUS_REJECTED     = 4; //rejeté
+    const STATUS_REJECTED   = 4; //rejeté
 
     /**
      * @var int
@@ -31,27 +31,24 @@ class Observation
      * @var \DateTime
      *
      * @ORM\Column(name="observationDate", type="date")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      */
     private $observationDate;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="observationComment", type="string", length=255, nullable=true)
+     * @ORM\Column(name="observationComment", type="text", nullable=true)
      */
     private $observationComment;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="observationSignalementComment", type="string", length=255, nullable=true)
-     */
-    private $observationSignalementComment;
 
     /**
      * @var float
      *
      * @ORM\Column(name="observationLatitude", type="float")
+     * @Assert\NotBlank()
      */
     private $observationLatitude;
 
@@ -59,6 +56,7 @@ class Observation
      * @var float
      *
      * @ORM\Column(name="observationLongitude", type="float")
+     * @Assert\NotBlank()
      */
     private $observationLongitude;
 
@@ -87,6 +85,7 @@ class Observation
      * @var int
      *
      * @ORM\Column(name="observationNumber", type="integer")
+     * @Assert\NotBlank()
      */
     private $observationNumber;
 
@@ -119,11 +118,17 @@ class Observation
     private $observationPublication;
 
     /**
-     * @var User
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="naturalistId")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\user", cascade={persist})
      * @ORM\Column(name="naturalistId", type="string", length=255)
      */
     private $naturalistId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observationSignalementComment", type="text", length=255, nullable=true)
+     */
+    private $observationSignalementComment;
 
     /**
      * Get id
@@ -183,29 +188,6 @@ class Observation
         return $this->observationComment;
     }
 
-    /**
-     * Set observationSignalementComment
-     *
-     * @param string $observationSignalementComment
-     *
-     * @return observation
-     */
-    public function setObservationSignalementComment($observationSignalementComment)
-    {
-        $this->observationSignalementComment = $observationSignalementComment;
-
-        return $this;
-    }
-
-    /**
-     * Get observationSignalementComment
-     *
-     * @return string
-     */
-    public function getObservationSignalementComment()
-    {
-        return $this->observationSignalementComment;
-    }
 
     /**
      * Set latitude
@@ -468,6 +450,30 @@ class Observation
     public function getNaturalistId()
     {
         return $this->naturalistId;
+    }
+
+    /**
+     * Set observationSignalementComment
+     *
+     * @param string $observationSignalementComment
+     *
+     * @return observation
+     */
+    public function setObservationSignalementComment($observationSignalementComment)
+    {
+        $this->observationSignalementComment = $observationSignalementComment;
+
+        return $this;
+    }
+
+    /**
+     * Get observationSignalementComment
+     *
+     * @return string
+     */
+    public function getObservationSignalementComment()
+    {
+        return $this->observationSignalementComment;
     }
 }
 
