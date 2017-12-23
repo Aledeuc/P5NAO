@@ -5,7 +5,7 @@
 namespace AppBundle\Form\Type;
 
 use AppBundle\Entity\Observation;
-use Doctrine\DBAL\Types\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddObservationType extends AbstractType
 {
-    public function buidForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('observationDate', DateType::class, [
