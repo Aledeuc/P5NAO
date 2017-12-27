@@ -99,13 +99,7 @@ class Observation
      */
     private $taxref;
 
-    /**
-     * @var user
-     *
-     * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
-     */
-    private $user;
+
 
     /**
      * @var observationImage
@@ -121,11 +115,7 @@ class Observation
      */
     private $observationPublication;
 
-    /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\user", cascade="persist")
-     * @ORM\Column(name="naturalistId", type="string", length=255)
-     */
-    private $naturalistId;
+
 
     /**
      * @var string
