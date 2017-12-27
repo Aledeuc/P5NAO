@@ -24,6 +24,11 @@ class ObservationController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
+            $observation = $form->getData();
+             $em = $this->getDoctrine()->getManager();
+             $em->persist($observation);
+             $em->flush();
+
             return $this->redirectToRoute('homepage');
         }
         return $this->render('observation/add.html.twig', array(

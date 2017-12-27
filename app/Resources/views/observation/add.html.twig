@@ -19,3 +19,10 @@
     </div>
     <!--/.Panel-->
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $('.datepicker').pickadate();
+    </script>
+{% endblock %}

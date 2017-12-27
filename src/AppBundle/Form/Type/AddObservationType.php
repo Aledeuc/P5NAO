@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -25,7 +25,7 @@ class AddObservationType extends AbstractType
                 'widget'=> 'single_text',
                 'format' => 'dd/MM/yyyy',
                 'html5'=> false,
-                'attr' =>['class' => 'datepicker']
+                'attr' =>['class' => 'form-control datepicker']
             ])
             ->add('taxref', CollectionType::class, [
                 'entry_type'=> TaxrefObservationType::class
@@ -45,8 +45,11 @@ class AddObservationType extends AbstractType
             ->add('observationClimat', ChoiceType::class, [
                 'label' => 'climat'
             ])
-            ->add('observationImages', CollectionType::class)
-            ->add('observationComment', TextType::class, [
+            ->add('observationImages', CollectionType::class, [
+                'label' => 'Photo'
+            ])
+            ->add('observationComment', TextareaType::class, [
+
                 'label' => 'commentaires'
             ])
         ;
