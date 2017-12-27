@@ -31,11 +31,6 @@ class image
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
      * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
-     * @Assert\File(
-    *     maxSize="5120k",
-    *     maxSizeMessage="5 Mo maximum par fichier",
-    *     mimeTypes={"image/*"},
-    *     mimeTypesMessage="Seulement les images")
     **/
     private $imageFile;
 
