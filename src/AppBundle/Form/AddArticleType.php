@@ -4,10 +4,11 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Actualite;
+use AppBundle\Repository\ActualiteRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -52,15 +53,17 @@ class AddArticleType extends AbstractType
                 )
             ))
             ->add('actualiteImages',  FileType::class, array(
-                'label' => false))
+                'label' => false,
+                'data_class' => null,))
             ;
 
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => Actualite::class,
-        ));
+        $resolver->setDefaults([
+            'data_class' => 'AppBundle\Entity\Actualite'
+        ]);
     }
+
 }

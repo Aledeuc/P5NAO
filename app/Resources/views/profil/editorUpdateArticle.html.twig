@@ -1,0 +1,66 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<!--Panel-->
+
+<div class="row">
+    <div class="col-3 profilMenu">
+        <div class="titreMenuProfil">
+            <h2>RÉDACTION</h2>
+
+        </div>
+
+
+
+        <div class="menuProfil">
+            <ul>
+                <li><a class="allarticleLink" href="{{ path('allarticle') }}">Tous les articles</a></li>
+                <li><a class="addarticleLink" href="{{ path('addarticle') }}">Ajouter un article</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+  <div class="col-lg-9">
+     <h4 class="card-title">Modifier un article</h4>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+<button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#deleteActualite{{ actualite.id }}">
+    Supprimer
+</button>
+
+
+
+                                    <div class="modal fade" id="deleteActualite{{ actualite.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteActualiteModal" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="deleteActualiteModal">Confirmation requise</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Voulez-vous vraiment supprimer cet article ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                    <a href="{{ path('editor_article_delete', { 'id': actualite.id }) }}" class="btn btn-danger">Confirmer</a>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+
+        <input type="submit" value="Mettre à jour"
+               class="btn btn-default pull-right" />
+        {{ form_end(form) }}
+    </div>
+
+    <!--/.Panel-->
+{% endblock %}
+
+
+ {% block javascripts %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="{{ asset('js/scripts.js') }}"></script>
+{% endblock %}

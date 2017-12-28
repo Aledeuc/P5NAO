@@ -233,18 +233,55 @@ class ProfilController extends Controller
             $em->flush();
 
             return $this->redirect($this->generateUrl(
-                'allarticle ')
+                'allarticle')
             );
         }
-
-
 
         return $this->render('profil/editorAddArticle.html.twig',array(
             'form' => $form->createView()
         ));
-
     }
 
+    /**
+     * @Route("/editor/update/{id}/article", name="editor_article_update")
+     */
+    public function updateArticleAction(Request $request, Actualite $actualite)
+    {
+        $form = $this->createForm(AddArticleType::class, $actualite);
+        // only handles data on POST
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+            $actualite = $form->getData();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($actualite);
+            $em->flush();
+            $this->addFlash('success', 'Actualité updated!');
+            return $this->redirectToRoute('allarticle');
+        }
+        return $this->render('profil/editorUpdateArticle.html.twig', [
+            'form' => $form->createView(), 'actualite' => $actualite
+        ]);
+    }
+
+
+    /**
+     * @Route("/editor/delete/{id}/article", name="editor_article_delete")
+     */
+    public function deleteArticleAction(Actualite $id)
+    {
+        if (!$id) {
+            throw $this->createNotFoundException('Pas d\'article trouvée');
+        }
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($id);
+        $em->flush();
+
+
+        $this->addFlash('success', 'Article supprimé.');
+        return $this->redirectToRoute('allarticle');
+    }
 
     /**
      * @Route ("/observation", name="observation")

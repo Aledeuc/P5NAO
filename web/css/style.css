@@ -1,6 +1,7 @@
 /* Profil */
 
-.active-pink-2 input[type=text]:focus:not([readonly]) {
+.active-pink-2 input[type=text]:focus:not([readonly])
+{
     border-bottom: 1px solid #f48fb1;
     box-shadow: 0 1px 0 0 #f48fb1;
 }
@@ -16,4 +17,41 @@
 {
     padding-top: 10px;
     list-style-type: none;
+}
+
+.btn
+{
+     color:inherit !important;
+     background-color: #58b8ad;
+     color: white !important;
+     box-shadow:none;
+}
+
+.btn-fb
+{
+    background-color: #3B5998;
+    color: white !important;
+}
+
+.btn-fb:hover, .btn-fb:focus
+{
+    background-color: #4264aa;
+}
+
+.iconPointer
+{
+    cursor: pointer;
+}
+
+=======
+/* MAP */
+#map {
+    min-height: 500px;
+    height: 20%;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }

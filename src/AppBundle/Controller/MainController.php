@@ -24,8 +24,12 @@ class MainController extends Controller
      */
     public function actualiteAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('main/actualite.html.twig', []);
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Actualite');
+        $actualite = $repository->findAll();
+
+        return $this->render('main/actualite.html.twig', ['actualite' => $actualite]);
     }
 
     /**
@@ -45,4 +49,16 @@ class MainController extends Controller
         // replace this example code with whatever you need
         return $this->render('main/mentions.html.twig', []);
     }
+    /**
+     * @Route("/carte", name="carte")
+     */
+    public function carteAction(Request $request)
+    {
+
+        // replace this example code with whatever you need
+        return $this->render('main/carte.html.twig', [
+            'map_api_key' => $this->getParameter('map_api_key')
+        ]);
+    }
+
 }

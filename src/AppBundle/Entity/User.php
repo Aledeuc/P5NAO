@@ -1,10 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * User
  *
@@ -27,78 +24,77 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=255)
+     * @Assert\NotBlank()
+     *
      */
     private $firstName;
-
     /**
      * @var string
      *
      * @ORM\Column(name="lastName", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $lastName;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="inscriptionDate", type="date")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      */
     private $inscriptionDate;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="birthDate", type="date")
      */
     private $birthDate;
-
     /**
      * @var string
      *
      * @ORM\Column(name="organization", type="string", length=255)
      */
     private $organization;
-
     /**
      * @var string
      *
      * @ORM\Column(name="speciality", type="string", length=255)
      */
     private $speciality;
-
     /**
      * @var string
      *
      * @ORM\Column(name="imageFile", type="string", length=255)
      */
     private $imageFile;
-
     /**
      * @var string
      *
      * @ORM\Column(name="imageName", type="string", length=255)
      */
     private $imageName;
-
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Email(
+     *     message = "Aucun serveur mail n'a été trouvé pour ce domaine",
+     *     checkMX=true
+     * )
      */
     private $email;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="lastUpdate", type="date")
+     * @Assert\DateTime()
      */
     private $lastUpdate;
-
-
     /**
      * @var boolean
      * @ORM\Column(name="newsletterInscrit", type="boolean")
@@ -119,13 +115,11 @@ class User
      * @ORM\Column(name="rejectedObservation", type="integer")
      */
     private $rejectedObservation;
-
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="userNaturalistId")
-     * @ORM\JoinColumn(name="actualiteId", referencedColumnName="id")
+     * @var boolean
+     * @ORM\Column(name="reportingUser", type="boolean")
      */
-    private $naturalistId;
-
+    private $reportingUser;
     /**
      * Get id
      *
@@ -135,7 +129,6 @@ class User
     {
         return $this->id;
     }
-
     /**
      * Set firstName
      *
@@ -146,10 +139,8 @@ class User
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
-
         return $this;
     }
-
     /**
      * Get firstName
      *
@@ -159,7 +150,6 @@ class User
     {
         return $this->firstName;
     }
-
     /**
      * Set lastName
      *
@@ -170,10 +160,8 @@ class User
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
-
         return $this;
     }
-
     /**
      * Get lastName
      *
@@ -183,7 +171,6 @@ class User
     {
         return $this->lastName;
     }
-
     /**
      * Set inscriptionDate
      *
@@ -194,10 +181,8 @@ class User
     public function setInscriptionDate($inscriptionDate)
     {
         $this->inscriptionDate = $inscriptionDate;
-
         return $this;
     }
-
     /**
      * Get inscriptionDate
      *
@@ -207,7 +192,6 @@ class User
     {
         return $this->inscriptionDate;
     }
-
     /**
      * Set birthDate
      *
@@ -218,10 +202,8 @@ class User
     public function setBirthDate($birthDate)
     {
         $this->birthDate = $birthDate;
-
         return $this;
     }
-
     /**
      * Get birthDate
      *
@@ -231,7 +213,6 @@ class User
     {
         return $this->birthDate;
     }
-
     /**
      * Set organization
      *
@@ -242,10 +223,8 @@ class User
     public function setOrganization($organization)
     {
         $this->organization = $organization;
-
         return $this;
     }
-
     /**
      * Get organization
      *
@@ -255,7 +234,6 @@ class User
     {
         return $this->organization;
     }
-
     /**
      * Set speciality
      *
@@ -266,10 +244,8 @@ class User
     public function setSpeciality($speciality)
     {
         $this->speciality = $speciality;
-
         return $this;
     }
-
     /**
      * Get speciality
      *
@@ -279,7 +255,6 @@ class User
     {
         return $this->speciality;
     }
-
     /**
      * Set imageFile
      *
@@ -290,10 +265,8 @@ class User
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
-
         return $this;
     }
-
     /**
      * Get imageFile
      *
@@ -303,7 +276,6 @@ class User
     {
         return $this->imageFile;
     }
-
     /**
      * Set imageName
      *
@@ -314,10 +286,8 @@ class User
     public function setImageName($imageName)
     {
         $this->imageName = $imageName;
-
         return $this;
     }
-
     /**
      * Get imageName
      *
@@ -327,7 +297,6 @@ class User
     {
         return $this->imageName;
     }
-
     /**
      * Set email
      *
@@ -338,10 +307,8 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-
         return $this;
     }
-
     /**
      * Get email
      *
@@ -351,7 +318,6 @@ class User
     {
         return $this->email;
     }
-
     /**
      * Set lastUpdate
      *
@@ -362,10 +328,8 @@ class User
     public function setLastUpdate($lastUpdate)
     {
         $this->lastUpdate = $lastUpdate;
-
         return $this;
     }
-
     /**
      * Get lastUpdate
      *
@@ -385,10 +349,8 @@ class User
     public function setNewsletterInscrit($newsletterInscrit)
     {
         $this->newsletterInscrit = $newsletterInscrit;
-
         return $this;
     }
-
     /**
      * Get newsletterInscrit
      *
@@ -408,10 +370,8 @@ class User
     public function setEthicCharterAccepted($ethicCharterAccepted)
     {
         $this->ethicCharterAccepted = $ethicCharterAccepted;
-
         return $this;
     }
-
     /**
      * Get ethicCharterAccepted
      *
@@ -431,10 +391,8 @@ class User
     public function setValidatedObservation($validatedObservation)
     {
         $this->validatedObservation = $validatedObservation;
-
         return $this;
     }
-
     /**
      * Get validatedObservation
      *
@@ -454,10 +412,8 @@ class User
     public function setRejectedObservation($rejectedObservation)
     {
         $this->rejectedObservation = $rejectedObservation;
-
         return $this;
     }
-
     /**
      * Get rejectedObservation
      *
@@ -467,28 +423,25 @@ class User
     {
         return $this->rejectedObservation;
     }
-
     /**
-     * Set naturalistId
+     * Set reportingUser
      *
-     * @param \AppBundle\Entity\Observation $naturalistId
+     * @param boolean $reportingUser
      *
-     * @return User
+     * @return user
      */
-    public function setNaturalistId(\AppBundle\Entity\Observation $naturalistId = null)
+    public function setReportingUser($reportingUser)
     {
-        $this->naturalistId = $naturalistId;
-
+        $this->reportingUser = $reportingUser;
         return $this;
     }
-
     /**
-     * Get naturalistId
+     * Get reportingUser
      *
-     * @return \AppBundle\Entity\Observation
+     * @return boolean
      */
-    public function getNaturalistId()
+    public function getReportingUser()
     {
-        return $this->naturalistId;
+        return $this->reportingUser;
     }
 }
