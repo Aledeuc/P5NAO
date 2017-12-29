@@ -7,7 +7,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\User;
+use AppBundle\Entity\UserAdmin;
 
 class AdminController extends Controller
 {
@@ -20,7 +20,7 @@ class AdminController extends Controller
 
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:User');
+            ->getRepository('AppBundle:UserAdmin');
 
         $user = $repository->findAll();
 
@@ -61,7 +61,7 @@ class AdminController extends Controller
         // inscrit
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:User');
+            ->getRepository('AppBundle:UserAdmin');
         $allUser = $repository->findAll();
         $countUser = count($allUser);
 
@@ -97,7 +97,7 @@ class AdminController extends Controller
 
         $repository = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:User');
+            ->getRepository('AppBundle:UserAdmin');
 
         $user = $repository->findByreportingUser(1);
 
@@ -118,7 +118,7 @@ class AdminController extends Controller
         $em->remove($id);
         $em->flush();
 
-        $user = $em->getRepository('AppBundle:User')->findAll();
+        $user = $em->getRepository('AppBundle:UserAdmin')->findAll();
 
         $this->addFlash('success', 'Utilisateur supprimé.');
         return $this->render('profil/adminUser.html.twig', ['user' => $user]);

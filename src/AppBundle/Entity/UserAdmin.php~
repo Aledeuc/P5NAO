@@ -1,14 +1,14 @@
 <?php
+
 namespace AppBundle\Entity;
+use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 /**
- * User
- *
- * @ORM\Table(name="User")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserAdminRepository")
+ * @ORM\Table(name="UserAdmin")
  */
-class User
+class UserAdmin extends BaseUser
 {
     const SPECIALITY_VISITOR    = 0; //visiteur
     const SPECIALITY_USER       = 1; //utilisateur
@@ -23,11 +23,11 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255)
+     * @ORM\Column(name="firstName", type="string", length=255,  nullable=true)
      * @Assert\NotBlank()
      *
      */
@@ -35,14 +35,14 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=255)
+     * @ORM\Column(name="lastName", type="string", length=255,  nullable=true)
      * @Assert\NotBlank()
      */
     private $lastName;
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="inscriptionDate", type="date")
+     * @ORM\Column(name="inscriptionDate", type="date", nullable=true)
      * @Assert\NotBlank()
      * @Assert\DateTime()
      */
@@ -50,74 +50,64 @@ class User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="date")
+     * @ORM\Column(name="birthDate", type="date", nullable=true)
      */
     private $birthDate;
     /**
      * @var string
      *
-     * @ORM\Column(name="organization", type="string", length=255)
+     * @ORM\Column(name="organization", type="string", length=255, nullable=true)
      */
     private $organization;
     /**
      * @var string
      *
-     * @ORM\Column(name="speciality", type="string", length=255)
+     * @ORM\Column(name="speciality", type="string", length=255, nullable=true)
      */
     private $speciality;
     /**
      * @var string
      *
-     * @ORM\Column(name="imageFile", type="string", length=255)
+     * @ORM\Column(name="imageFile", type="string", length=255, nullable=true)
      */
     private $imageFile;
     /**
      * @var string
      *
-     * @ORM\Column(name="imageName", type="string", length=255)
+     * @ORM\Column(name="imageName", type="string", length=255, nullable=true)
      */
     private $imageName;
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Email(
-     *     message = "Aucun serveur mail n'a été trouvé pour ce domaine",
-     *     checkMX=true
-     * )
-     */
-    private $email;
+
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="lastUpdate", type="date")
+     * @ORM\Column(name="lastUpdate", type="date", nullable=true)
      * @Assert\DateTime()
      */
     private $lastUpdate;
     /**
      * @var boolean
-     * @ORM\Column(name="newsletterInscrit", type="boolean")
+     * @ORM\Column(name="newsletterInscrit", type="boolean", nullable=true)
      */
     private $newsletterInscrit;
     /**
      * @var boolean
-     * @ORM\Column(name="ethicCharterAccepted", type="boolean")
+     * @ORM\Column(name="ethicCharterAccepted", type="boolean", nullable=true)
      */
     private $ethicCharterAccepted;
     /**
      * @var integer
-     * @ORM\Column(name="validatedObservation", type="integer")
+     * @ORM\Column(name="validatedObservation", type="integer", nullable=true)
      */
     private $validatedObservation;
     /**
      * @var integer
-     * @ORM\Column(name="rejectedObservation", type="integer")
+     * @ORM\Column(name="rejectedObservation", type="integer", nullable=true)
      */
     private $rejectedObservation;
     /**
      * @var boolean
-     * @ORM\Column(name="reportingUser", type="boolean")
+     * @ORM\Column(name="reportingUser", type="boolean", nullable=true)
      */
     private $reportingUser;
     /**
