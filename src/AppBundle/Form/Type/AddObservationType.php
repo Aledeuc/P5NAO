@@ -31,7 +31,7 @@ class AddObservationType extends AbstractType
                 'entry_type'=> TaxrefObservationType::class
             ])
             ->add('observationNumber', IntegerType::class, [
-                'label' => 'nombre d\'oieaux'
+                'label' => 'nombre d\'oiseaux'
             ])
             ->add('observationLatitude', NumberType::class, [
                 'label' => 'latitude'

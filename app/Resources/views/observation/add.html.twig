@@ -8,6 +8,7 @@
         <div>
             {{ form_start(form) }}
             {{ form_errors(form) }}
+            {{ form_row(form.age) }}
             {{ form_widget(form) }}
             {{ form_end(form) }}
             <input type="input" value="Brouillon"
@@ -22,6 +23,11 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script>// Material Select Initialization
+        $(document).ready(function() {
+            $('.mdb-select').material_select();
+        });
+    </script>
     <script>
         $('.datepicker').pickadate();
     </script>
