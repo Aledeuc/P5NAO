@@ -34,6 +34,8 @@ class ObservationImage
     *     maxSizeMessage="5 Mo maximum par fichier",
     *     mimeTypes={"image/*"},
     *     mimeTypesMessage="Seulement les images")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
+     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
     **/
     private $imageFile;
 

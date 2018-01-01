@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block content %}
+
+    <h1>Page Utilisateur</h1>
+
+
+
+    <p>Bienvenue {{ app.user.username }}</p><br/>
+
+    <p> <a href="{{ path('fos_user_security_logout') }}">Se Déconnecter</a></p>
+
+
+{% endblock %}

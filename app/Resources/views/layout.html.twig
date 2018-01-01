@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="description" content="Plateforme collaborative d'observation d'oiseau (projet5)">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
     <title>{% block title %}Plateforme collaborative d'observation d'oiseau{% endblock %}</title>
 
     {% block stylesheets %}
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/mdb.min.css')}}" rel="stylesheet">
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/style.css')}}" rel="stylesheet">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Feuille de style -->
@@ -50,6 +50,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('aPropos') }}">A propos</a>
                 </li>
+
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <li class="nav-item">
+                     <a class="nav-link" href="{{ path('user_info') }}">Mon profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Se Déconnecter</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_security_login') }}">Se Connecter</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('fos_user_registration_register') }}">S'incrire</a>
+                </li>
+
+                {% endif %}
+
             </ul>
 
         </div>
@@ -61,6 +79,8 @@
 <!------------------------ Contenu ------------------------>
 <main id="content">
     <div class="container">
+        <br/>
+        <br/>
         {% block content %}
         {% endblock %}
     </div>
@@ -97,10 +117,10 @@
 
 {% block javascripts %}
     <!-- SCRIPTS -->
-    <script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/mdb.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('MDB-Pro/MDB-Pro/js/jquery-3.1.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('MDB-Pro/MDB-Pro/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('MDB-Pro/MDB-Pro/js/mdb.min.js') }}"></script>
+
 {% endblock %}
 </body>
 </html>
