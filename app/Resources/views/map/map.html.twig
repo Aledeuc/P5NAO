@@ -9,11 +9,12 @@
     <div id="map"></div>
     <div id="data" data-map="{{ data }}">
     </div>
-    {{ response }}
     <!--/.Panel-->
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script>var testData = "{{ data }}";
+    console.log(testData)</script>
     <script src="{{ asset('js/map.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ map_api_key }}&v=3&&callback=initMap">
 </script>
