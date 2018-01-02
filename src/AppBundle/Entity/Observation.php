@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -97,10 +98,10 @@ class Observation
      * @var Taxref
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
      */
-    private $taxref;
+    private $taxrefs;
 
     /**
-     * @var user
+     * @var
      *
      * @ORM\Column(name="user", type="string", length=255)
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
@@ -108,9 +109,8 @@ class Observation
     private $user;
 
     /**
-     * @var observationImage
+     * @var ObservationImage
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ObservationImage", mappedBy="observation", cascade="persist")
-     * @ORM\Column(name="observationImages", type="string", length=255)
      */
     private $observationImages;
 
@@ -133,6 +133,16 @@ class Observation
      * @ORM\Column(name="observationSignalementComment", type="text", length=255, nullable=true)
      */
     private $observationSignalementComment;
+
+    /**
+    * Constructor
+    */
+    public function __construct()
+    {
+
+        $this->user = new UserAdmin();
+        $this->observationImages = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -338,27 +348,27 @@ class Observation
     }
 
     /**
-     * Set taxref
+     * Set taxrefs
      *
-     * @param string $taxref
+     * @param string $taxrefs
      *
      * @return observation
      */
-    public function setTaxref($taxref)
+    public function setTaxrefs($taxrefs)
     {
-        $this->taxref = $taxref;
+        $this->taxrefs = $taxrefs;
 
         return $this;
     }
 
     /**
-     * Get taxref
+     * Get taxrefs
      *
      * @return string
      */
-    public function getTaxref()
+    public function getTaxrefs()
     {
-        return $this->taxref;
+        return $this->taxrefs;
     }
 
     /**

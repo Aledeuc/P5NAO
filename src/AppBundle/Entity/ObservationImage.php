@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -23,20 +24,19 @@ class ObservationImage
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Observation", cascade="persist")
-     * @ORM\JoinColumn(name="observationId", referencedColumnName="id")
+     * @var Observation
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="observationImages", cascade="persist")
      */
     private $observation;
 
     /**
-     * @Assert\File(
+    * @ORM\Column(type="string")
+    * @Assert\File(
     *     maxSize="5120k",
     *     maxSizeMessage="5 Mo maximum par fichier",
     *     mimeTypes={"image/*"},
     *     mimeTypesMessage="Seulement les images")
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="images", cascade={"persist"})
-     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
-    **/
+     **/
     private $imageFile;
 
     /**

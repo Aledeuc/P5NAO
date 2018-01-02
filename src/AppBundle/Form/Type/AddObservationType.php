@@ -18,7 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class AddObservationType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+       public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('observationDate', DateType::class, [
@@ -28,8 +28,8 @@ class AddObservationType extends AbstractType
                 'html5'=> false,
                 'attr' =>['class' => 'form-control datepicker']
             ])
-            ->add('taxref', CollectionType::class, [
-                'entry_type'=> TaxrefObservationType::class
+            ->add('taxrefs', CollectionType::class, [
+                'entry_type'=> TaxrefObservationType::class,
             ])
             ->add('observationNumber', IntegerType::class, [
                 'label' => 'nombre d\'oiseaux'
@@ -58,7 +58,7 @@ class AddObservationType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults( array(
-            'data_class' => 'AppBundle\Entity\Observation'
+            'data_class' => Observation::class
         ));
     }
 }
