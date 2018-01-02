@@ -10,3 +10,5 @@ services:
         arguments: []
         tags:
             - { name: kernel.event_subscriber }
+    appbundle.repositoryconnection:
+        class: AppBundle\Service\RepositoryConnexion

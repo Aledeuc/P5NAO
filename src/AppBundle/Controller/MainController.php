@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
+
 class MainController extends Controller
 {
     /**
@@ -123,17 +124,48 @@ class MainController extends Controller
      */
     public function showUserAction()
     {
+        $observationRepository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Observation');
+
+        $actualiteRepository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Actualite');
+
+        $userRepository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:UserAdmin');
+
+
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-            return $this->render('main/admin.html.twig');
+           // $userRepository = $this->container->get('appbundle.repositoryconnection');
+            //$userRepository->getRepository( 'AppBundle:UserAdmin' );
+
+            $user = $userRepository->findAll();
+            return $this->render('profil/adminUser.html.twig',['user' => $user]);
         }
         if ($this->get('security.authorization_checker')->isGranted('ROLE_NATURALIST')) {
-            return $this->render('main/naturalist.html.twig');
+            $observation = $observationRepository->findBy(array(
+                    'observationStatus' => '2'
+                )
+            );
+
+            $titleTable = 'Observation à valider';
+            return $this->render('profil/naturalist.html.twig',['observation' => $observation,'titleTable' => $titleTable]);
         }
         if ($this->get('security.authorization_checker')->isGranted('ROLE_EDITOR')) {
-            return $this->render('main/editor.html.twig');
+            $actualite = $actualiteRepository->findAll();
+            return $this->render('profil/editor.html.twig',['actualite' => $actualite]);
         }
         if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
-            return $this->render('main/client.html.twig');
+            $titleTable = 'Toutes mes observations';
+            $userId= 'alexorac';
+
+            $observation = $observationRepository->findBy(array(
+                'user' => $userId
+            ));
+
+            return $this->render('profil/user.html.twig',['observation' => $observation, 'titleTable' => $titleTable]);
         }
     }
 

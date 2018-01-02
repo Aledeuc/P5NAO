@@ -6,14 +6,15 @@ namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\UserAdmin;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AdminController extends Controller
 {
 
     /**
-     * @Route("/admin/alluser", name="alluser")
+     * @Route("/admin/alluser", name="profil_admin_alluser")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function alluserAction()
     {
@@ -23,38 +24,13 @@ class AdminController extends Controller
             ->getRepository('AppBundle:UserAdmin');
 
         $user = $repository->findAll();
-
-
-
-       /* $userSpeciality = $user['speciality'];
-        var_dump($user);
-        exit;
-
-
-        switch ($userSpeciality)
-        {
-            case 1:
-                $userSpeciality = "Utilisateur";
-                break;
-            case 2:
-                $userSpeciality = "Naturaliste";
-                break;
-            case 3:
-                $userSpeciality = "Rédacteur";
-                break;
-            case 4:
-                $userSpeciality = "Administrateur";
-                break;
-        }
-
-       , 'userSpeciality' => $userSpeciality*/
-
         return $this->render('profil/adminUser.html.twig', ['user' => $user]);
 
     }
 
     /**
-     * @Route("/admin/statistical", name="statistical")
+     * @Route("/admin/statistical", name="profil_admin_statistical")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function statisticalAction()
     {
@@ -90,7 +66,8 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/admin/reporting", name="reporting")
+     * @Route("/admin/reporting", name="profil_admin_reporting")
+     * @Security("has_role('ROLE_ADMIN')")
      */
     public function reportingAction()
     {
@@ -105,24 +82,27 @@ class AdminController extends Controller
 
     }
 
-
     /**
      * @Route("/admin/delete/{id}/User", name="admin_user_delete")
+     * @Security("has_role('ROLE_ADMIN')")
      */
-    public function deleteUserAction(User $id)
+    public function deleteUserAction(UserAdmin $id)
     {
-        if (!$id) {
+        if (!$id)
+        {
             throw $this->createNotFoundException('Pas d\'utilisateur trouvé');
         }
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()
+            ->getEntityManager();
         $em->remove($id);
         $em->flush();
 
-        $user = $em->getRepository('AppBundle:UserAdmin')->findAll();
+        $user = $em->getRepository('AppBundle:UserAdmin')
+            ->findAll();
 
         $this->addFlash('success', 'Utilisateur supprimé.');
         return $this->render('profil/adminUser.html.twig', ['user' => $user]);
     }
 
-
 }
+

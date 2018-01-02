@@ -14,8 +14,8 @@
 
         <div class="menuProfil">
             <ul>
-                <li><a class="allarticleLink" href="{{ path('allarticle') }}">Tous les articles</a></li>
-                <li><a class="addarticleLink" href="{{ path('addarticle') }}">Ajouter un article</a></li>
+                <li><a class="allarticleLink" href="{{ path('profil_editor_allarticle') }}">Tous les articles</a></li>
+                <li><a class="addarticleLink" href="{{ path('profil_editor_addarticle') }}">Ajouter un article</a></li>
 
             </ul>
         </div>
@@ -39,7 +39,7 @@
 
 
  {% block javascripts %}
-        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="{{ asset('js/scripts.js') }}"></script>
 {% endblock %}
