@@ -18,9 +18,9 @@
                 {{ form_widget(form.observationDate) }}
             </div>
             <div id="taxref">
-                {{ form_label(form.taxref) }}
-                {{ form_errors(form.taxref) }}
-                {{ form_widget(form.taxref) }}
+                {{ form_label(form.taxrefs) }}
+                {{ form_errors(form.taxrefs) }}
+                {{ form_widget(form.taxrefs) }}
             </div>
             <div>
                 {{ form_label(form.observationNumber) }}
@@ -59,7 +59,7 @@
 
             </div>
             <div>
-                <input type="input" value="Enregistrer"
+                <input type="submit" value="Enregistrer"
                        class="btn btn-default pull-left"/>
 
                 <input type="submit" value="Publier"
