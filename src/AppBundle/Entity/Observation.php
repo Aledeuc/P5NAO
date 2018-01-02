@@ -14,10 +14,25 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Observation
 {
+    //STATUS
     const STATUS_DRAFT      = 1; //brouillon
     const STATUS_WAITING    = 2; //en attente de validation
     const STATUS_VALIDATE   = 3; //validé
     const STATUS_REJECTED   = 4; //rejeté
+
+    //ENVIRONMENT
+    const ENVIRONMENT_CITY      = 1; //ville
+    const ENVIRONMENT_FOREST    = 2; //forêt
+    const ENVIRONMENT_GARDEN    = 3; //jardin
+    const ENVIRONMENT_LAKE      = 4; //lac
+    const ENVIRONMENT_SEA       = 5; //mer
+    const ENVIRONMENT_MOUNTAIN  = 6; //montagne
+    //CLIMATE
+    const CLIMATE_SUN       = 1; //Soleil
+    const CLIMATE_SUNCLOUD  = 2 ; //Soleil et nuage
+    const CLIMATE_CLOUD     = 3; //Nuageux
+    const CLIMATE_RAIN      = 4 ; //Pluie
+    const CLIMATE_SNOW      = 5; //neige
 
     /**
      * @var int
