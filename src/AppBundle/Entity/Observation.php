@@ -110,7 +110,7 @@ class Observation
     /**
      * @var observationImage
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ObservationImage", mappedBy="observation", cascade="persist")
-     * @ORM\Column(name="images", type="string", length=255)
+     * @ORM\Column(name="observationImages", type="string", length=255)
      */
     private $observationImages;
 

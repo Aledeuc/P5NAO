@@ -5,20 +5,24 @@
 namespace AppBundle\Controller;
 
 
+use AppBundle\Entity\Observation;
 use AppBundle\Form\Type\AddObservationType;
-use AppBundle\Services\ObservationManager;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+
 
 class ObservationController extends Controller
 {
     /**
+     * @param Request $request
      * @Route("/add", name="addObservation")
+     *
      */
-    public function addAction(Request $request, ObservationManager $observationManager)
+    public function addAction(Request $request)
     {
-        $observation = $observationManager->createObservation();
+        $observation = new Observation();
 
         $form = $this->createForm(AddObservationType::class, $observation);
         $form->handleRequest($request);
