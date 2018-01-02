@@ -2,19 +2,71 @@
 
 {% block content %}
     <!--Panel-->
-    <div class="card card-body">
-        <h4 class="card-title">Titre</h4>
+    <h4>Ajouter une observation</h4>
+    <div class="row">
+        <div class="col-3" id="left">
+            <p>Ajouter une observation d'oiseau</p>
+            <img src="">
+        </div>
 
-        <div>
+
+        <div class="col-9" id="right">
             {{ form_start(form) }}
-            {{ form_errors(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
-            <input type="input" value="Brouillon"
-                   class="btn btn-default pull-left" />
+            <div id="date">
+                {{ form_label(form.observationDate) }}
+                {{ form_errors(form.observationDate) }}
+                {{ form_widget(form.observationDate) }}
+            </div>
+            <div id="taxref">
+                {{ form_label(form.taxref) }}
+                {{ form_errors(form.taxref) }}
+                {{ form_widget(form.taxref) }}
+            </div>
+            <div>
+                {{ form_label(form.observationNumber) }}
+                {{ form_errors(form.observationNumber) }}
+                {{ form_widget(form.observationNumber) }}
+            </div>
+            <div>
+                <p>Coordonnées GPS</p>
+                <button id="GPS">Me localiser</button>
+                <br>
+                {{ form_errors(form.observationLatitude) }}
+                {{ form_widget(form.observationLatitude) }}
 
-            <input type="submit" value="Publier"
-                   class="btn btn-default pull-right" />
+                {{ form_errors(form.observationLongitude) }}
+                {{ form_widget(form.observationLongitude) }}
+            </div>
+            <div>
+                {{ form_label(form.observationEnvironment) }}
+                {{ form_errors(form.observationEnvironment) }}
+                {{ form_widget(form.observationEnvironment) }}
+            </div>
+            <div>
+                {{ form_label(form.observationClimat) }}
+                {{ form_errors(form.observationClimat) }}
+                {{ form_widget(form.observationClimat) }}
+            </div>
+            <div>
+                {{ form_label(form.observationComment) }}
+                {{ form_errors(form.observationComment) }}
+                {{ form_widget(form.observationComment) }}
+            </div>
+            <div>
+                {{ form_label(form.observationImages) }}
+                {{ form_errors(form.observationImages) }}
+                {{ form_widget(form.observationImages) }}
+
+            </div>
+            <div>
+                <input type="input" value="Enregistrer"
+                       class="btn btn-default pull-left"/>
+
+                <input type="submit" value="Publier"
+                       class="btn btn-default pull-right"/>
+            </div>
+            {{ form_end(form) }}
+
         </div>
     </div>
     <!--/.Panel-->
@@ -23,7 +75,7 @@
 {% block javascripts %}
     {{ parent() }}
     <script>// Material Select Initialization
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.mdb-select').material_select();
         });
     </script>

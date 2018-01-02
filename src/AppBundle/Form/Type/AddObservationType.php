@@ -22,6 +22,7 @@ class AddObservationType extends AbstractType
     {
         $builder
             ->add('observationDate', DateType::class, [
+                'label'=> 'Date d\'observation',
                 'widget'=> 'single_text',
                 'format' => 'dd/MM/yyyy',
                 'html5'=> false,
@@ -34,10 +35,10 @@ class AddObservationType extends AbstractType
                 'label' => 'nombre d\'oiseaux'
             ])
             ->add('observationLatitude', NumberType::class, [
-                'label' => 'latitude'
+                'attr' =>['placeholder' => 'latitude']
             ])
             ->add('observationLongitude',NumberType::class, [
-                'label' => 'longitude'
+                'attr' =>['placeholder' => 'longitude']
             ])
             ->add('observationEnvironment', ChoiceType::class, [
                 'label' => 'cadre'
@@ -46,7 +47,7 @@ class AddObservationType extends AbstractType
                 'label' => 'climat'
             ])
             ->add('observationImages', CollectionType::class, [
-                'label' => 'Photo'
+                'entry_type' => ImageObservationType::class
             ])
             ->add('observationComment', TextareaType::class, [
 

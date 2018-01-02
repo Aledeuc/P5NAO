@@ -10,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ImageObservation extends AbstractType
+class ImageObservationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
