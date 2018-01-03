@@ -13,19 +13,13 @@
         <div class="col-9" id="right">
             {{ form_start(form) }}
             <div id="date">
-                {{ form_label(form.observationDate) }}
-                {{ form_errors(form.observationDate) }}
-                {{ form_widget(form.observationDate) }}
+                {{ form_row(form.observationDate,{'label': 'date d\'observation'}) }}
             </div>
             <div id="taxref">
-                {{ form_label(form.taxrefs) }}
-                {{ form_errors(form.taxrefs) }}
-                {{ form_widget(form.taxrefs) }}
+                {{ form_row(form.taxref) }}
             </div>
             <div>
-                {{ form_label(form.observationNumber) }}
-                {{ form_errors(form.observationNumber) }}
-                {{ form_widget(form.observationNumber) }}
+                {{ form_row(form.observationNumber),{'label': 'nombre d\'oiseaux'}) }}
             </div>
             <div>
                 <p>Coordonnées GPS</p>
@@ -48,14 +42,10 @@
                 {{ form_widget(form.observationClimat) }}
             </div>
             <div>
-                {{ form_label(form.observationComment) }}
-                {{ form_errors(form.observationComment) }}
-                {{ form_widget(form.observationComment) }}
+                {{ form_row(form.observationComment) }}
             </div>
             <div>
-                {{ form_label(form.observationImages) }}
-                {{ form_errors(form.observationImages) }}
-                {{ form_widget(form.observationImages) }}
+                {{ form_row(form.observationImages) }}
 
             </div>
             <div>
