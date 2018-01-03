@@ -4,7 +4,6 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\Entity\ObservationImage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,13 +20,18 @@ class ImageObservationType extends AbstractType
     {
         $builder
             ->add('imageFile', FileType::class, [
+                'required' => false,
                 'label'=> 'photo'
             ]);
     }
+
+    /**
+     * @param OptionsResolver $resolver
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults( array(
-            'data_class' => ObservationImage::class
+            'data_class' => 'AppBundle\Entity\ObservationImage'
         ));
     }
 }
