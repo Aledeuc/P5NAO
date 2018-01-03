@@ -8,40 +8,32 @@ $(function () {
             zoom: 5,
         });
 
-        var markers = [];
+        var markers =[];
         var element = document.getElementById('data');
         var data = [element.getAttribute('data-map')];
         var locations = [
-            {title: 'oiseau1', lat: 46.498392, lng: 2.610353, population: 4000},
-            {title: 'oiseau2', lat: 48.8615, lng: 2.34706, population: 16000}
+            {title: 'oiseau1', lat: 46.498392, lng: 2.610353},
+            {title: 'oiseau2', lat: 48.8615, lng: 2.34706}
         ];
         var largeInfowindow = new google.maps.InfoWindow({});
         var bounds = new google.maps.LatLngBounds();
 
-
-        for (var location in locations){
-            console.log(locations);
+        for (var i = 0; i < locations.length; i++) {
             var position = {
-                lat: locations[location].lat,
-                lng: locations[location].lng
+                lat: locations[i].lat,
+                lng: locations[i].lng
             };
-            var title = location.title;
-            var marker = new google.maps.Circle({
-                strokeColor: '#4d5666',
-                strokeOpacity: 0.8,
-                strokeWeight: 2,
-                fillColor: '#4d5666',
-                fillOpacity: 0.35,
+            var title = locations[i].title;
+            var marker = new google.maps.Marker({
                 map: map,
-                center: locations[location].center,
-                radius: Math.sqrt(locations[location].population) * 100,
-
                 position: position,
                 title: title,
+                animation: google.maps.Animation.DROP,
+                id: i
             });
             markers.push(marker);
             bounds.extend(marker.position);
-            marker.addListener('click', function () {
+            marker.addListener('click', function(){
                 populateInfoWindow(this, largeInfowindow);
             });
         }
