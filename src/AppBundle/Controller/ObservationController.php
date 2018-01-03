@@ -9,6 +9,7 @@ use AppBundle\Entity\Observation;
 use AppBundle\Entity\Taxref;
 use AppBundle\Form\Type\AddObservationType;
 use AppBundle\Form\Type\ImageObservationType;
+use AppBundle\Service\FileUploader;
 use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,7 +26,7 @@ class ObservationController extends Controller
      * @Route("/add", name="addObservation")
      * @Method({"GET","POST"})
      */
-    public function addAction(Request $request)
+    public function addAction(Request $request, FileUploader $fileUploader)
     {
         /**
         * if(!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
@@ -45,21 +46,18 @@ class ObservationController extends Controller
 
 
         if($form->isSubmitted() && $form->isValid()){
-            $this->getDoctrine()->getManager()->getRepository('AppBundle:Taxref')->findOneBy(array('classe' => 'aves'));            $observation = $form->getData();
             $observation->getObservationImages()->setUploadDate(new \DateTime());
 
             $file = $observation->getObservationImages()->getImageFile();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-            $file->move(
-                $this->getParameter('images_directory'),
-                $fileName
-            );
+            $fileName = $fileUploader->upload($file);
+
             $observation->getObservationImages()->setImageName($fileName);
 
             $observation->setObservationStatus(Observation::STATUS_VALIDATE);
             $observation->setObservationPublication(Observation::STATUS_VALIDATE);
             $observation->setNaturalistId(null);
 
+            dump($observation);
              $em = $this->getDoctrine()->getManager();
              $em->persist($observation);
              $em->flush();
