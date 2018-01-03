@@ -9,7 +9,7 @@ use AppBundle\Entity\Observation;
 use AppBundle\Entity\Taxref;
 use AppBundle\Form\Type\AddObservationType;
 use AppBundle\Form\Type\ImageObservationType;
-use AppBundle\Services\ObservationManager;
+use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -42,10 +42,23 @@ class ObservationController extends Controller
         $form = $this->createForm(AddObservationType::class, $observation);
         $form->handleRequest($request);
 
+
+
         if($form->isSubmitted() && $form->isValid()){
-            $observation = $form->getData();
+            $this->getDoctrine()->getManager()->getRepository('AppBundle:Taxref')->findOneBy(array('classe' => 'aves'));            $observation = $form->getData();
+            $observation->getObservationImages()->setUploadDate(new \DateTime());
 
+            $file = $observation->getObservationImages()->getImageFile();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+            $observation->getObservationImages()->setImageName($fileName);
 
+            $observation->setObservationStatus(Observation::STATUS_VALIDATE);
+            $observation->setObservationPublication(Observation::STATUS_VALIDATE);
+            $observation->setNaturalistId(null);
 
              $em = $this->getDoctrine()->getManager();
              $em->persist($observation);

@@ -2,7 +2,7 @@
 /**
  */
 
-namespace AppBundle\Services;
+namespace AppBundle\Service;
 
 use AppBundle\Entity\Observation;
 use Doctrine\ORM\EntityManagerInterface;

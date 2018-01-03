@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\AppBundle;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -110,16 +111,16 @@ class Observation
     private $observationNumber;
 
     /**
+     * @var \AppBundle\Entity\Taxref
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Taxref", cascade={"persist"})
+     * @ORM\JoinColumn(name="taxref_id", referencedColumnName="id", nullable=true)
      */
     private $taxref;
 
     /**
      *
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\userAdmin", cascade="persist")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
@@ -137,7 +138,7 @@ class Observation
 
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\user", cascade="persist")
-     * @ORM\Column(name="naturalistId", type="string", length=255)
+     * @ORM\Column(name="naturalistId", type="string", length=255, nullable=true)
      */
     private $naturalistId;
 
@@ -505,4 +506,3 @@ class Observation
         return $this->observationSignalementComment;
     }
 }
-

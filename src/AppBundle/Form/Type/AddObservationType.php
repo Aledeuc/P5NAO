@@ -35,14 +35,8 @@ class AddObservationType extends AbstractType
                 'html5' => false,
                 'attr' => ['class' => 'form-control datepicker']
             ])
-            ->add('taxref', EntityType::class, [
-                'class' => Taxref::class,
-                'query_builder' => function (EntityRepository $er) {
-                return $er->createQueryBuilder('u')
-                    ->orderBy('u.famille', 'ASC');
-                },
-                'choice_label' => 'famille',
-            ])
+            ->add('taxref', TaxrefObservationType::class)
+
             ->add('observationNumber', IntegerType::class)
             ->add('observationLatitude', NumberType::class, [
                 'attr' => ['placeholder' => 'latitude']
