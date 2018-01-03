@@ -27,7 +27,7 @@ class UserAdmin extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="firstName", type="string", length=255,  nullable=true)
+     * @ORM\Column(name="firstName", type="string", length=255)
      * @Assert\NotBlank()
      *
      */
@@ -35,14 +35,14 @@ class UserAdmin extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="lastName", type="string", length=255,  nullable=true)
+     * @ORM\Column(name="lastName", type="string", length=255)
      * @Assert\NotBlank()
      */
     private $lastName;
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="inscriptionDate", type="date", nullable=true)
+     * @ORM\Column(name="inscriptionDate", type="date")
      * @Assert\NotBlank()
      * @Assert\DateTime()
      */
@@ -50,64 +50,64 @@ class UserAdmin extends BaseUser
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="birthDate", type="date", nullable=true)
+     * @ORM\Column(name="birthDate", type="date")
      */
     private $birthDate;
     /**
      * @var string
      *
-     * @ORM\Column(name="organization", type="string", length=255, nullable=true)
+     * @ORM\Column(name="organization", type="string", length=255)
      */
     private $organization;
     /**
      * @var string
      *
-     * @ORM\Column(name="speciality", type="string", length=255, nullable=true)
+     * @ORM\Column(name="speciality", type="string", length=255)
      */
     private $speciality;
     /**
      * @var string
      *
-     * @ORM\Column(name="imageFile", type="string", length=255, nullable=true)
+     * @ORM\Column(name="imageFile", type="string", length=255)
      */
     private $imageFile;
     /**
      * @var string
      *
-     * @ORM\Column(name="imageName", type="string", length=255, nullable=true)
+     * @ORM\Column(name="imageName", type="string", length=255)
      */
     private $imageName;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="lastUpdate", type="date", nullable=true)
+     * @ORM\Column(name="lastUpdate", type="date")
      * @Assert\DateTime()
      */
     private $lastUpdate;
     /**
      * @var boolean
-     * @ORM\Column(name="newsletterInscrit", type="boolean", nullable=true)
+     * @ORM\Column(name="newsletterInscrit", type="boolean")
      */
     private $newsletterInscrit;
     /**
      * @var boolean
-     * @ORM\Column(name="ethicCharterAccepted", type="boolean", nullable=true)
+     * @ORM\Column(name="ethicCharterAccepted", type="boolean")
      */
     private $ethicCharterAccepted;
     /**
      * @var integer
-     * @ORM\Column(name="validatedObservation", type="integer", nullable=true)
+     * @ORM\Column(name="validatedObservation", type="integer")
      */
     private $validatedObservation;
     /**
      * @var integer
-     * @ORM\Column(name="rejectedObservation", type="integer", nullable=true)
+     * @ORM\Column(name="rejectedObservation", type="integer")
      */
     private $rejectedObservation;
     /**
      * @var boolean
-     * @ORM\Column(name="reportingUser", type="boolean", nullable=true)
+     * @ORM\Column(name="reportingUser", type="boolean")
      */
     private $reportingUser;
     /**

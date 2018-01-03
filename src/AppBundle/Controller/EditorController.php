@@ -40,13 +40,15 @@ class EditorController extends Controller
     {
         $actuality = new Actualite();
         $form = $this->createForm(AddArticleType::class , $actuality);
+        $userLastName = $this->getUser()->getlastName();
+        $userFirstName = $this->getUser()->getfirstName();
+        $author = "$userLastName $userFirstName";
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $naturalistId = 'alexorac';
-            $actuality->setActualiteAuthor($naturalistId);
+            $actuality->setActualiteAuthor($author);
 
             if (isset($_POST['publish']))
             {
@@ -126,7 +128,6 @@ class EditorController extends Controller
         }
         $em = $this->getDoctrine()
             ->getEntityManager();
-        var_dump($id);
         $this->setActualiteStatus('1');
         $em->remove($id);
         $em->flush();

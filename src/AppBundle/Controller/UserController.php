@@ -24,6 +24,9 @@ class UserController extends Controller
             ->getRepository('AppBundle:Observation');
 
         $userId = 'alexorac';
+        $userLastName = $this->getUser()->getlastName();
+        $userFirstName = $this->getUser()->getfirstName();
+        $author = "$userLastName $userFirstName";
 
         $observation = $repository->findBy(array(
             'user' => $userId

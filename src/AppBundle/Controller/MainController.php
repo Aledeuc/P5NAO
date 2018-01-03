@@ -33,6 +33,7 @@ class MainController extends Controller
             ->findBy(array('actualiteStatus' => '2'), array('id' => 'desc'));
 
 
+
         return $this->render('main/actualite.html.twig', ['actualite' => $actualite]);
 
         // replace this example code with whatever you need
@@ -139,8 +140,6 @@ class MainController extends Controller
 
 
         if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
-           // $userRepository = $this->container->get('appbundle.repositoryconnection');
-            //$userRepository->getRepository( 'AppBundle:UserAdmin' );
 
             $user = $userRepository->findAll();
             return $this->render('profil/adminUser.html.twig',['user' => $user]);

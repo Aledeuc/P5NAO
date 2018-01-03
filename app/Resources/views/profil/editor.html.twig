@@ -31,10 +31,10 @@
                 <table class="table">
                     <thead class="blue-grey lighteen-4">
                     <tr>
-                        <th>Titre</th>
-                        <th>Auteur</th>
-                        <th>État</th>
-                        <th>Date</th>
+                        <th>TITRE</th>
+                        <th>AUTEUR</th>
+                        <th>ÉTAT</th>
+                        <th>DATE</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -50,7 +50,13 @@
                             <tr>
                                 <td><a class="articleTitre" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteTitle  }}</a></td>
                                 <td><a class="articleAuteur" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteAuthor }}</a></td>
-                                <td><a class="articleEtat" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteStatus }}</a></td>
+                                {% if actualite.actualiteStatus  == 2 %}
+                                    <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+                                {%  elseif actualite.actualiteStatus  == 1 %}
+                                    <td><a class="articleEtat" {# href="{{ path('observation', { "id": observations.id }) }}#}"></a>Brouillon</td>
+                                {% else %}
+                                    <td><i class="fa fa-archive" aria-hidden="true"></i></td>
+                                {%  endif %}
                                 <td><a class="articleDate"  {#href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteDate |date("d/m/Y")  }}</a></td>
                                 <td><a class="articleDate"  href="{{ path('editor_article_update', { "id": actualite.id }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                                 <td>
