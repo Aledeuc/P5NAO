@@ -1,10 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * ObservationImage
  *
@@ -21,36 +18,31 @@ class ObservationImage
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @ORM\ManyToOne(targetEntity="Observation", cascade="persist")
      * @ORM\JoinColumn(name="observationId", referencedColumnName="id")
      */
     private $observation;
-
     /**
      * @Assert\File(
-    *     maxSize="5120k",
-    *     maxSizeMessage="5 Mo maximum par fichier",
-    *     mimeTypes={"image/*"},
-    *     mimeTypesMessage="Seulement les images")
-    **/
+     *     maxSize="5120k",
+     *     maxSizeMessage="5 Mo maximum par fichier",
+     *     mimeTypes={"image/*"},
+     *     mimeTypesMessage="Seulement les images")
+     **/
     private $imageFile;
-
     /**
      * @var string
      *
      * @ORM\Column(name="imageName", type="string", length=255)
      */
     private $imageName;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="uploadDate", type="datetime")
      */
     private $uploadDate;
-
     /**
      * Get id
      *
@@ -60,7 +52,6 @@ class ObservationImage
     {
         return $this->id;
     }
-
     /**
      * Set observation
      *
@@ -71,10 +62,8 @@ class ObservationImage
     public function setObservation($observation)
     {
         $this->observation = $observation;
-
         return $this;
     }
-
     /**
      * Get observation
      *
@@ -84,7 +73,6 @@ class ObservationImage
     {
         return $this->observation;
     }
-
     /**
      * Set imageFile
      *
@@ -95,10 +83,8 @@ class ObservationImage
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
-
         return $this;
     }
-
     /**
      * Get imageFile
      *
@@ -108,7 +94,6 @@ class ObservationImage
     {
         return $this->imageFile;
     }
-
     /**
      * Set imageName
      *
@@ -119,10 +104,8 @@ class ObservationImage
     public function setImageName($imageName)
     {
         $this->imageName = $imageName;
-
         return $this;
     }
-
     /**
      * Get imageName
      *
@@ -132,7 +115,6 @@ class ObservationImage
     {
         return $this->imageName;
     }
-
     /**
      * Set uploadDate
      *
@@ -143,10 +125,8 @@ class ObservationImage
     public function setUploadDate($uploadDate)
     {
         $this->uploadDate = $uploadDate;
-
         return $this;
     }
-
     /**
      * Get uploadDate
      *
@@ -157,4 +137,3 @@ class ObservationImage
         return $this->uploadDate;
     }
 }
-

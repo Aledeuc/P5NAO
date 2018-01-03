@@ -3,11 +3,54 @@
 {% block content %}
     <!--Panel-->
     <div class="card card-body">
-        <h4 class="card-title">Actualitées</h4>
+        <!--Section: Blog v.3-->
+        <section class="py-4">
 
-        <p class="card-text">
-           Actualitées
-        </p>
+            <!--Section heading-->
+            <h2 class="h1 text-center mb-5">LES ACTUALITÉS DE NAO</h2>
+            <!--Section description-->
+
+            {% for actualite in actualite %}
+            <!--Grid row-->
+            <div class="row">
+
+                <!--Grid column-->
+                <div class="col-lg-5 col-xl-4 mb-4">
+                    <!--Featured image-->
+                    <div class="view overlay hm-white-slight rounded z-depth-1-half">
+                        {{  actualite.actualiteImages }}
+                        <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="First sample image">
+                        <a>
+                            <div class="mask"></div>
+                        </a>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
+                    <h3 class="mb-3 font-bold dark-grey-text">
+                        <strong>{{ actualite.actualiteTitle  }}</strong>
+                    </h3>
+                    <p>{{ actualite.actualiteDate |date("d/m/Y")  }}, {{ actualite.actualiteCategory }} </p>
+
+
+                    <p class="grey-text">{{ actualite.actualiteArticle |raw  }}</p>
+
+                    <a class="btn btn-primary btn-md pull-right">Lire l'article</a>
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+            <hr class="mb-5">
+            {% endfor %}
+
+
+        </section>
+        <!--Section: Blog v.3-->
+
     </div>
     <!--/.Panel-->
 {% endblock %}

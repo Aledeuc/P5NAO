@@ -1,0 +1,92 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!--Panel-->
+
+    <div class="row">
+        <div class="col-3 profilMenu">
+            <div class="titreMenuProfil">
+                <h2>ADMINISTRATION</h2>
+            </div>
+
+            <div class="menuProfil">
+                <ul>
+                    <li><a class="alluserLink" href="{{ path('profil_admin_alluser') }}">Utilisateurs</a></li>
+                    <li><a class="statisticalLink" href="{{ path('profil_admin_statistical') }}">Statistiques</a></li>
+                    <li><a class="reportingLink" href="{{ path('profil_admin_reporting') }}">Signalement</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-lg-9">
+            <h4 class="card-title">UTILISATEURS</h4>
+            <form class="form-inline">
+                <input class="form-control w-100" type="text" placeholder="Search" aria-label="Search">
+            </form>
+
+            <div class="tab-content">
+                {% if user != null %}
+                <table class="table">
+                    <thead class="blue-grey lighteen-4">
+
+                    </thead>
+
+                    {% for message in app.flashes('success') %}
+                        <div class="flash-notice">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+
+                    {% for user in user %}
+                        <tbody>
+                        <tr>
+                            <td><a class="userPhoto" {#href="{{ path('observation', { "id": observations.id }) }} #}">{{ user.imageFile  }}</a></td>
+                            <td><a class="userFirstName" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.firstName }}</a></td>
+                            <td><a class="userLastName" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.lastName }}</a></td>
+                            <td><a class="userEmail" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.email }}</a></td>
+                            <td><a class="userEmail" {# href="{{ path('observation', { "id": observations.id }) }}#}"><i class="fa fa-camera" aria-hidden="true"></i>  {{ user.validatedObservation }} | {{ user.rejectedObservation }}</a></td>
+                            <td><a class="userSpeciality" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.speciality  }}</a></td>
+
+                            <td>
+
+                                <i class="fa fa-close iconPointer" data-toggle="modal" data-target="#deleteUser{{ user.id }}"></i>
+
+                                <div class="modal fade" id="deleteUser{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="deleteUserModal">Confirmation requise</h4>
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Voulez-vous vraiment supprimer cet utilisateur ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                <a href="{{ path('admin_user_delete', { 'id': user.id }) }}" class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            {% else %}
+                <div class="alert alert-warning">Pas d'utilisateurs trouvés</div>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+    <!--/.Panel-->
+{% endblock %}
+
+
+

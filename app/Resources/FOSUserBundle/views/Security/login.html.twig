@@ -1,0 +1,39 @@
+{% extends 'layout.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block content %}
+
+    <!--/.Panel-->
+
+    <form  action="{{ path("fos_user_security_check") }}" method="post">
+        <!--Panel-->
+        <div class="card card-body">
+            <h4 class="card-title">Se Connecter</h4>
+        {% if csrf_token %}
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        {% endif %}
+
+        <div class="row">
+
+            <div class="input-field col-md-12">
+                <i class="fa fa-user prefix white-text"></i>
+            <input class="form-control" type="text" placeholder="{{ 'security.login.username'|trans }}" id="username" name="_username" value="{{ last_username }}" required="required">
+            </div>
+
+            <div class="input-field col-md-12">
+                <i class="fa fa-user prefix white-text"></i>
+            <input class="form-control" type="password" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required">
+            </div>
+            </div>
+        </div>
+
+            <div align="center" class="button-wrap">
+                <button class="btn btn-info teal darken-3" type="submit" name="action" formnovalidate>
+                    {{ 'security.login.submit'|trans }}
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}

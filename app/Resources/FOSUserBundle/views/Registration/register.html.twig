@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!--Panel-->
+    <div class="card card-body">
+        <h4 class="card-title">S'inscrire</h4>
+
+        {% block fos_user_content %}
+            {% include "@FOSUser/Registration/register_content.html.twig" %}
+        {% endblock fos_user_content %}
+
+    </div>
+    <!--/.Panel-->
+{% endblock %}

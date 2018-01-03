@@ -1,0 +1,92 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!--Panel-->
+
+    <div class="row">
+        <div class="col-3 profilMenu">
+            <div class="titreMenuProfil">
+                <h2>VALIDATION</h2>
+            </div>
+
+            <div class="menuProfil">
+                <ul>
+                    <li><a class="tovalidateLink" href="{{ path('profil_naturalist_tovalidate') }}">A valider</a></li>
+                    <li><a class="historicalLink" href="{{ path('profil_naturalist_historical') }}">Historique</a></li>
+                    <li><a class="myrefusalLink" href="{{ path('profil_naturalist_myrefusal') }}">Refusées</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-lg-9">
+            <h4 class="card-title">{{ titleTable }}</h4>
+            <div class="tab-content">
+                {% if observation != null %}
+                <table class="table">
+                    <thead class="blue-grey lighteen-4">
+                    <tr>
+                        <th>Photo</th>
+                        <th>Date</th>
+                        <th>Nom</th>
+                        <th>Famille</th>
+                        <th>État</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    {% for observations in observation %}
+                        <tbody>
+                        <tr>
+                            <td><a class="observationPhoto" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.images  }}</a></td>
+                            <td><a class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.dateObservation |date("d/m/Y") }}</a></td>
+                            <td><a class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user }}</a></td>
+                            <td><a class="observationFamille" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.taxref }}</a></td>
+                            <td><a class="observationÉtat" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.validation  }}</a></td>
+
+                            <td>
+
+                                <a href="{{ path('pageTest', { 'id': observations.id }) }}" class="btn btn-warning btn-xs" title="PreviewObservationLien" data-toggle="modal" data-target="#exampleModal"><span class="glyphicon glyphicon-edit"></span></a>
+
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                {{ observations.images  }}
+                                                Nome : {{ observations.user }}
+                                                Date de l'observation : {{ observations.dateObservation |date("d/m/Y") }}
+                                                Nombre d'oiseaux : {{ observations.user }}
+                                                Observations :
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            {% else %}
+                <div class="alert alert-warning">Pas d'observation trouvée </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+    <!--/.Panel-->
+{% endblock %}

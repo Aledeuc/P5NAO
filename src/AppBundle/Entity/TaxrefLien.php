@@ -1,10 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * TaxrefLien
  *
@@ -21,63 +18,54 @@ class TaxrefLien
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ctName", type="string", length=255)
      */
     private $ctName;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ctType", type="string", length=255)
      */
     private $ctType;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ctAuthors", type="string", length=255)
      */
     private $ctAuthors;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ctTitle", type="string", length=255)
      */
     private $ctTitle;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ctUrl", type="string", length=255)
      */
     private $ctUrl;
-
     /**
      * @var integer
      *
      * @ORM\Column(name="cdNom", type="integer", length=255)
      */
     private $cdNom;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ctSpId", type="string", length=255)
      */
     private $ctSpId;
-
     /**
      * @var string
      *
      * @ORM\Column(name="urlSp", type="string", length=255)
      */
     private $urlSp;
-
     /**
      * Get id
      *
@@ -87,7 +75,6 @@ class TaxrefLien
     {
         return $this->id;
     }
-
     /**
      * Set ctName
      *
@@ -98,10 +85,8 @@ class TaxrefLien
     public function setCtName($ctName)
     {
         $this->ctName = $ctName;
-
         return $this;
     }
-
     /**
      * Get ctName
      *
@@ -111,7 +96,6 @@ class TaxrefLien
     {
         return $this->ctName;
     }
-
     /**
      * Set ctType
      *
@@ -122,10 +106,8 @@ class TaxrefLien
     public function setCtType($ctType)
     {
         $this->ctType = $ctType;
-
         return $this;
     }
-
     /**
      * Get ctType
      *
@@ -135,7 +117,6 @@ class TaxrefLien
     {
         return $this->ctType;
     }
-
     /**
      * Set ctAuthors
      *
@@ -146,10 +127,8 @@ class TaxrefLien
     public function setCtAuthors($ctAuthors)
     {
         $this->ctAuthors = $ctAuthors;
-
         return $this;
     }
-
     /**
      * Get ctAuthors
      *
@@ -159,7 +138,6 @@ class TaxrefLien
     {
         return $this->ctAuthors;
     }
-
     /**
      * Set ctTitle
      *
@@ -170,10 +148,8 @@ class TaxrefLien
     public function setCtTitle($ctTitle)
     {
         $this->ctTitle = $ctTitle;
-
         return $this;
     }
-
     /**
      * Get ctTitle
      *
@@ -183,7 +159,6 @@ class TaxrefLien
     {
         return $this->ctTitle;
     }
-
     /**
      * Set ctUrl
      *
@@ -194,10 +169,8 @@ class TaxrefLien
     public function setCtUrl($ctUrl)
     {
         $this->ctUrl = $ctUrl;
-
         return $this;
     }
-
     /**
      * Get ctUrl
      *
@@ -207,7 +180,6 @@ class TaxrefLien
     {
         return $this->ctUrl;
     }
-
     /**
      * Set cdNom
      *
@@ -218,10 +190,8 @@ class TaxrefLien
     public function setCdNom($cdNom)
     {
         $this->cdNom = $cdNom;
-
         return $this;
     }
-
     /**
      * Get cdNom
      *
@@ -231,7 +201,6 @@ class TaxrefLien
     {
         return $this->cdNom;
     }
-
     /**
      * Set ctSpId
      *
@@ -242,10 +211,8 @@ class TaxrefLien
     public function setCtSpId($ctSpId)
     {
         $this->ctSpId = $ctSpId;
-
         return $this;
     }
-
     /**
      * Get ctSpId
      *
@@ -265,10 +232,8 @@ class TaxrefLien
     public function seturlSp($urlSp)
     {
         $this->urlSp = $urlSp;
-
         return $this;
     }
-
     /**
      * Get urlSp
      *
@@ -279,4 +244,3 @@ class TaxrefLien
         return $this->urlSp;
     }
 }
-
