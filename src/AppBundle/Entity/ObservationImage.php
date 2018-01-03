@@ -24,12 +24,6 @@ class ObservationImage
     private $id;
 
     /**
-     * @var Observation
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", inversedBy="observationImages", cascade="persist")
-     */
-    private $observation;
-
-    /**
     * @ORM\Column(type="string")
     * @Assert\File(
     *     maxSize="5120k",
@@ -61,30 +55,6 @@ class ObservationImage
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set observation
-     *
-     * @param string $observation
-     *
-     * @return ObservationImage
-     */
-    public function setObservation($observation)
-    {
-        $this->observation = $observation;
-
-        return $this;
-    }
-
-    /**
-     * Get observation
-     *
-     * @return string
-     */
-    public function getObservation()
-    {
-        return $this->observation;
     }
 
     /**

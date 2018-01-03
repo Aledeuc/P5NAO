@@ -53,7 +53,7 @@ class Observation
     private $observationDate;
 
     /**
-     * @var string
+     *
      *
      * @ORM\Column(name="observationComment", type="text", nullable=true)
      */
@@ -112,20 +112,19 @@ class Observation
     /**
      * @var Taxref
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $taxrefs;
+    private $taxref;
 
     /**
-     * @var
      *
-     * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\userAdmin", cascade="persist")
+     * @ORM\JoinColumn(nullable=false)
      */
     private $user;
 
     /**
-     * @var ObservationImage
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ObservationImage", mappedBy="observation", cascade="persist")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ObservationImage", cascade="persist")
      */
     private $observationImages;
 
@@ -156,7 +155,8 @@ class Observation
     {
 
         $this->user = new UserAdmin();
-        $this->observationImages = new ArrayCollection();
+        $this->observationImages = new ObservationImage();
+        $this->taxref = new Taxref();
     }
 
     /**
@@ -363,37 +363,37 @@ class Observation
     }
 
     /**
-     * Set taxrefs
+     * Set taxref
      *
-     * @param string $taxrefs
+     * @param Taxref $taxref
      *
      * @return observation
      */
-    public function setTaxrefs($taxrefs)
+    public function setTaxref(Taxref $taxref)
     {
-        $this->taxrefs = $taxrefs;
+        $this->taxref = $taxref;
 
         return $this;
     }
 
     /**
-     * Get taxrefs
+     * Get taxref
      *
      * @return string
      */
-    public function getTaxrefs()
+    public function getTaxref()
     {
-        return $this->taxrefs;
+        return $this->taxref;
     }
 
     /**
      * Set user
      *
-     * @param string $user
+     * @param UserAdmin $user
      *
      * @return observation
      */
-    public function setUser($user)
+    public function setUser(UserAdmin $user)
     {
         $this->user = $user;
 
@@ -413,11 +413,11 @@ class Observation
     /**
      * Set observationImages
      *
-     * @param string $observationImages
+     * @param ObservationImage $observationImages
      *
      * @return observation
      */
-    public function setObservationImages($observationImages)
+    public function setObservationImages( ObservationImage $observationImages)
     {
         $this->observationImages = $observationImages;
 
