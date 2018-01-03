@@ -21,11 +21,12 @@ class EditorController extends Controller
      */
     public function allarticleAction()
     {
-        $repository = $this->getDoctrine()
+        $actualite = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Actualite');
+            ->getRepository('AppBundle:Actualite')
+            ->findBy(array(), array('id' => 'desc'));
 
-        $actualite = $repository->findAll();
+
 
         return $this->render('profil/editor.html.twig', ['actualite' => $actualite]);
 
@@ -44,17 +45,24 @@ class EditorController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
-
             $naturalistId = 'alexorac';
             $actuality->setActualiteAuthor($naturalistId);
-            $actuality->setActualiteStatus(2);
 
+            if (isset($_POST['publish']))
+            {
+                $actuality->setActualiteStatus(2);
+
+            }
+            elseif (isset($_POST['draft']))
+            {
+                $actuality->setActualiteStatus(1);
+            }
             $em = $this->getDoctrine()
                 ->getManager();
             $em->persist($actuality);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('allarticle'));
+            return $this->redirect($this->generateUrl('profil_editor_allarticle'));
         }
 
         return $this->render('profil/editorAddArticle.html.twig', array(
@@ -69,18 +77,19 @@ class EditorController extends Controller
     public function updateArticleAction(Request $request, Actualite $actualite)
     {
         $form = $this->createForm(AddArticleType::class , $actualite);
-        // only handles data on POST
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
 
             $actualite = $form->getData();
+            $actualite->setActualiteStatus(2);
             $em = $this->getDoctrine()
                 ->getManager();
             $em->persist($actualite);
             $em->flush();
-            $this->addFlash('success', 'Actualité updated!');
-            return $this->redirectToRoute('allarticle');
+            $this->addFlash('success', 'Actualité mise à jours!');
+            return $this->redirectToRoute('profil_editor_allarticle');
         }
         return $this->render('profil/editorUpdateArticle.html.twig', ['form' => $form->createView() , 'actualite' => $actualite]);
     }
@@ -101,7 +110,29 @@ class EditorController extends Controller
         $em->flush();
 
         $this->addFlash('success', 'Article supprimé.');
-        return $this->redirectToRoute('allarticle');
+        return $this->redirectToRoute('profil_editor_allarticle');
+    }
+
+
+    /**
+     * @Route("/editor/draft/{id}/article", name="editor_article_draft")
+     * @Security("has_role('ROLE_EDITOR')")
+     */
+    public function draftArticleAction(Actualite $id)
+    {
+        if (!$id)
+        {
+            throw $this->createNotFoundException('Pas d\'article trouvée');
+        }
+        $em = $this->getDoctrine()
+            ->getEntityManager();
+        var_dump($id);
+        $this->setActualiteStatus('1');
+        $em->remove($id);
+        $em->flush();
+
+        $this->addFlash('success', 'Article enregistré dans brouillon.');
+        return $this->redirectToRoute('profil_editor_allarticle');
     }
 
 }

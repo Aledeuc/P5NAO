@@ -3,7 +3,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use AppBundle\Entity\ActualiteImages;
+use AppBundle\Entity\ActualiteImage;
 /**
  * Actualite
  *
@@ -63,7 +63,7 @@ class Actualite
      * @var string
      * @ORM\Column( name="actualiteImages", type="string")
      *
-     *
+     * @ORM\OneToMany(targetEntity="ActualiteImage", mappedBy="actualite", cascade="persist")
      * @Assert\NotBlank(message="Ajouter une image jpg")
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
@@ -204,4 +204,28 @@ class Actualite
         return $this->actualiteCategory;
     }
 
+
+    /**
+     * Set actualiteImages
+     *
+     * @param string $actualiteImages
+     *
+     * @return Actualite
+     */
+    public function setActualiteImages($actualiteImages)
+    {
+        $this->actualiteImages = $actualiteImages;
+
+        return $this;
+    }
+
+    /**
+     * Get actualiteImages
+     *
+     * @return string
+     */
+    public function getActualiteImages()
+    {
+        return $this->actualiteImages;
+    }
 }

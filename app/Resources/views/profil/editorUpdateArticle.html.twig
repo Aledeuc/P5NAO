@@ -26,41 +26,50 @@
         {{ form_start(form) }}
         {{ form_widget(form) }}
 
-<button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#deleteActualite{{ actualite.id }}">
-    Supprimer
-</button>
+     <button type="button" class="btn btn-primary pull-left" data-toggle="modal" data-target="#deleteActualite{{ actualite.id }}">
+           Supprimer
+     </button>
 
+        <div class="modal fade" id="deleteActualite{{ actualite.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteActualiteModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="deleteActualiteModal">Confirmation requise</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        Voulez-vous vraiment supprimer cet article ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                        <a href="{{ path('editor_article_delete', { 'id': actualite.id }) }}" class="btn btn-danger">Confirmer</a>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
 
-
-                                    <div class="modal fade" id="deleteActualite{{ actualite.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteActualiteModal" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h4 class="modal-title" id="deleteActualiteModal">Confirmation requise</h4>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Voulez-vous vraiment supprimer cet article ?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                    <a href="{{ path('editor_article_delete', { 'id': actualite.id }) }}" class="btn btn-danger">Confirmer</a>
-                                                </div>
-                                            </div><!-- /.modal-content -->
-                                        </div><!-- /.modal-dialog -->
-                                    </div><!-- /.modal -->
-
-        <input type="submit" value="Mettre à jour"
-               class="btn btn-default pull-right" />
-        {{ form_end(form) }}
-    </div>
+            <input type="submit" value="Mettre à jour"
+                   class="btn btn-default pull-right" />
+            {{ form_end(form) }}
+  </div>
 
     <!--/.Panel-->
 {% endblock %}
 
 
  {% block javascripts %}
-        <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="{{ asset('js/scripts.js') }}"></script>
+         {{ parent() }}
+    <script>// Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+
+        $('.datepicker').pickadate({
+          monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+          weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+          today: 'aujourd\'hui',
+          clear: 'effacer',
+          formatSubmit: 'dd/mm/yyyy'
+        });
+    </script>
 {% endblock %}

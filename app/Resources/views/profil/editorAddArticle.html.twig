@@ -25,12 +25,13 @@
      <h4 class="card-title">Ajouter un article</h4>
         {{ form_start(form) }}
         {{ form_widget(form) }}
+        {{ form_row(form.actualiteCategory) }}
 
-        <input type="input" value="Brouillon"
-               class="btn btn-default pull-left" />
+        <input type="submit" name ="draft" value="Brouillon"
+               class="btn btn-default pull-left" >
 
-        <input type="submit" value="Publier"
-               class="btn btn-default pull-right" />
+        <input type="submit" name="publish"  value="Publier"
+               class="btn btn-default pull-right">
         {{ form_end(form) }}
     </div>
 
@@ -39,7 +40,18 @@
 
 
  {% block javascripts %}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script src="{{ asset('js/scripts.js') }}"></script>
+       {{ parent() }}
+    <script>// Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+
+        $('.datepicker').pickadate({
+          monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+          weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+          today: 'aujourd\'hui',
+          clear: 'effacer',
+          formatSubmit: 'dd/mm/yyyy'
+        });
+    </script>
 {% endblock %}

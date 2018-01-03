@@ -27,10 +27,11 @@ class MainController extends Controller
     public function actualiteAction(Request $request)
     {
 
-        $repository = $this->getDoctrine()
+        $actualite = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Actualite');
-        $actualite = $repository->findAll();
+            ->getRepository('AppBundle:Actualite')
+            ->findBy(array('actualiteStatus' => '2'), array('id' => 'desc'));
+
 
         return $this->render('main/actualite.html.twig', ['actualite' => $actualite]);
 

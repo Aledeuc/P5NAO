@@ -4,17 +4,13 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Actualite;
-use AppBundle\Repository\ActualiteRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 
@@ -30,31 +26,32 @@ class AddArticleType extends AbstractType
                     'placeholder' => 'TITRE',
                 )))
             ->add('actualiteArticle',  CKEditorType::class, array(
+                'label' => false,
                 'config' => array(
                     'uiColor' => '#ffffff',
                     'language' => 'fr',
-                    //...
-                ),
+                )
             ))
             ->add('actualiteDate', DateType::class, array(
                 'label' => false,
-                'input' => 'datetime',
                 'format' => 'dd/MM/yyyy',
                 'widget' => 'single_text',
                 'html5' => false,
-                'attr' => ['class' => 'js-datepicker'],
+                'attr' => ['class' => 'form-control datepicker'],
             ))
-            ->add('actualiteCategory', ChoiceType::class , array(
+            ->add('actualiteCategory', ChoiceType::class, array(
                 'label' => false,
-                'placeholder' => 'catégorie',
-                'choices' => array(
-                    'cat1' => '1',
-                    'cat2' => '2',
-                )
+                'choices'  => array(
+                    'cat1' => 'category 1',
+                    'cat2' => 'category 2',
+                    'cat3' => 'category 3',
+                ),
+                'attr' =>['class' => 'mdb-select'],
             ))
             ->add('actualiteImages',  FileType::class, array(
                 'label' => false,
-                'data_class' => null,))
+                'data_class' => null,
+            ))
             ;
 
     }

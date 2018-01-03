@@ -32,12 +32,12 @@
                     <h3 class="mb-3 font-bold dark-grey-text">
                         <strong>{{ actualite.actualiteTitle  }}</strong>
                     </h3>
-                    <p>by {{ actualite.actualiteAuthor }}, {{ actualite.actualiteDate |date("d/m/Y")  }}</p>
+                    <p>{{ actualite.actualiteDate |date("d/m/Y")  }}, {{ actualite.actualiteCategory }} </p>
 
 
                     <p class="grey-text">{{ actualite.actualiteArticle |raw  }}</p>
 
-                    <a class="btn btn-primary btn-md pull-right">Read more</a>
+                    <a class="btn btn-primary btn-md pull-right">Lire l'article</a>
                 </div>
                 <!--Grid column-->
 
