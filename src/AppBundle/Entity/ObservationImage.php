@@ -24,7 +24,6 @@ class ObservationImage
     private $id;
 
     /**
-    * @ORM\Column(type="string")
     * @Assert\File(
     *     maxSize="5120k",
     *     maxSizeMessage="5 Mo maximum par fichier",

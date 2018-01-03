@@ -16,10 +16,10 @@
                 {{ form_row(form.observationDate,{'label': 'date d\'observation'}) }}
             </div>
             <div id="taxref">
-                {{ form_row(form.taxref) }}
+                {{ form_widget(form.taxrefs) }}
             </div>
             <div>
-                {{ form_row(form.observationNumber),{'label': 'nombre d\'oiseaux'}) }}
+                {{ form_row(form.observationNumber,{'label': 'nombre d\'oiseaux'}) }}
             </div>
             <div>
                 <p>Coordonnées GPS</p>
@@ -42,7 +42,7 @@
                 {{ form_widget(form.observationClimat) }}
             </div>
             <div>
-                {{ form_row(form.observationComment) }}
+                {{ form_row(form.observationComment,{'label': 'Commentaires'}) }}
             </div>
             <div>
                 {{ form_row(form.observationImages) }}

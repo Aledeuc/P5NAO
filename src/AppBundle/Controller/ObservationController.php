@@ -21,7 +21,6 @@ class ObservationController extends Controller
 {
     /**
      * @param Request $request
-     * @param ObservationManager $observationManager
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/add", name="addObservation")
      * @Method({"GET","POST"})
@@ -45,6 +44,9 @@ class ObservationController extends Controller
 
         if($form->isSubmitted() && $form->isValid()){
             $observation = $form->getData();
+
+
+
              $em = $this->getDoctrine()->getManager();
              $em->persist($observation);
              $em->flush();

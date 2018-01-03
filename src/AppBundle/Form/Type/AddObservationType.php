@@ -41,11 +41,9 @@ class AddObservationType extends AbstractType
                 return $er->createQueryBuilder('u')
                     ->orderBy('u.famille', 'ASC');
                 },
-                'choice_label' => 'famille'
+                'choice_label' => 'famille',
             ])
-            ->add('observationNumber', IntegerType::class, [
-                'label' => 'nombre d\'oiseaux'
-            ])
+            ->add('observationNumber', IntegerType::class)
             ->add('observationLatitude', NumberType::class, [
                 'attr' => ['placeholder' => 'latitude']
             ])
@@ -78,12 +76,8 @@ class AddObservationType extends AbstractType
                 'attr' => ['class' => 'mdb-select',
                 ],
             ])
-            ->add('observationImages', CollectionType::class,[
-                'entry_type' =>ImageObservationType::class,
-            ] )
-            ->add('observationComment', TextareaType::class, [
-                'label' => 'commentaires'
-            ]);
+            ->add('observationImages', ImageObservationType::class )
+            ->add('observationComment', TextareaType::class);
     }
 
     /**

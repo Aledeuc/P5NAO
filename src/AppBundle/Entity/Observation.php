@@ -110,7 +110,7 @@ class Observation
     private $observationNumber;
 
     /**
-     * @var Taxref
+     *
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
      * @ORM\JoinColumn(nullable=false)
      */
