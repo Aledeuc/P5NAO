@@ -4,7 +4,6 @@ namespace AppBundle\Entity;
 
 use AppBundle\AppBundle;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -106,10 +105,11 @@ class Observation
     /**
      *
      * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserAdmin", mappedBy="observation", cascade="persist")
      */
     private $user;
     /**
+     * @var ObservationImage
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\ObservationImage", cascade="persist")
      */
     private $observationImages;
@@ -130,15 +130,7 @@ class Observation
      * @ORM\Column(name="observationSignalementComment", type="text", length=255, nullable=true)
      */
     private $observationSignalementComment;
-    /**
-    * Constructor
-    */
-    public function __construct()
-    {
 
-        $this->user = new UserAdmin();
-        $this->observationImages = new ObservationImage();
-    }
 
     /**
      * Get id
@@ -341,11 +333,11 @@ class Observation
     /**
      * Set user
      *
-     * @param UserAdmin $user
+     * @param integer $user
      *
      * @return observation
      */
-    public function setUser(UserAdmin $user)
+    public function setUser( $user)
     {
         $this->user = $user;
         return $this;

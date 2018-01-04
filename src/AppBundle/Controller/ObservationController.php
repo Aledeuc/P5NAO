@@ -25,14 +25,14 @@ class ObservationController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/add", name="addObservation")
      * @Method({"GET","POST"})
+     *
      */
     public function addAction(Request $request, FileUploader $fileUploader)
     {
-        /**
-        * if(!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
-        *     throw $this->createAccessDeniedException('Vous devez être connecté pour ajouter une observation');
-        * }
-        */
+         if(!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
+             throw $this->createAccessDeniedException('Vous devez être connecté pour ajouter une observation');
+         }
+
         $observation = new Observation();
 
 
@@ -57,9 +57,10 @@ class ObservationController extends Controller
             $observation->setObservationStatus(Observation::STATUS_VALIDATE);
             $observation->setObservationPublication(Observation::STATUS_VALIDATE);
             $observation->setNaturalistId(null);
-            $userId = $this->getUser()->getId();
-            $observation->setUser($userId);
+            $user = $this->getUser()->getId();
+            $observation->setUser($user);
 
+            dump($observation);
              $em = $this->getDoctrine()->getManager();
              $em->persist($observation);
              $em->flush();
