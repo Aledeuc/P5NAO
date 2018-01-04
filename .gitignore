@@ -18,4 +18,5 @@
 .idea
 /var
 /web/uploads/actualityImg
+/web/uploads/images/*
 *~
