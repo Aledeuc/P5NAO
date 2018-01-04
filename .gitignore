@@ -17,4 +17,7 @@
 /web/bundles/
 .idea
 /var
-/web/uploads
+/web/uploads/images/*
+/web/uploads/actuality/*
+*~
+
