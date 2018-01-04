@@ -120,7 +120,8 @@ class Observation
 
     /**
      *
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\Column(name="user", type="string", length=255)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
      */
     private $user;
 
