@@ -18,11 +18,7 @@ class ObservationImage
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    /**
-     * @ORM\ManyToOne(targetEntity="Observation", cascade="persist")
-     * @ORM\JoinColumn(name="observationId", referencedColumnName="id")
-     */
-    private $observation;
+
     /**
      * @Assert\File(
      *     maxSize="5120k",
@@ -52,27 +48,7 @@ class ObservationImage
     {
         return $this->id;
     }
-    /**
-     * Set observation
-     *
-     * @param string $observation
-     *
-     * @return ObservationImage
-     */
-    public function setObservation($observation)
-    {
-        $this->observation = $observation;
-        return $this;
-    }
-    /**
-     * Get observation
-     *
-     * @return string
-     */
-    public function getObservation()
-    {
-        return $this->observation;
-    }
+
     /**
      * Set imageFile
      *

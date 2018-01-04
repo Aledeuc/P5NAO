@@ -16,8 +16,7 @@ class Observation
     const STATUS_DRAFT      = 1; //brouillon
     const STATUS_WAITING    = 2; //en attente de validation
     const STATUS_VALIDATE   = 3; //validé
-    const STATUS_REJECTED     = 4; //rejeté
-
+    const STATUS_REJECTED   = 4; //rejeté
     /**
      * @var int
      *
@@ -26,76 +25,64 @@ class Observation
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="observationDate", type="date")
+     * @Assert\NotBlank()
+     * @Assert\DateTime()
      */
     private $observationDate;
-
     /**
      * @var string
      *
-     * @ORM\Column(name="observationComment", type="string", length=255, nullable=true)
+     * @ORM\Column(name="observationComment", type="text", nullable=true)
      */
     private $observationComment;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="observationSignalementComment", type="string", length=255, nullable=true)
-     */
-    private $observationSignalementComment;
-
     /**
      * @var float
      *
      * @ORM\Column(name="observationLatitude", type="float")
+     * @Assert\NotBlank()
      */
     private $observationLatitude;
-
     /**
      * @var float
      *
      * @ORM\Column(name="observationLongitude", type="float")
+     * @Assert\NotBlank()
      */
     private $observationLongitude;
-
     /**
      * @var int
      *
      * @ORM\Column(name="observationStatus", type="integer")
      */
     private $observationStatus;
-
     /**
      * @var string
      *
      * @ORM\Column(name="observationEnvironment", type="string", length=255)
      */
     private $observationEnvironment;
-
     /**
      * @var string
      *
      * @ORM\Column(name="observationClimat", type="string", length=255)
      */
     private $observationClimat;
-
     /**
      * @var int
      *
      * @ORM\Column(name="observationNumber", type="integer")
+     * @Assert\NotBlank()
      */
     private $observationNumber;
-
     /**
      * @var Taxref
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
      */
     private $taxref;
-
     /**
      * @var user
      *
@@ -103,28 +90,29 @@ class Observation
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
      */
     private $user;
-
     /**
      * @var observationImage
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ObservationImage", mappedBy="observation", cascade="persist")
      * @ORM\Column(name="images", type="string", length=255)
      */
     private $observationImages;
-
     /**
      * @var boolean
      *
      * @ORM\Column(name="observationPublication", type="boolean")
      */
     private $observationPublication;
-
     /**
-     * @var User
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="naturalistId")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\user", cascade="persist")
      * @ORM\Column(name="naturalistId", type="string", length=255)
      */
     private $naturalistId;
-
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observationSignalementComment", type="text", length=255, nullable=true)
+     */
+    private $observationSignalementComment;
     /**
      * Get id
      *
@@ -134,7 +122,6 @@ class Observation
     {
         return $this->id;
     }
-
     /**
      * Set observationDate
      *
@@ -145,10 +132,8 @@ class Observation
     public function setObservationDate($observationDate)
     {
         $this->observationDate = $observationDate;
-
         return $this;
     }
-
     /**
      * Get observationDate
      *
@@ -158,21 +143,18 @@ class Observation
     {
         return $this->observationDate;
     }
-
     /**
- * Set observationComment
- *
- * @param string $observationComment
- *
- * @return observation
- */
+     * Set observationComment
+     *
+     * @param string $observationComment
+     *
+     * @return observation
+     */
     public function setObservationComment($observationComment)
     {
         $this->observationComment = $observationComment;
-
         return $this;
     }
-
     /**
      * Get observationComment
      *
@@ -182,31 +164,6 @@ class Observation
     {
         return $this->observationComment;
     }
-
-    /**
-     * Set observationSignalementComment
-     *
-     * @param string $observationSignalementComment
-     *
-     * @return observation
-     */
-    public function setObservationSignalementComment($observationSignalementComment)
-    {
-        $this->observationSignalementComment = $observationSignalementComment;
-
-        return $this;
-    }
-
-    /**
-     * Get observationSignalementComment
-     *
-     * @return string
-     */
-    public function getObservationSignalementComment()
-    {
-        return $this->observationSignalementComment;
-    }
-
     /**
      * Set latitude
      *
@@ -217,10 +174,8 @@ class Observation
     public function setObservationLatitude($observationLatitude)
     {
         $this->observationLatitude = $observationLatitude;
-
         return $this;
     }
-
     /**
      * Get observationLatitude
      *
@@ -230,7 +185,6 @@ class Observation
     {
         return $this->observationLatitude;
     }
-
     /**
      * Set observationLongitude
      *
@@ -241,10 +195,8 @@ class Observation
     public function setObservationLongitude($observationLongitude)
     {
         $this->observationLongitude = $observationLongitude;
-
         return $this;
     }
-
     /**
      * Get observationLongitude
      *
@@ -254,7 +206,6 @@ class Observation
     {
         return $this->observationLongitude;
     }
-
     /**
      * Set observationStatus
      *
@@ -265,10 +216,8 @@ class Observation
     public function setObservationStatus($observationStatus)
     {
         $this->observationStatus = $observationStatus;
-
         return $this;
     }
-
     /**
      * Get observationStatus
      *
@@ -278,7 +227,6 @@ class Observation
     {
         return $this->observationStatus;
     }
-
     /**
      * Set observationEnvironment
      *
@@ -289,10 +237,8 @@ class Observation
     public function setObservationEnvironment($observationEnvironment)
     {
         $this->observationEnvironment = $observationEnvironment;
-
         return $this;
     }
-
     /**
      * Get observationEnvironment
      *
@@ -302,7 +248,6 @@ class Observation
     {
         return $this->observationEnvironment;
     }
-
     /**
      * Set observationClimat
      *
@@ -313,10 +258,8 @@ class Observation
     public function setObservationClimat($observationClimat)
     {
         $this->observationClimat = $observationClimat;
-
         return $this;
     }
-
     /**
      * Get observationClimat
      *
@@ -326,7 +269,6 @@ class Observation
     {
         return $this->observationClimat;
     }
-
     /**
      * Set observationNumber
      *
@@ -337,10 +279,8 @@ class Observation
     public function setObservationNumber($observationNumber)
     {
         $this->observationNumber = $observationNumber;
-
         return $this;
     }
-
     /**
      * Get observationNumber
      *
@@ -350,7 +290,6 @@ class Observation
     {
         return $this->observationNumber;
     }
-
     /**
      * Set taxref
      *
@@ -361,10 +300,8 @@ class Observation
     public function setTaxref($taxref)
     {
         $this->taxref = $taxref;
-
         return $this;
     }
-
     /**
      * Get taxref
      *
@@ -374,7 +311,6 @@ class Observation
     {
         return $this->taxref;
     }
-
     /**
      * Set user
      *
@@ -385,10 +321,8 @@ class Observation
     public function setUser($user)
     {
         $this->user = $user;
-
         return $this;
     }
-
     /**
      * Get user
      *
@@ -398,7 +332,6 @@ class Observation
     {
         return $this->user;
     }
-
     /**
      * Set observationImages
      *
@@ -409,10 +342,8 @@ class Observation
     public function setObservationImages($observationImages)
     {
         $this->observationImages = $observationImages;
-
         return $this;
     }
-
     /**
      * Get observationImages
      *
@@ -422,7 +353,6 @@ class Observation
     {
         return $this->observationImages;
     }
-
     /**
      * Set observationPublication
      *
@@ -433,10 +363,8 @@ class Observation
     public function setObservationPublication($observationPublication)
     {
         $this->observationPublication = $observationPublication;
-
         return $this;
     }
-
     /**
      * Get observationPublication
      *
@@ -456,10 +384,8 @@ class Observation
     public function setNaturalistId($naturalistId)
     {
         $this->naturalistId = $naturalistId;
-
         return $this;
     }
-
     /**
      * Get naturalistId
      *
@@ -469,5 +395,25 @@ class Observation
     {
         return $this->naturalistId;
     }
+    /**
+     * Set observationSignalementComment
+     *
+     * @param string $observationSignalementComment
+     *
+     * @return observation
+     */
+    public function setObservationSignalementComment($observationSignalementComment)
+    {
+        $this->observationSignalementComment = $observationSignalementComment;
+        return $this;
+    }
+    /**
+     * Get observationSignalementComment
+     *
+     * @return string
+     */
+    public function getObservationSignalementComment()
+    {
+        return $this->observationSignalementComment;
+    }
 }
-

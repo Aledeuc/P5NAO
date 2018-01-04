@@ -22,10 +22,17 @@
 .btn
 {
      color:inherit !important;
-     background-color: #58b8ad;
      color: white !important;
      box-shadow:none;
 }
+
+.modal-notify .modal-header {
+    border-radius: 3px 3px 0 0;
+}
+.modal-notify .modal-content {
+    border-radius: 3px;
+}
+
 
 .btn-fb
 {
