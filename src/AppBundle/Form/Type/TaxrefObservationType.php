@@ -21,7 +21,7 @@ class TaxrefObservationType extends AbstractType
                 'class' => 'AppBundle:Taxref',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
-                        ->orderBy('u.famille', 'ASC');
+                        ->orderBy('u.nomComplet', 'ASC');
                 },
                 'choice_label' => 'famille',
                 'attr' => ['class' => 'mdb-select'],

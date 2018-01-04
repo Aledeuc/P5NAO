@@ -4,7 +4,6 @@
 
 namespace AppBundle\Form\Type;
 
-use AppBundle\AppBundle;
 use AppBundle\Entity\Observation;
 use AppBundle\Entity\Taxref;
 use Doctrine\ORM\EntityRepository;
@@ -12,7 +11,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -35,8 +33,17 @@ class AddObservationType extends AbstractType
                 'html5' => false,
                 'attr' => ['class' => 'form-control datepicker']
             ])
-            ->add('taxref', TaxrefObservationType::class)
+            ->add('taxref', EntityType::class, [
+                'class' => 'AppBundle:Taxref',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.nomComplet', 'ASC');
+                },
+                'choice_label' => 'nomComplet',
+                'multiple' => false,
+                'attr' => ['class' => 'mdb-select'],
 
+            ])
             ->add('observationNumber', IntegerType::class)
             ->add('observationLatitude', NumberType::class, [
                 'attr' => ['placeholder' => 'latitude']
@@ -70,7 +77,7 @@ class AddObservationType extends AbstractType
                 'attr' => ['class' => 'mdb-select',
                 ],
             ])
-            ->add('observationImages', ImageObservationType::class )
+            ->add('observationImages', ImageObservationType::class)
             ->add('observationComment', TextareaType::class);
     }
 

@@ -157,7 +157,6 @@ class Observation
 
         $this->user = new UserAdmin();
         $this->observationImages = new ObservationImage();
-        $this->taxref = new Taxref();
     }
 
     /**

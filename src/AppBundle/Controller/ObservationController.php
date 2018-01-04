@@ -46,6 +46,7 @@ class ObservationController extends Controller
 
 
         if($form->isSubmitted() && $form->isValid()){
+            //Ajout des données des champs
             $observation->getObservationImages()->setUploadDate(new \DateTime());
 
             $file = $observation->getObservationImages()->getImageFile();
@@ -56,8 +57,9 @@ class ObservationController extends Controller
             $observation->setObservationStatus(Observation::STATUS_VALIDATE);
             $observation->setObservationPublication(Observation::STATUS_VALIDATE);
             $observation->setNaturalistId(null);
+            $userId = $this->getUser()->getId();
+            $observation->setUser($userId);
 
-            dump($observation);
              $em = $this->getDoctrine()->getManager();
              $em->persist($observation);
              $em->flush();
