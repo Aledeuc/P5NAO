@@ -18,8 +18,7 @@
                 <div class="col-lg-5 col-xl-4 mb-4">
                     <!--Featured image-->
                     <div class="view overlay hm-white-slight rounded z-depth-1-half">
-                        {{  actualite.actualiteImages }}
-                        <img src="https://mdbootstrap.com/img/Photos/Others/images/49.jpg" class="img-fluid" alt="First sample image">
+                        <img src="{{ asset('uploads/actualityImg/' ~ actualite.actualiteImages) }}" class="img-fluid" >
                         <a>
                             <div class="mask"></div>
                         </a>
@@ -37,7 +36,7 @@
 
                     <p class="grey-text">{{ actualite.actualiteArticle |raw  }}</p>
 
-                    <a class="btn btn-primary btn-md pull-right">Lire l'article</a>
+                    <a class="btn btn-primary btn-md pull-right" href="{{ path('actualite_article_view', { 'id': actualite.id }) }}">Lire l'article</a>
                 </div>
                 <!--Grid column-->
 

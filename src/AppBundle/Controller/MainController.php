@@ -4,6 +4,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Actualite;
+use AppBundle\Entity\Newsletter;
+use AppBundle\Form\SubscribeNewsletterType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,10 +35,28 @@ class MainController extends Controller
             ->getRepository('AppBundle:Actualite')
             ->findBy(array('actualiteStatus' => '2'), array('id' => 'desc'));
 
-
         return $this->render('main/actualite.html.twig', ['actualite' => $actualite]);
 
     }
+
+    /**
+     * @Route("/article/{id}/", name="actualite_article_view")
+     */
+    public function articleviewAction(Actualite $id)
+    {
+        if (!$id)
+        {
+            throw $this->createNotFoundException('Pas d\'article trouvée');
+        }
+
+        $actualite = $this->getDoctrine()
+        ->getManager()
+        ->getRepository('AppBundle:Actualite')
+        ->findOneById($id);
+
+        return $this->render('main/article.html.twig', ['actualite' => $actualite]);
+    }
+
 
     /**
      * @Route("/aPropos", name="aPropos")
@@ -64,6 +85,31 @@ class MainController extends Controller
         return $this->render('main/carte.html.twig', [
             'map_api_key' => $this->getParameter('map_api_key')
         ]);
+    }
+
+    /**
+     * @Route("/newsletter", name="subscribe_newsletter")
+     */
+    public function newsletterAction(Request $request)
+    {
+        $newsletter = new Newsletter();
+        $form = $this->createForm(SubscribeNewsletterType::class , $newsletter);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+            $em = $this->getDoctrine()
+                ->getManager();
+            $em->persist($newsletter);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('profil_editor_allarticle'));
+        }
+
+        return $this->render('main/index.html.twig', []);
+
     }
 
     /**
@@ -139,9 +185,7 @@ class MainController extends Controller
         if ($this->get('security.authorization_checker')->isGranted('ROLE_NATURALIST')) {
             $observation = $observationRepository->findBy(array(
                     'observationStatus' => '2'
-                )
-            );
-
+                ));
             $titleTable = 'Observation à valider';
             return $this->render('profil/naturalist.html.twig',['observation' => $observation,'titleTable' => $titleTable]);
         }

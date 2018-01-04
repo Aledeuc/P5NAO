@@ -25,9 +25,6 @@ class EditorController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Actualite')
             ->findBy(array(), array('id' => 'desc'));
-
-
-
         return $this->render('profil/editor.html.twig', ['actualite' => $actualite]);
 
     }
@@ -48,12 +45,21 @@ class EditorController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
-            $actuality->setActualiteAuthor($author);
+            $file = $actuality->getActualiteImages();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
+            $file->move(
+                $this->getParameter('images_directory'),
+                $fileName
+            );
+
+            $actuality->setActualiteImages($fileName);
+
+
+            $actuality->setActualiteAuthor($author);
             if (isset($_POST['publish']))
             {
                 $actuality->setActualiteStatus(2);
-
             }
             elseif (isset($_POST['draft']))
             {
