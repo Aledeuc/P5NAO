@@ -7,10 +7,6 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-<<<<<<< HEAD
-=======
-
->>>>>>> 8984b67c9bce5ee5529c12f054d6ad4632ac528a
 framework:
     #esi: ~
     translator: ~
