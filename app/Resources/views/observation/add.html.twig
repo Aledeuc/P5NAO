@@ -49,10 +49,11 @@
 
             </div>
             <div>
-                {% if naturalist == true %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_NATURALIST') %}
                     <input type="submit" name ="draft" value="Brouillon"
                            class="btn btn-default pull-left"/>
                 {% endif %}
+
                 <input type="submit" name="publish"  value="Publier"
                        class="btn btn-default pull-right"/>
             </div>

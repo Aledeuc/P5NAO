@@ -70,8 +70,7 @@ class ObservationController extends Controller
             return $this->redirectToRoute('homepage');
         }
         return $this->render('observation/add.html.twig', array(
-            'form' => $form->createView(),
-            'naturalist' => $user->hasRole('ROLE_NATURALIST')
+            'form' => $form->createView()
         ));
     }
 }
