@@ -1,0 +1,97 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!--Panel-->
+
+    <div class="row">
+        <div class="col-3 profilMenu">
+            <div class="titreMenuProfil">
+                <h2>RÉDACTION</h2>
+
+            </div>
+
+
+
+            <div class="menuProfil">
+                <ul>
+                    <li><a class="allarticleLink" href="{{ path('profil_editor_allarticle') }}">Tous les articles</a></li>
+                    <li><a class="addarticleLink" href="{{ path('profil_editor_addarticle') }}">Ajouter un article</a></li>
+
+                </ul>
+            </div>
+        </div>
+
+
+
+        <div class="col-lg-9">
+            <h4 class="card-title">Tous les articles</h4>
+
+            <div class="tab-content">
+                {% if actualite != null %}
+                <table class="table">
+                    <thead class="blue-grey lighteen-4">
+                    <tr>
+                        <th>TITRE</th>
+                        <th>AUTEUR</th>
+                        <th>ÉTAT</th>
+                        <th>DATE</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    {% for message in app.flashes('success') %}
+                        <div class="flash-notice">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+
+                    {% for actualite in actualite %}
+                        <tbody>
+                            <tr>
+                                <td><a class="articleTitre" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteTitle  }}</a></td>
+                                <td><a class="articleAuteur" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteAuthor }}</a></td>
+                                {% if actualite.actualiteStatus  == 2 %}
+                                    <td><i class="fa fa-check-circle" aria-hidden="true"></i></td>
+                                {%  elseif actualite.actualiteStatus  == 1 %}
+                                    <td><a class="articleEtat" {# href="{{ path('observation', { "id": observations.id }) }}#}"></a>Brouillon</td>
+                                {% else %}
+                                    <td><i class="fa fa-archive" aria-hidden="true"></i></td>
+                                {%  endif %}
+                                <td><a class="articleDate"  {#href="{{ path('observation', { "id": observations.id }) }}#}">{{ actualite.actualiteDate |date("d/m/Y")  }}</a></td>
+                                <td><a class="articleDate"  href="{{ path('editor_article_update', { "id": actualite.id }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                                <td>
+
+                                    <i class="fa fa-close iconPointer" data-toggle="modal" data-target="#deleteActualite{{ actualite.id }}"></i>
+
+                                    <div class="modal fade" id="deleteActualite{{ actualite.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteActualiteModal" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title" id="deleteActualiteModal">Confirmation requise</h4>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Voulez-vous vraiment supprimer cet article ?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                    <a href="{{ path('editor_article_delete', { 'id': actualite.id }) }}" class="btn btn-danger">Confirmer</a>
+                                                </div>
+                                            </div><!-- /.modal-content -->
+                                        </div><!-- /.modal-dialog -->
+                                    </div><!-- /.modal -->
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+                </table>
+            </div>
+            {% else %}
+                <div class="alert alert-warning">Pas d'article trouvée </div>
+            {% endif %}
+        </div>
+    </div>
+    <!--/.Panel-->
+{% endblock %}

@@ -11,13 +11,19 @@
 
     {% block stylesheets %}
 
-        <link href="{{ asset('MDB-Pro/MDB-Pro/css/bootstrap.min.css')}}" rel="stylesheet">
-        <link href="{{ asset('MDB-Pro/MDB-Pro/css/mdb.min.css')}}" rel="stylesheet">
-        <link href="{{ asset('MDB-Pro/MDB-Pro/css/style.css')}}" rel="stylesheet">
+
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/mdb.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/style.css') }}" rel="stylesheet">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Feuille de style -->
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+        <!-- Jquery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!-- DatePicker -->
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     {% endblock %}
 
 </head>
@@ -52,20 +58,33 @@
                 </li>
 
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <li class="nav-item">
-                     <a class="nav-link" href="{{ path('user_info') }}">Mon profil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Se Déconnecter</a>
-                </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('profil_admin_alluser') }}">Mon profil</a>
+                        </li>
+                    {% elseif is_granted('ROLE_EDITOR') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('profil_editor_allarticle') }}">Mon profil</a>
+                        </li>
+                    {% elseif is_granted('ROLE_NATURALIST') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('profil_naturalist_tovalidate') }}">Mon profil</a>
+                        </li>
+                    {% elseif is_granted('ROLE_USER') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('profil_user_all') }}">Mon profil</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Se Déconnecter</a>
+                    </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('fos_user_security_login') }}">Se Connecter</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('fos_user_registration_register') }}">S'incrire</a>
-                </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_security_login') }}">Se Connecter</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('fos_user_registration_register') }}">S'incrire</a>
+                    </li>
                 {% endif %}
 
             </ul>
@@ -104,7 +123,7 @@
     <!--Copyright-->
     <div class="footer-copyright">
         <div class="container-fluid mentions">
-            @ 2017 NAO <a href="{{ path('mentions') }}"> Mentions légales</a><a href="#">FAQ</a>
+            @ 2017 NAO <a href="{{ path('mentions') }}"> Mentions légales </a><a href="#">FAQ</a>
             <a href="#">Contact</a>
 
         </div>
@@ -121,7 +140,6 @@
     <script type="text/javascript" src="{{ asset('MDB-Pro/MDB-Pro/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('MDB-Pro/MDB-Pro/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('MDB-Pro/MDB-Pro/js/mdb.min.js') }}"></script>
-
 {% endblock %}
 </body>
 </html>

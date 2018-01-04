@@ -1,11 +1,8 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Taxref
  *
@@ -22,253 +19,216 @@ class Taxref
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="regne", type="string", length=255)
      */
     private $regne;
-
     /**
      * @var string
      *
      * @ORM\Column(name="phylum", type="string", length=255)
      */
     private $phylum;
-
     /**
      * @var string
      *
      * @ORM\Column(name="classe", type="string", length=255)
      */
     private $classe;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ordre", type="string", length=255)
      */
     private $ordre;
-
     /**
      * @var string
      *
      * @ORM\Column(name="famille", type="string", length=255)
      */
     private $famille;
-
     /**
      * @var string
      *
      * @ORM\Column(name="cd_nom", type="string", length=255)
      */
     private $cdNom;
-
     /**
      * @var string
      *
      * @ORM\Column(name="cd_taxsup", type="string", length=255)
      */
     private $cdTaxsup;
-
     /**
      * @var string
      *
      * @ORM\Column(name="cd_ref", type="string", length=255)
      */
     private $cdRef;
-
     /**
      * @var string
      *
      * @ORM\Column(name="rang", type="string", length=255)
      */
     private $rang;
-
     /**
      * @var string
      *
      * @ORM\Column(name="lb_nom", type="string", length=255)
      */
     private $lbNom;
-
     /**
      * @var string
      *
      * @ORM\Column(name="lb_auteur", type="string", length=255)
      */
     private $lbAuteur;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom_complet", type="string", length=255)
      */
     private $nomComplet;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom_complet_html", type="string", length=255)
      */
     private $nomCompletHtml;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom_valide", type="string", length=255)
      */
     private $nomValide;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom_vern", type="string", length=255)
      */
     private $nomVern;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nom_vern_eng", type="string", length=255)
      */
     private $nomVernEng;
-
     /**
      * @var string
      *
      * @ORM\Column(name="habitat", type="string", length=255)
      */
     private $habitat;
-
     /**
      * @var string
      *
      * @ORM\Column(name="fr", type="string", length=255)
      */
     private $fr;
-
     /**
      * @var string
      *
      * @ORM\Column(name="gf", type="string", length=255)
      */
     private $gf;
-
     /**
      * @var string
      *
      * @ORM\Column(name="mar", type="string", length=255)
      */
     private $mar;
-
     /**
      * @var string
      *
      * @ORM\Column(name="gua", type="string", length=255)
      */
     private $gua;
-
     /**
      * @var string
      *
      * @ORM\Column(name="sm", type="string", length=255)
      */
     private $sm;
-
     /**
      * @var string
      *
      * @ORM\Column(name="sb", type="string", length=255)
      */
     private $sb;
-
     /**
      * @var string
      *
      * @ORM\Column(name="spm", type="string", length=255)
      */
     private $spm;
-
     /**
      * @var string
      *
      * @ORM\Column(name="may", type="string", length=255)
      */
     private $may;
-
     /**
      * @var string
      *
      * @ORM\Column(name="epa", type="string", length=255)
      */
     private $epa;
-
     /**
      * @var string
      *
      * @ORM\Column(name="reu", type="string", length=255)
      */
     private $reu;
-
     /**
      * @var string
      *
      * @ORM\Column(name="sa", type="string", length=255)
      */
     private $sa;
-
     /**
      * @var string
      *
      * @ORM\Column(name="ta", type="string", length=255)
      */
     private $ta;
-
     /**
      * @var string
      *
      * @ORM\Column(name="taaf", type="string", length=255)
      */
     private $taaf;
-
     /**
      * @var string
      *
      * @ORM\Column(name="pf", type="string", length=255)
      */
     private $pf;
-
     /**
      * @var string
      *
      * @ORM\Column(name="nc", type="string", length=255)
      */
     private $nc;
-
     /**
      * @var string
      *
      * @ORM\Column(name="wf", type="string", length=255)
      */
     private $wf;
-
     /**
      * @var string
      *
      * @ORM\Column(name="cli", type="string", length=255)
      */
     private $cli;
-
     /**
      * @var string
      *
      * @ORM\Column(name="url", type="string", length=255)
      */
     private $url;
-
-
     /**
      * Get id
      *
@@ -278,7 +238,6 @@ class Taxref
     {
         return $this->id;
     }
-
     /**
      * Set regne
      *
@@ -289,10 +248,8 @@ class Taxref
     public function setRegne($regne)
     {
         $this->regne = $regne;
-
         return $this;
     }
-
     /**
      * Get regne
      *
@@ -302,7 +259,6 @@ class Taxref
     {
         return $this->regne;
     }
-
     /**
      * Set phylum
      *
@@ -313,10 +269,8 @@ class Taxref
     public function setPhylum($phylum)
     {
         $this->phylum = $phylum;
-
         return $this;
     }
-
     /**
      * Get phylum
      *
@@ -326,7 +280,6 @@ class Taxref
     {
         return $this->phylum;
     }
-
     /**
      * Set classe
      *
@@ -337,10 +290,8 @@ class Taxref
     public function setClasse($classe)
     {
         $this->classe = $classe;
-
         return $this;
     }
-
     /**
      * Get classe
      *
@@ -350,7 +301,6 @@ class Taxref
     {
         return $this->classe;
     }
-
     /**
      * Set ordre
      *
@@ -361,10 +311,8 @@ class Taxref
     public function setOrdre($ordre)
     {
         $this->ordre = $ordre;
-
         return $this;
     }
-
     /**
      * Get ordre
      *
@@ -374,7 +322,6 @@ class Taxref
     {
         return $this->ordre;
     }
-
     /**
      * Set famille
      *
@@ -385,10 +332,8 @@ class Taxref
     public function setFamille($famille)
     {
         $this->famille = $famille;
-
         return $this;
     }
-
     /**
      * Get famille
      *
@@ -398,7 +343,6 @@ class Taxref
     {
         return $this->famille;
     }
-
     /**
      * Set cdNom
      *
@@ -409,10 +353,8 @@ class Taxref
     public function setCdNom($cdNom)
     {
         $this->cdNom = $cdNom;
-
         return $this;
     }
-
     /**
      * Get cdNom
      *
@@ -422,7 +364,6 @@ class Taxref
     {
         return $this->cdNom;
     }
-
     /**
      * Set cdTaxsup
      *
@@ -433,10 +374,8 @@ class Taxref
     public function setCdTaxsup($cdTaxsup)
     {
         $this->cdTaxsup = $cdTaxsup;
-
         return $this;
     }
-
     /**
      * Get cdTaxsup
      *
@@ -446,7 +385,6 @@ class Taxref
     {
         return $this->cdTaxsup;
     }
-
     /**
      * Set cdRef
      *
@@ -457,10 +395,8 @@ class Taxref
     public function setCdRef($cdRef)
     {
         $this->cdRef = $cdRef;
-
         return $this;
     }
-
     /**
      * Get cdRef
      *
@@ -470,7 +406,6 @@ class Taxref
     {
         return $this->cdRef;
     }
-
     /**
      * Set rang
      *
@@ -481,10 +416,8 @@ class Taxref
     public function setRang($rang)
     {
         $this->rang = $rang;
-
         return $this;
     }
-
     /**
      * Get rang
      *
@@ -494,7 +427,6 @@ class Taxref
     {
         return $this->rang;
     }
-
     /**
      * Set lbNom
      *
@@ -505,10 +437,8 @@ class Taxref
     public function setLbNom($lbNom)
     {
         $this->lbNom = $lbNom;
-
         return $this;
     }
-
     /**
      * Get lbNom
      *
@@ -518,7 +448,6 @@ class Taxref
     {
         return $this->lbNom;
     }
-
     /**
      * Set lbAuteur
      *
@@ -529,10 +458,8 @@ class Taxref
     public function setLbAuteur($lbAuteur)
     {
         $this->lbAuteur = $lbAuteur;
-
         return $this;
     }
-
     /**
      * Get lbAuteur
      *
@@ -542,7 +469,6 @@ class Taxref
     {
         return $this->lbAuteur;
     }
-
     /**
      * Set nomComplet
      *
@@ -553,10 +479,8 @@ class Taxref
     public function setNomComplet($nomComplet)
     {
         $this->nomComplet = $nomComplet;
-
         return $this;
     }
-
     /**
      * Get nomComplet
      *
@@ -566,7 +490,6 @@ class Taxref
     {
         return $this->nomComplet;
     }
-
     /**
      * Set nomCompletHtml
      *
@@ -577,10 +500,8 @@ class Taxref
     public function setNomCompletHtml($nomCompletHtml)
     {
         $this->nomCompletHtml = $nomCompletHtml;
-
         return $this;
     }
-
     /**
      * Get nomCompletHtml
      *
@@ -590,7 +511,6 @@ class Taxref
     {
         return $this->nomCompletHtml;
     }
-
     /**
      * Set nomValide
      *
@@ -601,10 +521,8 @@ class Taxref
     public function setNomValide($nomValide)
     {
         $this->nomValide = $nomValide;
-
         return $this;
     }
-
     /**
      * Get nomValide
      *
@@ -614,7 +532,6 @@ class Taxref
     {
         return $this->nomValide;
     }
-
     /**
      * Set nomVern
      *
@@ -625,10 +542,8 @@ class Taxref
     public function setNomVern($nomVern)
     {
         $this->nomVern = $nomVern;
-
         return $this;
     }
-
     /**
      * Get nomVern
      *
@@ -638,7 +553,6 @@ class Taxref
     {
         return $this->nomVern;
     }
-
     /**
      * Set nomVernEng
      *
@@ -649,10 +563,8 @@ class Taxref
     public function setNomVernEng($nomVernEng)
     {
         $this->nomVernEng = $nomVernEng;
-
         return $this;
     }
-
     /**
      * Get nomVernEng
      *
@@ -662,7 +574,6 @@ class Taxref
     {
         return $this->nomVernEng;
     }
-
     /**
      * Set habitat
      *
@@ -673,10 +584,8 @@ class Taxref
     public function setHabitat($habitat)
     {
         $this->habitat = $habitat;
-
         return $this;
     }
-
     /**
      * Get habitat
      *
@@ -686,7 +595,6 @@ class Taxref
     {
         return $this->habitat;
     }
-
     /**
      * Set fr
      *
@@ -697,10 +605,8 @@ class Taxref
     public function setFr($fr)
     {
         $this->fr = $fr;
-
         return $this;
     }
-
     /**
      * Get fr
      *
@@ -710,7 +616,6 @@ class Taxref
     {
         return $this->fr;
     }
-
     /**
      * Set gf
      *
@@ -721,10 +626,8 @@ class Taxref
     public function setGf($gf)
     {
         $this->gf = $gf;
-
         return $this;
     }
-
     /**
      * Get gf
      *
@@ -734,7 +637,6 @@ class Taxref
     {
         return $this->gf;
     }
-
     /**
      * Set mar
      *
@@ -745,10 +647,8 @@ class Taxref
     public function setMar($mar)
     {
         $this->mar = $mar;
-
         return $this;
     }
-
     /**
      * Get mar
      *
@@ -758,7 +658,6 @@ class Taxref
     {
         return $this->mar;
     }
-
     /**
      * Set gua
      *
@@ -769,10 +668,8 @@ class Taxref
     public function setGua($gua)
     {
         $this->gua = $gua;
-
         return $this;
     }
-
     /**
      * Get gua
      *
@@ -782,7 +679,6 @@ class Taxref
     {
         return $this->gua;
     }
-
     /**
      * Set sm
      *
@@ -793,10 +689,8 @@ class Taxref
     public function setSm($sm)
     {
         $this->sm = $sm;
-
         return $this;
     }
-
     /**
      * Get sm
      *
@@ -806,7 +700,6 @@ class Taxref
     {
         return $this->sm;
     }
-
     /**
      * Set sb
      *
@@ -817,10 +710,8 @@ class Taxref
     public function setSb($sb)
     {
         $this->sb = $sb;
-
         return $this;
     }
-
     /**
      * Get sb
      *
@@ -830,7 +721,6 @@ class Taxref
     {
         return $this->sb;
     }
-
     /**
      * Set spm
      *
@@ -841,10 +731,8 @@ class Taxref
     public function setSpm($spm)
     {
         $this->spm = $spm;
-
         return $this;
     }
-
     /**
      * Get spm
      *
@@ -854,7 +742,6 @@ class Taxref
     {
         return $this->spm;
     }
-
     /**
      * Set may
      *
@@ -865,10 +752,8 @@ class Taxref
     public function setMay($may)
     {
         $this->may = $may;
-
         return $this;
     }
-
     /**
      * Get may
      *
@@ -878,7 +763,6 @@ class Taxref
     {
         return $this->may;
     }
-
     /**
      * Set epa
      *
@@ -889,10 +773,8 @@ class Taxref
     public function setEpa($epa)
     {
         $this->epa = $epa;
-
         return $this;
     }
-
     /**
      * Get epa
      *
@@ -902,7 +784,6 @@ class Taxref
     {
         return $this->epa;
     }
-
     /**
      * Set reu
      *
@@ -913,10 +794,8 @@ class Taxref
     public function setReu($reu)
     {
         $this->reu = $reu;
-
         return $this;
     }
-
     /**
      * Get reu
      *
@@ -926,7 +805,6 @@ class Taxref
     {
         return $this->reu;
     }
-
     /**
      * Set sa
      *
@@ -937,10 +815,8 @@ class Taxref
     public function setSa($sa)
     {
         $this->sa = $sa;
-
         return $this;
     }
-
     /**
      * Get sa
      *
@@ -950,7 +826,6 @@ class Taxref
     {
         return $this->sa;
     }
-
     /**
      * Set ta
      *
@@ -961,10 +836,8 @@ class Taxref
     public function setTa($ta)
     {
         $this->ta = $ta;
-
         return $this;
     }
-
     /**
      * Get ta
      *
@@ -974,7 +847,6 @@ class Taxref
     {
         return $this->ta;
     }
-
     /**
      * Set taaf
      *
@@ -985,10 +857,8 @@ class Taxref
     public function setTaaf($taaf)
     {
         $this->taaf = $taaf;
-
         return $this;
     }
-
     /**
      * Get taaf
      *
@@ -998,7 +868,6 @@ class Taxref
     {
         return $this->taaf;
     }
-
     /**
      * Set pf
      *
@@ -1009,10 +878,8 @@ class Taxref
     public function setPf($pf)
     {
         $this->pf = $pf;
-
         return $this;
     }
-
     /**
      * Get pf
      *
@@ -1022,7 +889,6 @@ class Taxref
     {
         return $this->pf;
     }
-
     /**
      * Set nc
      *
@@ -1033,10 +899,8 @@ class Taxref
     public function setNc($nc)
     {
         $this->nc = $nc;
-
         return $this;
     }
-
     /**
      * Get nc
      *
@@ -1046,7 +910,6 @@ class Taxref
     {
         return $this->nc;
     }
-
     /**
      * Set wf
      *
@@ -1057,10 +920,8 @@ class Taxref
     public function setWf($wf)
     {
         $this->wf = $wf;
-
         return $this;
     }
-
     /**
      * Get wf
      *
@@ -1070,7 +931,6 @@ class Taxref
     {
         return $this->wf;
     }
-
     /**
      * Set cli
      *
@@ -1081,10 +941,8 @@ class Taxref
     public function setCli($cli)
     {
         $this->cli = $cli;
-
         return $this;
     }
-
     /**
      * Get cli
      *
@@ -1094,7 +952,6 @@ class Taxref
     {
         return $this->cli;
     }
-
     /**
      * Set url
      *
@@ -1105,10 +962,8 @@ class Taxref
     public function setUrl($url)
     {
         $this->url = $url;
-
         return $this;
     }
-
     /**
      * Get url
      *

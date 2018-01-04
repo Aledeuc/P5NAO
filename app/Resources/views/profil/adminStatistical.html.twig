@@ -1,0 +1,120 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!--Panel-->
+
+    <div class="row">
+        <div class="col-3 profilMenu">
+            <div class="titreMenuProfil">
+                <h2>ADMINISTRATION</h2>
+            </div>
+
+            <div class="menuProfil">
+                <ul>
+                    <li><a class="alluserLink" href="{{ path('profil_admin_alluser') }}">Utilisateurs</a></li>
+                    <li><a class="statisticalLink" href="{{ path('profil_admin_statistical') }}">Statistiques</a></li>
+                    <li><a class="reportingLink" href="{{ path('profil_admin_reporting') }}">Signalement</a></li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="col-lg-9">
+
+            <h4 class="card-title">SATISTIQUES</h4>
+            <div class="row">
+                <div class="card col-3">
+                    <div class="card-body ">
+                        <img src="{{ asset('images/man-user.png') }}" alt="Logo musee">
+                        <p class="card-title">Inscrits</p>
+                        <!--Text-->
+                        <h4 class="card-text">{{ countUser }}</h4>
+                    </div>
+                </div>
+
+                <div class="card col-3">
+                    <div class="card-body ">
+                        <!--Title-->
+                        <h4 class="card-title">Naturalistes</h4>
+                        <!--Text-->
+                        <p class="card-text">{{ countNaturalist }}</p>
+                    </div>
+                </div>
+
+                <div class="card col-3">
+                    <div class="card-body ">
+                        <!--Title-->
+                        <h4 class="card-title">Observations</h4>
+                        <!--Text-->
+                        <p class="card-text">{{ countObservation }}</p>
+                    </div>
+                </div>
+
+                <div class="card col-3">
+                    <div class="card-body ">
+                        <!--Title-->
+                        <h4 class="card-title">Non validées</h4>
+                        <!--Text-->
+                        <p class="card-text">{{ countRejected }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <canvas id="lineChart"></canvas>
+        </div>
+
+
+    </div>
+
+
+
+    <!--/.Panel-->
+{% endblock %}
+
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>// Material Select Initialization
+        $(document).ready(function () {
+            //line
+            var ctxL = document.getElementById("lineChart").getContext('2d');
+            var myLineChart = new Chart(ctxL, {
+                type: 'line',
+                data: {
+                    labels: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet"],
+                    datasets: [
+                        {
+                            label: "Inscrits",
+                            backgroundColor:'transparent',
+                            borderColor:'rgba(75, 192, 192, 1)',
+                            data: [197, 554, 840, 791, 856, 965, 1070]
+                        },
+                        {
+                            label: "Naturalistes",
+                            backgroundColor:'transparent',
+                            borderColor:'rgba(255,99,132,1)',
+                            data: [10, 40, 50, 55, 56, 65, 70]
+                        },
+                        {
+                            label: "Observations",
+                            backgroundColor:'transparent',
+                            borderColor:'rgba(255, 206, 86, 1)',
+                            data: [150, 240, 330, 441, 556, 665, 770]
+                        },
+                        {
+                            label: "Non Validées",
+                            backgroundColor:'transparent',
+                            borderColor:'rgba(54, 162, 235, 1)',
+                            data: [5, 20, 5, 12, 15, 5, 15]
+                        },
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+
+        });
+    </script>
+{% endblock %}

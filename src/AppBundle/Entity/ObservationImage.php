@@ -1,11 +1,8 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * ObservationImage
  *
@@ -24,29 +21,25 @@ class ObservationImage
     private $id;
 
     /**
-    * @ORM\Column(type="string")
-    * @Assert\File(
-    *     maxSize="5120k",
-    *     maxSizeMessage="5 Mo maximum par fichier",
-    *     mimeTypes={"image/*"},
-    *     mimeTypesMessage="Seulement les images")
+     * @Assert\File(
+     *     maxSize="5120k",
+     *     maxSizeMessage="5 Mo maximum par fichier",
+     *     mimeTypes={"image/*"},
+     *     mimeTypesMessage="Seulement les images")
      **/
     private $imageFile;
-
     /**
      * @var string
      *
      * @ORM\Column(name="imageName", type="string", length=255)
      */
     private $imageName;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="uploadDate", type="datetime")
      */
     private $uploadDate;
-
     /**
      * Get id
      *
@@ -67,10 +60,8 @@ class ObservationImage
     public function setImageFile($imageFile)
     {
         $this->imageFile = $imageFile;
-
         return $this;
     }
-
     /**
      * Get imageFile
      *
@@ -80,7 +71,6 @@ class ObservationImage
     {
         return $this->imageFile;
     }
-
     /**
      * Set imageName
      *
@@ -91,10 +81,8 @@ class ObservationImage
     public function setImageName($imageName)
     {
         $this->imageName = $imageName;
-
         return $this;
     }
-
     /**
      * Get imageName
      *
@@ -104,7 +92,6 @@ class ObservationImage
     {
         return $this->imageName;
     }
-
     /**
      * Set uploadDate
      *
@@ -115,10 +102,8 @@ class ObservationImage
     public function setUploadDate($uploadDate)
     {
         $this->uploadDate = $uploadDate;
-
         return $this;
     }
-
     /**
      * Get uploadDate
      *

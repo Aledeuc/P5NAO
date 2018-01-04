@@ -1,0 +1,57 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+<!--Panel-->
+
+<div class="row">
+    <div class="col-3 profilMenu">
+        <div class="titreMenuProfil">
+            <h2>RÉDACTION</h2>
+
+        </div>
+
+
+
+        <div class="menuProfil">
+            <ul>
+                <li><a class="allarticleLink" href="{{ path('profil_editor_allarticle') }}">Tous les articles</a></li>
+                <li><a class="addarticleLink" href="{{ path('profil_editor_addarticle') }}">Ajouter un article</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+  <div class="col-lg-9">
+     <h4 class="card-title">Ajouter un article</h4>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_row(form.actualiteCategory) }}
+
+        <input type="submit" name ="draft" value="Brouillon"
+               class="btn btn-default pull-left" >
+
+        <input type="submit" name="publish"  value="Publier"
+               class="btn btn-default pull-right">
+        {{ form_end(form) }}
+    </div>
+
+    <!--/.Panel-->
+{% endblock %}
+
+
+ {% block javascripts %}
+       {{ parent() }}
+    <script>// Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+
+        $('.datepicker').pickadate({
+          monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+          weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+          today: 'aujourd\'hui',
+          clear: 'effacer',
+          formatSubmit: 'dd/mm/yyyy'
+        });
+    </script>
+{% endblock %}
