@@ -75,7 +75,6 @@ class MainController extends Controller
         // replace this example code with whatever you need
         return $this->render('main/mentions.html.twig', []);
     }
-
     /**
      * @Route("/carte", name="carte")
      */
@@ -87,6 +86,7 @@ class MainController extends Controller
             'map_api_key' => $this->getParameter('map_api_key')
         ]);
     }
+
 
     /**
      * @Route("/newsletter", name="subscribe_newsletter")

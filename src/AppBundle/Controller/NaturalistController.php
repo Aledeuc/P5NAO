@@ -7,6 +7,10 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use AppBundle\Form\Type\UpdateObservationType;
+use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Observation;
+
 
 class NaturalistController extends Controller
 {
@@ -42,8 +46,7 @@ class NaturalistController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $naturalistId = 'alexorac';
-
+        $naturalistId = $this->getUser()->getId();
         $observation = $repository->findBy(array(
             'observationStatus' => '3',
             'naturalistId' => $naturalistId
@@ -65,7 +68,7 @@ class NaturalistController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $naturalistId = 'alexorac';
+        $naturalistId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '4',
@@ -77,5 +80,32 @@ class NaturalistController extends Controller
         return $this->render('profil/naturalistHistory.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
 
     }
+    /**
+     * @Route("/naturalist/update/{id}/observation", name="naturalist_observation_update")
+     * @Security("has_role('ROLE_NATURALIST')")
+     */
+    public function updateArticleAction(Request $request, Observation $observation)
+    {
+        $form = $this->createForm(UpdateObservationType::class , $observation);
+        $naturalistId = $this->getUser()->getId();
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $observation = $form->getData();
+            $observation->setnaturalistId($naturalistId);
+            $em = $this->getDoctrine()
+                ->getManager();
+
+            $em->persist($observation);
+            $em->flush();
+
+
+
+            $this->addFlash('success', 'Observation mise à jours!');
+            return $this->redirectToRoute('profil_naturalist_tovalidate');
+        }
+        return $this->render('profil/naturalistUpdateObservation.html.twig', ['form' => $form->createView() , 'observation' => $observation]);
+    }
+
 }
 

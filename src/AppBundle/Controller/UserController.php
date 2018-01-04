@@ -5,6 +5,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Actualite;
+use AppBundle\Entity\Observation;
 use AppBundle\Form\AddArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,10 +24,9 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
-        $userLastName = $this->getUser()->getlastName();
-        $userFirstName = $this->getUser()->getfirstName();
-        $author = "$userLastName $userFirstName";
+        $userId = $this->getUser()->getId();
+
+
 
         $observation = $repository->findBy(array(
             'user' => $userId
@@ -47,7 +47,7 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '1',
@@ -70,7 +70,7 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '3',
@@ -93,10 +93,10 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
-            'observationStatus' => '5',
+            'observationStatus' => '2',
             'user' => $userId
         ));
 
@@ -116,7 +116,7 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '4',

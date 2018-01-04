@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\AppBundle;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,10 +14,26 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Observation
 {
+    //STATUS
     const STATUS_DRAFT      = 1; //brouillon
     const STATUS_WAITING    = 2; //en attente de validation
     const STATUS_VALIDATE   = 3; //validé
     const STATUS_REJECTED   = 4; //rejeté
+
+    //ENVIRONMENT
+    const ENVIRONMENT_CITY      = 1; //ville
+    const ENVIRONMENT_FOREST    = 2; //forêt
+    const ENVIRONMENT_GARDEN    = 3; //jardin
+    const ENVIRONMENT_LAKE      = 4; //lac
+    const ENVIRONMENT_SEA       = 5; //mer
+    const ENVIRONMENT_MOUNTAIN  = 6; //montagne
+    //CLIMATE
+    const CLIMATE_SUN       = 1; //Soleil
+    const CLIMATE_SUNCLOUD  = 2 ; //Soleil et nuage
+    const CLIMATE_CLOUD     = 3; //Nuageux
+    const CLIMATE_RAIN      = 4 ; //Pluie
+    const CLIMATE_SNOW      = 5; //neige
+
     /**
      * @var int
      *
@@ -34,7 +51,7 @@ class Observation
      */
     private $observationDate;
     /**
-     * @var string
+     *
      *
      * @ORM\Column(name="observationComment", type="text", nullable=true)
      */
@@ -79,21 +96,21 @@ class Observation
      */
     private $observationNumber;
     /**
-     * @var Taxref
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
+     * @var \AppBundle\Entity\Taxref
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Taxref", cascade={"persist"})
+     * @ORM\JoinColumn(name="taxref_id", referencedColumnName="id", nullable=true)
      */
     private $taxref;
     /**
-     * @var user
      *
      * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserAdmin", mappedBy="observation", cascade="persist")
      */
     private $user;
     /**
-     * @var observationImage
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ObservationImage", mappedBy="observation", cascade="persist")
-     * @ORM\Column(name="images", type="string", length=255)
+     * @var ObservationImage
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ObservationImage", cascade="persist")
      */
     private $observationImages;
     /**
@@ -104,7 +121,7 @@ class Observation
     private $observationPublication;
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\user", cascade="persist")
-     * @ORM\Column(name="naturalistId", type="string", length=255)
+     * @ORM\Column(name="naturalistId", type="string", length=255, nullable=true)
      */
     private $naturalistId;
     /**
@@ -113,6 +130,8 @@ class Observation
      * @ORM\Column(name="observationSignalementComment", type="text", length=255, nullable=true)
      */
     private $observationSignalementComment;
+
+
     /**
      * Get id
      *
@@ -293,11 +312,11 @@ class Observation
     /**
      * Set taxref
      *
-     * @param string $taxref
+     * @param Taxref $taxref
      *
      * @return observation
      */
-    public function setTaxref($taxref)
+    public function setTaxref(Taxref $taxref)
     {
         $this->taxref = $taxref;
         return $this;
@@ -314,11 +333,11 @@ class Observation
     /**
      * Set user
      *
-     * @param string $user
+     * @param integer $user
      *
      * @return observation
      */
-    public function setUser($user)
+    public function setUser( $user)
     {
         $this->user = $user;
         return $this;
@@ -335,11 +354,11 @@ class Observation
     /**
      * Set observationImages
      *
-     * @param string $observationImages
+     * @param ObservationImage $observationImages
      *
      * @return observation
      */
-    public function setObservationImages($observationImages)
+    public function setObservationImages( ObservationImage $observationImages)
     {
         $this->observationImages = $observationImages;
         return $this;

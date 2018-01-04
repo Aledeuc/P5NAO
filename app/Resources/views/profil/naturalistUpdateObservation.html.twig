@@ -1,0 +1,79 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!--Panel-->
+    <h4>Contrôler une observation</h4>
+    <div class="row">
+        <div class="col-3" id="left">
+            <p>Observation de {{ observation.User }}</p>
+            <img src="">
+        </div>
+
+
+        <div class="col-9" id="right">
+            {{ form_start(form) }}
+            <div id="date">
+               Date de l'observation : {{ observation.observationDate |date("d/m/Y") }}
+            </div>
+            <div>
+                {{ form_row(form.taxref) }}
+            </div>
+            <div>
+                Nombre d'oiseaux observés : {{ observation.observationNumber }}
+            </div>
+            <div>
+                Coordonnées GPS : {{ observation.observationLatitude }},{{ observation.observationLongitude }}
+            </div>
+            <div>
+               Cadre : {{ observation.observationEnvironment }}
+            </div>
+            <div>
+                Climat : {{ observation.observationClimat }}
+            </div>
+            <div>
+               Commentaire de l'utilisateur : {{ observation.observationComment }}
+            </div>
+            <div>
+                <img src="{{ asset('uploads/observationImg/' ~ observation.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image">
+
+            </div>
+
+            <div>
+                {{ form_label(form.observationSignalementComment) }}
+                {{ form_errors(form.observationSignalementComment) }}
+                {{ form_widget(form.observationSignalementComment) }}
+            </div>
+            <div>
+                <input type="submit" name="refuse" value="Refuser"
+                       class="btn btn-danger pull-left"/>
+
+                <input type="submit" name="archive" value="Archiver"
+                       class="btn btn-warning pull-right"/>
+
+                <input type="submit" name="validate" value="Valider"
+                       class="btn btn-success pull-right"/>
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+    <!--/.Panel-->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>// Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+    </script>
+    <script>
+        $('.datepicker').pickadate({
+            monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            today: 'aujourd\'hui',
+            clear: 'effacer',
+            formatSubmit: 'dd/mm/yyyy'
+        });
+    </script>
+{% endblock %}

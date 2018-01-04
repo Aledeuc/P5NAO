@@ -17,5 +17,12 @@
 /web/bundles/
 .idea
 /var
+<<<<<<< HEAD
 /web/uploads/actualityImg
 *~
+=======
+/web/uploads/images/*
+/web/uploads/actuality/*
+*~
+
+>>>>>>> 141b019813f0e7223d598361d982dede6756e4b7

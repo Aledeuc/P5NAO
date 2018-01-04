@@ -7,7 +7,9 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-    images_directory: '%kernel.project_dir%/web/uploads/actualityImg'
+    image_directory: '%kernel.project_dir%/web/uploads/actualityImg'
+    images_directory: '%kernel.project_dir%/web/uploads/observationImg'
+
 
 framework:
     #esi: ~
@@ -38,6 +40,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'Form/bootstrap_4_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:

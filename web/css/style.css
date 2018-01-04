@@ -19,13 +19,6 @@
     list-style-type: none;
 }
 
-.btn
-{
-     color:inherit !important;
-     color: white !important;
-     box-shadow:none;
-}
-
 .modal-notify .modal-header {
     border-radius: 3px 3px 0 0;
 }
@@ -33,7 +26,12 @@
     border-radius: 3px;
 }
 
-
+.btn
+{
+    color:inherit !important;
+    color: white !important;
+    box-shadow:none;
+}
 .btn-fb
 {
     background-color: #3B5998;
@@ -48,6 +46,12 @@
 .iconPointer
 {
     cursor: pointer;
+}
+
+.previewImg
+{
+    max-width: 30%;
+    height: auto;
 }
 
 =======
