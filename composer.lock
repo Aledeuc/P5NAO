@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "800f60eed5cf8b10fd62845e5cfacbe4",
+    "content-hash": "9b6c991bd5cbbe827b5223c51ac8af19",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -1049,7 +1049,6 @@
                 "json"
             ],
             "time": "2015-12-06T13:20:24+00:00"
-
         },
         {
             "name": "fig/link-util",
@@ -2604,7 +2603,6 @@
         },
         {
             "name": "vich/uploader-bundle",
-
             "version": "1.7.1",
             "source": {
                 "type": "git",
@@ -2660,14 +2658,11 @@
                 "oneup/flysystem-bundle": "For integration with Flysystem",
                 "symfony/yaml": "To use YAML mapping",
                 "willdurand/propel-eventdispatcher-bundle": "For integration with Propel"
-
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-
                     "dev-master": "1.7.x-dev"
-
                 }
             },
             "autoload": {
@@ -2691,9 +2686,7 @@
                 "file uploads",
                 "upload"
             ],
-
             "time": "2017-12-09T13:34:29+00:00"
-
         }
     ],
     "packages-dev": [
