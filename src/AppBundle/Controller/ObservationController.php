@@ -35,15 +35,8 @@ class ObservationController extends Controller
 
         $observation = new Observation();
 
-
-        $classe = $this->getDoctrine()->getManager()->getRepository('AppBundle:Taxref')->findOneBy(array('classe' => 'aves'));
-
-        //$observation->setTaxrefs($test);
-
         $form = $this->createForm(AddObservationType::class, $observation);
         $form->handleRequest($request);
-
-
 
         if($form->isSubmitted() && $form->isValid()){
             //Ajout des données des champs
@@ -55,12 +48,11 @@ class ObservationController extends Controller
             $observation->getObservationImages()->setImageName($fileName);
 
             $observation->setObservationStatus(Observation::STATUS_VALIDATE);
-            $observation->setObservationPublication(Observation::STATUS_VALIDATE);
+            $observation->setObservationPublication(false);
             $observation->setNaturalistId(null);
             $user = $this->getUser()->getId();
             $observation->setUser($user);
 
-            dump($observation);
              $em = $this->getDoctrine()->getManager();
              $em->persist($observation);
              $em->flush();
