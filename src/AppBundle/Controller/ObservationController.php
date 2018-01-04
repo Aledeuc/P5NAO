@@ -29,18 +29,18 @@ class ObservationController extends Controller
      */
     public function addAction(Request $request, FileUploader $fileUploader)
     {
-         if(!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')){
-             throw $this->createAccessDeniedException('Vous devez être connecté pour ajouter une observation');
-         }
+        if (!$this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour ajouter une observation');
+        }
+        $user = $this->getUser();
 
         $observation = new Observation();
 
         $form = $this->createForm(AddObservationType::class, $observation);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
-            if($observation->getObservationImages() != null)
-            {
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($observation->getObservationImages() != null) {
                 $observation->getObservationImages()->setUploadDate(new \DateTime());
 
                 $file = $observation->getObservationImages()->getImageFile();
@@ -49,22 +49,29 @@ class ObservationController extends Controller
                 $observation->getObservationImages()->setImageName($fileName);
             }
 
+            if ($user->hasRole('ROLE_NATURALIST')) {
+                if (isset($_POST['publish'])) {
+                    $observation->setObservationStatus(Observation::STATUS_VALIDATE);
+                } elseif (isset($_POST['draft'])) {
+                    $observation->setObservationStatus(Observation::STATUS_DRAFT);
+                }
+            }
             $observation->setObservationStatus(Observation::STATUS_WAITING);
             $observation->setObservationPublication(false);
             $observation->setNaturalistId(null);
 
-            $user = $this->getUser()->getId();
+            $userId = $user->getId();
+            $observation->setUser($userId);
 
-            $observation->setUser($user);
-
-             $em = $this->getDoctrine()->getManager();
-             $em->persist($observation);
-             $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($observation);
+            $em->flush();
 
             return $this->redirectToRoute('homepage');
         }
         return $this->render('observation/add.html.twig', array(
-            'form'=> $form->createView()
+            'form' => $form->createView(),
+            'naturalist' => $user->hasRole('ROLE_NATURALIST')
         ));
     }
 }

@@ -49,10 +49,11 @@
 
             </div>
             <div>
-                <input type="submit" value="Enregistrer"
-                       class="btn btn-default pull-left"/>
-
-                <input type="submit" value="Publier"
+                {% if naturalist == true %}
+                    <input type="submit" name ="draft" value="Brouillon"
+                           class="btn btn-default pull-left"/>
+                {% endif %}
+                <input type="submit" name="publish"  value="Publier"
                        class="btn btn-default pull-right"/>
             </div>
             {{ form_end(form) }}
