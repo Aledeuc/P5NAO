@@ -21,30 +21,36 @@ class Contact
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
     /**
      * @var string
      *
      * @ORM\Column(name="contactName", type="string", length=255)
      */
     private $contactName;
+
     /**
      * @var string
      *
      * @ORM\Column(name="contactEmail", type="string", length=255)
      */
     private $contactEmail;
+
     /**
      * @var string
      *
      * @ORM\Column(name="contactObjet", type="string", length=255)
      */
     private $contactObject;
+
     /**
      * @var string
      *
      * @ORM\Column(name="contactMessage", type="string", length=255)
      */
     private $contactMessage;
+
+
     /**
      * Get id
      *
@@ -54,6 +60,7 @@ class Contact
     {
         return $this->id;
     }
+
     /**
      * Set contactName
      *
@@ -64,8 +71,10 @@ class Contact
     public function setContactName($contactName)
     {
         $this->contactName = $contactName;
+
         return $this;
     }
+
     /**
      * Get contactName
      *
@@ -75,6 +84,7 @@ class Contact
     {
         return $this->contactName;
     }
+
     /**
      * Set contactEmail
      *
@@ -85,8 +95,10 @@ class Contact
     public function setContactEmail($contactEmail)
     {
         $this->contactEmail = $contactEmail;
+
         return $this;
     }
+
     /**
      * Get contactEmail
      *
@@ -96,6 +108,7 @@ class Contact
     {
         return $this->contactEmail;
     }
+
     /**
      * Set contactObject
      *
@@ -106,8 +119,10 @@ class Contact
     public function setContactObject($contactObject)
     {
         $this->contactObject = $contactObject;
+
         return $this;
     }
+
     /**
      * Get contactObject
      *
@@ -117,6 +132,7 @@ class Contact
     {
         return $this->contactObject;
     }
+
     /**
      * Set contactMessage
      *
@@ -127,8 +143,10 @@ class Contact
     public function setContactMessage($contactMessage)
     {
         $this->contactMessage = $contactMessage;
+
         return $this;
     }
+
     /**
      * Get contactMessage
      *

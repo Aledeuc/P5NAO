@@ -62,7 +62,7 @@ class Actualite
     private $actualiteCategory;
     /**
      * @var string
-     * @ORM\Column( name="actualiteImages", type="string")
+     * @ORM\Column( name="actualiteImages", type="string", nullable = true)
      *
      * @ORM\OneToMany(targetEntity="ActualiteImage", mappedBy="actualite", cascade="persist")
      * @Assert\NotBlank(message="Ajouter une image jpg")

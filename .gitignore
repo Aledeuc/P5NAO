@@ -17,3 +17,5 @@
 /web/bundles/
 .idea
 /var
+/web/uploads/actualityImg
+*~
