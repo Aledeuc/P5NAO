@@ -15,24 +15,24 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Observation
 {
     //STATUS
-    const STATUS_DRAFT      = 1; //brouillon
-    const STATUS_WAITING    = 2; //en attente de validation
-    const STATUS_VALIDATE   = 3; //validé
-    const STATUS_REJECTED   = 4; //rejeté
+    const STATUS_DRAFT = 1; //brouillon
+    const STATUS_WAITING = 2; //en attente de validation
+    const STATUS_VALIDATE = 3; //validé
+    const STATUS_REJECTED = 4; //rejeté
 
     //ENVIRONMENT
-    const ENVIRONMENT_CITY      = 1; //ville
-    const ENVIRONMENT_FOREST    = 2; //forêt
-    const ENVIRONMENT_GARDEN    = 3; //jardin
-    const ENVIRONMENT_LAKE      = 4; //lac
-    const ENVIRONMENT_SEA       = 5; //mer
-    const ENVIRONMENT_MOUNTAIN  = 6; //montagne
+    const ENVIRONMENT_CITY = 1; //ville
+    const ENVIRONMENT_FOREST = 2; //forêt
+    const ENVIRONMENT_GARDEN = 3; //jardin
+    const ENVIRONMENT_LAKE = 4; //lac
+    const ENVIRONMENT_SEA = 5; //mer
+    const ENVIRONMENT_MOUNTAIN = 6; //montagne
     //CLIMATE
-    const CLIMATE_SUN       = 1; //Soleil
-    const CLIMATE_SUNCLOUD  = 2 ; //Soleil et nuage
-    const CLIMATE_CLOUD     = 3; //Nuageux
-    const CLIMATE_RAIN      = 4 ; //Pluie
-    const CLIMATE_SNOW      = 5; //neige
+    const CLIMATE_SUN = 1; //Soleil
+    const CLIMATE_SUNCLOUD = 2; //Soleil et nuage
+    const CLIMATE_CLOUD = 3; //Nuageux
+    const CLIMATE_RAIN = 4; //Pluie
+    const CLIMATE_SNOW = 5; //neige
 
     /**
      * @var int
@@ -47,6 +47,7 @@ class Observation
      *
      * @ORM\Column(name="observationDate", type="date")
      * @Assert\NotBlank()
+     * @Assert\NotNull()
      * @Assert\DateTime()
      */
     private $observationDate;
@@ -93,13 +94,21 @@ class Observation
      *
      * @ORM\Column(name="observationNumber", type="integer")
      * @Assert\NotBlank()
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 1000,
+     *     minMessage = "Veuillez entrer au moins {{ limit }} oiseau",
+     *     maxMessage = "La limite de {{ limit }} oiseaux a été atteinte"
+     * )
      */
     private $observationNumber;
     /**
      * @var \AppBundle\Entity\Taxref
      *
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Taxref", cascade={"persist"})
-     * @ORM\JoinColumn(name="taxref_id", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="taxref_id", referencedColumnName="id")
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      */
     private $taxref;
     /**
@@ -141,6 +150,7 @@ class Observation
     {
         return $this->id;
     }
+
     /**
      * Set observationDate
      *
@@ -153,6 +163,7 @@ class Observation
         $this->observationDate = $observationDate;
         return $this;
     }
+
     /**
      * Get observationDate
      *
@@ -162,6 +173,7 @@ class Observation
     {
         return $this->observationDate;
     }
+
     /**
      * Set observationComment
      *
@@ -174,6 +186,7 @@ class Observation
         $this->observationComment = $observationComment;
         return $this;
     }
+
     /**
      * Get observationComment
      *
@@ -183,6 +196,7 @@ class Observation
     {
         return $this->observationComment;
     }
+
     /**
      * Set latitude
      *
@@ -195,6 +209,7 @@ class Observation
         $this->observationLatitude = $observationLatitude;
         return $this;
     }
+
     /**
      * Get observationLatitude
      *
@@ -204,6 +219,7 @@ class Observation
     {
         return $this->observationLatitude;
     }
+
     /**
      * Set observationLongitude
      *
@@ -216,6 +232,7 @@ class Observation
         $this->observationLongitude = $observationLongitude;
         return $this;
     }
+
     /**
      * Get observationLongitude
      *
@@ -225,6 +242,7 @@ class Observation
     {
         return $this->observationLongitude;
     }
+
     /**
      * Set observationStatus
      *
@@ -237,6 +255,7 @@ class Observation
         $this->observationStatus = $observationStatus;
         return $this;
     }
+
     /**
      * Get observationStatus
      *
@@ -246,6 +265,7 @@ class Observation
     {
         return $this->observationStatus;
     }
+
     /**
      * Set observationEnvironment
      *
@@ -258,6 +278,7 @@ class Observation
         $this->observationEnvironment = $observationEnvironment;
         return $this;
     }
+
     /**
      * Get observationEnvironment
      *
@@ -267,6 +288,7 @@ class Observation
     {
         return $this->observationEnvironment;
     }
+
     /**
      * Set observationClimat
      *
@@ -279,6 +301,7 @@ class Observation
         $this->observationClimat = $observationClimat;
         return $this;
     }
+
     /**
      * Get observationClimat
      *
@@ -288,6 +311,7 @@ class Observation
     {
         return $this->observationClimat;
     }
+
     /**
      * Set observationNumber
      *
@@ -300,6 +324,7 @@ class Observation
         $this->observationNumber = $observationNumber;
         return $this;
     }
+
     /**
      * Get observationNumber
      *
@@ -309,6 +334,7 @@ class Observation
     {
         return $this->observationNumber;
     }
+
     /**
      * Set taxref
      *
@@ -321,6 +347,7 @@ class Observation
         $this->taxref = $taxref;
         return $this;
     }
+
     /**
      * Get taxref
      *
@@ -330,6 +357,7 @@ class Observation
     {
         return $this->taxref;
     }
+
     /**
      * Set user
      *
@@ -337,11 +365,12 @@ class Observation
      *
      * @return observation
      */
-    public function setUser( $user)
+    public function setUser($user)
     {
         $this->user = $user;
         return $this;
     }
+
     /**
      * Get user
      *
@@ -351,6 +380,7 @@ class Observation
     {
         return $this->user;
     }
+
     /**
      * Set observationImages
      *
@@ -358,11 +388,12 @@ class Observation
      *
      * @return observation
      */
-    public function setObservationImages( ObservationImage $observationImages)
+    public function setObservationImages(ObservationImage $observationImages)
     {
         $this->observationImages = $observationImages;
         return $this;
     }
+
     /**
      * Get observationImages
      *
@@ -372,6 +403,7 @@ class Observation
     {
         return $this->observationImages;
     }
+
     /**
      * Set observationPublication
      *
@@ -384,6 +416,7 @@ class Observation
         $this->observationPublication = $observationPublication;
         return $this;
     }
+
     /**
      * Get observationPublication
      *
@@ -393,6 +426,7 @@ class Observation
     {
         return $this->observationPublication;
     }
+
     /**
      * Set naturalistId
      *
@@ -405,6 +439,7 @@ class Observation
         $this->naturalistId = $naturalistId;
         return $this;
     }
+
     /**
      * Get naturalistId
      *
@@ -414,6 +449,7 @@ class Observation
     {
         return $this->naturalistId;
     }
+
     /**
      * Set observationSignalementComment
      *
@@ -426,6 +462,7 @@ class Observation
         $this->observationSignalementComment = $observationSignalementComment;
         return $this;
     }
+
     /**
      * Get observationSignalementComment
      *
