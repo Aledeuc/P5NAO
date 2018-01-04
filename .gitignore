@@ -20,4 +20,4 @@
 /web/uploads/images/*
 /web/uploads/actualityImg/*
 *~
-
+/var/*
