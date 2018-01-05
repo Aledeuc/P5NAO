@@ -73,7 +73,7 @@ class UserController extends Controller
         $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
-            'observationStatus' => '3',
+            'observationStatus' => array(3,5),
             'user' => $userId
         ));
 

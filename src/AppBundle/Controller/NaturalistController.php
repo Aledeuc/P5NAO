@@ -48,7 +48,7 @@ class NaturalistController extends Controller
 
         $naturalistId = $this->getUser()->getId();
         $observation = $repository->findBy(array(
-            'observationStatus' => '3',
+            'observationStatus' => array(3,5),
             'naturalistId' => $naturalistId
         ));
 
@@ -74,6 +74,7 @@ class NaturalistController extends Controller
             'observationStatus' => '4',
             'naturalistId' => $naturalistId
         ));
+        dump($observation);
 
         $titleTable = 'Observations refusées';
 
@@ -93,6 +94,40 @@ class NaturalistController extends Controller
         {
             $observation = $form->getData();
             $observation->setnaturalistId($naturalistId);
+
+            if (isset($_POST['publish']))
+            {
+                if (isset($_POST['archiveCheckbox']))
+                {
+                    $observation->setobservationStatus(3);
+                } else
+                {
+                    $observation->setobservationStatus(5);
+                }
+            }
+            elseif (isset($_POST['refuse']))
+            {
+                if (!isset($_POST['signalementCheckbox']))
+                {
+                    $userId=$observation->getUser();
+                    $userRepository = $this->getDoctrine()
+                        ->getManager()
+                        ->getRepository('AppBundle:UserAdmin')
+                        ->findOneById($userId);
+                    $userRepository->setreportingUser(true);
+
+                    $observation->setobservationStatus(5);
+                }
+
+               // $test = $_POST['signalementTextarea'];
+                //dump($test);
+                //exit;
+            }
+
+            $em = $this->getDoctrine()
+                ->getManager();
+            $em->persist($observation);
+            $em->flush();
             $em = $this->getDoctrine()
                 ->getManager();
 

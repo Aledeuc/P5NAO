@@ -19,6 +19,7 @@ class Observation
     const STATUS_WAITING    = 2; //en attente de validation
     const STATUS_VALIDATE   = 3; //validé
     const STATUS_REJECTED   = 4; //rejeté
+    const STATUS_ARCHIVED   = 5; //archivé
 
     //ENVIRONMENT
     const ENVIRONMENT_CITY      = 1; //ville

@@ -31,8 +31,8 @@ class UpdateObservationType extends AbstractType
                 'multiple' => false,
                 'attr' => ['class' => 'mdb-select'],
 
-            ])
-            ->add('observationSignalementComment', TextareaType::class);
+            ]);
+
     }
 
     /**
