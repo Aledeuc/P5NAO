@@ -6,7 +6,7 @@
 {% block content %}
     <div class="row">
         <img src="{{ asset('images/accueil.jpg') }}" alt="banniere_accueil" id="banniere_accueil">
-        <div class="col-lg-3">
+        <div class="col-lg-3" id="search_bloc">
             <h4 class="text-uppercase">chercher un oiseau</h4>
             <div id="form_search">
                 {{ form_start(form) }}
@@ -31,18 +31,22 @@
     <!--Table -->
     <div class="row">
         <div class="col" id="observationListHome">
-            <h3 class="text-uppercase" >Les dernières observations</h3>
+            <div class="">
+                <h3 class="text-uppercase">Les dernières observations</h3>
+            </div>
+
             {% if observationList is defined and not null %}
-            <table class="table">
-                <thead class="blue-grey lighteen-4">
+            <table class="table table-striped">
+                <thead class="">
                 <tr>
                     <th class="text-uppercase">Date</th>
                     <th class="text-uppercase">Nom</th>
                     <th class="text-uppercase">Photo</th>
                 </tr>
                 </thead>
+                <tbody>
                 {% for observations in observationList %}
-                    <tbody>
+
                     <tr>
                         <td><a class="observationDate">{{ observations.observationDate |date("d/m/Y") }}</a></td>
                         <td><a class="observationNom">nom</a></td>
@@ -55,10 +59,8 @@
                                  class="img-fluid previewImg" alt="image_observation">
                         </td>
                     </tr>
-
-
-                    </tbody>
                 {% endfor %}
+                </tbody>
             </table>
         </div>
         {% else %}
