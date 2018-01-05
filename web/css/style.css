@@ -57,14 +57,22 @@
 }
 
 html, body {
-    height: auto;
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
 /*Homepage*/
-.view {
-    background: url("../images/accueil.jpg")no-repeat center center;
-    background-size: cover;
+.full-height, .full-height body, .full-height header, .full-height header .view {
+    height: 100%;
 }
 
+.view {
+    background: url("https://mdbootstrap.com/img/Photos/Others/img (50).jpg")no-repeat center center;
+    background-size: cover;
+}
+#banniere_accueil{
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}

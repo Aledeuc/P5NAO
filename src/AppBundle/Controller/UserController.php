@@ -23,7 +23,7 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
         $userLastName = $this->getUser()->getlastName();
         $userFirstName = $this->getUser()->getfirstName();
         $author = "$userLastName $userFirstName";

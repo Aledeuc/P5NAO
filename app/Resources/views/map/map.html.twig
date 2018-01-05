@@ -2,11 +2,10 @@
 
 {% block content %}
     <!--Panel-->
-    <div class="card card-body">
-        <h4 class="card-title">Carte</h4>
+    <div class="col-lg-5 pull-left">
 
     </div>
-    <div id="map"></div>
+    <div id="map" class="col-lg-5 pull-right"></div>
     <div id="data" data-map="{{ data }}">
     </div>
     <!--/.Panel-->
@@ -15,7 +14,7 @@
     {{ parent() }}
     <script>var testData = "{{ data }}";
     console.log(testData)</script>
-    <script src="{{ asset('js/map.js') }}"></script>
+    <script src="{{ asset('js/map_marker.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ map_api_key }}&v=3&&callback=initMap">
 </script>
 {% endblock %}

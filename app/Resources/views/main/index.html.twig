@@ -1,8 +1,64 @@
 {% extends 'layout.html.twig' %}
+{% block header %}
 
+
+{% endblock %}
 {% block content %}
+    <div class="row">
+        <img src="{{ asset('images/accueil.jpg') }}" alt="banniere_accueil" id="banniere_accueil">
+        <div class="col-lg-3">
+            <h4>Rechercher un oiseau</h4>
+            <div id="form_search">
+
+            </div>
+            <div></div>
+        </div>
+        <div>
+            <p>
+                Découvrez et partagez vos observation d'oiseaux et participer à notre programme de recherche
+            </p>
+        </div>
+    </div>
+
     <!--Panel-->
     <div class="row">
+        <div class="col" id="observationListHome">
+            {% if observation != null %}
+            <table class="table">
+                <thead class="blue-grey lighteen-4">
+                <tr>
+                    <th>Date</th>
+                    <th>Nom</th>
+                    <th>Photo</th>
+                </tr>
+                </thead>
+                {% for observations in observation %}
+                    <tbody>
+                    <tr>
+                        <td><a class="observationDate">{{ observations.bservationDate |date("d/m/Y") }}</a></td>
+                        <td><a class="observationNom">nom</a></td>
+                        <td><a class="observationPhoto" >{{ observations.observationImages  }}</a></td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+            <div class="alert alert-warning">Pas d'observation trouvée </div>
+        {% endif %}
+        </div>
+        <div id="map" class="col"></div>
+    </div>
+
+    <div id="data" data-map="{{ data }}">
     </div>
     <!--/.Panel-->
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>var testData = "{{ data }}";
+        console.log(testData)</script>
+    <script src="{{ asset('js/map_marker.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ map_api_key }}&v=3&&callback=initMap">
+    </script>
 {% endblock %}

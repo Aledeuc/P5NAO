@@ -6,6 +6,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Newsletter;
+use AppBundle\Entity\Observation;
+
 use AppBundle\Form\SubscribeNewsletterType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -20,8 +22,21 @@ class MainController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $observation = new Observation();
+        $observation->setObservationDate(new \DateTime());
+        $observation->setObservationLatitude(50.498392);
+        $observation->setObservationLongitude(2.610353);
+
+        //$data = $this->get('serializer')->serialize($observation, 'json');
+        $data = json_encode($observation);
+        //$response = new Response($data);
+        //$response->headers->set('Content-Type', 'application/json');
+
         // replace this example code with whatever you need
-        return $this->render('main/index.html.twig', []);
+        return $this->render('main/index.html.twig', [
+            'map_api_key' => $this->getParameter('map_api_key'),
+            'data' => $data
+        ]);
     }
 
     /**
