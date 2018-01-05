@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
 
-class SearchObservationType extends AbstractType
+class SearchNameObservationType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -28,9 +28,9 @@ class SearchObservationType extends AbstractType
                 'class' => 'AppBundle:Taxref',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
-                        ->orderBy('u.famille', 'ASC');
+                        ->orderBy('u.nomComplet', 'ASC');
                 },
-                'choice_label' => 'famille',
+                'choice_label' => 'nomComplet',
                 'multiple' => false,
                 'attr' => ['class' => 'mdb-select'],
 

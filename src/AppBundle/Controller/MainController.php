@@ -8,41 +8,56 @@ use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Observation;
 
+use AppBundle\Entity\Taxref;
 use AppBundle\Form\SubscribeNewsletterType;
 use AppBundle\Form\Type\SearchObservationType;
+use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 
 class MainController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @param SessionInterface $session
+     * @param Request $request
+     * @param ObservationManager $observationManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(SessionInterface $session, Request $request, ObservationManager $observationManager)
     {
+        if (empty($session->get('observation'))) {
+            $observation = $observationManager->createObservation();
+        } else {
+            $observation = $session->get('observation');
+        }
         //Observation
         $repository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $observationList = $repository->findBy(array(
+        $observationList = $repository->findAll(array(
             'taxref' => 1,
         ));
 
-        $observation = new Observation();
+
         $form = $this->createForm(SearchObservationType::class, $observation);
         $form->handleRequest($request);
 
-        dump($form);
         // Map
         if ($form->isSubmitted() && $form->isValid()) {
             //$data = $this->get('serializer')->serialize($observation, 'json');
-            $data = json_encode($observation);
+            //$data = json_encode($observation);
             //$response = new Response($data);
             //$response->headers->set('Content-Type', 'application/json');
+
+            //mettre observations en session
+            $session->set('observation', $observation);
+            return $this->redirectToRoute('homepage');
 
         }
 

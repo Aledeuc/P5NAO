@@ -11,10 +11,9 @@
             <div id="form_search">
                 {{ form_start(form) }}
                 <div>
-                    {{ form_row(form.taxref,{'label': 'nom'}) }}
+                    {{ form_row(form.taxref,{'label': 'espèce'}) }}
                 </div>
-                <input type="submit" name="rechercher"  value="Rechercher"
-                       class="btn btn-brown"/>
+                <input type="submit" name="rechercher" value="Rechercher" class="btn btn-brown"/>
                 {{ form_end(form) }}
             </div>
             <div></div>
@@ -46,7 +45,7 @@
                         <td><a class="observationNom">nom</a></td>
                         <td><img src="
                         {% if observations.observationImages is null %}
-                            {{ asset('images/nao-logo-couleur.png') }}
+                            {{ asset('images/nao-logo-nb.png') }}
                         {% else %}
                             {{ asset('uploads/observationImg/' ~ observations.observationImages.imageName ) }}
                         {% endif %} "
@@ -62,14 +61,19 @@
         {% else %}
             <div class="alert alert-warning">Pas d'observation trouvée</div>
         {% endif %}
+        <div id="map" class="col"></div>
     </div>
-    <div id="map" class="col"></div>
+
 
     <!--/.Panel-->
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-
+    <script>// Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+    </script>
     <script src="{{ asset('js/map_marker.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ map_api_key }}&v=3&&callback=initMap">
     </script>
