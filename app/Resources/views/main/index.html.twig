@@ -9,7 +9,13 @@
         <div class="col-lg-3">
             <h4>Rechercher un oiseau</h4>
             <div id="form_search">
-
+                {{ form_start(form) }}
+                <div>
+                    {{ form_row(form.taxref,{'label': 'nom'}) }}
+                </div>
+                <input type="submit" name="rechercher"  value="Rechercher"
+                       class="btn btn-brown"/>
+                {{ form_end(form) }}
             </div>
             <div></div>
         </div>

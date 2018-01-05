@@ -33,10 +33,12 @@ class MainController extends Controller
         ));
 
         $observation = new Observation();
-        $formObservation = $this->createForm(SearchObservationType::class, $observation);
-        $formObservation->handleRequest($request);
+        $form = $this->createForm(SearchObservationType::class, $observation);
+        $form->handleRequest($request);
+
+        dump($form);
         // Map
-        if ($formObservation->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             //$data = $this->get('serializer')->serialize($observation, 'json');
             $data = json_encode($observation);
             //$response = new Response($data);
@@ -47,7 +49,8 @@ class MainController extends Controller
         // replace this example code with whatever you need
         return $this->render('main/index.html.twig', [
             'map_api_key' => $this->getParameter('map_api_key'),
-            'observationList' => $observationList
+            'observationList' => $observationList,
+            'form' => $form->createView()
         ]);
     }
 
