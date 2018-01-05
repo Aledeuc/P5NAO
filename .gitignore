@@ -16,8 +16,7 @@
 /vendor/
 /web/bundles/
 .idea
-/var
-/web/uploads/actualityImg
-/web/uploads/observationImg
 /web/uploads/images/*
+/web/uploads/actualityImg/*
+/web/uploads/observationImg/*
 *~

@@ -7,7 +7,8 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
-    images_directory: '%kernel.project_dir%/web/uploads/actualityImg'
+    image_directory: '%kernel.project_dir%/web/uploads/actualityImg'
+    images_directory: '%kernel.project_dir%/web/uploads/observationImg'
 
 framework:
     #esi: ~
@@ -19,7 +20,7 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
     templating:
         engines: ['twig']
     default_locale: '%locale%'

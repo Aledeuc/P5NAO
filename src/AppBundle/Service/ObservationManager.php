@@ -23,4 +23,15 @@ class ObservationManager
         $observation = new Observation();
         return $observation;
     }
+
+    public function getObservationInSession()
+    {
+        $observation = $this->session->get('observation');
+        return $observation;
+    }
+
+    public function setObservationInSession(Observation $observation)
+    {
+        $this->session->set('observation', $observation);
+    }
 }

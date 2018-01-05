@@ -5,6 +5,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Actualite;
+use AppBundle\Entity\Observation;
 use AppBundle\Form\AddArticleType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -23,7 +24,8 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
+
         $userLastName = $this->getUser()->getlastName();
         $userFirstName = $this->getUser()->getfirstName();
         $author = "$userLastName $userFirstName";
@@ -47,7 +49,7 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '1',
@@ -70,10 +72,10 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
-            'observationStatus' => '3',
+            'observationStatus' => array(3,5),
             'user' => $userId
         ));
 
@@ -93,10 +95,10 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
-            'observationStatus' => '5',
+            'observationStatus' => '2',
             'user' => $userId
         ));
 
@@ -116,7 +118,7 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = 'alexorac';
+        $userId = $this->getUser()->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '4',
