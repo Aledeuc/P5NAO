@@ -56,7 +56,9 @@ class ObservationController extends Controller
                     $observation->setObservationStatus(Observation::STATUS_DRAFT);
                 }
             }
-            $observation->setObservationStatus(Observation::STATUS_WAITING);
+            if (isset($_POST['waiting'])) {
+                $observation->setObservationStatus(Observation::STATUS_WAITING);
+            }
             $observation->setObservationPublication(false);
             $observation->setNaturalistId(null);
 

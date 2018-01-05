@@ -52,10 +52,13 @@
                 {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_NATURALIST') %}
                     <input type="submit" name ="draft" value="Brouillon"
                            class="btn btn-default pull-left"/>
-                {% endif %}
+                    <input type="submit" name="publish"  value="Publier"
+                           class="btn btn-default pull-right"/>
 
-                <input type="submit" name="publish"  value="Publier"
+                {% else %}
+                <input type="submit" name="waiting"  value="Soumettre"
                        class="btn btn-default pull-right"/>
+                {% endif %}
             </div>
             {{ form_end(form) }}
 
