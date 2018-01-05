@@ -90,3 +90,59 @@ html, body {
 #search_bloc{
     background-color: rgba(87, 48, 21, 0.05);
 }
+
+/*Colors */
+/* Main colors*/
+/*Font color*/
+.main-brown-1{
+     color: rgba(87, 48, 21, 1);
+ }
+.main-brown-2{
+    color: rgba(87, 48, 21, 0.10);
+}
+.main-brown-3{
+    color: rgba(87, 48, 21, 0.05);
+}
+.main-green{
+    color: #bedb65;
+}
+/*Background color*/
+.bg-main-brown-1{
+    background-color: rgba(87, 48, 21, 1);
+}
+.bg-main-brown-2{
+    background-color: rgba(87, 48, 21, 0.10);
+}
+.bg-main-brown-3{
+    background-color: rgba(87, 48, 21, 0.05);
+}
+.bg-main-green{
+    background-color: #bedb65;
+}
+/* Secondary colors*/
+/*font color*/
+.second-green{
+    color: #6ba53e;
+}
+.second-sand{
+    color: #be9560;
+}
+.second-blue-1{
+    color: rgba(14, 22, 61, 1);
+}
+.second-blue-2{
+    color: rgba(14, 22, 61, 0.5);
+}
+/*Background color*/
+.bg-second-green{
+    background-color: #6ba53e;
+}
+.bg-second-sand{
+    background-color: #be9560;
+}
+.bg-second-blue-1{
+    background-color: rgba(14, 22, 61, 1);
+}
+.bg-second-blue-2{
+    background-color: rgba(14, 22, 61, 0.5);
+}
