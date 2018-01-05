@@ -11,7 +11,11 @@
             <div id="form_search">
                 {{ form_start(form) }}
                 <div>
-                    {{ form_row(form.taxref,{'label': 'ESPECE'}) }}
+                    {{ form_label(form.famille, 'espèce', {
+                        'label_attr': {'class': 'text-uppercase'}
+                    }) }}
+                    {{ form_widget(form.famille) }}
+                    {{ form_errors(form.famille) }}
                 </div>
                 <input type="submit" value="CHERCHER" class="btn btn-brown" id="btn-chercher"/>
                 {{ form_end(form) }}
