@@ -7,16 +7,15 @@
     <div class="row">
         <img src="{{ asset('images/accueil.jpg') }}" alt="banniere_accueil" id="banniere_accueil">
         <div class="col-lg-3">
-            <h4>Rechercher un oiseau</h4>
+            <h4 class="text-uppercase">chercher un oiseau</h4>
             <div id="form_search">
                 {{ form_start(form) }}
                 <div>
-                    {{ form_row(form.taxref,{'label': 'espèce'}) }}
+                    {{ form_row(form.taxref,{'label': 'ESPECE'}) }}
                 </div>
-                <input type="submit" name="rechercher" value="Rechercher" class="btn btn-brown"/>
+                <input type="submit" value="CHERCHER" class="btn btn-brown" id="btn-chercher"/>
                 {{ form_end(form) }}
             </div>
-            <div></div>
         </div>
         <div>
             <p>
@@ -25,17 +24,17 @@
         </div>
     </div>
 
-    <!--Panel-->
+    <!--Table -->
     <div class="row">
         <div class="col" id="observationListHome">
-            <h3>Les dernières observations</h3>
+            <h3 class="text-uppercase" >Les dernières observations</h3>
             {% if observationList is defined and not null %}
             <table class="table">
                 <thead class="blue-grey lighteen-4">
                 <tr>
-                    <th>Date</th>
-                    <th>Nom</th>
-                    <th>Photo</th>
+                    <th class="text-uppercase">Date</th>
+                    <th class="text-uppercase">Nom</th>
+                    <th class="text-uppercase">Photo</th>
                 </tr>
                 </thead>
                 {% for observations in observationList %}
@@ -45,7 +44,7 @@
                         <td><a class="observationNom">nom</a></td>
                         <td><img src="
                         {% if observations.observationImages is null %}
-                            {{ asset('images/nao-logo-nb.png') }}
+                            {{ asset('images/nao-logo-couleur.png') }}
                         {% else %}
                             {{ asset('uploads/observationImg/' ~ observations.observationImages.imageName ) }}
                         {% endif %} "
@@ -61,11 +60,13 @@
         {% else %}
             <div class="alert alert-warning">Pas d'observation trouvée</div>
         {% endif %}
+        <!--/.Table-->
+        <!-- Map -->
         <div id="map" class="col"></div>
     </div>
 
 
-    <!--/.Panel-->
+    <!--/.Map-->
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

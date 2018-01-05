@@ -11,6 +11,7 @@ use AppBundle\Entity\Observation;
 use AppBundle\Entity\Taxref;
 use AppBundle\Form\SubscribeNewsletterType;
 use AppBundle\Form\Type\SearchObservationType;
+use AppBundle\Form\Type\SearchSpecObservationType;
 use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,22 +34,40 @@ class MainController extends Controller
         if (empty($session->get('observation'))) {
             $observation = $observationManager->createObservation();
         } else {
-            $observation = $session->get('observation');
+            $observation = $observationManager->getObservationInSession();
         }
-        //Observation
+        //Récupération Observation
         $repository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $observationList = $repository->findAll(array(
-            'taxref' => 1,
-        ));
+        $espece = $observation->getTaxref();
+        if($espece == null)
+        {
+            //Affichage de base
+            $espece = 1;
+            $observationList = $repository->findBy(
+                array('taxref' => $espece),
+                array('observationDate' => 'desc'),
+                5,
+                0
+            );
+        }
+        else{
+            $observationList = $repository->findBy(
+                array('taxref' => $espece),
+                array('observationDate' => 'desc'),
+                5,
+                0
+            );
+        }
 
 
+        // Formulaire recherche
         $form = $this->createForm(SearchObservationType::class, $observation);
         $form->handleRequest($request);
 
-        // Map
+        dump($form);
         if ($form->isSubmitted() && $form->isValid()) {
             //$data = $this->get('serializer')->serialize($observation, 'json');
             //$data = json_encode($observation);
@@ -56,9 +75,8 @@ class MainController extends Controller
             //$response->headers->set('Content-Type', 'application/json');
 
             //mettre observations en session
-            $session->set('observation', $observation);
-            return $this->redirectToRoute('homepage');
-
+            $observationManager->setObservationInSession($observation);
+            //return $this->redirectToRoute('homepage');
         }
 
         // replace this example code with whatever you need
