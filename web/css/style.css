@@ -1,3 +1,55 @@
+/* Profil */
+
+.active-pink-2 input[type=text]:focus:not([readonly])
+{
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+
+#titreMenu
+{
+    padding-bottom: 30px;
+    background-color: black;
+    color: white;
+}
+
+.menuProfil li
+{
+    padding-top: 10px;
+    list-style-type: none;
+}
+
+.btn
+{
+     color:inherit !important;
+     color: white !important;
+     box-shadow:none;
+}
+
+.modal-notify .modal-header {
+    border-radius: 3px 3px 0 0;
+}
+.modal-notify .modal-content {
+    border-radius: 3px;
+}
+
+
+.btn-fb
+{
+    background-color: #3B5998;
+    color: white !important;
+}
+
+.btn-fb:hover, .btn-fb:focus
+{
+    background-color: #4264aa;
+}
+
+.iconPointer
+{
+    cursor: pointer;
+}
+
 /* MAP */
 #map {
     min-height: 500px;

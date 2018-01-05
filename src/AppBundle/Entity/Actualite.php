@@ -1,9 +1,9 @@
 <?php
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\ActualiteImage;
 
 /**
  * Actualite
@@ -13,6 +13,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Actualite
 {
+    const NEWS_STATUS_DRAFT      = 1; //brouillon
+    const NEWS_STATUS_PUBLISHED  = 2; //publié
+    const NEWS_STATUS_ARCHIVED   = 3; //archivé
     /**
      * @var int
      *
@@ -21,60 +24,51 @@ class Actualite
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="actualiteAuthor", type="string", length=255)
      */
     private $actualiteAuthor;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="actualiteDate", type="date")
      */
     private $actualiteDate;
-
     /**
      * @var string
      *
      * @ORM\Column(name="actualiteTitle", type="string", length=255)
      */
     private $actualiteTitle;
-
     /**
      * @var string
      *
      * @ORM\Column(name="actualiteArticle", type="string", length=255)
      */
     private $actualiteArticle;
-
     /**
      * @var string
      *
      * @ORM\Column(name="actualiteStatus", type="string", length=255)
      */
     private $actualiteStatus;
-
     /**
      * @var string
      *
      * @ORM\Column(name="actualiteCategory", type="string", length=255)
      */
     private $actualiteCategory;
-
     /**
      * @var string
-     * @ORM\Column(type="string")
-     * @ORM\OneToMany(targetEntity="ActualiteImage", mappedBy="actualite", cascade="persist")
+     * @ORM\Column( name="actualiteImages", type="string", nullable = true)
      *
+     * @ORM\OneToMany(targetEntity="ActualiteImage", mappedBy="actualite", cascade="persist")
      * @Assert\NotBlank(message="Ajouter une image jpg")
      * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $actualiteImages;
-
-
     /**
      * Get id
      *
@@ -84,7 +78,6 @@ class Actualite
     {
         return $this->id;
     }
-
     /**
      * Set actualiteAuthor
      *
@@ -95,10 +88,8 @@ class Actualite
     public function setActualiteAuthor($actualiteAuthor)
     {
         $this->actualiteAuthor = $actualiteAuthor;
-
         return $this;
     }
-
     /**
      * Get actualiteAuthor
      *
@@ -108,7 +99,6 @@ class Actualite
     {
         return $this->actualiteAuthor;
     }
-
     /**
      * Set actualiteDate
      *
@@ -119,10 +109,8 @@ class Actualite
     public function setActualiteDate($actualiteDate)
     {
         $this->actualiteDate = $actualiteDate;
-
         return $this;
     }
-
     /**
      * Get actualiteDate
      *
@@ -132,7 +120,6 @@ class Actualite
     {
         return $this->actualiteDate;
     }
-
     /**
      * Set actualiteTitle
      *
@@ -143,10 +130,8 @@ class Actualite
     public function setActualiteTitle($actualiteTitle)
     {
         $this->actualiteTitle = $actualiteTitle;
-
         return $this;
     }
-
     /**
      * Get actualiteTitle
      *
@@ -156,7 +141,6 @@ class Actualite
     {
         return $this->actualiteTitle;
     }
-
     /**
      * Set actualiteArticle
      *
@@ -167,10 +151,8 @@ class Actualite
     public function setActualiteArticle($actualiteArticle)
     {
         $this->actualiteArticle = $actualiteArticle;
-
         return $this;
     }
-
     /**
      * Get actualiteArticle
      *
@@ -180,7 +162,6 @@ class Actualite
     {
         return $this->actualiteArticle;
     }
-
     /**
      * Set actualiteStatus
      *
@@ -191,10 +172,8 @@ class Actualite
     public function setActualiteStatus($actualiteStatus)
     {
         $this->actualiteStatus = $actualiteStatus;
-
         return $this;
     }
-
     /**
      * Get actualiteStatus
      *
@@ -204,7 +183,6 @@ class Actualite
     {
         return $this->actualiteStatus;
     }
-
     /**
      * Set actualiteCategory
      *
@@ -215,10 +193,8 @@ class Actualite
     public function setActualiteCategory($actualiteCategory)
     {
         $this->actualiteCategory = $actualiteCategory;
-
         return $this;
     }
-
     /**
      * Get actualiteCategory
      *
@@ -229,14 +205,15 @@ class Actualite
         return $this->actualiteCategory;
     }
 
+
     /**
-     * Set actualiteImage
+     * Set actualiteImages
      *
      * @param string $actualiteImages
      *
-     * @return actualite
+     * @return Actualite
      */
-    public function setActualiteImagesFile($actualiteImages)
+    public function setActualiteImages($actualiteImages)
     {
         $this->actualiteImages = $actualiteImages;
 
@@ -244,7 +221,7 @@ class Actualite
     }
 
     /**
-     * Get actualiteImage
+     * Get actualiteImages
      *
      * @return string
      */
@@ -252,6 +229,4 @@ class Actualite
     {
         return $this->actualiteImages;
     }
-
 }
-

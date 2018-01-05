@@ -6,11 +6,12 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
+    images_directory: '%kernel.project_dir%/web/uploads/actualityImg'
 
 framework:
     #esi: ~
-    #translator: { fallbacks: ['%locale%'] }
+    translator: ~
     secret: '%secret%'
     router:
         resource: '%kernel.project_dir%/app/config/routing.yml'
@@ -37,6 +38,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    form_themes:
+        - 'Form/bootstrap_4_layout.html.twig'
 
 # Doctrine Configuration
 doctrine:
@@ -67,3 +70,13 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# fosuserbundle Configuration
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\UserAdmin
+    from_email:
+        address: "yourapp@yourapp.com"
+        sender_name: "Demo String"

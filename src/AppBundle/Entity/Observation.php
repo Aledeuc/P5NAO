@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\AppBundle;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -13,10 +14,25 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Observation
 {
-    const STATUS_DRAFT      = 1; //brouillon
-    const STATUS_WAITING    = 2; //en attente de validation
-    const STATUS_VALIDATE   = 3; //validé
-    const STATUS_REJECTED     = 4; //rejeté
+    //STATUS
+    const STATUS_DRAFT = 1; //brouillon
+    const STATUS_WAITING = 2; //en attente de validation
+    const STATUS_VALIDATE = 3; //validé
+    const STATUS_REJECTED = 4; //rejeté
+
+    //ENVIRONMENT
+    const ENVIRONMENT_CITY = 1; //ville
+    const ENVIRONMENT_FOREST = 2; //forêt
+    const ENVIRONMENT_GARDEN = 3; //jardin
+    const ENVIRONMENT_LAKE = 4; //lac
+    const ENVIRONMENT_SEA = 5; //mer
+    const ENVIRONMENT_MOUNTAIN = 6; //montagne
+    //CLIMATE
+    const CLIMATE_SUN = 1; //Soleil
+    const CLIMATE_SUNCLOUD = 2; //Soleil et nuage
+    const CLIMATE_CLOUD = 3; //Nuageux
+    const CLIMATE_RAIN = 4; //Pluie
+    const CLIMATE_SNOW = 5; //neige
 
     /**
      * @var int
@@ -26,104 +42,104 @@ class Observation
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="observationDate", type="date")
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     * @Assert\DateTime()
      */
     private $observationDate;
-
     /**
-     * @var string
      *
-     * @ORM\Column(name="observationComment", type="string", length=255, nullable=true)
+     *
+     * @ORM\Column(name="observationComment", type="text", nullable=true)
      */
     private $observationComment;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="observationSignalementComment", type="string", length=255, nullable=true)
-     */
-    private $observationSignalementComment;
-
     /**
      * @var float
      *
      * @ORM\Column(name="observationLatitude", type="float")
+     * @Assert\NotBlank()
      */
     private $observationLatitude;
-
     /**
      * @var float
      *
      * @ORM\Column(name="observationLongitude", type="float")
+     * @Assert\NotBlank()
      */
     private $observationLongitude;
-
     /**
      * @var int
      *
      * @ORM\Column(name="observationStatus", type="integer")
      */
     private $observationStatus;
-
     /**
      * @var string
      *
      * @ORM\Column(name="observationEnvironment", type="string", length=255)
      */
     private $observationEnvironment;
-
     /**
      * @var string
      *
      * @ORM\Column(name="observationClimat", type="string", length=255)
      */
     private $observationClimat;
-
     /**
      * @var int
      *
      * @ORM\Column(name="observationNumber", type="integer")
+     * @Assert\NotBlank()
+     * @Assert\Range(
+     *     min = 1,
+     *     max = 1000,
+     *     minMessage = "Veuillez entrer au moins {{ limit }} oiseau",
+     *     maxMessage = "La limite de {{ limit }} oiseaux a été atteinte"
+     * )
      */
     private $observationNumber;
-
     /**
-     * @var Taxref
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Taxref")
+     * @var \AppBundle\Entity\Taxref
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Taxref", cascade={"persist"})
+     * @ORM\JoinColumn(name="taxref_id", referencedColumnName="id")
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      */
     private $taxref;
-
     /**
-     * @var user
      *
      * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="observation", cascade="persist")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserAdmin", mappedBy="observation", cascade="persist")
      */
     private $user;
-
     /**
-     * @var observationImage
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ObservationImage", mappedBy="observation", cascade="persist")
-     * @ORM\Column(name="images", type="string", length=255)
+     * @var ObservationImage
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ObservationImage", cascade="persist")
      */
     private $observationImages;
-
     /**
      * @var boolean
      *
      * @ORM\Column(name="observationPublication", type="boolean")
      */
     private $observationPublication;
-
     /**
-     * @var User
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\user", mappedBy="naturalistId")
-     * @ORM\Column(name="naturalistId", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\user", cascade="persist")
+     * @ORM\Column(name="naturalistId", type="string", length=255, nullable=true)
      */
     private $naturalistId;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observationSignalementComment", type="text", length=255, nullable=true)
+     */
+    private $observationSignalementComment;
+
 
     /**
      * Get id
@@ -145,7 +161,6 @@ class Observation
     public function setObservationDate($observationDate)
     {
         $this->observationDate = $observationDate;
-
         return $this;
     }
 
@@ -160,16 +175,15 @@ class Observation
     }
 
     /**
- * Set observationComment
- *
- * @param string $observationComment
- *
- * @return observation
- */
+     * Set observationComment
+     *
+     * @param string $observationComment
+     *
+     * @return observation
+     */
     public function setObservationComment($observationComment)
     {
         $this->observationComment = $observationComment;
-
         return $this;
     }
 
@@ -184,30 +198,6 @@ class Observation
     }
 
     /**
-     * Set observationSignalementComment
-     *
-     * @param string $observationSignalementComment
-     *
-     * @return observation
-     */
-    public function setObservationSignalementComment($observationSignalementComment)
-    {
-        $this->observationSignalementComment = $observationSignalementComment;
-
-        return $this;
-    }
-
-    /**
-     * Get observationSignalementComment
-     *
-     * @return string
-     */
-    public function getObservationSignalementComment()
-    {
-        return $this->observationSignalementComment;
-    }
-
-    /**
      * Set latitude
      *
      * @param float $observationLatitude
@@ -217,7 +207,6 @@ class Observation
     public function setObservationLatitude($observationLatitude)
     {
         $this->observationLatitude = $observationLatitude;
-
         return $this;
     }
 
@@ -241,7 +230,6 @@ class Observation
     public function setObservationLongitude($observationLongitude)
     {
         $this->observationLongitude = $observationLongitude;
-
         return $this;
     }
 
@@ -265,7 +253,6 @@ class Observation
     public function setObservationStatus($observationStatus)
     {
         $this->observationStatus = $observationStatus;
-
         return $this;
     }
 
@@ -289,7 +276,6 @@ class Observation
     public function setObservationEnvironment($observationEnvironment)
     {
         $this->observationEnvironment = $observationEnvironment;
-
         return $this;
     }
 
@@ -313,7 +299,6 @@ class Observation
     public function setObservationClimat($observationClimat)
     {
         $this->observationClimat = $observationClimat;
-
         return $this;
     }
 
@@ -337,7 +322,6 @@ class Observation
     public function setObservationNumber($observationNumber)
     {
         $this->observationNumber = $observationNumber;
-
         return $this;
     }
 
@@ -354,14 +338,13 @@ class Observation
     /**
      * Set taxref
      *
-     * @param string $taxref
+     * @param Taxref $taxref
      *
      * @return observation
      */
-    public function setTaxref($taxref)
+    public function setTaxref(Taxref $taxref)
     {
         $this->taxref = $taxref;
-
         return $this;
     }
 
@@ -378,14 +361,13 @@ class Observation
     /**
      * Set user
      *
-     * @param string $user
+     * @param integer $user
      *
      * @return observation
      */
     public function setUser($user)
     {
         $this->user = $user;
-
         return $this;
     }
 
@@ -402,14 +384,13 @@ class Observation
     /**
      * Set observationImages
      *
-     * @param string $observationImages
+     * @param ObservationImage $observationImages
      *
      * @return observation
      */
-    public function setObservationImages($observationImages)
+    public function setObservationImages(ObservationImage $observationImages)
     {
         $this->observationImages = $observationImages;
-
         return $this;
     }
 
@@ -433,7 +414,6 @@ class Observation
     public function setObservationPublication($observationPublication)
     {
         $this->observationPublication = $observationPublication;
-
         return $this;
     }
 
@@ -446,6 +426,7 @@ class Observation
     {
         return $this->observationPublication;
     }
+
     /**
      * Set naturalistId
      *
@@ -456,7 +437,6 @@ class Observation
     public function setNaturalistId($naturalistId)
     {
         $this->naturalistId = $naturalistId;
-
         return $this;
     }
 
@@ -469,5 +449,27 @@ class Observation
     {
         return $this->naturalistId;
     }
-}
 
+    /**
+     * Set observationSignalementComment
+     *
+     * @param string $observationSignalementComment
+     *
+     * @return observation
+     */
+    public function setObservationSignalementComment($observationSignalementComment)
+    {
+        $this->observationSignalementComment = $observationSignalementComment;
+        return $this;
+    }
+
+    /**
+     * Get observationSignalementComment
+     *
+     * @return string
+     */
+    public function getObservationSignalementComment()
+    {
+        return $this->observationSignalementComment;
+    }
+}

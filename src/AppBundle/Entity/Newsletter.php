@@ -1,10 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Newsletter
  *
@@ -21,15 +18,12 @@ class Newsletter
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
     /**
      * @var string
      *
      * @ORM\Column(name="newsletterEmail", type="string", length=255)
      */
     private $newsletterEmail;
-
-
     /**
      * Get id
      *
@@ -39,7 +33,6 @@ class Newsletter
     {
         return $this->id;
     }
-
     /**
      * Set newsletterEmail
      *
@@ -50,10 +43,8 @@ class Newsletter
     public function setNewsletterEmail($newsletterEmail)
     {
         $this->newsletterEmail = $newsletterEmail;
-
         return $this;
     }
-
     /**
      * Get newsletterEmail
      *
@@ -64,4 +55,3 @@ class Newsletter
         return $this->newsletterEmail;
     }
 }
-

@@ -2,17 +2,15 @@
 # https://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
+    images_directory: '%kernel.project_dir%/web/uploads/images'
 
 services:
-    # main configuration for services in *this* file
-    _defaults:
-        # automatically injects dependencies in your services
-        autowire: true
-        # automatically registers your services as commands, event subscribers, etc.
-        autoconfigure: true
-        # this means you cannot fetch services directly from the container via $container->get()
-        # if you need to do this, you can override this setting on individual services
-        public: false
+
+    app_user.registration_listener:
+        class : AppBundle\EventListener\RegistrationListener
+        arguments: []
+        tags:
+            - { name: kernel.event_subscriber }
 
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
@@ -29,7 +27,7 @@ services:
         public: true
         tags: ['controller.service_arguments']
 
-    # add more services, or override services that need manual wiring
-    # AppBundle\Service\ExampleService:
-    #     arguments:
-    #         $someArgument: 'some_value'
+
+    AppBundle\Service\FileUploader:
+            arguments:
+                $targetDir: '%images_directory%'

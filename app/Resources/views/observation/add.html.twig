@@ -1,0 +1,86 @@
+{% extends 'layout.html.twig' %}
+
+{% block content %}
+    <!--Panel-->
+    <h4>Ajouter une observation</h4>
+    <div class="row">
+        <div class="col-3" id="left">
+            <p>Ajouter une observation d'oiseau</p>
+            <img src="">
+        </div>
+
+
+        <div class="col-9" id="right">
+            {{ form_start(form) }}
+            <div id="date">
+                {{ form_row(form.observationDate,{'label': 'date d\'observation'}) }}
+            </div>
+            <div>
+                {{ form_row(form.taxref,{'label': 'nom'}) }}
+            </div>
+            <div>
+                {{ form_row(form.observationNumber,{'label': 'nombre d\'oiseaux'}) }}
+            </div>
+            <div>
+                <p>Coordonnées GPS</p>
+                <button id="GPS">Me localiser</button>
+                <br>
+                {{ form_errors(form.observationLatitude) }}
+                {{ form_widget(form.observationLatitude) }}
+
+                {{ form_errors(form.observationLongitude) }}
+                {{ form_widget(form.observationLongitude) }}
+            </div>
+            <div>
+                {{ form_label(form.observationEnvironment) }}
+                {{ form_errors(form.observationEnvironment) }}
+                {{ form_widget(form.observationEnvironment) }}
+            </div>
+            <div>
+                {{ form_label(form.observationClimat) }}
+                {{ form_errors(form.observationClimat) }}
+                {{ form_widget(form.observationClimat) }}
+            </div>
+            <div>
+                {{ form_row(form.observationComment,{'label': 'Commentaires'}) }}
+            </div>
+            <div>
+                {{ form_row(form.observationImages) }}
+
+            </div>
+            <div>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_NATURALIST') %}
+                    <input type="submit" name ="draft" value="Brouillon"
+                           class="btn btn-default pull-left"/>
+                    <input type="submit" name="publish"  value="Publier"
+                           class="btn btn-default pull-right"/>
+
+                {% else %}
+                <input type="submit" name="waiting"  value="Soumettre"
+                       class="btn btn-default pull-right"/>
+                {% endif %}
+            </div>
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+    <!--/.Panel-->
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>// Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+    </script>
+    <script>
+        $('.datepicker').pickadate({
+            monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+            weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            today: 'aujourd\'hui',
+            clear: 'effacer',
+            formatSubmit: 'dd/mm/yyyy'
+        });
+    </script>
+{% endblock %}

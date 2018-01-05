@@ -1,24 +1,45 @@
-# To get started with security, check out the documentation:
-# https://symfony.com/doc/current/security.html
+# app/config/security.yml
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
 
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    role_hierarchy:
+
+        ROLE_USER:    ROLE_USER
+        ROLE_EDITOR:    ROLE_EDITOR
+        ROLE_NATURALIST:  ROLE_NATURALIST
+        ROLE_ADMIN:    [ROLE_NATURALIST,ROLE_EDITOR,ROLE_NATURALIST, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
+        main:
+            id: fos_user.user_provider.username
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern: ^/
+            anonymous:    true
+            provider:     main
+            form_login:
+              login_path: fos_user_security_login
+              check_path: fos_user_security_check
+            logout:
+              path:       fos_user_security_logout
+              target:     /
+            remember_me:
+              secret:     %secret%
 
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-            #http_basic: ~
-
-            # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/user, role: ROLE_USER }
+        - { path: ^/editor, role: ROLE_EDITOR }
+        - { path: ^/naturalist, role: ROLE_NATURALIST }
+        - { path: ^/login_ok, role: [ROLE_USER,ROLE_NATURALIST,ROLE_EDITOR] }
+        - { path: ^/adminController/, role: [ROLE_NATURALIST, ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/adminController/admin_users, role: [ROLE_ADMIN, ROLE_SUPER_ADMIN] }
+        - { path: ^/dashboard, role: [ROLE_EDITOR, ROLE_NATURALIST, ROLE_USER,ROLE_ADMIN, ROLE_SUPER_ADMIN] }

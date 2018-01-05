@@ -1,10 +1,7 @@
 <?php
-
 namespace AppBundle\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * TaxrefLienFile
  *
@@ -21,43 +18,36 @@ class TaxrefLienFile
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $taxrefLienFileId;
-
     /**
      * @var string
      *
      * @ORM\Column(name="taxrefLienFile", type="string", length=255)
      */
     private $taxrefLienFile;
-
     /**
      * @var string
      *
      * @ORM\Column(name="fileName", type="string", length=255)
      */
     private $fileName;
-
     /**
      * @var integer
      *
      * @ORM\Column(name="fileSize", type="integer")
      */
     private $fileSize;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="uploadDate", type="date")
      */
     private $uploadDate;
-
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="updateDate", type="date")
      */
     private $updateDate;
-
-
     /**
      * Get taxrefLienFileId
      *
@@ -67,7 +57,6 @@ class TaxrefLienFile
     {
         return $this->taxrefLienFileId;
     }
-
     /**
      * Set taxrefLienFile
      *
@@ -78,10 +67,8 @@ class TaxrefLienFile
     public function setTaxrefLienFile($taxrefLienFile)
     {
         $this->taxrefLienFile = $taxrefLienFile;
-
         return $this;
     }
-
     /**
      * Get taxrefLienFile
      *
@@ -91,7 +78,6 @@ class TaxrefLienFile
     {
         return $this->taxrefLienFile;
     }
-
     /**
      * Set fileName
      *
@@ -102,10 +88,8 @@ class TaxrefLienFile
     public function setFileName($fileName)
     {
         $this->fileName = $fileName;
-
         return $this;
     }
-
     /**
      * Get fileName
      *
@@ -115,7 +99,6 @@ class TaxrefLienFile
     {
         return $this->fileName;
     }
-
     /**
      * Set fileSize
      *
@@ -126,10 +109,8 @@ class TaxrefLienFile
     public function setFileSize($fileSize)
     {
         $this->fileSize = $fileSize;
-
         return $this;
     }
-
     /**
      * Get fileSize
      *
@@ -139,7 +120,6 @@ class TaxrefLienFile
     {
         return $this->fileSize;
     }
-
     /**
      * Set uploadDate
      *
@@ -150,10 +130,8 @@ class TaxrefLienFile
     public function setUploadDate($uploadDate)
     {
         $this->uploadDate = $uploadDate;
-
         return $this;
     }
-
     /**
      * Get uploadDate
      *
@@ -163,7 +141,6 @@ class TaxrefLienFile
     {
         return $this->uploadDate;
     }
-
     /**
      * Set updateDate
      *
@@ -174,10 +151,8 @@ class TaxrefLienFile
     public function setUpdateDate($updateDate)
     {
         $this->updateDate = $updateDate;
-
         return $this;
     }
-
     /**
      * Get updateDate
      *
@@ -188,4 +163,3 @@ class TaxrefLienFile
         return $this->updateDate;
     }
 }
-
