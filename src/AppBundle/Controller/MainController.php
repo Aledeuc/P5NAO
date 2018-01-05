@@ -35,7 +35,6 @@ class MainController extends Controller
             $observation = $observationManager->createObservation();
         } else {
             $observation = $observationManager->getObservationInSession();
-            dump($session->get('observation'));
         }
 
         //Récupération Observation
@@ -56,7 +55,10 @@ class MainController extends Controller
         else{
             $taxrefId = $session->get('taxref')->getFamille()->getId();
             $observationList = $repository->findBy(
-                array('taxref' => $taxrefId),
+                array(
+                    'taxref' => $taxrefId,
+                    'observationStatus' => Observation::STATUS_VALIDATE
+                ),
                 array('observationDate' => 'desc'),
                 5,
                 0
