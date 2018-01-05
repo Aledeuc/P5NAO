@@ -23,7 +23,8 @@
     <!--Panel-->
     <div class="row">
         <div class="col" id="observationListHome">
-            {% if observation != null %}
+            <h3>Les dernières observations</h3>
+            {% if observationList is defined and not null %}
             <table class="table">
                 <thead class="blue-grey lighteen-4">
                 <tr>
@@ -32,22 +33,31 @@
                     <th>Photo</th>
                 </tr>
                 </thead>
-                {% for observations in observation %}
+                {% for observations in observationList %}
                     <tbody>
                     <tr>
-                        <td><a class="observationDate">{{ observations.bservationDate |date("d/m/Y") }}</a></td>
+                        <td><a class="observationDate">{{ observations.observationDate |date("d/m/Y") }}</a></td>
                         <td><a class="observationNom">nom</a></td>
-                        <td><a class="observationPhoto" >{{ observations.observationImages  }}</a></td>
+                        <td><img src="
+                        {% if observations.observationImages is null %}
+                            {{ asset('images/nao-logo-couleur.png') }}
+                            {% else %}
+                            {{ asset("'uploads/observationImg/' ~ observations.observationImages.imageName '.png'") }}
+                        {% endif %} "
+                                 class="img-fluid previewImg" alt="image_observation">
+                        </td>
                     </tr>
+
+
                     </tbody>
                 {% endfor %}
             </table>
         </div>
         {% else %}
-            <div class="alert alert-warning">Pas d'observation trouvée </div>
+            <div class="alert alert-warning">Pas d'observation trouvée</div>
         {% endif %}
-        </div>
-        <div id="map" class="col"></div>
+    </div>
+    <div id="map" class="col"></div>
     </div>
 
     <div id="data" data-map="{{ data }}">

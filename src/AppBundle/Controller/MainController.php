@@ -22,10 +22,17 @@ class MainController extends Controller
      */
     public function indexAction(Request $request)
     {
+        //Observation
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Observation');
+
+        $observationList = $repository->findBy(array(
+            'taxref' => 1,
+        ));
+        dump($observationList);
+        // Map
         $observation = new Observation();
-        $observation->setObservationDate(new \DateTime());
-        $observation->setObservationLatitude(50.498392);
-        $observation->setObservationLongitude(2.610353);
 
         //$data = $this->get('serializer')->serialize($observation, 'json');
         $data = json_encode($observation);
@@ -35,7 +42,8 @@ class MainController extends Controller
         // replace this example code with whatever you need
         return $this->render('main/index.html.twig', [
             'map_api_key' => $this->getParameter('map_api_key'),
-            'data' => $data
+            'data' => $data,
+            'observationList' => $observationList
         ]);
     }
 
