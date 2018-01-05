@@ -57,7 +57,14 @@
 }
 
 html, body {
-    height: 100%;
+    height: auto;
     margin: 0;
     padding: 0;
 }
+
+/*Homepage*/
+.view {
+    background: url("../images/accueil.jpg")no-repeat center center;
+    background-size: cover;
+}
+
