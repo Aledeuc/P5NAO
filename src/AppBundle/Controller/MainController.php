@@ -9,6 +9,7 @@ use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Observation;
 
 use AppBundle\Form\SubscribeNewsletterType;
+use AppBundle\Form\Type\SearchObservationType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -30,19 +31,22 @@ class MainController extends Controller
         $observationList = $repository->findBy(array(
             'taxref' => 1,
         ));
-        dump($observationList);
-        // Map
-        $observation = new Observation();
 
-        //$data = $this->get('serializer')->serialize($observation, 'json');
-        $data = json_encode($observation);
-        //$response = new Response($data);
-        //$response->headers->set('Content-Type', 'application/json');
+        $observation = new Observation();
+        $formObservation = $this->createForm(SearchObservationType::class, $observation);
+        $formObservation->handleRequest($request);
+        // Map
+        if ($formObservation->isSubmitted() && $form->isValid()) {
+            //$data = $this->get('serializer')->serialize($observation, 'json');
+            $data = json_encode($observation);
+            //$response = new Response($data);
+            //$response->headers->set('Content-Type', 'application/json');
+
+        }
 
         // replace this example code with whatever you need
         return $this->render('main/index.html.twig', [
             'map_api_key' => $this->getParameter('map_api_key'),
-            'data' => $data,
             'observationList' => $observationList
         ]);
     }

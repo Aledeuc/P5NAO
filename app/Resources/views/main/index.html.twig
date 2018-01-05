@@ -41,8 +41,8 @@
                         <td><img src="
                         {% if observations.observationImages is null %}
                             {{ asset('images/nao-logo-couleur.png') }}
-                            {% else %}
-                            {{ asset("'uploads/observationImg/' ~ observations.observationImages.imageName '.png'") }}
+                        {% else %}
+                            {{ asset('uploads/observationImg/' ~ observations.observationImages.imageName ) }}
                         {% endif %} "
                                  class="img-fluid previewImg" alt="image_observation">
                         </td>
@@ -58,16 +58,12 @@
         {% endif %}
     </div>
     <div id="map" class="col"></div>
-    </div>
 
-    <div id="data" data-map="{{ data }}">
-    </div>
     <!--/.Panel-->
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
-    <script>var testData = "{{ data }}";
-        console.log(testData)</script>
+
     <script src="{{ asset('js/map_marker.js') }}"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ map_api_key }}&v=3&&callback=initMap">
     </script>
