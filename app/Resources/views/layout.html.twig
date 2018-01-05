@@ -11,13 +11,10 @@
 
     {% block stylesheets %}
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}">
 
-        <link href="{{ asset('MDB-Pro/MDB-Pro/css/bootstrap.min.css')}}" rel="stylesheet">
-        <link href="{{ asset('MDB-Pro/MDB-Pro/css/mdb.min.css')}}" rel="stylesheet">
-        <link href="{{ asset('MDB-Pro/MDB-Pro/css/style.css')}}" rel="stylesheet">
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/mdb.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('MDB-Pro/MDB-Pro/css/style.css') }}" rel="stylesheet">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <!-- Feuille de style -->
@@ -27,7 +24,6 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     {% endblock %}
-
 
 </head>
 <body>
@@ -59,6 +55,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('aPropos') }}">A propos</a>
                 </li>
+
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
@@ -88,6 +85,12 @@
                         <a class="nav-link" href="{{ path('fos_user_registration_register') }}">S'incrire</a>
                     </li>
                 {% endif %}
+                <span>
+                    <a class="btn-floating green right" href="{{ path('addObservation') }}">
+                    <i class="fa fa-plus"></i>
+                </a>
+                </span>
+
             </ul>
 
         </div>
