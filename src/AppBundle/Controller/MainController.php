@@ -35,17 +35,22 @@ class MainController extends Controller
             $observation = $observationManager->createObservation();
         } else {
             $observation = $observationManager->getObservationInSession();
+            dump($session->get('observation'));
         }
+
+
+
         //Récupération Observation
         $repository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
         $espece = $observation->getTaxref();
-        if($espece == null)
+        if(!$session->has('taxref'))
         {
             //Affichage de base
-            $espece = 1;
+            $taxref = 1;
+
             $observationList = $repository->findBy(
                 array('taxref' => $espece),
                 array('observationDate' => 'desc'),
@@ -61,13 +66,18 @@ class MainController extends Controller
                 0
             );
         }
-
-
+        if($session->has('taxref'))
+        {
+            $taxref = $session->get('taxref');
+            $espece = $taxref->getFamille();
+            dump($espece);
+        }
         // Formulaire recherche
-        $form = $this->createForm(SearchObservationType::class, $observation);
+            $taxref = new Taxref();
+
+        $form = $this->createForm(SearchObservationType::class, $taxref);
         $form->handleRequest($request);
 
-        dump($form);
         if ($form->isSubmitted() && $form->isValid()) {
             //$data = $this->get('serializer')->serialize($observation, 'json');
             //$data = json_encode($observation);
@@ -75,8 +85,11 @@ class MainController extends Controller
             //$response->headers->set('Content-Type', 'application/json');
 
             //mettre observations en session
-            $observationManager->setObservationInSession($observation);
-            //return $this->redirectToRoute('homepage');
+            $session->set('taxref', $taxref);
+            //$observationManager->setObservationInSession($observation);
+            return $this->redirectToRoute('homepage', array(
+                'taxref' => $taxref
+            ));
         }
 
         // replace this example code with whatever you need
