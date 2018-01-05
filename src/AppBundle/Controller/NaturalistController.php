@@ -109,19 +109,17 @@ class NaturalistController extends Controller
             {
                 if (!isset($_POST['signalementCheckbox']))
                 {
-                    $userId=$observation->getUser();
+                    $userId = $observation->getUser();
                     $userRepository = $this->getDoctrine()
                         ->getManager()
                         ->getRepository('AppBundle:UserAdmin')
                         ->findOneById($userId);
                     $userRepository->setreportingUser(true);
 
-                    $observation->setobservationStatus(5);
                 }
-
-               // $test = $_POST['signalementTextarea'];
-                //dump($test);
-                //exit;
+                $observation->setobservationStatus(4);
+                $signalementComment = $_POST['signalementTextarea'];
+                $observation->setobservationSignalementComment($signalementComment);
             }
 
             $em = $this->getDoctrine()
