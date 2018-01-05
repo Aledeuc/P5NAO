@@ -26,30 +26,22 @@
                 <table class="table">
                     <thead class="blue-grey lighteen-4">
                     <tr>
-                        <th>Photo</th>
-                        <th>Date</th>
-                        <th>Nom</th>
-                        <th>Famille</th>
-                        <th>État</th>
+                        <th>PHOTO</th>
+                        <th>DATE</th>
+                        <th>AUTEUR</th>
+                        <th>NOM</th>
+                        <th></th>
                         <th></th>
                     </tr>
                     </thead>
                     {% for observations in observation %}
                         <tbody>
                         <tr>
-                            <td><a class="observationPhoto" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationImages  }}</a></td>
+                            <td><img src="{{ asset('uploads/observationImg/' ~ observations.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image"></td>
                             <td><a class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationDate |date("d/m/Y") }}</a></td>
                             <td><a class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user }}</a></td>
-                            <td><a class="observationFamille" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.taxref }}</a></td>
-                            <td><a class="observationÉtat" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationStatus  }}</a></td>
-
-                            <td>
-
-                                <a href="{{ path('pageTest', { 'id': observations.id }) }}" class="btn btn-success btn-xs" title="PreviewObservationLien"><span class="glyphicon glyphicon-edit"></span></a>
-
-
-
-                            </td>
+                            <td><a class="observationFamille" href="{{ path('observation', { "id": observations.id }) }}">{{ observations.taxref.nomComplet }}</a></td>
+                            <td><a href="{{ path('naturalist_observation_update', { "id": observations.id }) }}" class="fa fa-edit"  aria-hidden="true" title="PreviewObservationLien"></a></td>
 
                         </tr>
                         </tbody>

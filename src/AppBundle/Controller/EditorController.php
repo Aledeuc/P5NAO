@@ -49,7 +49,7 @@ class EditorController extends Controller
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
             $file->move(
-                $this->getParameter('images_directory'),
+                $this->getParameter('image_directory'),
                 $fileName
             );
 
