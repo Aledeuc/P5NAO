@@ -38,39 +38,29 @@ class MainController extends Controller
             dump($session->get('observation'));
         }
 
-
-
         //Récupération Observation
         $repository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $espece = $observation->getTaxref();
         if(!$session->has('taxref'))
         {
             //Affichage de base
-            $taxref = 1;
-
             $observationList = $repository->findBy(
-                array('taxref' => $espece),
+                array('observationStatus'=> Observation::STATUS_VALIDATE),
                 array('observationDate' => 'desc'),
                 5,
                 0
             );
         }
         else{
+            $taxrefId = $session->get('taxref')->getFamille()->getId();
             $observationList = $repository->findBy(
-                array('taxref' => $espece),
+                array('taxref' => $taxrefId),
                 array('observationDate' => 'desc'),
                 5,
                 0
             );
-        }
-        if($session->has('taxref'))
-        {
-            $taxref = $session->get('taxref');
-            $espece = $taxref->getFamille();
-            dump($espece);
         }
         // Formulaire recherche
             $taxref = new Taxref();
