@@ -28,6 +28,7 @@ class AddObservationType extends AbstractType
     {
         $builder
             ->add('observationDate', DateType::class, [
+                'required' => true,
                 'widget' => 'single_text',
                 'format' => 'dd/MM/yyyy',
                 'html5' => false,
@@ -44,7 +45,9 @@ class AddObservationType extends AbstractType
                 'attr' => ['class' => 'mdb-select'],
 
             ])
-            ->add('observationNumber', IntegerType::class)
+            ->add('observationNumber', IntegerType::class,[
+                'attr' => ['value' => 1],
+            ])
             ->add('observationLatitude', NumberType::class, [
                 'attr' => ['placeholder' => 'latitude']
             ])
@@ -77,8 +80,12 @@ class AddObservationType extends AbstractType
                 'attr' => ['class' => 'mdb-select',
                 ],
             ])
-            ->add('observationImages', ImageObservationType::class)
-            ->add('observationComment', TextareaType::class);
+            ->add('observationImages', ImageObservationType::class, [
+                'required' => false,
+            ])
+            ->add('observationComment', TextareaType::class, [
+                'required' => false,
+            ]);
     }
 
     /**

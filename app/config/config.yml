@@ -10,7 +10,6 @@ parameters:
     image_directory: '%kernel.project_dir%/web/uploads/actualityImg'
     images_directory: '%kernel.project_dir%/web/uploads/observationImg'
 
-
 framework:
     #esi: ~
     translator: ~

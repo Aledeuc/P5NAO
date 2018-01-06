@@ -95,6 +95,13 @@ class NaturalistController extends Controller
             $observation = $form->getData();
             $observation->setnaturalistId($naturalistId);
 
+            $userId = $observation->getUser();
+            $userRepository = $this->getDoctrine()
+                ->getManager()
+                ->getRepository('AppBundle:UserAdmin')
+                ->findOneById($userId);
+
+
             if (isset($_POST['publish']))
             {
                 if (isset($_POST['archiveCheckbox']))
@@ -104,10 +111,13 @@ class NaturalistController extends Controller
                 {
                     $observation->setobservationStatus(5);
                 }
+                $validateObservation = $userRepository->getValidatedObservation();
+                $totalValidate = $validateObservation + 1;
+                $userRepository->setValidatedObservation($totalValidate);
             }
             elseif (isset($_POST['refuse']))
             {
-                if (!isset($_POST['signalementCheckbox']))
+                if (isset($_POST['signalementCheckbox']))
                 {
                     $userId = $observation->getUser();
                     $userRepository = $this->getDoctrine()
@@ -116,7 +126,14 @@ class NaturalistController extends Controller
                         ->findOneById($userId);
                     $userRepository->setreportingUser(true);
 
+                } else
+                {
+
                 }
+                $rejectedObservation = $userRepository->getRejectedObservation();
+                $totalrejected = $validateObservation + 1;
+                $userRepository->setRejectedObservation($totalrejected);
+
                 $observation->setobservationStatus(4);
                 $signalementComment = $_POST['signalementTextarea'];
                 $observation->setobservationSignalementComment($signalementComment);

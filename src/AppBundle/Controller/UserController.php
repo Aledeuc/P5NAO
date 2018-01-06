@@ -6,7 +6,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Observation;
+use AppBundle\Form\Type\AddObservationType;
 use AppBundle\Form\AddArticleType;
+use AppBundle\Service\FileUploader;
+use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -56,8 +59,65 @@ class UserController extends Controller
 
         $titleTable = 'Brouillon';
 
-        return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
+        return $this->render('profil/userDraft.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
 
+    }
+
+    /**
+     * @Route("/user/draft/{id}/observation", name="user_observation_draft")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function updateArticleAction(Request $request, FileUploader $fileUploader, Observation $observation)
+    {
+        if (!$this->get('security.authorization_checker')
+            ->isGranted('IS_AUTHENTICATED_FULLY'))
+        {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour modifier un brouillon');
+        }
+        $user = $this->getUser();
+        $form = $this->createForm(AddObservationType::class , $observation);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            if ($observation->getObservationImages() == null)
+            {
+
+            } else
+            {
+                $observation->getObservationImages()
+                    ->setUploadDate(new \DateTime());
+
+                $file = $observation->getObservationImages()
+                    ->getImageFile();
+                $fileName = $fileUploader->upload($file);
+
+                $observation->getObservationImages()
+                    ->setImageName($fileName);
+            }
+
+            if ($user->hasRole('ROLE_USER'))
+            {
+                if (isset($_POST['waiting']))
+                {
+                    $observation->setObservationStatus(Observation::STATUS_WAITING);
+                }
+                elseif (isset($_POST['draft']))
+                {
+                    $observation->setObservationStatus(Observation::STATUS_DRAFT);
+                }
+            }
+
+            $observation = $form->getData();
+            $em = $this->getDoctrine()
+                ->getManager();
+            $em->persist($observation);
+            $em->flush();
+            $titleTable = 'Brouillon';
+            return $this->redirectToRoute('profil_user_draftcopy');
+        }
+        $titleTable = 'Brouillon';
+        return $this->render('observation/add.html.twig', ['form' => $form->createView() , 'observation' => $observation, 'titleTable' => $titleTable]);
     }
 
     /**

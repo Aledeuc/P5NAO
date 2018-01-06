@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-3" id="left">
             <p>Ajouter une observation d'oiseau</p>
-            <img src="">
+            <img src="{{ asset('images/nao-logo-nb.png') }}" class="img-fluid previewImg" alt="Responsive image">
         </div>
 
 
@@ -16,7 +16,7 @@
                 {{ form_row(form.observationDate,{'label': 'date d\'observation'}) }}
             </div>
             <div>
-                {{ form_row(form.taxref) }}
+                {{ form_row(form.taxref,{'label': 'nom'}) }}
             </div>
             <div>
                 {{ form_row(form.observationNumber,{'label': 'nombre d\'oiseaux'}) }}
@@ -49,11 +49,15 @@
 
             </div>
             <div>
-                <input type="submit" value="Enregistrer"
-                       class="btn btn-default pull-left"/>
-
-                <input type="submit" value="Publier"
-                       class="btn btn-default pull-right"/>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_USER') %}
+                    <input type="submit" name ="draft" value="Brouillon"
+                           class="btn btn-default pull-left"/>
+                    <input type="submit" name="waiting"  value="Soumettre"
+                           class="btn btn-default pull-right"/>
+                {% else %}
+                    <input type="submit" name="publish"  value="Publier"
+                           class="btn btn-default pull-right"/>
+                {% endif %}
             </div>
             {{ form_end(form) }}
 
