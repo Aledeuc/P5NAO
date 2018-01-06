@@ -49,15 +49,15 @@ class ObservationController extends Controller
                 $observation->getObservationImages()->setImageName($fileName);
             }
 
-            if ($user->hasRole('ROLE_NATURALIST')) {
-                if (isset($_POST['publish'])) {
-                    $observation->setObservationStatus(Observation::STATUS_VALIDATE);
+            if ($user->hasRole('ROLE_USER')) {
+                if (isset($_POST['waiting'])) {
+                    $observation->setObservationStatus(Observation::STATUS_WAITING);
                 } elseif (isset($_POST['draft'])) {
                     $observation->setObservationStatus(Observation::STATUS_DRAFT);
                 }
             }
-            if (isset($_POST['waiting'])) {
-                $observation->setObservationStatus(Observation::STATUS_WAITING);
+            if (isset($_POST['publish'])) {
+                $observation->setObservationStatus(Observation::STATUS_VALIDATE);
             }
             $observation->setObservationPublication(false);
             $observation->setNaturalistId(null);

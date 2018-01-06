@@ -49,14 +49,14 @@
 
             </div>
             <div>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_NATURALIST') %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_USER') %}
                     <input type="submit" name ="draft" value="Brouillon"
                            class="btn btn-default pull-left"/>
-                    <input type="submit" name="publish"  value="Publier"
+                    <input type="submit" name="waiting"  value="Soumettre"
                            class="btn btn-default pull-right"/>
 
                 {% else %}
-                <input type="submit" name="waiting"  value="Soumettre"
+                <input type="submit" name="publish"  value="Publier"
                        class="btn btn-default pull-right"/>
                 {% endif %}
             </div>
