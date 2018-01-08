@@ -1,6 +1,7 @@
-$(function () {
+(function(){
     var map;
-});
+})();
+
     function initMap() {
         var centreFrance = {lat: 46.498392, lng: 2.610353};
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -9,10 +10,11 @@ $(function () {
         });
 
         var markers =[];
-        var locations = [
-            {title: 'oiseau1', lat: 46.498392, lng: 2.610353},
-            {title: 'oiseau2', lat: 48.8615, lng: 2.34706}
-        ];
+
+        var elt = document.getElementById('json_data');
+        var locations = elt.innerText || elt.textContent;
+        locations = JSON.parse(locations);
+
         var largeInfowindow = new google.maps.InfoWindow({});
         var bounds = new google.maps.LatLngBounds();
 
@@ -21,11 +23,11 @@ $(function () {
                 lat: locations[i].lat,
                 lng: locations[i].lng
             };
-            var title = locations[i].title;
+            var nom = locations[i].nom;
             var marker = new google.maps.Marker({
                 map: map,
                 position: position,
-                title: title,
+                title: nom,
                 animation: google.maps.Animation.DROP,
                 id: i
             });
