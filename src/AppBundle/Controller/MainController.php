@@ -6,21 +6,89 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Newsletter;
+use AppBundle\Entity\Observation;
+
+use AppBundle\Entity\Taxref;
 use AppBundle\Form\SubscribeNewsletterType;
+use AppBundle\Form\Type\SearchObservationType;
+use AppBundle\Form\Type\SearchSpecObservationType;
+use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class MainController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @param SessionInterface $session
+     * @param Request $request
+     * @param ObservationManager $observationManager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request)
+    public function indexAction(SessionInterface $session, Request $request, ObservationManager $observationManager)
     {
+        if (empty($session->get('observation'))) {
+            $observation = $observationManager->createObservation();
+        } else {
+            $observation = $observationManager->getObservationInSession();
+        }
+
+        //Récupération Observation
+        $repository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Observation');
+
+        if(!$session->has('taxref'))
+        {
+            //Affichage de base
+            $observationList = $repository->findBy(
+                array('observationStatus'=> Observation::STATUS_VALIDATE),
+                array('observationDate' => 'desc'),
+                5,
+                0
+            );
+        }
+        else{
+            $taxrefId = $session->get('taxref')->getFamille()->getId();
+            $observationList = $repository->findBy(
+                array(
+                    'taxref' => $taxrefId,
+                    'observationStatus' => Observation::STATUS_VALIDATE
+                ),
+                array('observationDate' => 'desc'),
+                5,
+                0
+            );
+        }
+        // Formulaire recherche
+            $taxref = new Taxref();
+
+        $form = $this->createForm(SearchObservationType::class, $taxref);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            //$data = $this->get('serializer')->serialize($observation, 'json');
+            //$data = json_encode($observation);
+            //$response = new Response($data);
+            //$response->headers->set('Content-Type', 'application/json');
+
+            //mettre observations en session
+            $session->set('taxref', $taxref);
+            //$observationManager->setObservationInSession($observation);
+            return $this->redirectToRoute('homepage', array(
+                'taxref' => $taxref
+            ));
+        }
+
         // replace this example code with whatever you need
-        return $this->render('main/index.html.twig', []);
+        return $this->render('main/index.html.twig', [
+            'map_api_key' => $this->getParameter('map_api_key'),
+            'observationList' => $observationList,
+            'form' => $form->createView()
+        ]);
     }
 
     /**
@@ -77,6 +145,7 @@ class MainController extends Controller
         // replace this example code with whatever you need
         return $this->render('main/mentions.html.twig', []);
     }
+
     /**
      * @Route("/carte", name="carte")
      */
@@ -86,6 +155,7 @@ class MainController extends Controller
         // replace this example code with whatever you need
         return $this->render('main/carte.html.twig', ['map_api_key' => $this->getParameter('map_api_key') ]);
     }
+
     /**
      * @Route("/newsletter", name="subscribe_newsletter")
      */

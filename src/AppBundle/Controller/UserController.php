@@ -29,7 +29,9 @@ class UserController extends Controller
 
         $userId = $this->getUser()->getId();
 
-
+        $userLastName = $this->getUser()->getlastName();
+        $userFirstName = $this->getUser()->getfirstName();
+        $author = "$userLastName $userFirstName";
 
         $observation = $repository->findBy(array(
             'user' => $userId

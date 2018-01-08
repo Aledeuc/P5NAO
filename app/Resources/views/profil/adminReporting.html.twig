@@ -31,11 +31,11 @@
                         <tbody>
                         <tr>
                             <td><a class="userPreviews" {# href="{{ path('observation', { "id": observations.id }) }}#}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                            <td><a class="userPhoto" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.imageFile  }}</a></td>
-                            <td><a class="userName" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.firstName }} {{ user.lastName }}</a></td>
-                            <td><a class="userEmail" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.email }}</a></td>
-                            <td><a class="userEmail" {# href="{{ path('observation', { "id": observations.id }) }}#}"><i class="fa fa-camera" aria-hidden="true"></i>  {{ user.validatedObservation }} | {{ user.rejectedObservation }}</a></td>
-                            <td><a class="userSpeciality" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.speciality  }}</a></td>
+                            <td><a class="userPhoto">{{ user.imageFile  }}</a></td>
+                            <td><a class="userName">{{ user.firstName }} {{ user.lastName }}</a></td>
+                            <td><a class="userEmail">{{ user.email }}</a></td>
+                            <td><a class="userObservationStats"><i class="fa fa-camera" aria-hidden="true"></i>  {{ user.validatedObservation }} | {{ user.rejectedObservation }}</a></td>
+                            <td><a class="userSpeciality" ">{{ user.speciality  }}</a></td>
                             <td>
 
                                 <i class="fa fa-close iconPointer" data-toggle="modal" data-target="#deleteUser{{ user.id }}"></i>

@@ -1,7 +1,6 @@
 <?php
 namespace AppBundle\Entity;
 
-use AppBundle\AppBundle;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -14,11 +13,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Observation
 {
     //STATUS
-    const STATUS_DRAFT = 1; //brouillon
-    const STATUS_WAITING = 2; //en attente de validation
-    const STATUS_VALIDATE = 3; //validé
-    const STATUS_REJECTED = 4; //rejeté
-    const STATUS_ARCHIVED = 5; //archivé
+
+    const STATUS_DRAFT      = 1; //brouillon
+    const STATUS_WAITING    = 2; //en attente de validation
+    const STATUS_VALIDATE   = 3; //validé
+    const STATUS_REJECTED   = 4; //rejeté
+    const STATUS_ARCHIVED   = 5; //archivé
+
     //ENVIRONMENT
     const ENVIRONMENT_CITY = 1; //ville
     const ENVIRONMENT_FOREST = 2; //forêt

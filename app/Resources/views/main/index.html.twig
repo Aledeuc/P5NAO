@@ -1,17 +1,87 @@
 {% extends 'layout.html.twig' %}
+{% block header %}
 
+
+{% endblock %}
 {% block content %}
-    <!--Panel-->
-    <div class="card card-body">
-        <h4 class="card-title">Titre</h4>
-
-        <p class="card-text">
-            Test
-        </p>
-        <div class="flex-row">
-            <a class="card-link">Card link</a>
-            <a class="card-link">Another link</a>
+    <div class="row">
+        <img src="{{ asset('images/accueil.jpg') }}" alt="banniere_accueil" id="banniere_accueil">
+        <div class="col-lg-3" id="search_bloc">
+            <h4 class="text-uppercase">chercher un oiseau</h4>
+            <div id="form_search">
+                {{ form_start(form) }}
+                <div>
+                    {{ form_label(form.famille, 'espèce', {
+                        'label_attr': {'class': 'text-uppercase'}
+                    }) }}
+                    {{ form_widget(form.famille) }}
+                    {{ form_errors(form.famille) }}
+                </div>
+                <input type="submit" value="CHERCHER" class="btn btn-brown" id="btn-chercher"/>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div>
+            <p>
+                Découvrez et partagez vos observation d'oiseaux et participer à notre programme de recherche
+            </p>
         </div>
     </div>
-    <!--/.Panel-->
+
+    <!--Table -->
+    <div class="row">
+        <div class="col" id="observationListHome">
+            <div class="">
+                <h3 class="text-uppercase">Les dernières observations</h3>
+            </div>
+
+            {% if observationList is defined and not null %}
+            <table class="table table-striped">
+                <thead class="">
+                <tr>
+                    <th class="text-uppercase">Date</th>
+                    <th class="text-uppercase">Nom</th>
+                    <th class="text-uppercase">Photo</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for observations in observationList %}
+
+                    <tr>
+                        <td><a class="observationDate">{{ observations.observationDate |date("d/m/Y") }}</a></td>
+                        <td><a class="observationNom">nom</a></td>
+                        <td><img src="
+                        {% if observations.observationImages is null %}
+                            {{ asset('images/nao-logo-couleur.png') }}
+                        {% else %}
+                            {{ asset('uploads/observationImg/' ~ observations.observationImages.imageName ) }}
+                        {% endif %} "
+                                 class="img-fluid previewImg" alt="image_observation">
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="alert alert-warning">Pas d'observation trouvée</div>
+        {% endif %}
+        <!--/.Table-->
+        <!-- Map -->
+        <div id="map" class="col"></div>
+    </div>
+
+
+    <!--/.Map-->
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>// Material Select Initialization
+        $(document).ready(function () {
+            $('.mdb-select').material_select();
+        });
+    </script>
+    <script src="{{ asset('js/map_marker.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ map_api_key }}&v=3&&callback=initMap">
+    </script>
 {% endblock %}

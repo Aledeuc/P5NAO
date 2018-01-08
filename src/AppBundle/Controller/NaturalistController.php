@@ -22,13 +22,18 @@ class NaturalistController extends Controller
      */
     public function tovalidateAction()
     {
-        $repository = $this->getDoctrine()
+        $observation = $this->getDoctrine()
             ->getManager()
-            ->getRepository('AppBundle:Observation');
+            ->getRepository('AppBundle:Observation')
+            ->findBy(array(
+                'observationStatus' => '2'
+            ));
 
-        $observation = $repository->findBy(array(
-            'observationStatus' => '2'
-        ));
+
+        //$test =$repository->getFirstName();
+       //$test2 =$observation->getUser()->getLastName();
+        dump($observation);
+        exit;
 
         $titleTable = 'Observation à valider';
 
@@ -74,7 +79,6 @@ class NaturalistController extends Controller
             'observationStatus' => '4',
             'naturalistId' => $naturalistId
         ));
-        dump($observation);
 
         $titleTable = 'Observations refusées';
 

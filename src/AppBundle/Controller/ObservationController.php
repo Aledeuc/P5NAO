@@ -72,14 +72,12 @@ class ObservationController extends Controller
             $observation->setObservationPublication(false);
             $observation->setNaturalistId(null);
 
-            $user = $this->getUser()->getId();
-            $observation->setUser($user);
+            $userId = $user->getId();
+            $observation->setUser($userId);
 
-            $em = $this->getDoctrine()
-                ->getManager();
+            $em = $this->getDoctrine()->getManager();
             $em->persist($observation);
             $em->flush();
-
 
             return $this->redirectToRoute('homepage');
         }

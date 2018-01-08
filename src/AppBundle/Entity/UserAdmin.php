@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -77,6 +78,18 @@ class UserAdmin extends BaseUser
      * @ORM\Column(name="imageName", type="string", length=255)
      */
     private $imageName;
+
+    /**
+     *
+     * @var \AppBundle\Entity\Observation
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", mappedBy="user")
+     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
+     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
+     */
+    private $observation;
 
     /**
      * @var \DateTime
