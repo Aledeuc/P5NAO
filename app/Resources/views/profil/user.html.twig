@@ -56,7 +56,7 @@
                                                 {% endif %}
                                                 <td><a class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationDate |date("d/m/Y") }}</a></td>
                                                 <td><a class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user }}</a></td>
-                                                <td><a class="observationFamille" href="{{ path('observation', { "id": observations.id }) }}">{{ observations.taxref.nomComplet }}</a></td>
+                                                <td><a class="observationFamille">{{ observations.taxref.nomComplet }}</a></td>
                                                 {% if observations.observationStatus  == 4 %}
                                                     <td><i class="fa fa-times-circle-o" aria-hidden="true"></i></td>
                                                 {% elseif observations.observationStatus  == 3 %}

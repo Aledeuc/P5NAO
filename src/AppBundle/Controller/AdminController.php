@@ -72,13 +72,28 @@ class AdminController extends Controller
     public function reportingAction()
     {
 
-        $repository = $this->getDoctrine()
+        $userRepository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:UserAdmin');
 
-        $user = $repository->findByreportingUser(1);
+        $user = $userRepository->findByreportingUser(1);
 
-        return $this->render('profil/adminReporting.html.twig', ['user' => $user]);
+
+        $observationRepository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Observation');
+
+
+        $observation = $observationRepository->findBy(array(
+            'observationStatus' => '4',
+            'user' => $user,
+        ));
+
+        dump($user);
+        dump($observation);
+
+
+        return $this->render('profil/adminReporting.html.twig', ['user' => $user, 'observation' => $observation]);
 
     }
 

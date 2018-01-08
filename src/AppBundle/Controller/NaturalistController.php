@@ -30,11 +30,6 @@ class NaturalistController extends Controller
             ));
 
 
-        //$test =$repository->getFirstName();
-       //$test2 =$observation->getUser()->getLastName();
-        dump($observation);
-        exit;
-
         $titleTable = 'Observation à valider';
 
         return $this->render('profil/naturalist.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
@@ -134,6 +129,7 @@ class NaturalistController extends Controller
                 {
 
                 }
+                $validateObservation = $userRepository->getValidatedObservation();
                 $rejectedObservation = $userRepository->getRejectedObservation();
                 $totalrejected = $validateObservation + 1;
                 $userRepository->setRejectedObservation($totalrejected);

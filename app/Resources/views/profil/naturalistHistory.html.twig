@@ -26,26 +26,36 @@
                 <table class="table">
                     <thead class="blue-grey lighteen-4">
                     <tr>
-                        <th>Photo</th>
-                        <th>Date</th>
-                        <th>Nom</th>
-                        <th>Famille</th>
-                        <th>État</th>
+                        <th>PHOTO</th>
+                        <th>DATE</th>
+                        <th>AUTEUR</th>
+                        <th>NOM</th>
+                        <th>STATUS</th>
                         <th></th>
                     </tr>
                     </thead>
                     {% for observations in observation %}
                         <tbody>
                         <tr>
-                            <td><img src="{{ asset('uploads/observationImg/' ~ observations.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image"></td>
-                            <td><a class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationDate |date("d/m/Y") }}</a></td>
-                            <td><a class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user }}</a></td>
-                            <td class="observationFamille" {#href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.taxref.nomComplet }}</td>
+                            {% if observations.observationImages == null %}
+                                <td><img src="{{ asset('images/nao-logo-couleur.png') }}" class="img-fluid previewImg" alt="Responsive image"></td>
+                            {% else %}
+                                <td><img src="{{ asset('uploads/observationImg/' ~ observations.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image"></td>
+                            {% endif %}
+                            <td class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationDate |date("d/m/Y") }}</td>
+                            <td class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user.firstName }} {{ observations.user.lastName }}</td>
+                            <td class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.taxref.nomVern }}</td>
 
-                            <td>
 
-                                <a href="" class="btn btn-warning btn-xs" title="PreviewObservationLien" data-toggle="modal" data-target="#previewModal"><span class="glyphicon glyphicon-edit"></span></a>
-
+                                {% if observations.observationStatus  == 4 %}
+                                     <td><a href="" data-toggle="modal" data-target="#previewModal"><i class="fa fa-times-circle-o" aria-hidden="true"></i></a></td>
+                                {% elseif observations.observationStatus  == 3 %}
+                                    <td><a href="" data-toggle="modal" data-target="#previewModal"><i class="fa fa-check-circle" aria-hidden="true"></i></a></td>
+                                {%  elseif observations.observationStatus  == 2 %}
+                                     <td><a href="" data-toggle="modal" data-target="#previewModal"><i class="fa fa-undo" aria-hidden="true"></i></a></td>
+                                {% else %}
+                                      <td><a href="" data-toggle="modal" data-target="#previewModal"><i class="fa fa-archive" aria-hidden="true"></i></a></td>
+                                {%  endif %}
 
                                 <!-- Modal -->
                                 <div class="modal fade" id="previewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -54,19 +64,27 @@
                                             <div class="modal-body">
                                                 <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
                                                 </button>
-                                                <img src="{{ asset('uploads/observationImg/' ~ observations.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image">
-                                               <p> Nom : {{ observations.user }}</p>
+                                                {% if observations.observationImages == null %}
+                                                    <img src="{{ asset('images/nao-logo-couleur.png') }}" class="img-fluid previewImg" alt="Responsive image">
+                                                {% else %}
+                                                   <img src="{{ asset('uploads/observationImg/' ~ observations.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image">
+                                                {% endif %}
+
+                                                <p> Nom : {{ observations.user }}</p>
                                                 <p> Espèce :</p>
                                                 <p>Date de l'observation : {{ observations.observationDate |date("d/m/Y") }}</p>
                                                 <p> Nombre d'oiseaux : {{ observations.observationNumber }}</p>
                                                 <p>Observations : {{ observations.observationComment }}</p>
 
+                                                {% if observations.observationSignalementComment != null %}
+                                                 <p>Commentaire du naturaliste : {{ observations.observationSignalementComment }}</p>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                            </td>
+
 
                         </tr>
                         </tbody>

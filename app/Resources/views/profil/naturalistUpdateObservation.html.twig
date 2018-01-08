@@ -34,9 +34,13 @@
                Commentaire de l'utilisateur : {{ observation.observationComment }}
             </div>
             <div>
-                <img src="{{ asset('uploads/observationImg/' ~ observation.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image">
-
+                {% if observation.observationImages == null %}
+                    <td><img src="{{ asset('images/nao-logo-couleur.png') }}" class="img-fluid previewImg" alt="Responsive image"></td>
+                {% else %}
+                    <td><img src="{{ asset('uploads/observationImg/' ~ observation.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image"></td>
+                {% endif %}
             </div>
+
 
             <div>
 

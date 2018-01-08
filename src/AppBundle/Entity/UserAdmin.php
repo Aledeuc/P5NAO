@@ -80,14 +80,7 @@ class UserAdmin extends BaseUser
     private $imageName;
 
     /**
-     *
-     * @var \AppBundle\Entity\Observation
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Observation", mappedBy="user")
-     * @ORM\JoinColumn(name="observation_id", referencedColumnName="id")
-     *
-     * @Assert\NotBlank()
-     * @Assert\NotNull()
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade="persist")
      */
     private $observation;
 
@@ -446,5 +439,29 @@ class UserAdmin extends BaseUser
     public function getReportingUser()
     {
         return $this->reportingUser;
+    }
+
+    /**
+     * Set observation.
+     *
+     * @param \AppBundle\Entity\Observation|null $observation
+     *
+     * @return UserAdmin
+     */
+    public function setObservation(\AppBundle\Entity\Observation $observation = null)
+    {
+        $this->observation = $observation;
+
+        return $this;
+    }
+
+    /**
+     * Get observation.
+     *
+     * @return \AppBundle\Entity\Observation|null
+     */
+    public function getObservation()
+    {
+        return $this->observation;
     }
 }

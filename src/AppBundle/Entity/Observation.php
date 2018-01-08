@@ -112,14 +112,17 @@ class Observation
      */
     private $taxref;
     /**
+     * @var \AppBundle\Entity\UserAdmin
      *
-     * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserAdmin", mappedBy="observation", cascade="persist")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\UserAdmin", inversedBy="observation")
+     * @ORM\JoinColumn()
+     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      */
     private $user;
     /**
-     * @var ObservationImage
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ObservationImage", cascade="persist")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ObservationImage", cascade={"persist"})
      */
     private $observationImages;
     /**
@@ -360,11 +363,11 @@ class Observation
     /**
      * Set user
      *
-     * @param integer $user
+     * @param UserAdmin $user
      *
      * @return observation
      */
-    public function setUser($user)
+    public function setUser(UserAdmin $user)
     {
         $this->user = $user;
         return $this;
@@ -470,5 +473,38 @@ class Observation
     public function getObservationSignalementComment()
     {
         return $this->observationSignalementComment;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user.
+     *
+     * @param \AppBundle\Entity\UserAdmin $user
+     *
+     * @return Observation
+     */
+    public function addUser(\AppBundle\Entity\UserAdmin $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user.
+     *
+     * @param \AppBundle\Entity\UserAdmin $user
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUser(\AppBundle\Entity\UserAdmin $user)
+    {
+        return $this->user->removeElement($user);
     }
 }

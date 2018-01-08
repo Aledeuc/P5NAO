@@ -72,8 +72,7 @@ class ObservationController extends Controller
             $observation->setObservationPublication(false);
             $observation->setNaturalistId(null);
 
-            $userId = $user->getId();
-            $observation->setUser($userId);
+            $observation->setUser($user);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($observation);
