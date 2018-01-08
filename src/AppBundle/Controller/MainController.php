@@ -8,6 +8,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use AppBundle\Entity\UserAdmin;
+use AppBundle\Form\RegistrationType;
+
+
 
 class MainController extends Controller
 {
@@ -93,6 +97,31 @@ class MainController extends Controller
     }
 
 
+    public function registerAction(Request $request)
+    {
+
+        $user = new UserAdmin();
+
+        $form = $this->createForm(RegistrationType::class,$user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+
+        }
+        else
+        {
+            return false;
+        }
+
+
+        return $this->render('@FOSUser/Registration/register.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
     /**
      * @Route("/user", name="user_info")
      *
@@ -124,4 +153,7 @@ class MainController extends Controller
     {
         return $this->render('main/user.html.twig', []);
     }
+
+
+
 }

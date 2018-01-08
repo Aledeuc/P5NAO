@@ -1,19 +1,14 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Nicolas
- * Date: 28/04/2017
- * Time: 09:06
- */
+
 
 namespace AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\TaxrefLink;
+use AppBundle\Entity\TaxrefLien;
 
-class LoadTaxrefLink implements FixtureInterface, OrderedFixtureInterface
+class LoadTaxrefLien implements FixtureInterface, OrderedFixtureInterface
 {
     public function load(ObjectManager $manager)
     {
@@ -23,7 +18,7 @@ class LoadTaxrefLink implements FixtureInterface, OrderedFixtureInterface
             $line = fgetcsv($taxrefLinkCsv, 600, ';');
 
             if($i > 0){
-                $taxrefLink[$i] = new TaxrefLink();
+                $taxrefLink[$i] = new TaxrefLien();
                 $taxrefLink[$i]->setCtName($line[0]);
                 $taxrefLink[$i]->setCtType($line[1]);
                 $taxrefLink[$i]->setCtAuthors($line[2]);
