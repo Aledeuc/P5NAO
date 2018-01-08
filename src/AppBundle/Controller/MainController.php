@@ -147,6 +147,24 @@ class MainController extends Controller
     }
 
     /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('main/contact.html.twig', []);
+    }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faqAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('main/faq.html.twig', []);
+    }
+
+    /**
      * @Route("/carte", name="carte")
      */
     public function carteAction(Request $request)

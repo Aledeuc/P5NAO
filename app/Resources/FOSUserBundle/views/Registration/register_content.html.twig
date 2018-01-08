@@ -29,6 +29,49 @@
     {{ form_errors(form.plainPassword.second) }}
 </div>
 
+
+<div class="row no-padding">
+    <div class="input-field col-sm-12">
+        {{ form_label(form.firstName) }}
+        {{ form_widget(form.firstName) }}
+    </div>
+    {{ form_errors(form.firstName) }}
+</div>
+
+<div class="row no-padding">
+    <div class="input-field col-sm-12">
+        {{ form_label(form.lastName) }}
+        {{ form_widget(form.lastName) }}
+    </div>
+    {{ form_errors(form.lastName) }}
+
+
+    <div class="row no-padding">
+        <div class="input-field col-sm-12">
+            {{ form_label(form.speciality) }}
+            {{ form_widget(form.speciality) }}
+        </div>
+        {{ form_errors(form.speciality) }}
+    </div>
+
+    <div class="row no-padding">
+        <div class="input-field col-sm-12">
+            {{ form_label(form.imageFile) }}
+            {{ form_widget(form.imageFile) }}
+        </div>
+        {{ form_errors(form.imageFile) }}
+    </div>
+
+    <div class="row no-padding">
+        <div class="input-field col-sm-12">
+            {{ form_label(form.organization) }}
+            {{ form_widget(form.organization) }}
+        </div>
+        {{ form_errors(form.organization) }}
+    </div>
+
+
+
 <div align="center" class="button-wrap">
     <button class="btn btn-info teal darken-3" type="submit" name="action" formnovalidate>
         {{ 'registration.submit'|trans }}
