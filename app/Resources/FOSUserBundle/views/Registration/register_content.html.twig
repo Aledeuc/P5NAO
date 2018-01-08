@@ -64,6 +64,14 @@
 
     <div class="row no-padding">
         <div class="input-field col-sm-12">
+            {{ form_label(form.imageName) }}
+            {{ form_widget(form.imageName) }}
+        </div>
+        {{ form_errors(form.imageName) }}
+    </div>
+
+    <div class="row no-padding">
+        <div class="input-field col-sm-12">
             {{ form_label(form.organization) }}
             {{ form_widget(form.organization) }}
         </div>

@@ -12,7 +12,7 @@ services:
             - { name: kernel.event_subscriber }
 
 
-    appBundle.form.registration:
+    app_user.form.registration:
         class: AppBundle\Form\RegistrationType
         tags:
             - { name: form.type, alias: appbundle_user_registration}
