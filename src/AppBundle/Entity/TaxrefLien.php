@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="taxref_lien")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\taxrefLienRepository")
  */
-class taxrefLien
+class TaxrefLien
 {
     /**
      * @var int

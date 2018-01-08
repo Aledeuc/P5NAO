@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * taxrefLienFile
+ * taxrefFile
  *
- * @ORM\Table(name="taxref_lien_file")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\taxrefLienFileRepository")
+ * @ORM\Table(name="taxref_file")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\taxrefFileRepository")
  */
-class taxrefLienFile
+class TaxrefFile
 {
     /**
      * @var int
@@ -24,9 +24,9 @@ class taxrefLienFile
     /**
      * @var string
      *
-     * @ORM\Column(name="taxrefLienFile", type="string", length=255)
+     * @ORM\Column(name="taxrefFile", type="string", length=255)
      */
-    private $taxrefLienFile;
+    private $taxrefFile;
 
     /**
      * @var string
@@ -36,7 +36,7 @@ class taxrefLienFile
     private $fileName;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="fileSize", type="integer")
      */
@@ -68,27 +68,27 @@ class taxrefLienFile
     }
 
     /**
-     * Set taxrefLienFile
+     * Set taxrefFile
      *
-     * @param string $taxrefLienFile
+     * @param string $taxrefFile
      *
-     * @return taxrefLienFile
+     * @return taxrefFile
      */
-    public function setTaxrefLienFile($taxrefLienFile)
+    public function setTaxrefFile($taxrefFile)
     {
-        $this->taxrefLienFile = $taxrefLienFile;
+        $this->taxrefFile = $taxrefFile;
 
         return $this;
     }
 
     /**
-     * Get taxrefLienFile
+     * Get taxrefFile
      *
      * @return string
      */
-    public function getTaxrefLienFile()
+    public function getTaxrefFile()
     {
-        return $this->taxrefLienFile;
+        return $this->taxrefFile;
     }
 
     /**
@@ -96,7 +96,7 @@ class taxrefLienFile
      *
      * @param string $fileName
      *
-     * @return taxrefLienFile
+     * @return taxrefFile
      */
     public function setFileName($fileName)
     {
@@ -118,9 +118,9 @@ class taxrefLienFile
     /**
      * Set fileSize
      *
-     * @param string $fileSize
+     * @param integer $fileSize
      *
-     * @return taxrefLienFile
+     * @return taxrefFile
      */
     public function setFileSize($fileSize)
     {
@@ -132,7 +132,7 @@ class taxrefLienFile
     /**
      * Get fileSize
      *
-     * @return string
+     * @return int
      */
     public function getFileSize()
     {
@@ -144,7 +144,7 @@ class taxrefLienFile
      *
      * @param \DateTime $uploadDate
      *
-     * @return taxrefLienFile
+     * @return taxrefFile
      */
     public function setUploadDate($uploadDate)
     {
@@ -168,7 +168,7 @@ class taxrefLienFile
      *
      * @param \DateTime $updateDate
      *
-     * @return taxrefLienFile
+     * @return taxrefFile
      */
     public function setUpdateDate($updateDate)
     {

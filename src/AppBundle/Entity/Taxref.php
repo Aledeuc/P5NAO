@@ -5,28 +5,21 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * taxref
+ * Taxref
  *
  * @ORM\Table(name="taxref")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\taxrefRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TaxrefRepository")
  */
-class taxref
+class Taxref
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    const SEARCH_NUM_ITEMS = 12;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="regne", type="string", length=255)
+     * @ORM\Column(name="reign", type="string", length=255)
      */
-    private $regne;
+    private $reign;
 
     /**
      * @var string
@@ -38,267 +31,244 @@ class taxref
     /**
      * @var string
      *
-     * @ORM\Column(name="classe", type="string", length=255)
+     * @ORM\Column(name="category", type="string", length=255)
      */
-    private $classe;
+    private $category;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ordre", type="string", length=255)
+     * @ORM\Column(name="specie_order", type="string", length=255)
      */
-    private $ordre;
+    private $order;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="famille", type="string", length=255)
+     * @ORM\Column(name="family", type="string", length=255)
      */
-    private $famille;
+    private $family;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="cd_nom", type="string", length=255)
+     * @ORM\Id
+     * @ORM\Column(name="CD_NAME", type="integer", unique=true)
+     * @ORM\GeneratedValue(strategy="NONE")
      */
-    private $cdNom;
+    private $cdName;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="cd_taxsup", type="string", length=255)
+     * @ORM\Column(name="CD_TAXSUP", type="integer")
      */
     private $cdTaxsup;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="cd_ref", type="string", length=255)
+     * @ORM\Column(name="CD_REF", type="integer")
      */
     private $cdRef;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rang", type="string", length=255)
+     * @ORM\Column(name="rank", type="string", length=50)
      */
-    private $rang;
+    private $rank;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lb_nom", type="string", length=255)
+     * @ORM\Column(name="LB_NAME", type="string", length=255)
      */
-    private $lbNom;
+    private $lbName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="lb_auteur", type="string", length=255)
+     * @ORM\Column(name="LB_AUTHOR", type="string", length=255)
      */
-    private $lbAuteur;
+    private $lbAuthor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_complet", type="string", length=255)
+     * @ORM\Column(name="FULL_NAME", type="string", length=255)
      */
-    private $nomComplet;
+    private $fullName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_complet_html", type="string", length=255)
+     * @ORM\Column(name="VALID_NAME", type="string", length=255)
      */
-    private $nomCompletHtml;
+    private $validName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_valide", type="string", length=255)
+     * @ORM\Column(name="VERN_NAME", type="string", length=255, nullable=true)
      */
-    private $nomValide;
+    private $vernacularName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nom_vern", type="string", length=255)
+     * @ORM\Column(name="ENG_VERN_NAME", type="string", length=255, nullable=true)
      */
-    private $nomVern;
+    private $engVernacularName;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="nom_vern_eng", type="string", length=255)
-     */
-    private $nomVernEng;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="habitat", type="string", length=255)
+     * @ORM\Column(name="habitat", type="integer")
      */
     private $habitat;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fr", type="string", length=255)
+     * @ORM\Column(name="fr", type="string", length=255, nullable=true)
      */
     private $fr;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="gf", type="string", length=255)
+     * @ORM\Column(name="gf", type="string", length=255, nullable=true)
      */
     private $gf;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mar", type="string", length=255)
+     * @ORM\Column(name="mar", type="string", length=255, nullable=true)
      */
     private $mar;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="gua", type="string", length=255)
+     * @ORM\Column(name="gua", type="string", length=255, nullable=true)
      */
     private $gua;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sm", type="string", length=255)
+     * @ORM\Column(name="sm", type="string", length=255, nullable=true)
      */
     private $sm;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sb", type="string", length=255)
+     * @ORM\Column(name="sb", type="string", length=255, nullable=true)
      */
     private $sb;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="spm", type="string", length=255)
+     * @ORM\Column(name="spm", type="string", length=255, nullable=true)
      */
     private $spm;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="may", type="string", length=255)
+     * @ORM\Column(name="may", type="string", length=255, nullable=true)
      */
     private $may;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="epa", type="string", length=255)
+     * @ORM\Column(name="epa", type="string", length=255, nullable=true)
      */
     private $epa;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="reu", type="string", length=255)
+     * @ORM\Column(name="reu", type="string", length=255, nullable=true)
      */
     private $reu;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sa", type="string", length=255)
+     * @ORM\Column(name="sa", type="string", length=255, nullable=true)
      */
     private $sa;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ta", type="string", length=255)
+     * @ORM\Column(name="ta", type="string", length=255, nullable=true)
      */
     private $ta;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="taaf", type="string", length=255)
+     * @ORM\Column(name="taaf", type="string", length=255, nullable=true)
      */
     private $taaf;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pf", type="string", length=255)
-     */
-    private $pf;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nc", type="string", length=255)
+     * @ORM\Column(name="nc", type="string", length=255, nullable=true)
      */
     private $nc;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="wf", type="string", length=255)
+     * @ORM\Column(name="wf", type="string", length=255, nullable=true)
      */
     private $wf;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cli", type="string", length=255)
+     * @ORM\Column(name="pf", type="string", length=255, nullable=true)
      */
-    private $cli;
+    private $pf;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=255)
+     * @ORM\Column(name="cli", type="string", length=255, nullable=true)
      */
-    private $url;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $cli;
 
     /**
-     * Set regne
+     * Set reign
      *
-     * @param string $regne
+     * @param string $reign
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setRegne($regne)
+    public function setReign($reign)
     {
-        $this->regne = $regne;
+        $this->reign = $reign;
 
         return $this;
     }
 
     /**
-     * Get regne
+     * Get reign
      *
      * @return string
      */
-    public function getRegne()
+    public function getReign()
     {
-        return $this->regne;
+        return $this->reign;
     }
 
     /**
@@ -306,7 +276,7 @@ class taxref
      *
      * @param string $phylum
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setPhylum($phylum)
     {
@@ -326,107 +296,107 @@ class taxref
     }
 
     /**
-     * Set classe
+     * Set category
      *
-     * @param string $classe
+     * @param string $category
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setClasse($classe)
+    public function setCategory($category)
     {
-        $this->classe = $classe;
+        $this->category = $category;
 
         return $this;
     }
 
     /**
-     * Get classe
+     * Get category
      *
      * @return string
      */
-    public function getClasse()
+    public function getCategory()
     {
-        return $this->classe;
+        return $this->category;
     }
 
     /**
-     * Set ordre
+     * Set order
      *
-     * @param string $ordre
+     * @param string $order
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setOrdre($ordre)
+    public function setOrder($order)
     {
-        $this->ordre = $ordre;
+        $this->order = $order;
 
         return $this;
     }
 
     /**
-     * Get ordre
+     * Get order
      *
      * @return string
      */
-    public function getOrdre()
+    public function getOrder()
     {
-        return $this->ordre;
+        return $this->order;
     }
 
     /**
-     * Set famille
+     * Set family
      *
-     * @param string $famille
+     * @param string $family
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setFamille($famille)
+    public function setFamily($family)
     {
-        $this->famille = $famille;
+        $this->family = $family;
 
         return $this;
     }
 
     /**
-     * Get famille
+     * Get family
      *
      * @return string
      */
-    public function getFamille()
+    public function getFamily()
     {
-        return $this->famille;
+        return $this->family;
     }
 
     /**
-     * Set cdNom
+     * Set cdName
      *
-     * @param string $cdNom
+     * @param integer $cdName
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setCdNom($cdNom)
+    public function setCdName($cdName)
     {
-        $this->cdNom = $cdNom;
+        $this->cdName = $cdName;
 
         return $this;
     }
 
     /**
-     * Get cdNom
+     * Get cdName
      *
-     * @return string
+     * @return integer
      */
-    public function getCdNom()
+    public function getCdName()
     {
-        return $this->cdNom;
+        return $this->cdName;
     }
 
     /**
      * Set cdTaxsup
      *
-     * @param string $cdTaxsup
+     * @param integer $cdTaxsup
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setCdTaxsup($cdTaxsup)
     {
@@ -438,7 +408,7 @@ class taxref
     /**
      * Get cdTaxsup
      *
-     * @return string
+     * @return integer
      */
     public function getCdTaxsup()
     {
@@ -448,9 +418,9 @@ class taxref
     /**
      * Set cdRef
      *
-     * @param string $cdRef
+     * @param integer $cdRef
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setCdRef($cdRef)
     {
@@ -462,7 +432,7 @@ class taxref
     /**
      * Get cdRef
      *
-     * @return string
+     * @return integer
      */
     public function getCdRef()
     {
@@ -470,203 +440,179 @@ class taxref
     }
 
     /**
-     * Set rang
+     * Set rank
      *
-     * @param string $rang
+     * @param string $rank
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setRang($rang)
+    public function setRank($rank)
     {
-        $this->rang = $rang;
+        $this->rank = $rank;
 
         return $this;
     }
 
     /**
-     * Get rang
+     * Get rank
      *
      * @return string
      */
-    public function getRang()
+    public function getRank()
     {
-        return $this->rang;
+        return $this->rank;
     }
 
     /**
-     * Set lbNom
+     * Set lbName
      *
-     * @param string $lbNom
+     * @param string $lbName
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setLbNom($lbNom)
+    public function setLbName($lbName)
     {
-        $this->lbNom = $lbNom;
+        $this->lbName = $lbName;
 
         return $this;
     }
 
     /**
-     * Get lbNom
+     * Get lbName
      *
      * @return string
      */
-    public function getLbNom()
+    public function getLbName()
     {
-        return $this->lbNom;
+        return $this->lbName;
     }
 
     /**
-     * Set lbAuteur
+     * Set lbAuthor
      *
-     * @param string $lbAuteur
+     * @param string $lbAuthor
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setLbAuteur($lbAuteur)
+    public function setLbAuthor($lbAuthor)
     {
-        $this->lbAuteur = $lbAuteur;
+        $this->lbAuthor = $lbAuthor;
 
         return $this;
     }
 
     /**
-     * Get lbAuteur
+     * Get lbAuthor
      *
      * @return string
      */
-    public function getLbAuteur()
+    public function getLbAuthor()
     {
-        return $this->lbAuteur;
+        return $this->lbAuthor;
     }
 
     /**
-     * Set nomComplet
+     * Set fullName
      *
-     * @param string $nomComplet
+     * @param string $fullName
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setNomComplet($nomComplet)
+    public function setFullName($fullName)
     {
-        $this->nomComplet = $nomComplet;
+        $this->fullName = $fullName;
 
         return $this;
     }
 
     /**
-     * Get nomComplet
+     * Get fullName
      *
      * @return string
      */
-    public function getNomComplet()
+    public function getFullName()
     {
-        return $this->nomComplet;
+        return $this->fullName;
     }
 
     /**
-     * Set nomCompletHtml
+     * Set validName
      *
-     * @param string $nomCompletHtml
+     * @param string $validName
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setNomCompletHtml($nomCompletHtml)
+    public function setValidName($validName)
     {
-        $this->nomCompletHtml = $nomCompletHtml;
+        $this->validName = $validName;
 
         return $this;
     }
 
     /**
-     * Get nomCompletHtml
+     * Get validName
      *
      * @return string
      */
-    public function getNomCompletHtml()
+    public function getValidName()
     {
-        return $this->nomCompletHtml;
+        return $this->validName;
     }
 
     /**
-     * Set nomValide
+     * Set vernacularName
      *
-     * @param string $nomValide
+     * @param string $vernacularName
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setNomValide($nomValide)
+    public function setVernacularName($vernacularName)
     {
-        $this->nomValide = $nomValide;
+        $this->vernacularName = $vernacularName;
 
         return $this;
     }
 
     /**
-     * Get nomValide
+     * Get vernacularName
      *
      * @return string
      */
-    public function getNomValide()
+    public function getVernacularName()
     {
-        return $this->nomValide;
+        return $this->vernacularName;
     }
 
     /**
-     * Set nomVern
+     * Set engVernacularName
      *
-     * @param string $nomVern
+     * @param string $engVernacularName
      *
-     * @return taxref
+     * @return Taxref
      */
-    public function setNomVern($nomVern)
+    public function setEngVernacularName($engVernacularName)
     {
-        $this->nomVern = $nomVern;
+        $this->engVernacularName = $engVernacularName;
 
         return $this;
     }
 
     /**
-     * Get nomVern
+     * Get engVernacularName
      *
      * @return string
      */
-    public function getNomVern()
+    public function getEngVernacularName()
     {
-        return $this->nomVern;
-    }
-
-    /**
-     * Set nomVernEng
-     *
-     * @param string $nomVernEng
-     *
-     * @return taxref
-     */
-    public function setNomVernEng($nomVernEng)
-    {
-        $this->nomVernEng = $nomVernEng;
-
-        return $this;
-    }
-
-    /**
-     * Get nomVernEng
-     *
-     * @return string
-     */
-    public function getNomVernEng()
-    {
-        return $this->nomVernEng;
+        return $this->engVernacularName;
     }
 
     /**
      * Set habitat
      *
-     * @param string $habitat
+     * @param integer $habitat
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setHabitat($habitat)
     {
@@ -678,7 +624,7 @@ class taxref
     /**
      * Get habitat
      *
-     * @return string
+     * @return integer
      */
     public function getHabitat()
     {
@@ -690,7 +636,7 @@ class taxref
      *
      * @param string $fr
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setFr($fr)
     {
@@ -714,7 +660,7 @@ class taxref
      *
      * @param string $gf
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setGf($gf)
     {
@@ -738,7 +684,7 @@ class taxref
      *
      * @param string $mar
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setMar($mar)
     {
@@ -762,7 +708,7 @@ class taxref
      *
      * @param string $gua
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setGua($gua)
     {
@@ -786,7 +732,7 @@ class taxref
      *
      * @param string $sm
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setSm($sm)
     {
@@ -810,7 +756,7 @@ class taxref
      *
      * @param string $sb
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setSb($sb)
     {
@@ -834,7 +780,7 @@ class taxref
      *
      * @param string $spm
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setSpm($spm)
     {
@@ -858,7 +804,7 @@ class taxref
      *
      * @param string $may
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setMay($may)
     {
@@ -882,7 +828,7 @@ class taxref
      *
      * @param string $epa
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setEpa($epa)
     {
@@ -906,7 +852,7 @@ class taxref
      *
      * @param string $reu
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setReu($reu)
     {
@@ -930,7 +876,7 @@ class taxref
      *
      * @param string $sa
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setSa($sa)
     {
@@ -954,7 +900,7 @@ class taxref
      *
      * @param string $ta
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setTa($ta)
     {
@@ -978,7 +924,7 @@ class taxref
      *
      * @param string $taaf
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setTaaf($taaf)
     {
@@ -998,35 +944,11 @@ class taxref
     }
 
     /**
-     * Set pf
-     *
-     * @param string $pf
-     *
-     * @return taxref
-     */
-    public function setPf($pf)
-    {
-        $this->pf = $pf;
-
-        return $this;
-    }
-
-    /**
-     * Get pf
-     *
-     * @return string
-     */
-    public function getPf()
-    {
-        return $this->pf;
-    }
-
-    /**
      * Set nc
      *
      * @param string $nc
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setNc($nc)
     {
@@ -1050,7 +972,7 @@ class taxref
      *
      * @param string $wf
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setWf($wf)
     {
@@ -1070,11 +992,35 @@ class taxref
     }
 
     /**
+     * Set pf
+     *
+     * @param string $pf
+     *
+     * @return Taxref
+     */
+    public function setPf($pf)
+    {
+        $this->pf = $pf;
+
+        return $this;
+    }
+
+    /**
+     * Get pf
+     *
+     * @return string
+     */
+    public function getPf()
+    {
+        return $this->pf;
+    }
+
+    /**
      * Set cli
      *
      * @param string $cli
      *
-     * @return taxref
+     * @return Taxref
      */
     public function setCli($cli)
     {
@@ -1092,29 +1038,4 @@ class taxref
     {
         return $this->cli;
     }
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return taxref
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
 }
-
