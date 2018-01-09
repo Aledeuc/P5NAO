@@ -15,29 +15,34 @@
         var locations = elt.innerText || elt.textContent;
         locations = JSON.parse(locations);
 
-        var largeInfowindow = new google.maps.InfoWindow({});
-        var bounds = new google.maps.LatLngBounds();
+        if(!locations === ""){
 
-        for (var i = 0; i < locations.length; i++) {
-            var position = {
-                lat: locations[i].lat,
-                lng: locations[i].lng
-            };
-            var nom = locations[i].nom;
-            var marker = new google.maps.Marker({
-                map: map,
-                position: position,
-                title: nom,
-                animation: google.maps.Animation.DROP,
-                id: i
-            });
-            markers.push(marker);
-            bounds.extend(marker.position);
-            marker.addListener('click', function(){
-                populateInfoWindow(this, largeInfowindow);
-            });
+            var largeInfowindow = new google.maps.InfoWindow({});
+            var bounds = new google.maps.LatLngBounds();
+
+            for (var i = 0; i < locations.length; i++) {
+                var position = {
+                    lat: locations[i].lat,
+                    lng: locations[i].lng
+                };
+                var nom = locations[i].nom;
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: position,
+                    title: nom,
+                    animation: google.maps.Animation.DROP,
+                    id: i
+                });
+                markers.push(marker);
+                bounds.extend(marker.position);
+                marker.addListener('click', function(){
+                    populateInfoWindow(this, largeInfowindow);
+                });
+            }
+            map.fitBounds(bounds);
+        }else{
+
         }
-        map.fitBounds(bounds);
 
         function populateInfoWindow(marker, infowindow) {
             if (infowindow.marker != marker) {
