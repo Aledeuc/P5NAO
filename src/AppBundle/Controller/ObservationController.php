@@ -78,7 +78,13 @@ class ObservationController extends Controller
             $em->persist($observation);
             $em->flush();
 
-            return $this->redirectToRoute('homepage');
+            if ($user->hasRole('ROLE_NATURALIST')) {
+                return $this->redirectToRoute('profil_naturalist_tovalidate');
+            }
+            elseif ($user->hasRole('ROLE_USER')) {
+                return $this->redirectToRoute('profil_user_all');
+            }
+
         }
         return $this->render('observation/add.html.twig', array(
             'form' => $form->createView()
