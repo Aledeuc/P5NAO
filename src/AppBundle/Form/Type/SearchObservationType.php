@@ -8,6 +8,7 @@ use AppBundle\Entity\Taxref;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,16 +22,12 @@ class SearchObservationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('famille', EntityType::class, [
-                'class' => 'AppBundle:Taxref',
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('u')
-                        ->orderBy('u.famille', 'ASC');
-                },
-                'choice_label' => 'famille',
-                'multiple' => false,
+            ->add('famille', ChoiceType::class, [
+                'choices' => [
+                    'Accipridae' => 'Accipridae',
+                    'Anatidae' => 'Anatidae'
+                ],
                 'attr' => ['class' => 'mdb-select'],
-
             ]);
     }
 

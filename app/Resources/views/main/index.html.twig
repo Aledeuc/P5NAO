@@ -49,7 +49,7 @@
 
                     <tr>
                         <td><a class="observationDate">{{ observations.observationDate |date("d/m/Y") }}</a></td>
-                        <td><a class="observationNom">nom</a></td>
+                        <td><a class="observationNom">{{ observations.taxref.nomVern }}</a></td>
                         <td><img src="
                         {% if observations.observationImages is null %}
                             {{ asset('images/nao-logo-couleur.png') }}

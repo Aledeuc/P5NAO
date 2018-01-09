@@ -4,6 +4,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Observation;
@@ -15,10 +16,11 @@ use AppBundle\Form\Type\SearchSpecObservationType;
 use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Doctrine\ORM\EntityManagerInterface;
+
 
 
 class MainController extends Controller
@@ -30,7 +32,7 @@ class MainController extends Controller
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * * @Route("/", name="homepage")
      */
-    public function indexAction(SessionInterface $session, Request $request, ObservationManager $observationManager)
+    public function indexAction(SessionInterface $session, Request $request, ObservationManager $observationManager, EntityManagerInterface $em)
     {
         if (empty($session->get('observation'))) {
             $observation = $observationManager->createObservation();
@@ -65,16 +67,11 @@ class MainController extends Controller
                 $json_data = json_encode($observationArray);
         }
         else{
-            $taxrefId = $session->get('taxref')->getFamille()->getFamille();
-            $observationList = $repository->findBy(
-                array(
-                    'taxref' => $taxrefId,
-                    'observationStatus' => Observation::STATUS_VALIDATE
-                ),
-                array('observationDate' => 'desc'),
-                5,
-                0
-            );
+            //Affichage suite à la recherche
+            $taxrefFamille = $session->get('taxref')->getFamille();
+
+            $observationList = $em->getRepository("AppBundle\Entity\Observation")->getObservationsByFamily($taxrefFamille);
+
             $observationArray = array();
             foreach ($observationList as $key => $observationElt){
                 array_push($observationArray, array(
@@ -88,8 +85,7 @@ class MainController extends Controller
             $json_data = json_encode($observationArray);
         }
         // Formulaire recherche
-            $taxref = new Taxref();
-
+        $taxref = new Taxref();
         $form = $this->createForm(SearchObservationType::class, $taxref);
         $form->handleRequest($request);
 
