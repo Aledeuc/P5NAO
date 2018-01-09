@@ -71,20 +71,26 @@ html, body {
     margin: 0;
     padding: 0;
 }
+body{
+    background-image: url("../images/accueil.jpg");
+}
 
 /*Homepage*/
 .full-height, .full-height body, .full-height header, .full-height header .view {
     height: 100%;
 }
 
-.view {
-    background: url("https://mdbootstrap.com/img/Photos/Others/img (50).jpg")no-repeat center center;
-    background-size: cover;
+#bloc1{
+    position:static;
+    height: auto;
+}
+#bloc2{
+    position:relative;
 }
 #banniere_accueil{
     width: 100%;
     height: auto;
-    z-index: -1;
+    position: relative;
 }
 
 /*Button size*/
@@ -95,8 +101,15 @@ html, body {
 
 #search_bloc{
     background-color: rgba(87, 48, 21, 0.05);
+    position: relative;
 }
-
+#bienvenue{
+    position: relative;
+}
+footer{
+    height: 75px;
+    color: white;
+}
 /*Colors */
 /* Main colors*/
 /*Font color*/

@@ -4,8 +4,8 @@
 
 {% endblock %}
 {% block content %}
-    <div class="row">
-        <img src="{{ asset('images/accueil.jpg') }}" alt="banniere_accueil" id="banniere_accueil">
+    <div class="row" id="bloc1">
+
         <div class="col-lg-3" id="search_bloc">
             <h4 class="text-uppercase">chercher un oiseau</h4>
             <div id="form_search">
@@ -22,14 +22,14 @@
             </div>
         </div>
         <div>
-            <p>
+            <p id="bienvenue">
                 Découvrez et partagez vos observation d'oiseaux et participer à notre programme de recherche
             </p>
         </div>
     </div>
 
     <!--Table -->
-    <div class="row">
+    <div class="row" id="bloc2">
         <div class="col" id="observationListHome">
             <div class="">
                 <h3 class="text-uppercase">Les dernières observations</h3>
