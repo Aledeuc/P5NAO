@@ -23,7 +23,7 @@
             </div>
             <div>
                 <p>Coordonnées GPS</p>
-                <button id="GPS">Me localiser</button>
+                <button onclick="getLocation()" id="GPS">Me localiser</button>
                 <br>
                 {{ form_errors(form.observationLatitude) }}
                 {{ form_widget(form.observationLatitude) }}
@@ -49,14 +49,14 @@
 
             </div>
             <div>
-                {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_USER') %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_NATURALIST') %}
+                    <input type="submit" name="publish"  value="Publier"
+                           class="btn btn-default pull-right"/>
+
+                {% elseif is_granted('IS_AUTHENTICATED_FULLY') and is_granted('ROLE_USER')%}
                     <input type="submit" name ="draft" value="Brouillon"
                            class="btn btn-default pull-left"/>
                     <input type="submit" name="waiting"  value="Soumettre"
-                           class="btn btn-default pull-right"/>
-                {% else %}
-
-                    <input type="submit" name="publish"  value="Publier"
                            class="btn btn-default pull-right"/>
 
                 {% endif %}
@@ -76,12 +76,36 @@
         });
     </script>
     <script>
+        var now = new Date();
+        var year = now.getFullYear();
+        var month = now.getMonth();
+        var day = now.getDate();
         $('.datepicker').pickadate({
             monthsFull: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
             weekdaysShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+            weekdaysFull: [ 'Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi' ],
             today: 'aujourd\'hui',
             clear: 'effacer',
-            formatSubmit: 'dd/mm/yyyy'
+            formatSubmit: 'dd/mm/yyyy',
+            min: [year, month-1, day],
+            max: [year, month, day]
         });
+    </script>
+
+    <script>
+        var x = document.getElementById("GPS");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "La géolocation n'est pas supporté par votre navigateur.";
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("add_observation_observationLatitude").value = position.coords.latitude ;
+            document.getElementById("add_observation_observationLongitude").value = position.coords.longitude;
+        }
     </script>
 {% endblock %}

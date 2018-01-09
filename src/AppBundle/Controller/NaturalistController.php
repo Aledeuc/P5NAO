@@ -129,9 +129,9 @@ class NaturalistController extends Controller
                 {
 
                 }
-                $validateObservation = $userRepository->getValidatedObservation();
+
                 $rejectedObservation = $userRepository->getRejectedObservation();
-                $totalrejected = $validateObservation + 1;
+                $totalrejected = $rejectedObservation + 1;
                 $userRepository->setRejectedObservation($totalrejected);
 
                 $observation->setobservationStatus(4);

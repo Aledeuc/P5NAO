@@ -45,6 +45,16 @@ class EditorController extends Controller
 
         if ($form->isSubmitted() && $form->isValid())
         {
+            $actuality->setActualiteAuthor($author);
+            if (isset($_POST['publish']))
+            {
+                $actuality->setActualiteStatus(2);
+            }
+            elseif (isset($_POST['draft']))
+            {
+                $actuality->setActualiteStatus(1);
+            }
+
             $file = $actuality->getActualiteImages();
             $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
@@ -55,16 +65,6 @@ class EditorController extends Controller
 
             $actuality->setActualiteImages($fileName);
 
-
-            $actuality->setActualiteAuthor($author);
-            if (isset($_POST['publish']))
-            {
-                $actuality->setActualiteStatus(2);
-            }
-            elseif (isset($_POST['draft']))
-            {
-                $actuality->setActualiteStatus(1);
-            }
             $em = $this->getDoctrine()
                 ->getManager();
             $em->persist($actuality);

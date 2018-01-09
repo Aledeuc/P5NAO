@@ -78,14 +78,10 @@ class UserController extends Controller
         }
         $user = $this->getUser();
         $form = $this->createForm(AddObservationType::class , $observation);
-
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-            if ($observation->getObservationImages() == null)
-            {
-
-            } else
+            if ($observation->getObservationImages() != null)
             {
                 $observation->getObservationImages()
                     ->setUploadDate(new \DateTime());

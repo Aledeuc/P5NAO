@@ -42,9 +42,9 @@
                             {% else %}
                                 <td><img src="{{ asset('uploads/observationImg/' ~ observations.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image"></td>
                             {% endif %}
-                            <td><a class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationDate |date("d/m/Y") }}</a></td>
-                            <td class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user.firstName }} {{ observations.user.lastName }}</td>
-                            <td class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.taxref.nomVern }}</td>
+                            <td><a class="observationDate">{{ observations.observationDate |date("d/m/Y") }}</a></td>
+                            <td class="observationNom">{{ observations.user.firstName }} {{ observations.user.lastName }}</td>
+                            <td class="observationNom">{{ observations.taxref.nomVern }}</td>
                             <td><a href="{{ path('naturalist_observation_update', { "id": observations.id }) }}" class="fa fa-edit"  aria-hidden="true" title="PreviewObservationLien"></a></td>
 
                         </tr>

@@ -42,9 +42,9 @@
                             {% else %}
                                 <td><img src="{{ asset('uploads/observationImg/' ~ observations.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image"></td>
                             {% endif %}
-                            <td class="observationDate" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.observationDate |date("d/m/Y") }}</td>
-                            <td class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.user.firstName }} {{ observations.user.lastName }}</td>
-                            <td class="observationNom" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ observations.taxref.nomVern }}</td>
+                            <td class="observationDate">{{ observations.observationDate |date("d/m/Y") }}</td>
+                            <td class="observationNom">{{ observations.user.firstName }} {{ observations.user.lastName }}</td>
+                            <td class="observationNom">{{ observations.taxref.nomVern }}</td>
 
 
                                 {% if observations.observationStatus  == 4 %}

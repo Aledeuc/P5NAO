@@ -27,20 +27,22 @@
                 {% if user != null %}
                 <table class="table">
 
-                    {% for user in user %}
+                    {% for observations in observation %}
+
                         <tbody>
                         <tr>
-                            <td><a class="userPreviews"   data-toggle="modal" data-target="#myModal"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                            <td><a class="userPhoto">{{ user.imageFile  }}</a></td>
-                            <td><a class="userName">{{ user.firstName }} {{ user.lastName }}</a></td>
-                            <td><a class="userEmail">{{ user.email }}</a></td>
-                            <td><a class="userEmail"><i class="fa fa-camera" aria-hidden="true"></i>  {{ user.validatedObservation }} | {{ user.rejectedObservation }}</a></td>
-                            <td><a class="userSpeciality" ">{{ user.speciality  }}</a></td>
-                            <td>
+                            <td><a class="userPreviews" data-toggle="modal" data-target="#obserbationModal{{ observations.user.id }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                            <td><a class="userPhoto">{{ observations.user.imageFile  }}</a></td>
+                            <td><a class="userName">{{ observations.user.firstName }} {{ observations.user.lastName }}</a></td>
+                            <td><a class="userEmail">{{ observations.user.email }}</a></td>
+                            <td><a class="userEmail"><i class="fa fa-camera" aria-hidden="true"></i>  {{ observations.user.validatedObservation }} | {{ observations.user.rejectedObservation }}</a></td>
+                            <td><a class="userSpeciality" ">{{ observations.user.speciality  }}</a></td>
+                            <td><i class="fa fa-close iconPointer" data-toggle="modal" data-target="#deleteUser{{ observations.user.id }}"></i></td>
+                        </tr>
 
-                                <i class="fa fa-close iconPointer" data-toggle="modal" data-target="#deleteUser{{ user.id }}"></i>
+                        </tbody>
 
-                                <div class="modal fade" id="deleteUser{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal" aria-hidden="true">
+                                <div class="modal fade" id="deleteUser{{ observations.user.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -52,20 +54,18 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                <a href="{{ path('admin_user_delete', { 'id': user.id }) }}" class="btn btn-danger">Confirmer</a>
+                                                <a href="{{ path('admin_user_delete', { 'id': observations.user.id }) }}" class="btn btn-danger">Confirmer</a>
                                             </div>
                                         </div><!-- /.modal-content -->
                                     </div><!-- /.modal-dialog -->
                                 </div><!-- /.modal -->
-                            </td>
-                        </tr>
 
 
-                            {% for observations in observation if user %}
+
 
 
                             <!-- Modal -->
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="obserbationModal{{ observations.user.id  }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-body">
@@ -97,11 +97,12 @@
                                 </div>
                             </div>
 
-                            {% endfor %}
-                        {% endfor %}
-                        </tbody>
 
+                        {% endfor %}
                 </table>
+
+
+
             </div>
             {% else %}
                 <div class="alert alert-warning">Pas d'utilisateurs trouvés</div>
@@ -113,6 +114,7 @@
 
     <!--/.Panel-->
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     <script>// Material Select Initialization

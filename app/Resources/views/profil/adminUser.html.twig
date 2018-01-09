@@ -42,12 +42,12 @@
                     {% for user in user %}
                         <tbody>
                         <tr>
-                            <td><a class="userPhoto" {#href="{{ path('observation', { "id": observations.id }) }} #}">{{ user.imageFile  }}</a></td>
-                            <td><a class="userFirstName" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.firstName }}</a></td>
-                            <td><a class="userLastName" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.lastName }}</a></td>
-                            <td><a class="userEmail" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.email }}</a></td>
-                            <td><a class="userEmail" {# href="{{ path('observation', { "id": observations.id }) }}#}"><i class="fa fa-camera" aria-hidden="true"></i>  {{ user.validatedObservation }} | {{ user.rejectedObservation }}</a></td>
-                            <td><a class="userSpeciality" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.speciality  }}</a></td>
+                            <td><a class="userPhoto">{{ user.imageFile  }}</a></td>
+                            <td><a class="userFirstName">{{ user.firstName }}</a></td>
+                            <td><a class="userLastName">{{ user.lastName }}</a></td>
+                            <td><a class="userEmail">{{ user.email }}</a></td>
+                            <td><a class="userEmail"><i class="fa fa-camera" aria-hidden="true"></i>  {{ user.validatedObservation }} | {{ user.rejectedObservation }}</a></td>
+                            <td><a class="userSpeciality">{{ user.speciality  }}</a></td>
 
                             <td>
 
