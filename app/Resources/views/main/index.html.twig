@@ -4,10 +4,11 @@
 
 {% endblock %}
 {% block content %}
-    <div class="row" id="bloc1">
-
-        <div class="col-lg-3" id="search_bloc">
-            <h4 class="text-uppercase">chercher un oiseau</h4>
+    <div id="espace"></div>
+    <div class="row justify-content-md-center" id="bloc1">
+        <div class="col-lg-3 bg-main-brown-2" id="search_bloc">
+            <h4 class="text-uppercase light">chercher un oiseau</h4>
+            <hr/>
             <div id="form_search">
                 {{ form_start(form) }}
                 <div>
@@ -21,17 +22,20 @@
                 {{ form_end(form) }}
             </div>
         </div>
-        <div>
-            <p id="bienvenue">
-                Découvrez et partagez vos observation d'oiseaux et participer à notre programme de recherche
-            </p>
+        <div id="bienvenue" class="col-lg-6">
+            <p class="light">
+                Découvrez et partagez vos  </p>
+            <p class="gras">observation d'oiseaux</p>
+            <p>et participer à notre programme de recherche</p>
         </div>
     </div>
-
+    <div class="bloc2 col align-items-center center">
+        <i class="fa fa-chevron-down icon_arrow" aria-hidden="true"></i>
+    </div>
     <!--Table -->
-    <div class="row" id="bloc2">
+    <div class="row" id="bloc3">
         <div class="col" id="observationListHome">
-            <div class="">
+            <div >
                 <h3 class="text-uppercase">Les dernières observations</h3>
             </div>
 

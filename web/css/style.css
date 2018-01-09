@@ -73,24 +73,36 @@ html, body {
 }
 body{
     background-image: url("../images/accueil.jpg");
+    background-size: cover ;
+    background-repeat: no-repeat;
 }
+.nav{
 
+}
 /*Homepage*/
 .full-height, .full-height body, .full-height header, .full-height header .view {
     height: 100%;
 }
-
+#espace{
+    height: 20px;
+}
 #bloc1{
-    position:static;
-    height: auto;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    height: 100%;
 }
 #bloc2{
-    position:relative;
+}
+.icon_arrow{
+    color: white;
+}
+#bloc3{
+    background-color: white;
 }
 #banniere_accueil{
     width: 100%;
     height: auto;
-    position: relative;
+
 }
 
 /*Button size*/
@@ -100,11 +112,20 @@ body{
 }
 
 #search_bloc{
-    background-color: rgba(87, 48, 21, 0.05);
-    position: relative;
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 20px;
+    text-align: center;
+    margin-right: 30px;
 }
 #bienvenue{
-    position: relative;
+    color: white;
+    font-size: 50px;
+}
+.light{
+    font-weight: lighter;
+}
+.gras{
+    font-weight: bold;
 }
 footer{
     height: 75px;
