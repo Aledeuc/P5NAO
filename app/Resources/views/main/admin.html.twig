@@ -2,174 +2,57 @@
 
 {% block content %}
 
-    <h1>Page Admin</h1>
-
-    <p>Bienvenue {{ app.user.username }}</p><br/>
-
-    <p> <a href="{{ path('fos_user_security_logout') }}">Se Déconnecter</a></p>
-
-    <!-- dashboard administrateur -->
-    {% if is_granted('ROLE_ADMIN')%}
-        <div class="row">
-            <!-- Déposer une observation-->
-            <div class="col-lg-4 col-md-6">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-plus fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">Déposer une observation</div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="panel-footer">
-                            <span class="pull-left">Voir</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-
+{% block body %}
+    {% block container %}
+        <!-- Vue update taxref -->
+        <div class="container-fluid" id="uploadTaxref" >
+            <!-- Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header" style="font-size: 25px;font-weight: 600;color: #ffffff;text-transform: uppercase">
+                        <i class="fa fa-refresh"></i> Mise à jour de la base Taxref
+                    </h1>
                 </div>
             </div>
-            <!-- Nouvelles observations-->
-            <div class="col-lg-4 col-md-6">
-                <div class="panel panel-green-clair">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-binoculars fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge" style="color: #004d40"></div>
-                                <div style="font-size: 20px;font-weight: 600">Nouvelles observations</div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="panel-footer">
-                            <span class="pull-left" style="color: #2b2b2b">Voir</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-
+            <!-- messages d'erreur -->
+            <div class="row">
+                <div class="col-sm-8 col-sm-offset-2">
+                    {% for message in app.session.flashbag.get('info') %}
+                        <div class="alert alert-info" ><span class="glyphicon glyphicon-info-sign"></span> {{ message }}</div>
+                    {% endfor %}
+                    {% for message in app.session.flashbag.get('error') %}
+                        <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> {{ message }}</div>
+                    {% endfor %}
                 </div>
             </div>
-            <!-- Mes observations-->
-            <div class="col-lg-4 col-md-6">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-eye fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">Mes observations</div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="panel-footer">
-                            <span class="pull-left">Plus de détails</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-
+            <!--  update taxref -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <i>Format csv avec séparateur ";" et encodage utf-8 attendu</i>
+                    {{ form_start(taxrefForm) }}
+                    {{ form_widget(taxrefForm) }}
+                    <button id="loadTaxrefButton" type="submit" class="btn" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Chargement en cours..." formnovalidate>Charger</button>
+                    {{ form_end(taxrefForm) }}
                 </div>
             </div>
-            <!-- Mes observations en attente-->
-            <div class="col-lg-4 col-md-6">
-                <div class="panel panel-green-clair">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-eye fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge"></div>
-                                <div style="font-size: 20px;font-weight: 600">Mes observations en attente</div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="panel-footer">
-                            <span class="pull-left">Plus de détails</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-
+            <hr>
+            <!--  update taxref link -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <i>Format csv avec séparateur ";" et encodage utf-8 attendu</i>
+                    {{ form_start(taxrefLienForm) }}
+                    {{ form_widget(taxrefLienForm) }}
+                    <br><button id="loadTaxrefLinkButton" type="submit" class="btn " data-loading-text="<i class='fa fa-spinner fa-spin '></i> Chargement en cours..." formnovalidate>Charger</button>
+                    {{ form_end(taxrefLienForm) }}
                 </div>
             </div>
-            <!-- Mes validations -->
-            <div class="col-lg-4 col-md-6">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-check-circle fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px;font-weight: 600">Mes validations</div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="panel-footer">
-                            <span class="pull-left">Voir</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-
-                </div>
-            </div>
-            <!-- Gestions des utilisateurs -->
-            <div class="col-lg-4 col-md-6">
-                <div class="panel panel-green-clair">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-group fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">Gestions des utilisateurs</div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="panel-footer">
-                            <span class="pull-left">Voir</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-
-                </div>
-            </div>
-            <!-- Mise à jour de la base Taxref -->
-            <div class="col-lg-4 col-md-6">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-refresh fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px;font-weight: 600">Mise à jour de la base Taxref</div>
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="panel-footer">
-                            <span class="pull-left">Mettre à Jour</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-
-                </div>
-            </div>
-
         </div>
-    {% endif %}
-    <!-- /.END dashboard super-admin -->
+    {% endblock %}
+{% endblock %}
+{% endblock %}
+
+
+{% block monscript %}
 
 {% endblock %}
+

@@ -1,8 +1,6 @@
 <?php
-
 namespace AppBundle\Entity;
 
-use AppBundle\AppBundle;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -21,7 +19,6 @@ class Observation
     const STATUS_VALIDATE   = 3; //validé
     const STATUS_REJECTED   = 4; //rejeté
     const STATUS_ARCHIVED   = 5; //archivé
-
 
     //ENVIRONMENT
     const ENVIRONMENT_CITY = 1; //ville
@@ -115,14 +112,17 @@ class Observation
      */
     private $taxref;
     /**
+     * @var \AppBundle\Entity\UserAdmin
      *
-     * @ORM\Column(name="user", type="string", length=255)
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\UserAdmin", mappedBy="observation", cascade="persist")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\UserAdmin", inversedBy="observation")
+     * @ORM\JoinColumn()
+     *
+     * @Assert\NotBlank()
+     * @Assert\NotNull()
      */
     private $user;
     /**
-     * @var ObservationImage
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ObservationImage", cascade="persist")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ObservationImage", cascade={"persist"})
      */
     private $observationImages;
     /**
@@ -142,7 +142,6 @@ class Observation
      * @ORM\Column(name="observationSignalementComment", type="text", length=255, nullable=true)
      */
     private $observationSignalementComment;
-
 
     /**
      * Get id
@@ -364,11 +363,11 @@ class Observation
     /**
      * Set user
      *
-     * @param integer $user
+     * @param UserAdmin $user
      *
      * @return observation
      */
-    public function setUser($user)
+    public function setUser(UserAdmin $user)
     {
         $this->user = $user;
         return $this;
@@ -474,5 +473,38 @@ class Observation
     public function getObservationSignalementComment()
     {
         return $this->observationSignalementComment;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add user.
+     *
+     * @param \AppBundle\Entity\UserAdmin $user
+     *
+     * @return Observation
+     */
+    public function addUser(\AppBundle\Entity\UserAdmin $user)
+    {
+        $this->user[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user.
+     *
+     * @param \AppBundle\Entity\UserAdmin $user
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeUser(\AppBundle\Entity\UserAdmin $user)
+    {
+        return $this->user->removeElement($user);
     }
 }

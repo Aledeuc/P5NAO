@@ -1,76 +1,132 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <!--Panel-->
-
-    <div class="row">
-        <div class="col-3 profilMenu">
-            <div class="titreMenuProfil">
-                <h2>ADMINISTRATION</h2>
-            </div>
-
-            <div class="menuProfil">
-                <ul>
-                    <li><a class="alluserLink" href="{{ path('profil_admin_alluser') }}">Utilisateurs</a></li>
-                    <li><a class="statisticalLink" href="{{ path('profil_admin_statistical') }}">Statistiques</a></li>
-                    <li><a class="reportingLink" href="{{ path('profil_admin_reporting') }}">Signalement</a></li>
-                </ul>
-            </div>
+<div class="row">
+    <div class="col-3 profilMenu">
+        <div class="titreMenuProfil">
+            <h2>ADMINISTRATION</h2>
         </div>
 
-
-        <div class="col-lg-9">
-            <h4 class="card-title">SIGNALEMENTS</h4>
-
-
-            <div class="tab-content">
-                {% if user != null %}
-                <table class="table">
-
-                    {% for user in user %}
-                        <tbody>
-                        <tr>
-                            <td><a class="userPreviews" {# href="{{ path('observation', { "id": observations.id }) }}#}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
-                            <td><a class="userPhoto" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.imageFile  }}</a></td>
-                            <td><a class="userName" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.firstName }} {{ user.lastName }}</a></td>
-                            <td><a class="userEmail" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.email }}</a></td>
-                            <td><a class="userEmail" {# href="{{ path('observation', { "id": observations.id }) }}#}"><i class="fa fa-camera" aria-hidden="true"></i>  {{ user.validatedObservation }} | {{ user.rejectedObservation }}</a></td>
-                            <td><a class="userSpeciality" {# href="{{ path('observation', { "id": observations.id }) }}#}">{{ user.speciality  }}</a></td>
-                            <td>
-
-                                <i class="fa fa-close iconPointer" data-toggle="modal" data-target="#deleteUser{{ user.id }}"></i>
-
-                                <div class="modal fade" id="deleteUser{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="deleteUserModal">Confirmation requise</h4>
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Voulez-vous vraiment supprimer cet utilisateur ?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                                                <a href="{{ path('admin_user_delete', { 'id': user.id }) }}" class="btn btn-danger">Confirmer</a>
-                                            </div>
-                                        </div><!-- /.modal-content -->
-                                    </div><!-- /.modal-dialog -->
-                                </div><!-- /.modal -->
-                            </td>
-
-                        </tr>
-                        </tbody>
-                    {% endfor %}
-                </table>
-            </div>
-            {% else %}
-                <div class="alert alert-warning">Pas d'utilisateurs trouvés</div>
-            {% endif %}
+        <div class="menuProfil">
+            <ul>
+                <li><a class="alluserLink" href="{{ path('profil_admin_alluser') }}">Utilisateurs</a></li>
+                <li><a class="statisticalLink" href="{{ path('profil_admin_statistical') }}">Statistiques</a></li>
+                <li><a class="reportingLink" href="{{ path('profil_admin_reporting') }}">Signalement</a></li>
+            </ul>
         </div>
     </div>
 
+    <div class="col-lg-9">
+        <h4 class="card-title">SIGNALEMENTS</h4>
+         <div class="tab-content">
+            {% if user != null %}
+            <table class="table">
+                <thead class="blue-grey lighteen-4">
+                    <tr>
+                        <th>OBSERVATIONS </br> REJÉTÉS</th>
+                        <th>PHOTO</th>
+                        <th>PRÉNOM & NOM</th>
+                        <th>COURIEL</th>
+                        <th>OBSERVATIONS ( réfusées/validées )</th>
+                        <th>SUPPRIMER</th>
+                    </tr>
+                </thead>
+                {% for observations in observation %}
+                <tbody>
+                    <tr>
+                        <td><a class="userPreviews" data-toggle="modal" data-target="#obserbationModal{{ observations.user.id }}"><i class="fa fa-eye" aria-hidden="true"></i></a></td>
+                        <td><img src="{{ asset('images/user_logo.png') }}" class="profilImage" alt="Responsive image"></td>
+                        <td><a class="userName">{{ observations.user.firstName }} {{ observations.user.lastName }}</a></td>
+                        <td><a class="userEmail">{{ observations.user.email }}</a></td>
+                        <td><a class="userEmail"><i class="fa fa-camera" aria-hidden="true"></i> {{ observations.user.rejectedObservation }} |  {{ observations.user.validatedObservation }}</a></td>
+                        <td><i class="fa fa-close iconPointer" data-toggle="modal" data-target="#deleteUser{{ observations.user.id }}"></i></td>
+                    </tr>
+                </tbody>
+
+                <!-- ModalDeleteUser -->
+                <div class="modal fade" id="deleteUser{{ observations.user.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteUserModal" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="deleteUserModal">Confirmation requise</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                Voulez-vous vraiment supprimer cet utilisateur ?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                <a href="{{ path('admin_user_delete', { 'id': observations.user.id }) }}" class="btn btn-danger">Confirmer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ModalPreviewObservation -->
+                <div class="modal fade" id="obserbationModal{{ observations.user.id  }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                                </button>
+
+                                {% if observations.observationImages == null %}
+                                    <img src="{{ asset('images/nao-logo-couleur.png') }}" class="img-fluid previewImg" alt="Responsive image">
+                                {% else %}
+                                    <img src="{{ asset('uploads/observationImg/' ~ observations.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image">
+                                {% endif %}
+
+                                <p> Nom : {{ observations.user }}</p>
+                                <p> Espèce :</p>
+                                <p>Date de l'observation : {{ observations.observationDate |date("d/m/Y") }}</p>
+                                <p> Nombre d'oiseaux : {{ observations.observationNumber }}</p>
+                                <p>Observations : {{ observations.observationComment }}</p>
+
+                                {% if observations.observationSignalementComment != null %}
+                                    <p>Commentaire du naturaliste : {{ observations.observationSignalementComment }}</p>
+                                {% endif %}
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-default btn-prev green lighten-1"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+                                    <button type="button" class="btn btn-default btn-next green lighten-1"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
 
-    <!--/.Panel-->
+                {% endfor %}
+            </table>
+        </div>
+            {% else %}
+                <div class="alert alert-warning">Pas d'utilisateurs trouvés</div>
+            {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>// Material Select Initialization
+        $("div[id^='myModal']").each(function(){
+
+            var currentModal = $(this);
+
+            //click next
+            currentModal.find('.btn-next').click(function(){
+                currentModal.modal('hide');
+                currentModal.closest("div[id^='myModal']").nextAll("div[id^='myModal']").first().modal('show');
+            });
+
+            //click prev
+            currentModal.find('.btn-prev').click(function(){
+                currentModal.modal('hide');
+                currentModal.closest("div[id^='myModal']").prevAll("div[id^='myModal']").first().modal('show');
+            });
+
+        });
+
+    </script>
 {% endblock %}

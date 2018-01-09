@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -77,6 +78,11 @@ class UserAdmin extends BaseUser
      * @ORM\Column(name="imageName", type="string", length=255)
      */
     private $imageName;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Observation", mappedBy="user", cascade="persist")
+     */
+    private $observation;
 
     /**
      * @var \DateTime
@@ -433,5 +439,29 @@ class UserAdmin extends BaseUser
     public function getReportingUser()
     {
         return $this->reportingUser;
+    }
+
+    /**
+     * Set observation.
+     *
+     * @param \AppBundle\Entity\Observation|null $observation
+     *
+     * @return UserAdmin
+     */
+    public function setObservation(\AppBundle\Entity\Observation $observation = null)
+    {
+        $this->observation = $observation;
+
+        return $this;
+    }
+
+    /**
+     * Get observation.
+     *
+     * @return \AppBundle\Entity\Observation|null
+     */
+    public function getObservation()
+    {
+        return $this->observation;
     }
 }

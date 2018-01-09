@@ -1,7 +1,4 @@
 <?php
-/**
- */
-
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -11,14 +8,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AdminController extends Controller
 {
-
     /**
      * @Route("/admin/alluser", name="profil_admin_alluser")
      * @Security("has_role('ROLE_ADMIN')")
      */
     public function alluserAction()
     {
-
         $repository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:UserAdmin');
@@ -71,15 +66,22 @@ class AdminController extends Controller
      */
     public function reportingAction()
     {
-
-        $repository = $this->getDoctrine()
+        $userRepository = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:UserAdmin');
 
-        $user = $repository->findByreportingUser(1);
+        $user = $userRepository->findByreportingUser(1);
 
-        return $this->render('profil/adminReporting.html.twig', ['user' => $user]);
+        $observationRepository = $this->getDoctrine()
+            ->getManager()
+            ->getRepository('AppBundle:Observation');
 
+        $observation = $observationRepository->findBy(array(
+            'observationStatus' => '4',
+            'user' => $user,
+        ));
+
+        return $this->render('profil/adminReporting.html.twig', ['user' => $user, 'observation' => $observation]);
     }
 
     /**
@@ -103,6 +105,4 @@ class AdminController extends Controller
         $this->addFlash('success', 'Utilisateur supprimé.');
         return $this->render('profil/adminUser.html.twig', ['user' => $user]);
     }
-
 }
-

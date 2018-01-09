@@ -39,8 +39,7 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes:
-        - 'Form/bootstrap_4_layout.html.twig'
+
 
 # Doctrine Configuration
 doctrine:
@@ -81,3 +80,6 @@ fos_user:
     from_email:
         address: "yourapp@yourapp.com"
         sender_name: "Demo String"
+    registration:
+        form:
+             type: AppBundle\Form\RegistrationType

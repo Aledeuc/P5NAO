@@ -1,55 +1,32 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <!--Panel-->
-    <div class="card card-body">
-        <!--Section: Blog v.3-->
-        <section class="py-4">
-
-            <!--Section heading-->
-            <h2 class="h1 text-center mb-5">LES ACTUALITÉS DE NAO</h2>
-            <!--Section description-->
-
-            {% for actualite in actualite %}
-            <!--Grid row-->
-            <div class="row">
-
-                <!--Grid column-->
-                <div class="col-lg-5 col-xl-4 mb-4">
-                    <!--Featured image-->
-                    <div class="view overlay hm-white-slight rounded z-depth-1-half">
-                        <img src="{{ asset('uploads/actualityImg/' ~ actualite.actualiteImages) }}" class="img-fluid" >
-                        <a>
-                            <div class="mask"></div>
-                        </a>
-                    </div>
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
-                    <h3 class="mb-3 font-bold dark-grey-text">
-                        <strong>{{ actualite.actualiteTitle  }}</strong>
-                    </h3>
-                    <p>{{ actualite.actualiteDate |date("d/m/Y")  }}, {{ actualite.actualiteCategory }} </p>
-
-
-                    <p class="grey-text">{{ actualite.actualiteArticle |raw  }}</p>
-
-                    <a class="btn btn-primary btn-md pull-right" href="{{ path('actualite_article_view', { 'id': actualite.id }) }}">Lire l'article</a>
-                </div>
-                <!--Grid column-->
-
+<div class="card card-body">
+    <section class="py-4">
+     <h2 class="h1 text-center mb-5">LES ACTUALITÉS DE NAO</h2>
+     {% for actualite in actualite %}
+     <div class="row">
+        <div class="col-lg-5 col-xl-4 mb-4">
+            <div class="tussoverlay hm-white-slight rounded z-depth-1-half">
+                <img src="{{ asset('uploads/actualityImg/' ~ actualite.actualiteImages) }}">
+                <a><div class="mask"></div></a>
             </div>
-            <!--Grid row-->
+        </div>
 
-            <hr class="mb-5">
-            {% endfor %}
-
-
-        </section>
-        <!--Section: Blog v.3-->
-
-    </div>
-    <!--/.Panel-->
+         <div class="col-lg-7 col-xl-7 ml-xl-4 mb-4">
+            <h3 class="mb-3 font-bold dark-grey-text">
+                <strong>{{ actualite.actualiteTitle  }}</strong>
+            </h3>
+            <p>{{ actualite.actualiteDate |date("d/m/Y")  }}, {{ actualite.actualiteCategory }} </p>
+            {% autoescape false %}
+            <p class="grey-text">{{ actualite.actualiteArticle | striptags  | truncate(360,true) }}</p>
+            {% endautoescape %}
+            <a class="btn btn-primary btn-md pull-right" href="{{ path('actualite_article_view', { 'id': actualite.id }) }}">Lire l'article</a>
+         </div>
+     </div>
+    <hr class="mb-5">
+    {% endfor %}
+     </section>
+</div>
 {% endblock %}
+

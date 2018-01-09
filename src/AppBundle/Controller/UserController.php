@@ -1,12 +1,13 @@
 <?php
-/**
- */
 
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Observation;
+use AppBundle\Form\Type\AddObservationType;
 use AppBundle\Form\AddArticleType;
+use AppBundle\Service\FileUploader;
+use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,10 +25,13 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
-        $userLastName = $this->getUser()->getlastName();
-        $userFirstName = $this->getUser()->getfirstName();
+        $userLastName = $this->getUser()
+            ->getlastName();
+        $userFirstName = $this->getUser()
+            ->getfirstName();
         $author = "$userLastName $userFirstName";
 
         $observation = $repository->findBy(array(
@@ -37,7 +41,6 @@ class UserController extends Controller
         $titleTable = 'Toutes mes observations';
 
         return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
     /**
      * @Route("/user/draftcopy", name="profil_user_draftcopy")
@@ -49,7 +52,8 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '1',
@@ -58,8 +62,59 @@ class UserController extends Controller
 
         $titleTable = 'Brouillon';
 
-        return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
+        return $this->render('profil/userDraft.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
+    }
+    /**
+     * @Route("/user/draft/{id}/observation", name="user_observation_draft")
+     * @Security("has_role('ROLE_USER')")
+     */
+    public function updateArticleAction(Request $request, FileUploader $fileUploader, Observation $observation)
+    {
+        if (!$this->get('security.authorization_checker')
+            ->isGranted('IS_AUTHENTICATED_FULLY'))
+        {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour modifier un brouillon');
+        }
+        $user = $this->getUser();
+        $form = $this->createForm(AddObservationType::class , $observation);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            if ($observation->getObservationImages() != null)
+            {
+                $observation->getObservationImages()
+                    ->setUploadDate(new \DateTime());
 
+                $file = $observation->getObservationImages()
+                    ->getImageFile();
+                $fileName = $fileUploader->upload($file);
+
+                $observation->getObservationImages()
+                    ->setImageName($fileName);
+            }
+
+            if ($user->hasRole('ROLE_USER'))
+            {
+                if (isset($_POST['waiting']))
+                {
+                    $observation->setObservationStatus(Observation::STATUS_WAITING);
+                }
+                elseif (isset($_POST['draft']))
+                {
+                    $observation->setObservationStatus(Observation::STATUS_DRAFT);
+                }
+            }
+
+            $observation = $form->getData();
+            $em = $this->getDoctrine()
+                ->getManager();
+            $em->persist($observation);
+            $em->flush();
+            $titleTable = 'Brouillon';
+            return $this->redirectToRoute('profil_user_draftcopy');
+        }
+        $titleTable = 'Brouillon';
+        return $this->render('observation/add.html.twig', ['form' => $form->createView() , 'observation' => $observation, 'titleTable' => $titleTable]);
     }
 
     /**
@@ -72,17 +127,20 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
-            'observationStatus' => array(3,5),
+            'observationStatus' => array(
+                3,
+                5
+            ) ,
             'user' => $userId
         ));
 
         $titleTable = 'Observations Validées';
 
         return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
 
     /**
@@ -95,7 +153,8 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '2',
@@ -105,7 +164,6 @@ class UserController extends Controller
         $titleTable = 'En cours de validation';
 
         return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
 
     /**
@@ -118,7 +176,8 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '4',
@@ -128,7 +187,5 @@ class UserController extends Controller
         $titleTable = 'Observations refusées';
 
         return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
 }
-

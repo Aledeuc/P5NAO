@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-3" id="left">
             <p>Ajouter une observation d'oiseau</p>
-            <img src="">
+            <img src="{{ asset('images/nao-logo-nb.png') }}" class="img-fluid previewImg" alt="Responsive image">
         </div>
 
 
@@ -23,7 +23,7 @@
             </div>
             <div>
                 <p>Coordonnées GPS</p>
-                <button id="GPS">Me localiser</button>
+                <button onclick="getLocation()" id="GPS">Me localiser</button>
                 <br>
                 {{ form_errors(form.observationLatitude) }}
                 {{ form_widget(form.observationLatitude) }}
@@ -58,6 +58,7 @@
                            class="btn btn-default pull-left"/>
                     <input type="submit" name="waiting"  value="Soumettre"
                            class="btn btn-default pull-right"/>
+
                 {% endif %}
             </div>
             {{ form_end(form) }}
@@ -89,5 +90,22 @@
             min: [year, month-1, day],
             max: [year, month, day]
         });
+    </script>
+
+    <script>
+        var x = document.getElementById("GPS");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "La géolocation n'est pas supporté par votre navigateur.";
+            }
+        }
+
+        function showPosition(position) {
+            document.getElementById("add_observation_observationLatitude").value = position.coords.latitude ;
+            document.getElementById("add_observation_observationLongitude").value = position.coords.longitude;
+        }
     </script>
 {% endblock %}

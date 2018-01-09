@@ -23,6 +23,7 @@
         "php": ">=5.5.9",
         "cmen/google-charts-bundle": "^3.0",
         "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/doctrine-fixtures-bundle": "^2.2",
         "doctrine/orm": "^2.5",
         "egeloen/ckeditor-bundle": "4.*",
         "friendsofsymfony/user-bundle": "~2.0",
@@ -33,8 +34,9 @@
         "symfony/polyfill-apcu": "^1.0",
         "symfony/swiftmailer-bundle": "^2.3.10",
         "symfony/symfony": "3.3.*",
+        "twig/extensions": "^1.5",
         "twig/twig": "^1.0||^2.0",
-        "vich/uploader-bundle": "^1.6"
+        "vich/uploader-bundle": "1.4.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

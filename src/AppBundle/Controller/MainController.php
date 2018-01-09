@@ -8,7 +8,6 @@ use AppBundle\AppBundle;
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Observation;
-
 use AppBundle\Entity\Taxref;
 use AppBundle\Form\SubscribeNewsletterType;
 use AppBundle\Form\Type\SearchObservationType;
@@ -19,9 +18,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use AppBundle\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
-
-
 
 class MainController extends Controller
 {
@@ -117,7 +115,11 @@ class MainController extends Controller
         $actualite = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Actualite')
-            ->findBy(array('actualiteStatus' => '2'), array('id' => 'desc'));
+            ->findBy(array(
+                'actualiteStatus' => '2'
+            ) , array(
+                'id' => 'desc'
+            ));
 
         return $this->render('main/actualite.html.twig', ['actualite' => $actualite]);
 
@@ -134,13 +136,12 @@ class MainController extends Controller
         }
 
         $actualite = $this->getDoctrine()
-        ->getManager()
-        ->getRepository('AppBundle:Actualite')
-        ->findOneById($id);
+            ->getManager()
+            ->getRepository('AppBundle:Actualite')
+            ->findOneById($id);
 
         return $this->render('main/article.html.twig', ['actualite' => $actualite]);
     }
-
 
     /**
      * @Route("/aPropos", name="aPropos")
@@ -160,6 +161,33 @@ class MainController extends Controller
         return $this->render('main/mentions.html.twig', []);
     }
 
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contactAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('main/contact.html.twig', []);
+    }
+
+    /**
+     * @Route("/faq", name="faq")
+     */
+    public function faqAction(Request $request)
+    {
+        // replace this example code with whatever you need
+        return $this->render('main/faq.html.twig', []);
+    }
+
+    /**
+     * @Route("/carte", name="carte")
+     */
+    public function carteAction(Request $request)
+    {
+
+        // replace this example code with whatever you need
+        return $this->render('main/carte.html.twig', ['map_api_key' => $this->getParameter('map_api_key') ]);
+    }
 
     /**
      * @Route("/newsletter", name="subscribe_newsletter")
@@ -230,6 +258,30 @@ class MainController extends Controller
         return $this->render('main/editor.html.twig', []);
     }
 
+    public function registerAction(Request $request)
+    {
+
+        $user = new UserAdmin();
+
+        $form = $this->createForm(RegistrationType::class,$user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+
+        }
+        else
+        {
+            return false;
+        }
+
+
+        return $this->render('@FOSUser/Registration/register.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
 
     /**
      * @Route("/user", name="user_info")
@@ -250,32 +302,39 @@ class MainController extends Controller
             ->getManager()
             ->getRepository('AppBundle:UserAdmin');
 
-
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_ADMIN')) {
+        if ($this->get('security.authorization_checker')
+            ->isGranted('ROLE_ADMIN'))
+        {
 
             $user = $userRepository->findAll();
-            return $this->render('profil/adminUser.html.twig',['user' => $user]);
+            return $this->render('profil/adminUser.html.twig', ['user' => $user]);
         }
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_NATURALIST')) {
+        if ($this->get('security.authorization_checker')
+            ->isGranted('ROLE_NATURALIST'))
+        {
             $observation = $observationRepository->findBy(array(
-                    'observationStatus' => '2'
-                ));
+                'observationStatus' => '2'
+            ));
             $titleTable = 'Observation à valider';
-            return $this->render('profil/naturalist.html.twig',['observation' => $observation,'titleTable' => $titleTable]);
+            return $this->render('profil/naturalist.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
         }
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_EDITOR')) {
+        if ($this->get('security.authorization_checker')
+            ->isGranted('ROLE_EDITOR'))
+        {
             $actualite = $actualiteRepository->findAll();
-            return $this->render('profil/editor.html.twig',['actualite' => $actualite]);
+            return $this->render('profil/editor.html.twig', ['actualite' => $actualite]);
         }
-        if ($this->get('security.authorization_checker')->isGranted('ROLE_USER')) {
+        if ($this->get('security.authorization_checker')
+            ->isGranted('ROLE_USER'))
+        {
             $titleTable = 'Toutes mes observations';
-            $userId= 'alexorac';
+            $userId = 'alexorac';
 
             $observation = $observationRepository->findBy(array(
                 'user' => $userId
             ));
 
-            return $this->render('profil/user.html.twig',['observation' => $observation, 'titleTable' => $titleTable]);
+            return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
         }
     }
 
