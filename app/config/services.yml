@@ -44,8 +44,9 @@ services:
                 $targetDir: '%images_directory%'
 
 
-    app_user.form.registration:
-        class: AppBundle\Form\RegistrationType
-        tags:
-            - { name: form.type, alias: appbundle_user_registration}
+    app.form.registration:
+            class: AppBundle\Form\RegistrationType
+            tags:
+                - { name: form.type, alias: appbundle_user_registration }
+
 
