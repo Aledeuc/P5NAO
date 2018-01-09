@@ -43,6 +43,7 @@ class MainController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
+
         if(!$session->has('taxref'))
         {
             //Affichage de base
@@ -55,7 +56,7 @@ class MainController extends Controller
             $observationArray = array();
             foreach ($observationList as $key => $observationElt){
                 array_push($observationArray, array(
-                        "nom" => $observationElt->getTaxref()->getNomComplet(),
+                        "nom" => $observationElt->getTaxref()->getNomVern(),
                         "lat" => $observationElt->getObservationLatitude(),
                         "lng" => $observationElt->getObservationLongitude(),
                     )
@@ -64,7 +65,7 @@ class MainController extends Controller
                 $json_data = json_encode($observationArray);
         }
         else{
-            $taxrefId = $session->get('taxref')->getFamille()->getId();
+            $taxrefId = $session->get('taxref')->getFamille()->getFamille();
             $observationList = $repository->findBy(
                 array(
                     'taxref' => $taxrefId,
@@ -77,7 +78,7 @@ class MainController extends Controller
             $observationArray = array();
             foreach ($observationList as $key => $observationElt){
                 array_push($observationArray, array(
-                        "nom" => $observationElt->getTaxref()->getNomComplet(),
+                        "nom" => $observationElt->getTaxref()->getNomVern(),
                         "date" =>$observationElt->getObservationDate(),
                         "lat" => $observationElt->getObservationLatitude(),
                         "lng" => $observationElt->getObservationLongitude(),
