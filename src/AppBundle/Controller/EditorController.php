@@ -1,6 +1,4 @@
 <?php
-/**
- */
 
 namespace AppBundle\Controller;
 
@@ -13,8 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class EditorController extends Controller
 {
-    // editor profil
-
     /**
      * @Route("/editor/allarticle", name="profil_editor_allarticle")
      * @Security("has_role('ROLE_EDITOR')")
@@ -24,11 +20,11 @@ class EditorController extends Controller
         $actualite = $this->getDoctrine()
             ->getManager()
             ->getRepository('AppBundle:Actualite')
-            ->findBy(array(), array('id' => 'desc'));
+            ->findBy(array() , array(
+                'id' => 'desc'
+            ));
         return $this->render('profil/editor.html.twig', ['actualite' => $actualite]);
-
     }
-
     /**
      * @Route("/editor/addarticle", name="profil_editor_addarticle")
      * @Security("has_role('ROLE_EDITOR')")
@@ -37,8 +33,10 @@ class EditorController extends Controller
     {
         $actuality = new Actualite();
         $form = $this->createForm(AddArticleType::class , $actuality);
-        $userLastName = $this->getUser()->getlastName();
-        $userFirstName = $this->getUser()->getfirstName();
+        $userLastName = $this->getUser()
+            ->getlastName();
+        $userFirstName = $this->getUser()
+            ->getfirstName();
         $author = "$userLastName $userFirstName";
 
         $form->handleRequest($request);
@@ -56,12 +54,9 @@ class EditorController extends Controller
             }
 
             $file = $actuality->getActualiteImages();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
-            $file->move(
-                $this->getParameter('image_directory'),
-                $fileName
-            );
+            $file->move($this->getParameter('image_directory') , $fileName);
 
             $actuality->setActualiteImages($fileName);
 
@@ -72,12 +67,10 @@ class EditorController extends Controller
 
             return $this->redirect($this->generateUrl('profil_editor_allarticle'));
         }
-
         return $this->render('profil/editorAddArticle.html.twig', array(
             'form' => $form->createView()
         ));
     }
-
     /**
      * @Route("/editor/update/{id}/article", name="editor_article_update")
      * @Security("has_role('ROLE_EDITOR')")
@@ -89,7 +82,6 @@ class EditorController extends Controller
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
-
             $actualite = $form->getData();
             $actualite->setActualiteStatus(2);
             $em = $this->getDoctrine()
@@ -101,7 +93,6 @@ class EditorController extends Controller
         }
         return $this->render('profil/editorUpdateArticle.html.twig', ['form' => $form->createView() , 'actualite' => $actualite]);
     }
-
     /**
      * @Route("/editor/delete/{id}/article", name="editor_article_delete")
      * @Security("has_role('ROLE_EDITOR')")
@@ -120,8 +111,6 @@ class EditorController extends Controller
         $this->addFlash('success', 'Article supprimé.');
         return $this->redirectToRoute('profil_editor_allarticle');
     }
-
-
     /**
      * @Route("/editor/draft/{id}/article", name="editor_article_draft")
      * @Security("has_role('ROLE_EDITOR')")
@@ -141,6 +130,5 @@ class EditorController extends Controller
         $this->addFlash('success', 'Article enregistré dans brouillon.');
         return $this->redirectToRoute('profil_editor_allarticle');
     }
-
 }
 

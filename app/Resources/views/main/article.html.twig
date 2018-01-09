@@ -1,39 +1,27 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <!--Panel-->
+<section class="py-4">
+    <div>
+        <a href="http://eepurl.com/dgJ0Y9" target="_blank"><button type="button"class="btn btn-brown" id="newsletterButton">NEWSLETTER</button></a>
+    </div>
 
-        <!--Section: Blog v.3-->
-        <section class="py-4">
+    <div>
+        <h2 class="h1 text-center mb-5">{{ actualite.actualiteTitle  }}</h2>
+        {{ actualite.actualiteCategory }}  {{ actualite.actualiteDate |date("d/m/Y")  }}
+    </div>
+    <div>
+        <img src="{{ asset('uploads/actualityImg/' ~ actualite.actualiteImages) }}" class="img-fluid" alt="Responsive image">
+    </div>
+    <div>
+        <p class="grey-text">{{ actualite.actualiteArticle | raw }}</p>
+    </div>
 
-
-
-            <div>
-                <a href="http://eepurl.com/dgJ0Y9" target="_blank"><button type="button"class="btn btn-brown" id="newsletterButton">NEWSLETTER</button></a>
-            </div>
-
-            <h2 class="h1 text-center mb-5">{{ actualite.actualiteTitle  }}</h2>
-            {{ actualite.actualiteCategory }}  {{ actualite.actualiteDate |date("d/m/Y")  }}
-            <!--Section description-->
-
-            <img src="{{ asset('uploads/actualityImg/' ~ actualite.actualiteImages) }}" class="img-fluid" alt="Responsive image">
-
-            <p class="grey-text">{{ actualite.actualiteArticle |raw  }}</p>
-
-
-
-
-            <a class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a>
-            <a class="icons-sm email-ic"><i class="fa fa-envelope-o"> </i></a>
-            <a class="icons-sm "><i class="fa fa-share" aria-hidden="true"></i></a>
-
-
-        </section>
-        <!--Section: Blog v.3-->
-
+    <div>
+        <a class="icons-sm fb-ic"><i class="fa fa-facebook"> </i></a>
+        <a class="icons-sm email-ic"><i class="fa fa-envelope-o"> </i></a>
+        <a class="icons-sm "><i class="fa fa-share" aria-hidden="true"></i></a>
+    </div>
+</section>
 {% endblock %}
 
-
-{% block javascripts %}
-
-{% endblock %}

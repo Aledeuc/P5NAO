@@ -14,8 +14,7 @@
         var elt = document.getElementById('json_data');
         var locations = elt.innerText || elt.textContent;
         locations = JSON.parse(locations);
-
-        if(!locations === ""){
+        if(!locations == ""){
 
             var largeInfowindow = new google.maps.InfoWindow({});
             var bounds = new google.maps.LatLngBounds();

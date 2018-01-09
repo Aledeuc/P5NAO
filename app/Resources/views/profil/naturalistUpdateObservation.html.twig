@@ -1,115 +1,98 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <!--Panel-->
-    <h4>Contrôler une observation</h4>
-    <div class="row">
-        <div class="col-3" id="left">
-            <p>Observation de {{ observation.User }}</p>
-            <img src="">
-        </div>
-
-
-        <div class="col-9" id="right">
-            {{ form_start(form) }}
-            <div id="date">
-               Date de l'observation : {{ observation.observationDate |date("d/m/Y") }}
-            </div>
-            <div>
-                {{ form_row(form.taxref) }}
-            </div>
-            <div>
-                Nombre d'oiseaux observés : {{ observation.observationNumber }}
-            </div>
-            <div>
-                Coordonnées GPS : {{ observation.observationLatitude }},{{ observation.observationLongitude }}
-            </div>
-            <div>
-               Cadre : {{ observation.observationEnvironment }}
-            </div>
-            <div>
-                Climat : {{ observation.observationClimat }}
-            </div>
-            <div>
-               Commentaire de l'utilisateur : {{ observation.observationComment }}
-            </div>
-            <div>
-                {% if observation.observationImages == null %}
-                    <td><img src="{{ asset('images/nao-logo-couleur.png') }}" class="img-fluid previewImg" alt="Responsive image"></td>
-                {% else %}
-                    <td><img src="{{ asset('uploads/observationImg/' ~ observation.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image"></td>
-                {% endif %}
-            </div>
-
-
-            <div>
-
-                <button type="button" class="btn-floating danger-color-dark" data-toggle="modal" data-target="#refuseModal"><i class="fa fa-close" aria-hidden="true"></i></button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="refuseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="form-group">
-                                    <input type="checkbox" id="signalementCheckbox">
-                                    <label for="signalementCheckbox">Je souhaiterai signaler cet utilisateur</label>
-                                </div>
-                                <div class="md-form">
-                                    <textarea type="text" name="signalementTextarea" class="md-textarea"></textarea>
-                                    <label for="signalementTextarea">Ajouter un commentaire</label>
-                                </div>
-                                <p>Confirmez-vous le refu de l'observation ?</p>
-                                <button type="button" class="btn green lighten-1" data-dismiss="modal">Non</button>
-                                <button type="submit" name="refuse" class="btn green lighten-1">Oui</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-
-
-
-
-                <button type="button" class="btn-floating success-color-dark" data-toggle="modal" data-target="#validateModal"><i class="fa fa-check" aria-hidden="true"></i></button>
-
-                <!-- Modal -->
-                <div class="modal fade" id="validateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
-                                </button>
-                                <div class="form-group">
-                                    <input type="checkbox" id="archiveCheckbox">
-                                    <label for="archiveCheckbox">Il ne faut pas afficher cette observation sur la carte</label>
-                                </div>
-                                <p>Confirmez-vous la validation de l'observation ?</p>
-                                <button type="button" class="btn green lighten-1" data-dismiss="modal">Non</button>
-                                <button type="submit" name="publish" class="btn green lighten-1">Oui</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-            {{ form_end(form) }}
-
-
-
-        </div>
+<h4>Contrôler une observation</h4>
+<div class="row">
+    <div class="col-3" id="left">
+        <p>Observation de {{ observation.User }}</p>
+        <img src="">
     </div>
-    <!--/.Panel-->
+
+    <div class="col-9" id="right">
+        {{ form_start(form) }}
+        <div id="date">
+           Date de l'observation : {{ observation.observationDate |date("d/m/Y") }}
+        </div>
+        <div>
+            {{ form_row(form.taxref) }}
+        </div>
+        <div>
+            Nombre d'oiseaux observés : {{ observation.observationNumber }}
+        </div>
+        <div>
+            Coordonnées GPS : {{ observation.observationLatitude }},{{ observation.observationLongitude }}
+        </div>
+        <div>
+           Cadre : {{ observation.observationEnvironment }}
+        </div>
+        <div>
+            Climat : {{ observation.observationClimat }}
+        </div>
+        <div>
+           Commentaire de l'utilisateur : {{ observation.observationComment }}
+        </div>
+        <div>
+            {% if observation.observationImages == null %}
+                <td><img src="{{ asset('images/nao-logo-couleur.png') }}" class="img-fluid previewImg" alt="Responsive image"></td>
+            {% else %}
+                <td><img src="{{ asset('uploads/observationImg/' ~ observation.observationImages.imageName) }}" class="img-fluid previewImg" alt="Responsive image"></td>
+            {% endif %}
+        </div>
+        <div>
+            <button type="button" class="btn-floating danger-color-dark" data-toggle="modal" data-target="#refuseModal"><i class="fa fa-close" aria-hidden="true"></i></button>
+            <button type="button" class="btn-floating success-color-dark" data-toggle="modal" data-target="#validateModal"><i class="fa fa-check" aria-hidden="true"></i></button>
+        </div>
+
+        <!-- ModalRefuseObservation -->
+        <div class="modal fade" id="refuseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="form-group">
+                            <input type="checkbox" id="signalementCheckbox">
+                            <label for="signalementCheckbox">Je souhaiterai signaler cet utilisateur</label>
+                        </div>
+                        <div class="md-form">
+                            <textarea type="text" name="signalementTextarea" class="md-textarea"></textarea>
+                            <label for="signalementTextarea">Ajouter un commentaire</label>
+                        </div>
+                        <p>Confirmez-vous le refu de l'observation ?</p>
+                        <button type="button" class="btn green lighten-1" data-dismiss="modal">Non</button>
+                        <button type="submit" name="refuse" class="btn green lighten-1">Oui</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ModalValidateObservation -->
+        <div class="modal fade" id="validateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <button type="button" class="close pull-right" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span>
+                        </button>
+                        <div class="form-group">
+                            <input type="checkbox" id="archiveCheckbox">
+                            <label for="archiveCheckbox">Il ne faut pas afficher cette observation sur la carte</label>
+                        </div>
+                        <p>Confirmez-vous la validation de l'observation ?</p>
+                        <button type="button" class="btn green lighten-1" data-dismiss="modal">Non</button>
+                        <button type="submit" name="publish" class="btn green lighten-1">Oui</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
-    <script>// Material Select Initialization
+    <script>
         $(document).ready(function () {
             $('.mdb-select').material_select();
         });

@@ -45,7 +45,7 @@ class Actualite
     /**
      * @var string
      *
-     * @ORM\Column(name="actualiteArticle", type="string", length=2255)
+     * @ORM\Column(name="actualiteArticle", type="text")
      */
     private $actualiteArticle;
     /**

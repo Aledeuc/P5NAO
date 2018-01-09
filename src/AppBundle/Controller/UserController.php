@@ -1,6 +1,4 @@
 <?php
-/**
- */
 
 namespace AppBundle\Controller;
 
@@ -27,10 +25,13 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
-        $userLastName = $this->getUser()->getlastName();
-        $userFirstName = $this->getUser()->getfirstName();
+        $userLastName = $this->getUser()
+            ->getlastName();
+        $userFirstName = $this->getUser()
+            ->getfirstName();
         $author = "$userLastName $userFirstName";
 
         $observation = $repository->findBy(array(
@@ -40,7 +41,6 @@ class UserController extends Controller
         $titleTable = 'Toutes mes observations';
 
         return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
     /**
      * @Route("/user/draftcopy", name="profil_user_draftcopy")
@@ -52,7 +52,8 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '1',
@@ -62,9 +63,7 @@ class UserController extends Controller
         $titleTable = 'Brouillon';
 
         return $this->render('profil/userDraft.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
-
     /**
      * @Route("/user/draft/{id}/observation", name="user_observation_draft")
      * @Security("has_role('ROLE_USER')")
@@ -128,17 +127,20 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
-            'observationStatus' => array(3,5),
+            'observationStatus' => array(
+                3,
+                5
+            ) ,
             'user' => $userId
         ));
 
         $titleTable = 'Observations Validées';
 
         return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
 
     /**
@@ -151,7 +153,8 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '2',
@@ -161,7 +164,6 @@ class UserController extends Controller
         $titleTable = 'En cours de validation';
 
         return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
 
     /**
@@ -174,7 +176,8 @@ class UserController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $userId = $this->getUser()->getId();
+        $userId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '4',
@@ -184,7 +187,5 @@ class UserController extends Controller
         $titleTable = 'Observations refusées';
 
         return $this->render('profil/user.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
 }
-

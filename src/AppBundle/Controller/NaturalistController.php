@@ -1,6 +1,4 @@
 <?php
-/**
- */
 
 namespace AppBundle\Controller;
 
@@ -11,11 +9,8 @@ use AppBundle\Form\Type\UpdateObservationType;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Observation;
 
-
 class NaturalistController extends Controller
 {
-    // Naturalist profil
-
     /**
      * @Route("/naturalist/tovalidate", name="profil_naturalist_tovalidate")
      * @Security("has_role('ROLE_NATURALIST')")
@@ -29,13 +24,10 @@ class NaturalistController extends Controller
                 'observationStatus' => '2'
             ));
 
-
         $titleTable = 'Observation à valider';
 
         return $this->render('profil/naturalist.html.twig', ['observation' => $observation, 'titleTable' => $titleTable]);
-
     }
-
     /**
      * @Route("/naturalist/historical", name="profil_naturalist_historical")
      * @Security("has_role('ROLE_NATURALIST')")
@@ -46,9 +38,13 @@ class NaturalistController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $naturalistId = $this->getUser()->getId();
+        $naturalistId = $this->getUser()
+            ->getId();
         $observation = $repository->findBy(array(
-            'observationStatus' => array(3,5),
+            'observationStatus' => array(
+                3,
+                5
+            ) ,
             'naturalistId' => $naturalistId
         ));
 
@@ -68,7 +64,8 @@ class NaturalistController extends Controller
             ->getManager()
             ->getRepository('AppBundle:Observation');
 
-        $naturalistId = $this->getUser()->getId();
+        $naturalistId = $this->getUser()
+            ->getId();
 
         $observation = $repository->findBy(array(
             'observationStatus' => '4',
@@ -87,7 +84,8 @@ class NaturalistController extends Controller
     public function updateArticleAction(Request $request, Observation $observation)
     {
         $form = $this->createForm(UpdateObservationType::class , $observation);
-        $naturalistId = $this->getUser()->getId();
+        $naturalistId = $this->getUser()
+            ->getId();
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -100,13 +98,13 @@ class NaturalistController extends Controller
                 ->getRepository('AppBundle:UserAdmin')
                 ->findOneById($userId);
 
-
             if (isset($_POST['publish']))
             {
                 if (isset($_POST['archiveCheckbox']))
                 {
                     $observation->setobservationStatus(3);
-                } else
+                }
+                else
                 {
                     $observation->setobservationStatus(5);
                 }
@@ -124,10 +122,6 @@ class NaturalistController extends Controller
                         ->getRepository('AppBundle:UserAdmin')
                         ->findOneById($userId);
                     $userRepository->setreportingUser(true);
-
-                } else
-                {
-
                 }
 
                 $rejectedObservation = $userRepository->getRejectedObservation();
@@ -149,13 +143,10 @@ class NaturalistController extends Controller
             $em->persist($observation);
             $em->flush();
 
-
-
             $this->addFlash('success', 'Observation mise à jours!');
             return $this->redirectToRoute('profil_naturalist_tovalidate');
         }
         return $this->render('profil/naturalistUpdateObservation.html.twig', ['form' => $form->createView() , 'observation' => $observation]);
     }
-
 }
 
