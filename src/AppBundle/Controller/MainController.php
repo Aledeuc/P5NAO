@@ -14,6 +14,7 @@ use AppBundle\Form\Type\SearchSpecObservationType;
 use AppBundle\Service\ObservationManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -50,6 +51,16 @@ class MainController extends Controller
                 5,
                 0
             );
+            $observationArray = array();
+            foreach ($observationList as $key => $observationElt){
+                array_push($observationArray, array(
+                        "nom" => $observationElt->getTaxref()->getNomComplet(),
+                        "lat" => $observationElt->getObservationLatitude(),
+                        "lng" => $observationElt->getObservationLongitude(),
+                    )
+                );
+            }
+                $json_data = json_encode($observationArray);
         }
         else{
             $taxrefId = $session->get('taxref')->getFamille()->getId();
@@ -62,6 +73,17 @@ class MainController extends Controller
                 5,
                 0
             );
+            $observationArray = array();
+            foreach ($observationList as $key => $observationElt){
+                array_push($observationArray, array(
+                        "nom" => $observationElt->getTaxref()->getNomComplet(),
+                        "date" =>$observationElt->getObservationDate(),
+                        "lat" => $observationElt->getObservationLatitude(),
+                        "lng" => $observationElt->getObservationLongitude(),
+                    )
+                );
+            }
+            $json_data = json_encode($observationArray);
         }
         // Formulaire recherche
             $taxref = new Taxref();
@@ -70,14 +92,10 @@ class MainController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            //$data = $this->get('serializer')->serialize($observation, 'json');
-            //$data = json_encode($observation);
-            //$response = new Response($data);
-            //$response->headers->set('Content-Type', 'application/json');
 
-            //mettre observations en session
+            $session->clear();
+            //mettre le retour du formulaire (taxref) en session
             $session->set('taxref', $taxref);
-            //$observationManager->setObservationInSession($observation);
             return $this->redirectToRoute('homepage', array(
                 'taxref' => $taxref
             ));
@@ -87,7 +105,8 @@ class MainController extends Controller
         return $this->render('main/index.html.twig', [
             'map_api_key' => $this->getParameter('map_api_key'),
             'observationList' => $observationList,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'json_data' => $json_data
         ]);
     }
 

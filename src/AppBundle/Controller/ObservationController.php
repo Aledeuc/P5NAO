@@ -54,19 +54,16 @@ class ObservationController extends Controller
                     ->setImageName($fileName);
             }
 
-            if ($user->hasRole('ROLE_USER'))
-            {
-                if (isset($_POST['waiting']))
-                {
+
+            if ($user->hasRole('ROLE_USER')) {
+                if (isset($_POST['waiting'])) {
                     $observation->setObservationStatus(Observation::STATUS_WAITING);
-                }
-                elseif (isset($_POST['draft']))
-                {
+                } elseif (isset($_POST['draft'])) {
                     $observation->setObservationStatus(Observation::STATUS_DRAFT);
                 }
             }
-            if (isset($_POST['publish']))
-            {
+            if (isset($_POST['publish'])) {
+
                 $observation->setObservationStatus(Observation::STATUS_VALIDATE);
             }
             $observation->setObservationPublication(false);
