@@ -22,6 +22,7 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     AppBundle\:
@@ -41,3 +42,10 @@ services:
     AppBundle\Service\FileUploader:
             arguments:
                 $targetDir: '%images_directory%'
+
+
+    app_user.form.registration:
+        class: AppBundle\Form\RegistrationType
+        tags:
+            - { name: form.type, alias: appbundle_user_registration}
+

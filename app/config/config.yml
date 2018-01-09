@@ -80,3 +80,8 @@ fos_user:
     from_email:
         address: "yourapp@yourapp.com"
         sender_name: "Demo String"
+
+    registration:
+        form:
+             type: appbundle_user_registration
+

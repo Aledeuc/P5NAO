@@ -3,11 +3,205 @@
 {% block content %}
     <!--Panel-->
     <div class="card card-body">
-        <h4 class="card-title">A propos</h4>
+        <h4 class="card-title">NOUS RÉPONDONS À VOS QUESTIONS</h4>
+<p>Vous ne trouvez pas de réponse à votre questions ? <a href="{{ path('contact') }}">Contactez-nous!</a></p>
+        <!--Accordion wrapper-->
+        <div class="accordion" id="accordionEx" role="tablist" aria-multiselectable="false">
 
-        <p class="card-text">
-            A propos
-        </p>
+            <!-- Accordion card -->
+            <div class="card">
+
+                <!-- Card header -->
+                <div class="card-header" role="tab" id="headingOne">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        <h5 class="mb-0">
+                            Qui peut participer au programme de recherche?<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+
+                <!-- Card body -->
+                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="card-body">
+                        Tous le monde! A partir du moment ou vous avez un appareil photo (recommandé) et un accès à internet, tout le monde peut soumettre
+                        ses observations qui seront validées par nos professionnels. ce sont ces données collectées lors de vos observations qui seront analysées
+                        et qui nous permettront de mener à bien nos recherches.
+
+                    </div>
+                </div>
+            </div>
+            <!-- Accordion card -->
+
+            <!-- Accordion card -->
+            <div class="card">
+
+                <!-- Card header -->
+                <div class="card-header" role="tab" id="headingTwo">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <h5 class="mb-0">
+                            Quels sont les risques si mon observation est refusée ?<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+
+                <!-- Card body -->
+                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="card-body">
+
+                        Une observation peut-être refusée si elle ne contient pas suffisamment d’informations ou si elles sont erronées,
+                        si c’est le cas, le refus sera accompagné d’explications et de conseils de la part de nos naturalistes, pour toujours
+                        mieux vous guider dans vos prochaines observations.
+                        Si vous saisissez volontairement de nombreuses observations fausses, vous risquez alors de vous voir banni.
+                        Mais seulement si cela est intentionnel.
+
+                    </div>
+                </div>
+            </div>
+            <!-- Accordion card -->
+
+            <!-- Accordion card -->
+            <div class="card">
+
+                <!-- Card header -->
+                <div class="card-header" role="tab" id="headingThree">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h5 class="mb-0">
+                            Comment faire si nous avons mis une erreur sur notre formulaire ? <i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+
+                <!-- Card body -->
+                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="card-body">
+                        Votre observation n’est envoyée que lorsque vous appuyez sur le bouton “Soumettre”. Dès lors vous ne pourrez plus
+                        faire de modifications.
+                        Si pendant votre saisie vous avez un doute, il vous est possible d’enregistrer votre observation, et de la rouvrir
+                        plus tard, pour la modifier et la soumettre.
+
+                    </div>
+            </div>
+            <!-- Accordion card -->
+
+            <!-- Accordion card -->
+            <div class="card">
+
+                <!-- Card header -->
+                <div class="card-header" role="tab" id="headingFour">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <h5 class="mb-0">
+                            Si je ne suis pas sûre du nom de l’oiseau, que dois-je mettre ?<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+
+                <!-- Card body -->
+                <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="card-body">
+                        Vous pouvez joindre une photo, ou décrire au mieux l’oiseau dans le champ observation, Toutes ces informations pourront
+                        permettre à nos naturaliste de définir le nom de l’oiseau, et de valider votre observation.
+                        Si vous avez rejoint le groupe sur facebook, vous pouvez également partager votre photo, et recevoir les avis de la
+                        communauté, avant de soumettre votre observation.
+                    </div>
+                </div>
+            </div>
+            <!-- Accordion card -->
+
+
+
+            <!-- Accordion card -->
+            <div class="card">
+
+                <!-- Card header -->
+                <div class="card-header" role="tab" id="headingFive">
+                    <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <h5 class="mb-0">
+                            Je n’arrive pas à me géolocaliser que faire?<i class="fa fa-angle-down rotate-icon"></i>
+                        </h5>
+                    </a>
+                </div>
+
+                <!-- Card body -->
+                <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="card-body">
+                        Commencer par vérifier que la géolocalisation de votre appareil est activé.
+                        Si c’est le cas, mais que vous n’y arrivez toujours pas, il vous suffit de rentrer les coordonnées GPS manuellement.
+                        Pour celà vous pouvez vous aider de Google Maps.
+
+                    </div>
+                </div>
+            </div>
+            <!-- Accordion card -->
+
+                <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingSix">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                            <h5 class="mb-0">
+                                Que faire pour devenir naturaliste?<i class="fa fa-angle-down rotate-icon"></i>
+                            </h5>
+                        </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix">
+                        <div class="card-body">
+                            Il suffit de fournir les documents demandés, à télécharger lors de votre demande d'inscription, ou par mail par la suite.
+                            Dès que ces documents auront été validés, vous recevrez un e-mail pour valider votre nouveau statut et vous expliquer votre nouveau
+                            champ d’action.
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingSeven">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                            <h5 class="mb-0">
+                                J’ai une question comment puis je vous contacter?<i class="fa fa-angle-down rotate-icon"></i>
+                            </h5>
+                        </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven">
+                        <div class="card-body">
+                            Il vous suffit d’aller dans le menu, sur la page contact, vous pourrez alors nous envoyer un message avec votre demande.
+                            Vous recevrez une réponse dans un délai de 72h maximum.
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion card -->
+
+                <!-- Accordion card -->
+                <div class="card">
+
+                    <!-- Card header -->
+                    <div class="card-header" role="tab" id="headingEight">
+                        <a class="collapsed" data-toggle="collapse" data-parent="#accordionEx" href="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                            <h5 class="mb-0">
+                                Que faites-vous de nos photos ? Les utilisez-vous en dehors du site web ?<i class="fa fa-angle-down rotate-icon"></i>
+                            </h5>
+                        </a>
+                    </div>
+
+                    <!-- Card body -->
+                    <div id="collapseEight" class="collapse" role="tabpanel" aria-labelledby="headingEight">
+                        <div class="card-body">
+                            Les photos que vous nous fournissez lors de vos observations restent votre propriété, vous autorisez cependant NAO à les utiliser
+                            sur notre site internet, nos réseaux sociaux, et plus généralement dans toute notre communication. Elle ne seront jamais utilisées
+                            à des fins commerciales, et ne seront jamais vendues ou cédées à un Tiers.
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordion card -->
+        </div>
+        <!--/.Accordion wrapper-->
     </div>
     <!--/.Panel-->
 {% endblock %}

@@ -7,7 +7,6 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Newsletter;
 use AppBundle\Entity\Observation;
-
 use AppBundle\Entity\Taxref;
 use AppBundle\Form\SubscribeNewsletterType;
 use AppBundle\Form\Type\SearchObservationType;
@@ -18,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use AppBundle\Form\RegistrationType;
 
 class MainController extends Controller
 {
@@ -241,6 +241,31 @@ class MainController extends Controller
     {
         // replace this example code with whatever you need
         return $this->render('main/editor.html.twig', []);
+    }
+
+    public function registerAction(Request $request)
+    {
+
+        $user = new UserAdmin();
+
+        $form = $this->createForm(RegistrationType::class,$user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid())
+        {
+
+
+        }
+        else
+        {
+            return false;
+        }
+
+
+        return $this->render('@FOSUser/Registration/register.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**
