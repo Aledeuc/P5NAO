@@ -19,11 +19,7 @@ class ActualiteImage
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    /**
-     * @ORM\ManyToOne(targetEntity="Actualite", inversedBy="ActualiteImages")
-     * @ORM\JoinColumn(name="actualite", referencedColumnName="id")
-     */
-    private $actualite;
+
     /**
      * @Assert\File(
      *     maxSize="5120k",
