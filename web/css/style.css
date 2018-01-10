@@ -1,0 +1,183 @@
+/* Profil */
+
+.active-pink-2 input[type=text]:focus:not([readonly])
+{
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+
+#titreMenu
+{
+    padding-bottom: 30px;
+    background-color: black;
+    color: white;
+}
+
+.menuProfil li
+{
+    padding-top: 10px;
+    list-style-type: none;
+}
+
+.modal-notify .modal-header {
+    border-radius: 3px 3px 0 0;
+}
+.modal-notify .modal-content {
+    border-radius: 3px;
+}
+
+
+.navbar {
+    font-weight: 600;
+    padding-right: 1rem !important;
+}
+
+.btn
+{
+    color:inherit !important;
+    color: white !important;
+    box-shadow:none;
+}
+.btn-fb
+{
+    background-color: #3B5998;
+    color: white !important;
+}
+
+.btn-fb:hover, .btn-fb:focus
+{
+    background-color: #4264aa;
+}
+
+.iconPointer
+{
+    cursor: pointer;
+}
+
+.previewImg
+{
+    max-width: 30%;
+    height: auto;
+}
+
+/* MAP */
+#map {
+    min-height: 500px;
+    height: 20%;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*Homepage*/
+.full-height, .full-height body, .full-height header, .full-height header .view {
+    height: 100%;
+}
+
+.view {
+    background: url("https://mdbootstrap.com/img/Photos/Others/img (50).jpg")no-repeat center center;
+    background-size: cover;
+}
+#banniere_accueil{
+    width: 100%;
+    height: auto;
+    z-index: -1;
+}
+
+/*Button size*/
+#btn-chercher{
+    height: 80px;
+    width: 325px;
+}
+
+#search_bloc{
+    background-color: rgba(87, 48, 21, 0.05);
+}
+
+/*Colors */
+/* Main colors*/
+/*Font color*/
+.main-brown-1{
+     color: rgba(87, 48, 21, 1);
+ }
+.main-brown-2{
+    color: rgba(87, 48, 21, 0.10);
+}
+.main-brown-3{
+    color: rgba(87, 48, 21, 0.05);
+}
+.main-green{
+    color: #bedb65;
+}
+/*Background color*/
+.bg-main-brown-1{
+    background-color: rgba(87, 48, 21, 1);
+}
+.bg-main-brown-2{
+    background-color: rgba(87, 48, 21, 0.10);
+}
+.bg-main-brown-3{
+    background-color: rgba(87, 48, 21, 0.05);
+}
+.bg-main-green{
+    background-color: #bedb65;
+}
+/* Secondary colors*/
+/*font color*/
+.second-green{
+    color: #6ba53e;
+}
+.second-sand{
+    color: #be9560;
+}
+.second-blue-1{
+    color: rgba(14, 22, 61, 1);
+}
+.second-blue-2{
+    color: rgba(14, 22, 61, 0.5);
+}
+/*Background color*/
+.bg-second-green{
+    background-color: #6ba53e;
+}
+.bg-second-sand{
+    background-color: #be9560;
+}
+.bg-second-blue-1{
+    background-color: rgba(14, 22, 61, 1);
+}
+.bg-second-blue-2{
+    background-color: rgba(14, 22, 61, 0.5);
+}
+
+
+.btn-floating i {
+    width: inherit;
+    font-size: 1rem;
+    line-height: 20px;
+    text-align: center;
+}
+
+i.fa.fa-plus {
+    font-size: 1rem;
+}
+
+.btn-floating {
+    z-index: 1;
+    overflow: hidden;
+    width: 25px;
+    height: 25px;
+    padding-top: 0;
+    border-radius: 50%;
+    background-color: #a6c;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.boutonProfil{
+    margin-left: 100px;
+
+}
