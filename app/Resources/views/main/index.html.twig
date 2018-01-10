@@ -1,4 +1,14 @@
 {% extends 'layout.html.twig' %}
+{% block stylesheets %}
+    {{ parent() }}
+<style type="text/css">
+    body{
+        background-image: url("../images/accueil.jpg");
+        background-size: cover ;
+        background-repeat: no-repeat;
+    }
+    </style>
+{% endblock %}
 {% block header %}
 
 

@@ -72,9 +72,7 @@ html, body {
     padding: 0;
 }
 body{
-    background-image: url("../images/accueil.jpg");
-    background-size: cover ;
-    background-repeat: no-repeat;
+
 }
 .nav{
 
