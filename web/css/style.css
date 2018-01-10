@@ -21,6 +21,7 @@
 {
     color: white;
 }
+
 .menuProfil li
 {
     padding-top: 10px;
@@ -32,6 +33,11 @@
 }
 .modal-notify .modal-content {
     border-radius: 3px;
+}
+
+.navbar {
+    font-weight: 600;
+    padding-right: 1rem !important;
 }
 
 .btn
@@ -62,6 +68,7 @@
     height: auto;
 }
 
+
 .profilImage
 {
     width: 50px;
@@ -85,6 +92,12 @@ html, body {
     height: 100%;
 }
 
+.menuImage
+{
+    width: 35px;
+    height: 35px;
+}
+
 .view {
     background: url("https://mdbootstrap.com/img/Photos/Others/img (50).jpg")no-repeat center center;
     background-size: cover;
@@ -94,6 +107,7 @@ html, body {
     height: auto;
     z-index: -1;
 }
+
 /* actuality Page */
 
 .ImgActualite
@@ -166,4 +180,32 @@ html, body {
 }
 .bg-second-blue-2{
     background-color: rgba(14, 22, 61, 0.5);
+}
+
+
+.btn-floating i {
+    width: inherit;
+    font-size: 1rem;
+    line-height: 20px;
+    text-align: center;
+}
+
+i.fa.fa-plus {
+    font-size: 1rem;
+}
+
+.btn-floating {
+    z-index: 1;
+    overflow: hidden;
+    width: 25px;
+    height: 25px;
+    padding-top: 0;
+    border-radius: 50%;
+    background-color: #a6c;
+    -webkit-transition: .3s;
+    transition: .3s;
+}
+
+.boutonProfil{
+    margin-left: 100px;
 }
