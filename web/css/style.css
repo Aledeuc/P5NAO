@@ -15,8 +15,14 @@
 
 .profilMenu
 {
+    padding-top: 5%;
     background-color: #0E163D;
 }
+.mainProfil
+{
+    padding-top: 5%;
+}
+
 .profilMenu a, h2
 {
     color: white;
@@ -91,6 +97,11 @@ body{
 }
 .nav{
 
+}
+
+main
+{
+    margin-top: 3%;
 }
 /*Homepage*/
 .full-height, .full-height body, .full-height header, .full-height header .view {
