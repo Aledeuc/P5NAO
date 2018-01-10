@@ -71,11 +71,11 @@ html, body {
     margin: 0;
     padding: 0;
 }
-body{
-
+main{
+margin-top: 50px;
 }
-.nav{
-
+.content{
+    margin-top: 200px;
 }
 /*Homepage*/
 .full-height, .full-height body, .full-height header, .full-height header .view {

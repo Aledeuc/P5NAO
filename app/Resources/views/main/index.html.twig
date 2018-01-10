@@ -16,7 +16,7 @@
 {% block content %}
     <div id="espace"></div>
     <div class="row justify-content-md-center" id="bloc1">
-        <div class="col-lg-3 bg-main-brown-2" id="search_bloc">
+        <div class="col-lg-3 col-sm-6 bg-main-brown-2" id="search_bloc">
             <h4 class="text-uppercase light">chercher un oiseau</h4>
             <hr/>
             <div id="form_search">
@@ -28,23 +28,20 @@
                     {{ form_widget(form.famille) }}
                     {{ form_errors(form.famille) }}
                 </div>
-                <input type="submit" value="CHERCHER" class="btn btn-brown" id="btn-chercher"/>
+                <input type="submit" value="CHERCHER" class="btn bg-main-brown-1" id="btn-chercher"/>
                 {{ form_end(form) }}
             </div>
         </div>
-        <div id="bienvenue" class="col-lg-6">
+        <div id="bienvenue" class="col-lg-6 col-sm-6">
             <p class="light">
                 Découvrez et partagez vos  </p>
             <p class="gras">observation d'oiseaux</p>
             <p>et participer à notre programme de recherche</p>
         </div>
     </div>
-    <div class="bloc2 col align-items-center center">
-        <i class="fa fa-chevron-down icon_arrow" aria-hidden="true"></i>
-    </div>
     <!--Table -->
     <div class="row" id="bloc3">
-        <div class="col" id="observationListHome">
+        <div class="col col-sm-6" id="observationListHome">
             <div >
                 <h3 class="text-uppercase">Les dernières observations</h3>
             </div>
@@ -78,11 +75,11 @@
             </table>
         </div>
         {% else %}
-            <div class="alert alert-warning">Pas d'observation trouvée</div>
+            <div class="alert alert-warning"><p>Pas d'observation trouvée</p></div>
         {% endif %}
         <!--/.Table-->
         <!-- Map -->
-        <div id="map" class="col"></div>
+        <div id="map" class="col col-sm-6"></div>
         <div id="json_data" style="display: none">{{ json_data }}</div>
     </div>
 
