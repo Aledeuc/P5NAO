@@ -19,11 +19,13 @@
     </div>
 
     <div class="col-lg-9">
-        <a href="https://www.facebook.com/groups/143719076291913/" target="_blank"><button type="button" class="btn btn-fb"><i class="fa fa-facebook left"></i>Communauté Facebook</button></a>
-        <h4 class="card-title">{{ titleTable }}</h4>
-        <form class="form-inline">
-            <input class="form-control w-100" type="text" placeholder="Search" aria-label="Search">
-        </form>
+        <a href="https://www.facebook.com/groups/143719076291913/" target="_blank"><button type="button" class="btn btn-fb pull-right"><i class="fa fa-facebook left"></i>Communauté Facebook</button></a>
+        <div>
+            <h4 class="card-title">{{ titleTable }}</h4>
+            <form class="form-inline searchBar">
+                <input class="form-control w-25 pull-right" type="text" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
         <div class="tab-content">
             {% if observation != null %}
                 <table class="table">
