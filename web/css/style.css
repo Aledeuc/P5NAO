@@ -266,6 +266,10 @@ i.fa.fa-plus {
         padding-top:20%;
     }
 
+    main{
+        margin-top:20%;
+    }
+
 }
 @media only screen and (max-width: 400px)
 {
@@ -273,6 +277,9 @@ i.fa.fa-plus {
     .profilMenu
     {
         padding-top:30%;
+    }
+    main{
+        margin-top: 30%;
     }
 }
 
