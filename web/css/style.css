@@ -258,3 +258,21 @@ i.fa.fa-plus {
 .boutonProfil{
     margin-left: 100px;
 }
+
+@media only screen and (max-width: 600px)
+{
+    .profilMenu
+    {
+        padding-top:20%;
+    }
+
+}
+@media only screen and (max-width: 400px)
+{
+
+    .profilMenu
+    {
+        padding-top:30%;
+    }
+}
+
