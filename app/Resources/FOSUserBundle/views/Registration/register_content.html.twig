@@ -1,89 +1,67 @@
 {% trans_default_domain 'FOSUserBundle' %}
 {{form_start(form, {'method': 'POST', 'attr':{'class': 'register divforminscire'}})}}
-<div class="row">
-    <div class="input-field col-sm-12">
-        {{ form_label(form.username) }}
-        {{ form_widget(form.username) }}
-    </div>
-    {{ form_errors(form.username) }}
-</div>
-<div class="row no-padding">
-    <div class="input-field col-sm-12">
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email) }}
-    </div>
-    {{ form_errors(form.email) }}
-</div>
-<div class="row no-padding">
-    <div class="input-field col-sm-12">
-        {{ form_label(form.plainPassword.first) }}
-        {{ form_widget(form.plainPassword.first) }}
-    </div>
-    {{ form_errors(form.plainPassword.first) }}
-</div>
-<div class="row no-padding">
-    <div class="input-field col-sm-12">
-        {{ form_label(form.plainPassword.second) }}
-        {{ form_widget(form.plainPassword.second) }}
-    </div>
-    {{ form_errors(form.plainPassword.second) }}
-</div>
+
+    <hr class="hr-light">
+    <hr class="hr-light">
+    <hr class="hr-light">
 
 
-<div class="row no-padding">
-    <div class="input-field col-sm-12">
-        {{ form_label(form.firstName) }}
-        {{ form_widget(form.firstName) }}
-    </div>
-    {{ form_errors(form.firstName) }}
-</div>
+        <div class="card wow fadeInRight" data-wow-delay="0.3s">
+            <div class="card-body">
+                <!--Header-->
+                <div class="text-center">
+                    <h4 class="card-title">Formulaire d'inscription</h4>
+                    <hr class="hr-light">
+                </div>
 
-<div class="row no-padding">
-    <div class="input-field col-sm-12">
-        {{ form_label(form.lastName) }}
-        {{ form_widget(form.lastName) }}
-    </div>
-    {{ form_errors(form.lastName) }}
+                <!--Body-->
+                <div class="md-form">
+                    <i class="fa fa-user prefix white-text"></i>
+
+                    <div class="input-field col-md-12">
+                        <i class="fa fa-user prefix white-text"></i>
+                        {{ form_label(form.username) }}
+                        {{ form_widget(form.username) }}
+                    </div>
+                    {{ form_errors(form.username) }}
+
+                    <div class="input-field col-md-12">
+                        <i class="fa fa-user prefix white-text"></i>
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                    </div>
+
+                    <div class="input-field col-md-12">
+                        <i class="fa fa-user prefix white-text"></i>
+                        {{ form_label(form.plainPassword.first) }}
+                        {{ form_widget(form.plainPassword.first) }}
+                    </div>
+                    {{ form_errors(form.plainPassword.first) }}
 
 
-    <div class="row no-padding">
-        <div class="input-field col-sm-12">
-            {{ form_label(form.speciality) }}
-            {{ form_widget(form.speciality) }}
+                    <div class="input-field col-md-12">
+                        <i class="fa fa-user prefix white-text"></i>
+                        {{ form_label(form.plainPassword.second) }}
+                        {{ form_widget(form.plainPassword.second) }}
+                    </div>
+                    {{ form_errors(form.plainPassword.second) }}
+
+            </div>
+
+            <div class="md-form">
+                <i class="fa fa-lock prefix white-text active"></i>
+
+
+
+            </div>
+
+            <div class="text-center">
+                <button class="btn btn-indigo" type="submit" name="action" formnovalidate>
+                    {{ 'registration.submit'|trans }}
+                </button>
+            </div>
+
         </div>
-        {{ form_errors(form.speciality) }}
-    </div>
-
-    <div class="row no-padding">
-        <div class="input-field col-sm-12">
-            {{ form_label(form.imageFile) }}
-            {{ form_widget(form.imageFile) }}
         </div>
-        {{ form_errors(form.imageFile) }}
-    </div>
 
-    <div class="row no-padding">
-        <div class="input-field col-sm-12">
-            {{ form_label(form.imageName) }}
-            {{ form_widget(form.imageName) }}
-        </div>
-        {{ form_errors(form.imageName) }}
-    </div>
-
-    <div class="row no-padding">
-        <div class="input-field col-sm-12">
-            {{ form_label(form.organization) }}
-            {{ form_widget(form.organization) }}
-        </div>
-        {{ form_errors(form.organization) }}
-    </div>
-
-
-
-<div align="center" class="button-wrap">
-    <button class="btn btn-info teal darken-3" type="submit" name="action" formnovalidate>
-        {{ 'registration.submit'|trans }}
-
-    </button>
-</div>
 {{ form_end(form) }}

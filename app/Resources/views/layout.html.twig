@@ -30,24 +30,28 @@
 <!------------------------ Entête ------------------------>
 <header>
 
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-main-brown-1">
-        <a class="navbar-brand" href="{{ path('homepage') }}"><strong>NAO</strong></a>
+
+
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark brown">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav nav-flex-icons">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('images/nao-logo-couleur.png') }}" class="menuImage" alt="Responsive image"></a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="https://www.facebook.com/groups/143719076291913/"><i class="fa fa-facebook"></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="https://www.instagram.com/nao_nosamislesoiseaux/"><i class="fa fa-instagram"></i></a>
                 </li>
-            </ul>
-            <ul class="navbar-nav mr-auto">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('homepage') }}">Accueil <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('homepage') }}">Accueil<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('actualite') }}">Actualités</a>
@@ -85,18 +89,23 @@
                         <a class="nav-link" href="{{ path('fos_user_registration_register') }}">S'incrire</a>
                     </li>
                 {% endif %}
-                <span>
-                    <a class="btn-floating green right" href="{{ path('addObservation') }}">
-                    <i class="fa fa-plus"></i>
-                </a>
-                </span>
 
             </ul>
-
         </div>
-        <span>
-            <a class="nav-link" href="#"><img src="{{ asset('pictos/user.svg') }}" style="width: 5%; height: 5%"></a>
-        </span>
+        <div class="boutonProfil">
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a class="btn-floating green right" href="{{ path('addObservation') }}">
+                        <i class="fa fa-plus"></i>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><img src="{{ asset('pictos/user.svg') }}" style="width: 5%; height: 5%"></a>
+                </li>
+            </ul>
+        </div>
+
     </nav>
     {% block header %}
     {% endblock %}
@@ -114,15 +123,22 @@
     </div>
 </main>
 <!------------------------ Pied de page ------------------------>
-<footer class="bg-main-brown-1 center-on-small-only">
-    <div class="container-fluid mentions text-right">
-        <a href="#">FAQ </a> <a href="#">Contact </a>
-        <a href="{{ path('mentions') }}"> Mentions légales </a>
+<footer class="page-footer rgba-brown-strong center-on-small-only">
 
+    <!--Copyright-->
+    <div class="footer-copyright">
+        <div class="container-fluid">
+            <a href="{{ path('faq') }}">FAQ </a>
+            <a href="{{ path('contact') }}">  Contact  </a>
+            <a href="{{ path('mentions') }}">  Mentions légales </a>
+
+
+        </div>
     </div>
+    <!--/.Copyright-->
+
 </footer>
 <!--/.Footer-->
-
 
 {% block javascripts %}
     <!-- SCRIPTS -->
