@@ -13,6 +13,14 @@
     color: white;
 }
 
+.profilMenu
+{
+    background-color: #0E163D;
+}
+.profilMenu a, h2
+{
+    color: white;
+}
 .menuProfil li
 {
     padding-top: 10px;
@@ -85,6 +93,13 @@ html, body {
     width: 100%;
     height: auto;
     z-index: -1;
+}
+/* actuality Page */
+
+.ImgActualite
+{
+    max-width: 30%;
+    height: auto;
 }
 
 /*Button size*/
