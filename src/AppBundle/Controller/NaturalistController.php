@@ -102,11 +102,11 @@ class NaturalistController extends Controller
             {
                 if (isset($_POST['archiveCheckbox']))
                 {
-                    $observation->setobservationStatus(3);
+                    $observation->setobservationStatus(Observation::STATUS_ARCHIVED);
                 }
                 else
                 {
-                    $observation->setobservationStatus(5);
+                    $observation->setobservationStatus(Observation::STATUS_VALIDATE);
                 }
                 $validateObservation = $userRepository->getValidatedObservation();
                 $totalValidate = $validateObservation + 1;
