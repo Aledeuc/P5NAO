@@ -15,8 +15,14 @@
 
 .profilMenu
 {
+    padding-top: 5%;
     background-color: #0E163D;
 }
+.mainProfil
+{
+    padding-top: 5%;
+}
+
 .profilMenu a, h2
 {
     color: white;
@@ -91,6 +97,11 @@ margin-top: 50px;
 }
 .content{
     margin-top: 200px;
+}
+
+main
+{
+    margin-top: 3%;
 }
 /*Homepage*/
 .full-height, .full-height body, .full-height header, .full-height header .view {
@@ -247,3 +258,28 @@ i.fa.fa-plus {
 .boutonProfil{
     margin-left: 100px;
 }
+
+@media only screen and (max-width: 600px)
+{
+    .profilMenu
+    {
+        padding-top:20%;
+    }
+
+    main{
+        margin-top:20%;
+    }
+
+}
+@media only screen and (max-width: 400px)
+{
+
+    .profilMenu
+    {
+        padding-top:30%;
+    }
+    main{
+        margin-top: 30%;
+    }
+}
+

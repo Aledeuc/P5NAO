@@ -3,12 +3,12 @@
 {% block content %}
 <h4>Contrôler une observation</h4>
 <div class="row">
-    <div class="col-3" id="left">
+    <div class="col-sm-3" id="left">
         <p>Observation de {{ observation.User }}</p>
         <img src="">
     </div>
 
-    <div class="col-9" id="right">
+    <div class="col-sm-9" id="right">
         {{ form_start(form) }}
         <div id="date">
            Date de l'observation : {{ observation.observationDate |date("d/m/Y") }}
