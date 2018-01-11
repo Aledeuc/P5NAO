@@ -45,10 +45,21 @@
     font-weight: 600;
     padding-right: 1rem !important;
 }
+.nav{
+    height: 70px;
+}
+.navbar .dropdown-menu a:hover{
+    color: #bedb65 !important;
+}
+.btn-floating{
+    background-color: #bedb65;
+}
+.btn-floating .fa-plus{
+    color: rgba(87, 48, 21, 1);
+}
 
 .btn
 {
-    color:inherit !important;
     color: white !important;
     box-shadow:none;
 }
