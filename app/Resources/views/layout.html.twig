@@ -11,7 +11,6 @@
 
     {% block stylesheets %}
 
-
         <link href="{{ asset('MDB-Pro/MDB-Pro/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('MDB-Pro/MDB-Pro/css/mdb.min.css') }}" rel="stylesheet">
         <link href="{{ asset('MDB-Pro/MDB-Pro/css/style.css') }}" rel="stylesheet">
@@ -52,7 +51,7 @@
                 </li>
                 <li class="nav-item icon-nav">
                     <a href="http://eepurl.com/dgJ0Y9">
-                        <img src="{{ asset('pictos/newsletter_bl.png') }}" alt="newsletter" class="icon"></a>
+                        <img src="{{ asset('pictos/newsletter_bl.png') }}" alt="newsletter" class="icon-nav-bis"></a>
                 </li>
             </ul>
             <div class="row justify-content-end nav-link-perso">
@@ -82,7 +81,7 @@
                 <li class="nav-item">
                     <div class="btn-group">
                         <img src="{{ asset('pictos/user.svg') }}"  alt="profil"
-                             class="dropdown-toggle icon" type="button" data-toggle="dropdown">
+                             class="dropdown-toggle icon-nav-bis" type="button" data-toggle="dropdown">
                         <div class="dropdown-menu dropdown-menu-right">
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 

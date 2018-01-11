@@ -81,7 +81,7 @@
 }
 .previewImg
 {
-    max-width: 30%;
+    max-width: 100%;
     height: auto;
 }
 
@@ -135,16 +135,33 @@ main
 #bloc3 {
     background-color: white;
 }
+.bloc{
+    margin-bottom: 5%;
+}
+.last-bloc-apropos{
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
 .menuImage
 {
     width: auto;
     height: 35px;
     margin-right: 50%;
 }
-.icon{
+.icon-nav-bis{
     height: 25px;
     width: auto;
 }
+
+.icon-big{
+    font-size: 100px;
+    color: black;
+}
+
+.news-apropos{
+    height: 250px;
+}
+
 .nav-link-perso{
     margin-right: 10%;
 }
