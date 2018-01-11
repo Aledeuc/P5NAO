@@ -39,7 +39,7 @@
                 <li class="nav-item">
                     <a class="navbar-brand" href="{{ path('homepage') }}"><img
                                 src="{{ asset('pictos/nao-logo-bl.png') }}" class="menuImage"
-                                alt="Responsive image"></a>
+                                alt="NAO"></a>
                 </li>
 
                 <li class="nav-item icon-nav">
@@ -55,20 +55,21 @@
                         <img src="{{ asset('pictos/newsletter_bl.png') }}" alt="newsletter" class="icon"></a>
                 </li>
             </ul>
-            <ul class="navbar-nav mr-auto">
+            <div class="row justify-content-end">
+                <ul class="navbar-nav mr-auto ">
+                    <li class="nav-item">
+                        <a class="nav-link light-nav" href="{{ path('homepage') }}">Accueil<span
+                                    class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link light-nav" href="{{ path('actualite') }}">Actualités</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link light-nav" href="{{ path('aPropos') }}">A propos</a>
+                    </li>
 
-                <li class="nav-item">
-                    <a class="nav-link light-nav" href="{{ path('homepage') }}">Accueil<span
-                                class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link light-nav" href="{{ path('actualite') }}">Actualités</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link light-nav" href="{{ path('aPropos') }}">A propos</a>
-                </li>
-
-            </ul>
+                </ul>
+            </div>
         </div>
         <div class="boutonProfil">
             <ul class="navbar-nav nav-flex-icons align-items-center">
@@ -79,8 +80,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
-
                     <div class="btn-group">
                         <img src="{{ asset('pictos/user.svg') }}"  alt="profil"
                              class="dropdown-toggle icon" type="button" data-toggle="dropdown">
@@ -88,16 +87,17 @@
                             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
 
                                 {% if is_granted('ROLE_ADMIN') %}
-                                    <a class="dropdown-item" href="{{ path('profil_admin_alluser') }}">Mon compte</a>
+                                    <a class="dropdown-item" href="{{ path('profil_admin_alluser') }}">Mon profil</a>
                                 {% elseif is_granted('ROLE_EDITOR') %}
                                     <a class="dropdown-item" href="{{ path('profil_editor_allarticle') }}">Mon
-                                        compte</a>
+                                        profil</a>
                                 {% elseif is_granted('ROLE_NATURALIST') %}
                                     <a class="dropdown-item" href="{{ path('profil_naturalist_tovalidate') }}">Mon
-                                        compte</a>
+                                        profil</a>
                                 {% elseif is_granted('ROLE_USER') %}
-                                    <a class="dropdown-item" href="{{ path('profil_user_all') }}">Mon compte</a>
+                                    <a class="dropdown-item" href="{{ path('profil_user_all') }}">Mon profil</a>
                                 {% endif %}
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">
                                     <i class="fa fa-power-off" aria-hidden="true"></i>  Se
@@ -110,11 +110,6 @@
                             {% endif %}
                         </div>
                     </div>
-
-
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
                 </li>
             </ul>
         </div>
@@ -134,15 +129,23 @@
     </div>
 </main>
 <!------------------------ Pied de page ------------------------>
-<footer class="bg-main-brown-1">
-    <div class="container-fluid">
-        <div class="row align-items-center col-4 offset-8">
-            <a href="{{ path('faq') }}">FAQ </a>
-            <a href="{{ path('contact') }}"> Contact </a>
-            <a href="{{ path('mentions') }}"> Mentions légales </a>
+<footer class="bg-main-brown-1 align-items-center">
+
+        <div class="row justify-content-end footer-link">
+            <div class="d-flex justify-content-around footer-div">
+                <span>
+                    <a class="white-text" href="{{ path('faq') }}">FAQ </a>
+                </span>
+                <span >
+                    <a class="white-text" href="{{ path('contact') }}"> Contact </a>
+                </span>
+                <span >
+                    <a class="white-text" href="{{ path('mentions') }}"> Mentions légales </a>
+                </span>
+            </div>
+
         </div>
 
-    </div>
 </footer>
 <!--/.Footer-->
 

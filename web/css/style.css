@@ -70,7 +70,6 @@
 .icon-nav{
     margin-right: 10px;
 }
-
 .previewImg
 {
     max-width: 30%;
@@ -183,9 +182,13 @@ main
     font-weight: bold;
 }
 footer{
-    height: 75px;
+    padding: 10px 30px;
     color: white;
 }
+.footer-div{
+    width: 20%;
+}
+
 /*Colors */
 /* Main colors*/
 /*Font color*/
