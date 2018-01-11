@@ -276,4 +276,12 @@ footer{
         margin-top: 30%;
     }
 }
+/*Mentions*/
+.mentions-hr{
+    height: 5px;
+    color: #6ba53e;
+}
+.list-number{
+    list-style-type: decimal;
+}
 
