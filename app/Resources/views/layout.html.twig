@@ -29,8 +29,7 @@
 <body>
 <!------------------------ Entête ------------------------>
 <header>
-
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark brown">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-main-brown-1">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -38,60 +37,41 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="navbar-brand" href="{{ path('homepage') }}"><img src="{{ asset('images/nao-logo-couleur.png') }}" class="menuImage" alt="Responsive image"></a>
+                    <a class="navbar-brand" href="{{ path('homepage') }}"><img
+                                src="{{ asset('pictos/nao-logo-bl.png') }}" class="menuImage"
+                                alt="Responsive image"></a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.facebook.com/groups/143719076291913/"><i class="fa fa-facebook"></i></a>
+                <li class="nav-item icon-nav">
+                    <a class="nav-link" href="https://www.facebook.com/groups/143719076291913/"><i
+                                class="fa fa-facebook"></i></a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.instagram.com/nao_nosamislesoiseaux/"><i class="fa fa-instagram"></i></a>
+                <li class="nav-item icon-nav">
+                    <a class="nav-link" href="https://www.instagram.com/nao_nosamislesoiseaux/"><i
+                                class="fa fa-instagram"></i></a>
                 </li>
+                <li class="nav-item icon-nav">
+                    <a href="http://eepurl.com/dgJ0Y9">
+                        <img src="{{ asset('pictos/newsletter_bl.png') }}" alt="newsletter" class="icon"></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('homepage') }}">Accueil<span class="sr-only">(current)</span></a>
+                    <a class="nav-link light-nav" href="{{ path('homepage') }}">Accueil<span
+                                class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('actualite') }}">Actualités</a>
+                    <a class="nav-link light-nav" href="{{ path('actualite') }}">Actualités</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('aPropos') }}">A propos</a>
+                    <a class="nav-link light-nav" href="{{ path('aPropos') }}">A propos</a>
                 </li>
-
-                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('profil_admin_alluser') }}">Mon profil</a>
-                        </li>
-                    {% elseif is_granted('ROLE_EDITOR') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('profil_editor_allarticle') }}">Mon profil</a>
-                        </li>
-                    {% elseif is_granted('ROLE_NATURALIST') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('profil_naturalist_tovalidate') }}">Mon profil</a>
-                        </li>
-                    {% elseif is_granted('ROLE_USER') %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('profil_user_all') }}">Mon profil</a>
-                        </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('fos_user_security_logout') }}">Se Déconnecter</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('fos_user_security_login') }}">Se Connecter</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('fos_user_registration_register') }}">S'incrire</a>
-                    </li>
-                {% endif %}
 
             </ul>
         </div>
         <div class="boutonProfil">
-            <ul class="navbar-nav nav-flex-icons">
+            <ul class="navbar-nav nav-flex-icons align-items-center">
                 <li class="nav-item">
                     <a class="btn-floating green right" href="{{ path('addObservation') }}">
                         <i class="fa fa-plus"></i>
@@ -99,7 +79,42 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><img src="{{ asset('pictos/user.svg') }}" style="width: 5%; height: 5%"></a>
+                    <a class="nav-link" href="#"></a>
+
+                    <div class="btn-group">
+                        <img src="{{ asset('pictos/user.svg') }}"  alt="profil"
+                             class="dropdown-toggle icon" type="button" data-toggle="dropdown">
+                        <div class="dropdown-menu dropdown-menu-right">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a class="dropdown-item" href="{{ path('profil_admin_alluser') }}">Mon compte</a>
+                                {% elseif is_granted('ROLE_EDITOR') %}
+                                    <a class="dropdown-item" href="{{ path('profil_editor_allarticle') }}">Mon
+                                        compte</a>
+                                {% elseif is_granted('ROLE_NATURALIST') %}
+                                    <a class="dropdown-item" href="{{ path('profil_naturalist_tovalidate') }}">Mon
+                                        compte</a>
+                                {% elseif is_granted('ROLE_USER') %}
+                                    <a class="dropdown-item" href="{{ path('profil_user_all') }}">Mon compte</a>
+                                {% endif %}
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{{ path('fos_user_security_logout') }}">
+                                    <i class="fa fa-power-off" aria-hidden="true"></i>  Se
+                                    Déconnecter</a>
+
+                            {% else %}
+                                <a class="dropdown-item" href="{{ path('fos_user_security_login') }}">Se Connecter</a>
+                                <a class="dropdown-item"
+                                   href="{{ path('fos_user_registration_register') }}">S'incrire</a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+
+                    <ul class="navbar-nav mr-auto">
+
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -119,20 +134,15 @@
     </div>
 </main>
 <!------------------------ Pied de page ------------------------>
-<footer class="page-footer rgba-brown-strong center-on-small-only">
-
-    <!--Copyright-->
-    <div class="footer-copyright">
-        <div class="container-fluid">
+<footer class="bg-main-brown-1">
+    <div class="container-fluid">
+        <div class="row align-items-center col-4 offset-8">
             <a href="{{ path('faq') }}">FAQ </a>
-            <a href="{{ path('contact') }}">  Contact  </a>
-            <a href="{{ path('mentions') }}">  Mentions légales </a>
-
-
+            <a href="{{ path('contact') }}"> Contact </a>
+            <a href="{{ path('mentions') }}"> Mentions légales </a>
         </div>
-    </div>
-    <!--/.Copyright-->
 
+    </div>
 </footer>
 <!--/.Footer-->
 

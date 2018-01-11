@@ -67,6 +67,9 @@
 {
     cursor: pointer;
 }
+.icon-nav{
+    margin-right: 10px;
+}
 
 .previewImg
 {
@@ -126,8 +129,13 @@ main
 }
 .menuImage
 {
-    width: 35px;
+    width: auto;
     height: 35px;
+    margin-right: 50%;
+}
+.icon{
+    height: 25px;
+    width: auto;
 }
 
 .view {
@@ -167,6 +175,9 @@ main
 }
 .light{
     font-weight: lighter;
+}
+.light-nav{
+    font-weight: 300;
 }
 .gras{
     font-weight: bold;
@@ -231,29 +242,6 @@ footer{
     background-color: rgba(14, 22, 61, 0.5);
 }
 
-
-.btn-floating i {
-    width: inherit;
-    font-size: 1rem;
-    line-height: 20px;
-    text-align: center;
-}
-
-i.fa.fa-plus {
-    font-size: 1rem;
-}
-
-.btn-floating {
-    z-index: 1;
-    overflow: hidden;
-    width: 25px;
-    height: 25px;
-    padding-top: 0;
-    border-radius: 50%;
-    background-color: #a6c;
-    -webkit-transition: .3s;
-    transition: .3s;
-}
 
 .boutonProfil{
     margin-left: 100px;
