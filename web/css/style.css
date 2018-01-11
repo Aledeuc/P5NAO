@@ -44,9 +44,7 @@
 .navbar {
     font-weight: 600;
     padding-right: 1rem !important;
-}
-.nav{
-    height: 70px;
+    height: 60px !important;
 }
 .navbar .dropdown-menu a:hover{
     color: #bedb65 !important;
@@ -151,25 +149,37 @@ main
     margin-right: 10%;
 }
 
-.view {
-    background: url("https://mdbootstrap.com/img/Photos/Others/img (50).jpg")no-repeat center center;
-    background-size: cover;
-
+.ariane{
+    height: 70px;
+    background-color: #bedb65;
 }
-#banniere_accueil{
-    width: 100%;
-    height: auto;
-
+.ariane a{
+    color: #000000 !important;
 }
-
 /* actuality Page */
 
+.newsletter{
+    height: 70px;
+}
+.newsletter a{
+    color: white;
+}
 .ImgActualite
 {
-    max-width: 30%;
+    max-width: 100%;
     height: auto;
 }
-
+.actualite-hr{
+    width:20%;
+    height: 20px;
+    border-color: #bedb65;
+}
+.brown-hr{
+    border-color: rgba(87, 48, 21, 0.10);
+}
+.sand-hr{
+    border-color: #be9560;
+}
 /*Button size*/
 #btn-chercher{
     height: 80px;
