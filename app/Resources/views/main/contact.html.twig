@@ -1,121 +1,130 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <!--Panel-->
-    <div class="card card-body">
-        <h4 class="card-title">A propos</h4>
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between ">
+            <div class="col-2 ariane row align-items-center justify-content-around">
+                <div class="gras"><a href="{{ path('homepage') }}">Accueil</a></div>
+                <i class="fa fa-angle-right white-text" aria-hidden="true"></i>
+                <div class="light">contact</div>
+            </div>
+            <div class="col-1 newsletter bg-second-sand row align-items-center justify-content-around text-uppercase">
+                <a href="http://eepurl.com/dgJ0Y9">Newsletter</a>
+            </div>
+        </div>
+    </div>
 
+    <!--Section: Contact v.2-->
+    <section class="container">
 
-        <!--Section: Contact v.2-->
-        <section class="section">
+        <!--Section heading-->
+        <h2 class="h1 text-center mb-5 title text-uppercase">nous écrire</h2>
+        <hr class="actualite-hr">
 
-            <!--Section heading-->
-            <h2 class="section-heading h1 pt-4">NOUS ÉCRIRE</h2>
-            <!--Section description-->
-            <p class="section-description">Sur notre page <a href="{{ path('faq') }}">FAQ </a>, nous avons peut-être déjà répondu à votre question</p>
+        <!--Section description-->
+        <p class="">Sur notre page <a href="{{ path('faq') }}">FAQ </a>, nous avons peut-être déjà
+            répondu à votre question</p>
 
-            <div class="row">
+        <div class="row">
 
-                <!--Grid column-->
-                <div class="col-md-4 col-xl-3">
-                    <ul class="contact-icons">
-                        <li><i class="fa fa-phone fa-2x"></i>
-                            <p>NAO</p>
-                            <p>Téléphone</p>
-                            <p>04.78.03.89.54</p>
-                        </li>
+            <!--Grid column-->
 
-                        <li><i class="fa fa-map-marker fa-2x"></i>
-                            <p>Adresse</p>
-                            <p>30 quai Jeanne D'Arc</p>
-                            <p>80230 Saint Valéry sur somme</p>
-                        </li>
+            <div class="col-md-4 col-xl-3 justify-content-start align-items-end">
+                <h3>NAO</h3>
+                <div class="bloc">
 
-
-                        <li><i class="fa fa-envelope fa-2x"></i>
-                            <p>Réseaux sociaux</p>
-                            <a href="https://www.facebook.com/groups/143719076291913/">Facebook</a>
-                            <a href="https://www.instagram.com/nao_nosamislesoiseaux/">Instagram</a>
-
-                        </li>
-                    </ul>
+                    <strong>Téléphone</strong>
+                    <p>04.78.03.89.54</p>
                 </div>
-                <!--Grid column-->
-                <!--Grid column-->
-                <div class="col-md-8 col-xl-9">
-                    <form id ="contact-form" name="contact-form" action="mail.php" method="POST">
 
-                        <!--Grid row-->
-                        <div class="row">
-
-                            <!--Grid column-->
-                            <div class="col-md-6">
-                                <div class="md-form">
-                                    <div class="md-form">
-                                        <input type="text" id="name" name="name" class="form-control">
-                                        <label for="name" class="">NOM*</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-
-                            <!--Grid column-->
-                            <div class="col-md-6">
-                                <div class="md-form">
-                                    <div class="md-form">
-                                        <input type="text" id="email" name="email" class="form-control">
-                                        <label for="email" class="">EMAIL*</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--Grid column-->
-
-                        </div>
-                        <!--Grid row-->
-
-                        <!--Grid row-->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="md-form">
-                                    <input type="text" id="subject" name="subject" class="form-control">
-                                    <label for="subject" class="">OBJET*</label>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Grid row-->
-
-                        <!--Grid row-->
-                        <div class="row">
-
-                            <!--Grid column-->
-                            <div class="col-md-12">
-
-                                <div class="md-form">
-                                    <textarea type="text" id="message" name="message" class="md-textarea"></textarea>
-                                    <label for="message">MESSAGE*</label>
-                                </div>
-
-                                <p>Les champs marqués d'un asterique(*) sont obligatoires</p>
-                            </div>
-                        </div>
-                        <!--Grid row-->
-
-                    </form>
-
-                    <div class="center-on-small-only">
-                        <a class="btn btn-primary" onclick="document.getElementById('contact-form').submit();">ENVOYER</a>
-                    </div>
-                    <div class="status" id="status"></div>
+                <div class="bloc">
+                    <strong>Adresse</strong>
+                    <p>30 quai Jeanne D'Arc</p>
+                    <p>80230 Saint Valéry sur somme</p>
                 </div>
-                <!--Grid column-->
 
 
+                <div class="bloc">
+                    <strong>Réseaux sociaux</strong>
+                    <p><a href="https://www.facebook.com/NAO-Nos-Amis-les-Oiseaux-2260400117520294/
+">Facebook</a></p>
+                    <p><a href="https://www.instagram.com/nao_nosamislesoiseaux/">Instagram</a></p>
+
+                </div>
 
             </div>
+            <!--Grid column-->
+            <div class="col-md-8 col-xl-9">
+                <form id="contact-form" name="contact-form" action="mail.php" method="POST">
 
-        </section>
-        <!--Section: Contact v.2-->
+                    <!--Grid row-->
+                    <div class="row">
 
-    </div>
-    <!--/.Panel-->
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form">
+                                <div class="md-form">
+                                    <input type="text" id="name" name="name" class="form-control">
+                                    <label for="name" class="">NOM*</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                        <!--Grid column-->
+                        <div class="col-md-6">
+                            <div class="md-form">
+                                <div class="md-form">
+                                    <input type="text" id="email" name="email" class="form-control">
+                                    <label for="email" class="">EMAIL*</label>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Grid column-->
+
+                    </div>
+                    <!--Grid row-->
+
+                    <!--Grid row-->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="md-form">
+                                <input type="text" id="subject" name="subject" class="form-control">
+                                <label for="subject" class="">OBJET*</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+
+                    <!--Grid row-->
+                    <div class="row">
+
+                        <!--Grid column-->
+                        <div class="col-md-12">
+
+                            <div class="md-form">
+                                <textarea type="text" id="message" name="message" class="md-textarea"></textarea>
+                                <label for="message">MESSAGE*</label>
+                            </div>
+
+                            <p>Les champs marqués d'un asterique(*) sont obligatoires</p>
+                        </div>
+                    </div>
+                    <!--Grid row-->
+
+                </form>
+
+                <div class="center-on-small-only">
+                    <a class="btn bg-main-green" onclick="document.getElementById('contact-form').submit();">ENVOYER</a>
+                </div>
+                <div class="status" id="status"></div>
+            </div>
+            <!--Grid column-->
+
+
+        </div>
+
+    </section>
+    <!--Section: Contact v.2-->
+
 {% endblock %}

@@ -1,35 +1,30 @@
 /* Profil */
 
-.active-pink-2 input[type=text]:focus:not([readonly])
-{
+.active-pink-2 input[type=text]:focus:not([readonly]) {
     border-bottom: 1px solid #f48fb1;
     box-shadow: 0 1px 0 0 #f48fb1;
 }
 
-#titreMenu
-{
+#titreMenu {
     padding-bottom: 30px;
     background-color: black;
     color: white;
 }
 
-.profilMenu
-{
+.profilMenu {
     padding-top: 5%;
     background-color: #0E163D;
 }
-.mainProfil
-{
+
+.mainProfil {
     padding-top: 5%;
 }
 
-.profilMenu a, h2
-{
+.profilMenu a, h2 {
     color: white;
 }
 
-.menuProfil li
-{
+.menuProfil li {
     padding-top: 10px;
     list-style-type: none;
 }
@@ -37,6 +32,7 @@
 .modal-notify .modal-header {
     border-radius: 3px 3px 0 0;
 }
+
 .modal-notify .modal-content {
     border-radius: 3px;
 }
@@ -46,47 +42,47 @@
     padding-right: 1rem !important;
     height: 60px !important;
 }
-.navbar .dropdown-menu a:hover{
+
+.navbar .dropdown-menu a:hover {
     color: #bedb65 !important;
 }
-.btn-floating{
+
+.btn-floating {
     background-color: #bedb65;
 }
-.btn-floating .fa-plus{
+
+.btn-floating .fa-plus {
     color: rgba(87, 48, 21, 1);
 }
 
-.btn
-{
+.btn {
     color: white !important;
-    box-shadow:none;
+    box-shadow: none;
 }
-.btn-fb
-{
+
+.btn-fb {
     background-color: #3B5998;
     color: white !important;
 }
 
-.btn-fb:hover, .btn-fb:focus
-{
+.btn-fb:hover, .btn-fb:focus {
     background-color: #4264aa;
 }
 
-.iconPointer
-{
+.iconPointer {
     cursor: pointer;
 }
-.icon-nav{
+
+.icon-nav {
     margin-right: 10px;
 }
-.previewImg
-{
+
+.previewImg {
     max-width: 30%;
     height: auto;
 }
 
-.profilImage
-{
+.profilImage {
     width: 50px;
     height: 50px;
 }
@@ -102,223 +98,289 @@ html, body {
     margin: 0;
     padding: 0;
 }
-main{
-margin-top: 50px;
+
+main {
+    margin-top: 50px;
 }
-.content{
+
+.content {
     margin-top: 200px;
 }
 
-main
-{
+main {
     margin-top: 3%;
 }
+
 /*Homepage*/
 .full-height, .full-height body, .full-height header, .full-height header .view {
     height: 100%;
 }
 
-#espace{
+#espace {
     height: 20px;
 }
-#bloc1{
+
+#bloc1 {
     margin-top: 100px;
     margin-bottom: 200px;
     height: 100%;
 }
-#bloc2{
+
+#bloc2 {
 }
-.icon_arrow{
+
+.icon_arrow {
     color: white;
 }
+
 #bloc3 {
     background-color: white;
 }
-.bloc{
+
+.bloc {
     margin-bottom: 5%;
 }
-.last-bloc-apropos{
+
+.last-bloc-apropos {
     padding-top: 50px;
     padding-bottom: 30px;
 }
-.menuImage
-{
+
+.menuImage {
     width: auto;
     height: 35px;
     margin-right: 50%;
 }
-.icon-nav-bis{
+
+.icon-nav-bis {
     height: 25px;
     width: auto;
 }
 
-.icon-big{
+.icon-big {
     font-size: 100px;
     color: black;
 }
 
-.news-apropos{
+.news-apropos {
     height: 250px;
 }
 
-.nav-link-perso{
+.nav-link-perso {
     margin-right: 10%;
 }
 
-.ariane{
+.rond-vert {
+    width: 50px;
+    height: 50px;
+    background: #bedb65;
+    border-radius: 50px;
+}
+.rond-brun{
+    width: 50px;
+    height: 50px;
+    background: rgba(87, 48, 21, 1);
+    border-radius: 50px;
+    position: absolute;
+    z-index: 1;
+}
+.separation{
+    clear: both;
+    position: absolute;
+    margin-top :10px;
+
+    height: 200px;
+    width : 5px;
+    background: black;
+    z-index: 1;
+}
+
+.ariane {
     height: 70px;
     background-color: #bedb65;
 }
-.ariane a{
+
+.ariane a {
     color: #000000 !important;
 }
+
 /* actuality Page */
 
-.newsletter{
+.newsletter {
     height: 70px;
 }
-.newsletter a{
+.newsletter_apropos{
+    margin-bottom: 20px;
+}
+.newsletter a {
     color: white;
 }
-.ImgActualite
-{
+
+.ImgActualite {
     max-width: 100%;
     height: auto;
 }
-.actualite-hr{
-    width:20%;
+.imgApropos{
+
+}
+
+.actualite-hr {
+    width: 20%;
     height: 20px;
     border-color: #bedb65;
 }
-.brown-hr{
+
+.brown-hr {
     border-color: rgba(87, 48, 21, 0.10);
 }
-.sand-hr{
+
+.sand-hr {
     border-color: #be9560;
 }
+
 /*Button size*/
-#btn-chercher{
+#btn-chercher {
     height: 80px;
     width: 325px;
 }
 
-#search_bloc{
+#search_bloc {
     background-color: rgba(255, 255, 255, 0.5);
     padding: 20px;
     text-align: center;
     margin-right: 30px;
 }
-#bienvenue{
+
+#bienvenue {
     color: white;
     font-size: 50px;
 }
-.light{
+
+.light {
     font-weight: lighter;
 }
-.light-nav{
+
+.light-nav {
     font-weight: 300;
 }
-.gras{
+
+.gras {
     font-weight: bold;
 }
-footer{
+
+footer {
     padding: 10px 30px;
     color: white;
 }
-.footer-div{
+
+.footer-div {
     width: 20%;
 }
 
 /*Colors */
 /* Main colors*/
 /*Font color*/
-.main-brown-1{
-     color: rgba(87, 48, 21, 1);
- }
-.main-brown-2{
+.main-brown-1 {
+    color: rgba(87, 48, 21, 1);
+}
+
+.main-brown-2 {
     color: rgba(87, 48, 21, 0.10);
 }
-.main-brown-3{
+
+.main-brown-3 {
     color: rgba(87, 48, 21, 0.05);
 }
-.main-green{
+
+.main-green {
     color: #bedb65;
 }
+
 /*Background color*/
-.bg-main-brown-1{
+.bg-main-brown-1 {
     background-color: rgba(87, 48, 21, 1);
 }
-.bg-main-brown-2{
+
+.bg-main-brown-2 {
     background-color: rgba(87, 48, 21, 0.10);
 }
-.bg-main-brown-3{
+
+.bg-main-brown-3 {
     background-color: rgba(87, 48, 21, 0.05);
 }
-.bg-main-green{
+
+.bg-main-green {
     background-color: #bedb65;
 }
+
 /* Secondary colors*/
 /*font color*/
-.second-green{
+.second-green {
     color: #6ba53e;
 }
-.second-sand{
+
+.second-sand {
     color: #be9560;
 }
-.second-blue-1{
+
+.second-blue-1 {
     color: rgba(14, 22, 61, 1);
 }
-.second-blue-2{
+
+.second-blue-2 {
     color: rgba(14, 22, 61, 0.5);
 }
+
 /*Background color*/
-.bg-second-green{
+.bg-second-green {
     background-color: #6ba53e;
 }
-.bg-second-sand{
+
+.bg-second-sand {
     background-color: #be9560;
 }
-.bg-second-blue-1{
+
+.bg-second-blue-1 {
     background-color: rgba(14, 22, 61, 1);
 }
-.bg-second-blue-2{
+
+.bg-second-blue-2 {
     background-color: rgba(14, 22, 61, 0.5);
 }
 
-
-.boutonProfil{
+.boutonProfil {
     margin-left: 100px;
 }
 
-@media only screen and (max-width: 600px)
-{
-    .profilMenu
-    {
-        padding-top:20%;
+@media only screen and (max-width: 600px) {
+    .profilMenu {
+        padding-top: 20%;
     }
 
-    main{
-        margin-top:20%;
+    main {
+        margin-top: 20%;
     }
 
 }
-@media only screen and (max-width: 400px)
-{
 
-    .profilMenu
-    {
-        padding-top:30%;
+@media only screen and (max-width: 400px) {
+
+    .profilMenu {
+        padding-top: 30%;
     }
-    main{
+
+    main {
         margin-top: 30%;
     }
 }
+
 /*Mentions*/
-.mentions-hr{
+.mentions-hr {
     height: 5px;
     color: #6ba53e;
 }
-.list-number{
+
+.list-number {
     list-style-type: decimal;
 }
 
