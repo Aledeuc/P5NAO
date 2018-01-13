@@ -45,7 +45,7 @@
 <header>
     <nav >
         <div class="nav-wrapper barre">
-            <a href="http://nao.alicewproject.com" class="brand-logo">
+            <a href="{{ path('homepage') }}" class="brand-logo">
                 <img src="{{ asset('images_landing_page/nao-logo-bl.png') }}" alt="logoNAO" class="logo">
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -81,12 +81,12 @@
 
                         <div class="row center">
                             <div class="col s12 m4 l4">
-                                <a href="http://nao.alicewproject.com/aPropos" >
+                                <a href="{{ path('aPropos') }}" >
                                     <button class="waves-effect waves-light btn bg-main-brown-1">En savoir plus</button>
                                 </a>
                             </div>
                             <div class="col s12 m4 l4">
-                                <a href="http://nao.alicewproject.com/register/">
+                                <a href="{{ path('fos_user_registration_register') }}">
                                     <button class="waves-effect waves-light btn bg-main-brown-1">M'inscrire</button>
                                 </a>
                             </div>
@@ -160,7 +160,7 @@
                             informations concernant l’avancé de nos recherches.</p>
                     </div>
                     <div class="card-action">
-                        <a href="http://nao.alicewproject.com/register/" class="card-link">
+                        <a href="{{ path('fos_user_registration_register') }}" class="card-link">
                             <button class="waves-effect waves-light btn bg-second-green btn_section3">M'inscrire</button>
                         </a>
                     </div>
@@ -177,7 +177,7 @@
                         ou de nos naturalistes,
                         toute la communauté se retrouve ici!
                     </p>
-                    <a href="http://nao.alicewproject.com">
+                    <a href="{{ path('homepage') }}">
                         <button class="waves-effect waves-light btn bg-second-green">accéder au site</button>
                     </a>
                 </div>
@@ -195,7 +195,7 @@
                         <br>
                     </div>
                     <div class="card-action">
-                        <a href="http://nao.alicewproject.com/register/" class="card-link">
+                        <a href="{{ path('fos_user_registration_register') }}" class="card-link">
                             <button class="waves-effect waves-light btn bg-second-green btn_section3">M'inscrire</button>
                         </a>
                     </div>
