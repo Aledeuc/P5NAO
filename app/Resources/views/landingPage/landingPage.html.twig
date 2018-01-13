@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>NAO - Nos Amis les Oiseaux</title>
+    <meta name="description" content="Passionné d'ornithologie? Rejoingnez la communauté et partagez vos observations d'oiseaux.">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://use.fontawesome.com/2ec12a28b5.js"></script>
+
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+    <link rel="stylesheet" href="{{ asset('css/landingPage.css') }}">
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-112234944-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+        gtag('config', 'UA-112234944-2');
+    </script>
+
+
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar">
+
+<header>
+    <nav >
+        <div class="nav-wrapper barre">
+            <a href="http://nao.alicewproject.com" class="brand-logo">
+                <img src="{{ asset('images_landing_page/nao-logo-bl.png') }}" alt="logoNAO" class="logo">
+            </a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="http://eepurl.com/dgJ0Y9" target="_blank" class="right-align">
+                        <button class="waves-effect waves-light btn newsletter bg-second-sand row align-items-center justify-content-around text-uppercase">
+                            Newsletter
+                        </button></a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div>
+    <section>
+        <div class="container-fluid bg-main-brown-3 bloc" id="bloc1">
+            <div class="container">
+                <div class="row justify-content-around valign-wrapper">
+                    <div class="col s12 m6 l6">
+                        <img src="{{ asset('images_landing_page/smartphone.jpg') }}" alt="img_mobile" id="img_mobile">
+                    </div>
+                    <div class="col s12 m6 l6">
+                        <h1 class="to-uppercase" id="titre">Nos amis les oiseaux</h1>
+                        <div class="valign-wrapper">
+                            <span class="left">L'ornitologie à portée de tous</span>
+                            <hr id="hr_section1" class="left">
+                        </div>
+
+                        <p>NAO se réinvente pour vous, et vous propose un nouveau site web! Redécouvrez le plaisir d’observer
+                            les oiseaux,
+                            et de partager avec une communauté de passionnés. Désormais accessible sur smartphone, vous pouvez
+                            saisir vos
+                            observations et les partager instantanément.
+                        </p>
+
+                        <div class="row center">
+                            <div class="col s12 m4 l4">
+                                <a href="http://nao.alicewproject.com/aPropos" >
+                                    <button class="waves-effect waves-light btn bg-main-brown-1">En savoir plus</button>
+                                </a>
+                            </div>
+                            <div class="col s12 m4 l4">
+                                <a href="http://nao.alicewproject.com/register/">
+                                    <button class="waves-effect waves-light btn bg-main-brown-1">M'inscrire</button>
+                                </a>
+                            </div>
+                            <div class="col s12 m2 l2">
+                                <a href="https://www.facebook.com/NAO-Nos-Amis-les-Oiseaux-2260400117520294/">
+                                    <i class="fa fa-facebook-square icon_section1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col s12 m2 l2">
+                                <a href="https://www.instagram.com/nao_nosamislesoiseaux/" target="_blank">
+                                    <i class="fa fa-instagram icon_section1" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center">
+                    <div class="col s12">
+                        <i class="large material-icons second-sand">keyboard_arrow_down</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Corps de page Ecran2
+      ================================================== -->
+    <section class="container-fluid">
+        <div class="row valign-wrapper bloc">
+            <div class="col s12 m5 l5" id="bloc2_texte">
+                <div>
+                    <hr id="hr_section2" class="left">
+                </div>
+                <h2 id="titre2">Notre programme <br>
+                    de recherche</h2>
+                <p>Depuis sa création NAO, s’investit dans divers programmes de recherche pour protéger les oiseaux et leurs
+                    habitats.
+                    Nos recherches actuelles visent à étudier l’impact du climat, de l’urbanisation et de l’agriculture, sur
+                    différentes
+                    espèces d’oiseaux, mais nous partageons aussi nos informations avec divers programmes de recherche
+                    européens.
+                </p>
+                <p>
+                    Nous
+                    avons besoin de vous! La protection de la nature est affaire de tous, et il est désormais très simple de
+                    rendre
+                    vos sorties nature, agréables ET utiles en partageant avec nous vos observations, ces données viendront
+                    enrichir
+                    nos recherches, et nous aideront à mettre en places des actions adaptées.
+                </p>
+            </div>
+
+            <div class="col s12 m7 l7">
+                <img src="{{ asset('images_landing_page/binoculars-995779_640.jpg') }}" alt="jumelles-observation" id="jumelle">
+            </div>
+        </div>
+    </section>
+    <!--Ecran 3 -->
+    <section id="screen3" class="container-fluid bg-main-brown-3">
+        <div class="row align-items-center container valign-wrapper bloc" >
+            <div class="col s12 m4 l4 carte">
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title to-capitalise center titre_bloc3">être observateur</span>
+                        <p>En devenant observateur, vous aurez la possibilité de saisir et de partager
+                            vos observations. Et pour vous
+                            y aider, vous serez accompagnés par notre communauté d’observateurs et de naturalistes, des
+                            professionnels
+                            qui vous accompagneront, et répondront à tous vos doutes et vos questions. Vous recevrez
+                            également les dernières
+                            informations concernant l’avancé de nos recherches.</p>
+                    </div>
+                    <div class="card-action">
+                        <a href="http://nao.alicewproject.com/register/" class="card-link">
+                            <button class="waves-effect waves-light btn bg-second-green btn_section3">M'inscrire</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m4 l4">
+                <div class="row center">
+                    <a href="https://www.facebook.com/groups/143719076291913/" target="_blank">
+                        <button class="to-uppercase waves-effect waves-light btn bg-second-sand" id="btn_groupe_fb">Notre groupe Facebook</button>
+                    </a>
+                    <p class="left">En vous inscrivant, vous serez invités à rejoindre notre groupe facebook, où vous pourrez
+                        partager et recevoir
+                        des informations sur l’ornithologie au sens large, recevoir des réponses des autres passionnés,
+                        ou de nos naturalistes,
+                        toute la communauté se retrouve ici!
+                    </p>
+                    <a href="http://nao.alicewproject.com">
+                        <button class="waves-effect waves-light btn bg-second-green">accéder au site</button>
+                    </a>
+                </div>
+            </div>
+            <div class="col s12 m4 l4 carte" >
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title to-capitalise center titre_bloc3">être naturaliste</span>
+                        <p >Les naturalistes sont les garant de la fiabilité des informations reçue.
+                            Vous pourrez saisir et partager vos
+                            observations mais aussi valider les informations reçues des observateurs, vous pourrez les
+                            guider et leurs
+                            proposer un accompagnement personnel, et ainsi voir notre communauté grandir et évoluer.</p>
+                        <br>
+                        <br>
+                    </div>
+                    <div class="card-action">
+                        <a href="http://nao.alicewproject.com/register/" class="card-link">
+                            <button class="waves-effect waves-light btn bg-second-green btn_section3">M'inscrire</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pied de page
+      ================================================== -->
+    <footer class="row center bg-main-brown-1">
+        <div class="">NAO 2018</div>
+    </footer>
+</div>
+
+<!-- jQuery, popper, bootstrap js -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+        integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
